@@ -51,8 +51,10 @@
 		8552BC2A29DDCD8D00DC8D7E /* ios-tripbook */ = {
 			isa = PBXGroup;
 			children = (
+				85B6EE5629DDD29700898B48 /* View */,
+				85B6EE5729DDD2A300898B48 /* ViewModel */,
+				85B6EE5829DDD2B800898B48 /* Model */,
 				8552BC2B29DDCD8D00DC8D7E /* AppView.swift */,
-				8552BC2D29DDCD8D00DC8D7E /* ContentView.swift */,
 				8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */,
 				8552BC3129DDCD8E00DC8D7E /* Preview Content */,
 			);
@@ -65,6 +67,28 @@
 				8552BC3229DDCD8E00DC8D7E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		85B6EE5629DDD29700898B48 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8552BC2D29DDCD8D00DC8D7E /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		85B6EE5729DDD2A300898B48 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		85B6EE5829DDD2B800898B48 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

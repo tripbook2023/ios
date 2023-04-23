@@ -12,6 +12,9 @@ import Foundation
 import Auth0
 
 class LoginViewModel: ObservableObject {
+    
+    let auth0Service = Auth0Service()
+    
     @Published var profile = Profile.empty
     @Published var accessToken: String = ""
     @Published var isLoggedIn: Bool = false
@@ -21,50 +24,35 @@ class LoginViewModel: ObservableObject {
      > Auth0 API를 활용한 로그아웃 구현
      - Parameter : 로그인 타입 (Apple, Kakao)
      */
-    func login(type: loginType) {
-        var loginType: String = ""
+    func login(type: loginType) async {
+        let webAuthLoginModel = await auth0Service.webAuthLogin(type: type)
         
-        if type == .apple {
-            loginType = "apple"
-        } else if type == .kakao {
-            loginType = "Kakao-Login"
+        // Auth0Service Login이 성공했을 때
+        if webAuthLoginModel.isSuccessed {
+            self.isLoggedIn = webAuthLoginModel.isSuccessed
+            self.accessToken = webAuthLoginModel.accessToken!
         }
-        
-        Auth0
-            .webAuth()
-            .connection(loginType)
-            .useEphemeralSession()
-            .start { result in
-                switch result {
-                case .failure(let error):
-                    print("로그인 실패: \(error)")
-                    self.isLoggedIn = false
-                case .success(let credentials):
-                    self.isLoggedIn = true
-                    self.accessToken = credentials.accessToken
-                    print("로그인 성공: \(credentials)")
-                    print("ID Token: \(credentials.idToken)")
-                    print("Access Token: \(credentials.accessToken)")
-                } // switch
-            }
+        // Auth0Service Login이 실패했을 때
+        else {
+            self.isLoggedIn = webAuthLoginModel.isSuccessed
+        }
     }
     
     /**
      로그아웃 구현
      > Auth0 API를 활용한 로그아웃 구현
      */
-    func logout() {
-        Auth0
-            .webAuth()
-            .clearSession { result in
-                switch result {
-                case.failure(let error):
-                    print("로그아웃 실패: \(error)")
-                case.success:
-                    self.isLoggedIn = false
-                    print("로그아웃 성공")
-                }
-            }
+    func logout() async {
+        let isSuccessedLogout = await auth0Service.webAuthLogout()
+            
+        // Auth0Service Logout이 성공했을 때
+        if isSuccessedLogout {
+            self.isLoggedIn = false
+        }
+        // Auth0Service Logout이 실패했을 때
+        else {
+            
+        }
     }
 }
 

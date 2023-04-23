@@ -19,10 +19,8 @@ struct ContentView: View {
             Button("로그인 띄우기", action: {
                 isLoginViewVisible.toggle()
             })
-            
             .sheet(isPresented: $isLoginViewVisible) {
                 LoginView()
-                
             }
         }
         .padding()

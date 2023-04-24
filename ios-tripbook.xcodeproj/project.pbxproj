@@ -8,18 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552BC2B29DDCD8D00DC8D7E /* AppView.swift */; };
-		8552BC2E29DDCD8D00DC8D7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552BC2D29DDCD8D00DC8D7E /* ContentView.swift */; };
+		8552BC2E29DDCD8D00DC8D7E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552BC2D29DDCD8D00DC8D7E /* RootView.swift */; };
 		8552BC3029DDCD8E00DC8D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */; };
 		8552BC3329DDCD8E00DC8D7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC3229DDCD8E00DC8D7E /* Preview Assets.xcassets */; };
+		85F02B4929F68D4D008DABCE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4829F68D4D008DABCE /* HomeView.swift */; };
+		85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4B29F68E7F008DABCE /* TravelReportView.swift */; };
+		85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */; };
+		85F02B5129F690F3008DABCE /* TravelNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B5029F690F3008DABCE /* TravelNewsView.swift */; };
+		85F02B5429F6913F008DABCE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B5329F6913F008DABCE /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8552BC2829DDCD8D00DC8D7E /* ios-tripbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-tripbook.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8552BC2B29DDCD8D00DC8D7E /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
-		8552BC2D29DDCD8D00DC8D7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8552BC2D29DDCD8D00DC8D7E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8552BC3229DDCD8E00DC8D7E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8588E32129EE49A900746B23 /* ios-tripbook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios-tripbook.entitlements"; sourceTree = "<group>"; };
+		85F02B4829F68D4D008DABCE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		85F02B4B29F68E7F008DABCE /* TravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportView.swift; sourceTree = "<group>"; };
+		85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelReportView.swift; sourceTree = "<group>"; };
+		85F02B5029F690F3008DABCE /* TravelNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsView.swift; sourceTree = "<group>"; };
+		85F02B5329F6913F008DABCE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +84,11 @@
 		85B6EE5629DDD29700898B48 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8552BC2D29DDCD8D00DC8D7E /* ContentView.swift */,
+				85F02B5229F69132008DABCE /* Profile */,
+				85F02B4F29F690DE008DABCE /* TravelNews */,
+				85F02B4A29F68E69008DABCE /* TravelReport */,
+				85F02B4729F68D2F008DABCE /* Home */,
+				8552BC2D29DDCD8D00DC8D7E /* RootView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -91,6 +105,39 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		85F02B4729F68D2F008DABCE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				85F02B4829F68D4D008DABCE /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		85F02B4A29F68E69008DABCE /* TravelReport */ = {
+			isa = PBXGroup;
+			children = (
+				85F02B4B29F68E7F008DABCE /* TravelReportView.swift */,
+				85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */,
+			);
+			path = TravelReport;
+			sourceTree = "<group>";
+		};
+		85F02B4F29F690DE008DABCE /* TravelNews */ = {
+			isa = PBXGroup;
+			children = (
+				85F02B5029F690F3008DABCE /* TravelNewsView.swift */,
+			);
+			path = TravelNews;
+			sourceTree = "<group>";
+		};
+		85F02B5229F69132008DABCE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				85F02B5329F6913F008DABCE /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,7 +210,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8552BC2E29DDCD8D00DC8D7E /* ContentView.swift in Sources */,
+				85F02B4929F68D4D008DABCE /* HomeView.swift in Sources */,
+				85F02B5129F690F3008DABCE /* TravelNewsView.swift in Sources */,
+				8552BC2E29DDCD8D00DC8D7E /* RootView.swift in Sources */,
+				85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */,
+				85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */,
+				85F02B5429F6913F008DABCE /* ProfileView.swift in Sources */,
 				8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

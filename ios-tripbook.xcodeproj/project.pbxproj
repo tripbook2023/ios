@@ -11,12 +11,6 @@
 		8552BC2E29DDCD8D00DC8D7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552BC2D29DDCD8D00DC8D7E /* ContentView.swift */; };
 		8552BC3029DDCD8E00DC8D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */; };
 		8552BC3329DDCD8E00DC8D7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC3229DDCD8E00DC8D7E /* Preview Assets.xcassets */; };
-		85F02B4529F58EF8008DABCE /* Auth0Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4429F58EF8008DABCE /* Auth0Service.swift */; };
-		DF1A31F129F2ADB4003F4852 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A31F029F2ADB4003F4852 /* ProfileModel.swift */; };
-		DF1A31F429F2AE5D003F4852 /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = DF1A31F329F2AE5D003F4852 /* Auth0 */; };
-		DF1A31F629F2AED4003F4852 /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF1A31F529F2AED4003F4852 /* Auth0.plist */; };
-		DF1A31F929F2B37F003F4852 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A31F829F2B37F003F4852 /* LoginView.swift */; };
-		DF9DA7B029F3DDA6009F2482 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9DA7AF29F3DDA6009F2482 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,11 +20,6 @@
 		8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8552BC3229DDCD8E00DC8D7E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8588E32129EE49A900746B23 /* ios-tripbook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios-tripbook.entitlements"; sourceTree = "<group>"; };
-		85F02B4429F58EF8008DABCE /* Auth0Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth0Service.swift; sourceTree = "<group>"; };
-		DF1A31F029F2ADB4003F4852 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
-		DF1A31F529F2AED4003F4852 /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
-		DF1A31F829F2B37F003F4852 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		DF9DA7AF29F3DDA6009F2482 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +27,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF1A31F429F2AE5D003F4852 /* Auth0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,11 +56,9 @@
 				85B6EE5629DDD29700898B48 /* View */,
 				85B6EE5729DDD2A300898B48 /* ViewModel */,
 				85B6EE5829DDD2B800898B48 /* Model */,
-				85F02B4329F58ED3008DABCE /* Service */,
 				8552BC2B29DDCD8D00DC8D7E /* AppView.swift */,
 				8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */,
 				8552BC3129DDCD8E00DC8D7E /* Preview Content */,
-				DF1A31F529F2AED4003F4852 /* Auth0.plist */,
 			);
 			path = "ios-tripbook";
 			sourceTree = "<group>";
@@ -88,7 +74,6 @@
 		85B6EE5629DDD29700898B48 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DF1A31F729F2B36D003F4852 /* Login */,
 				8552BC2D29DDCD8D00DC8D7E /* ContentView.swift */,
 			);
 			path = View;
@@ -97,7 +82,6 @@
 		85B6EE5729DDD2A300898B48 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DF9DA7AF29F3DDA6009F2482 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -105,25 +89,8 @@
 		85B6EE5829DDD2B800898B48 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DF1A31F029F2ADB4003F4852 /* ProfileModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		85F02B4329F58ED3008DABCE /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				85F02B4429F58EF8008DABCE /* Auth0Service.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		DF1A31F729F2B36D003F4852 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				DF1A31F829F2B37F003F4852 /* LoginView.swift */,
-			);
-			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +109,6 @@
 			dependencies = (
 			);
 			name = "ios-tripbook";
-			packageProductDependencies = (
-				DF1A31F329F2AE5D003F4852 /* Auth0 */,
-			);
 			productName = "ios-tripbook";
 			productReference = 8552BC2829DDCD8D00DC8D7E /* ios-tripbook.app */;
 			productType = "com.apple.product-type.application";
@@ -173,9 +137,6 @@
 				ko,
 			);
 			mainGroup = 8552BC1F29DDCD8D00DC8D7E;
-			packageReferences = (
-				DF1A31F229F2AE5D003F4852 /* XCRemoteSwiftPackageReference "Auth0" */,
-			);
 			productRefGroup = 8552BC2929DDCD8D00DC8D7E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -191,7 +152,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8552BC3329DDCD8E00DC8D7E /* Preview Assets.xcassets in Resources */,
-				DF1A31F629F2AED4003F4852 /* Auth0.plist in Resources */,
 				8552BC3029DDCD8E00DC8D7E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,11 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF1A31F129F2ADB4003F4852 /* ProfileModel.swift in Sources */,
 				8552BC2E29DDCD8D00DC8D7E /* ContentView.swift in Sources */,
-				85F02B4529F58EF8008DABCE /* Auth0Service.swift in Sources */,
-				DF1A31F929F2B37F003F4852 /* LoginView.swift in Sources */,
-				DF9DA7B029F3DDA6009F2482 /* LoginViewModel.swift in Sources */,
 				8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,25 +383,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		DF1A31F229F2AE5D003F4852 /* XCRemoteSwiftPackageReference "Auth0" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/auth0/Auth0.swift";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 2.3.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		DF1A31F329F2AE5D003F4852 /* Auth0 */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF1A31F229F2AE5D003F4852 /* XCRemoteSwiftPackageReference "Auth0" */;
-			productName = Auth0;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8552BC2029DDCD8D00DC8D7E /* Project object */;
 }

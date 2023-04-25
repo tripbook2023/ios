@@ -8,20 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var isLoginViewVisible: Bool = false
-    
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
-            Button("로그인 띄우기", action: {
-                isLoginViewVisible.toggle()
-            })
-            .sheet(isPresented: $isLoginViewVisible) {
-                LoginView()
-            }
         }
         .padding()
     }

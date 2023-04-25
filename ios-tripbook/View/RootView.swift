@@ -51,7 +51,7 @@ struct RootView: View {
                     Text("내 정보")
                 }
         }
-        .accentColor(.black)
+        .accentColor(.primary)
     }
 }
 

@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-/**
- View: 초기 진입 화면
- 
- View 구성 요소
- - TabView
-    - HomeView
-    - TravelReportView
-    - RegisterTravelReportView
-    - TravelNewsView
-    - ProfileView
- */
 struct RootView: View {
     var body: some View {
         TabView {

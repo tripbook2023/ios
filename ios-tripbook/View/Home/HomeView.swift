@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-/**
- View: 홈 화면
- 
- View 구성 요소
- - 
- */
 struct HomeView: View {
     var body: some View {
         Text("Home")

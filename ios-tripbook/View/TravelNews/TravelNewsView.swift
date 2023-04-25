@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-/**
- View: 여행 소식 화면
- 
- View 구성 요소
- - 
- */
 struct TravelNewsView: View {
     var body: some View {
         Text("Travel News")

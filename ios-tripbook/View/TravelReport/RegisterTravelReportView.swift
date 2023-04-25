@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+/**
+ View: 여행 기록 등록 화면
+ 
+ View 구성 요소
+ - 
+ */
 struct RegisterTravelReportView: View {
     var body: some View {
         Text("Register Travel Report")

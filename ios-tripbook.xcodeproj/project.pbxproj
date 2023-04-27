@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8500D02829FB112800CBFD4C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8500D02729FB112800CBFD4C /* .gitignore */; };
+		8500D02A29FB115700CBFD4C /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 8500D02929FB115700CBFD4C /* .gitattributes */; };
 		8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552BC2B29DDCD8D00DC8D7E /* AppView.swift */; };
 		8552BC2E29DDCD8D00DC8D7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552BC2D29DDCD8D00DC8D7E /* ContentView.swift */; };
 		8552BC3029DDCD8E00DC8D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8500D02729FB112800CBFD4C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8500D02929FB115700CBFD4C /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 		8552BC2829DDCD8D00DC8D7E /* ios-tripbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-tripbook.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8552BC2B29DDCD8D00DC8D7E /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		8552BC2D29DDCD8D00DC8D7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +40,8 @@
 		8552BC1F29DDCD8D00DC8D7E = {
 			isa = PBXGroup;
 			children = (
+				8500D02729FB112800CBFD4C /* .gitignore */,
+				8500D02929FB115700CBFD4C /* .gitattributes */,
 				8552BC2A29DDCD8D00DC8D7E /* ios-tripbook */,
 				8552BC2929DDCD8D00DC8D7E /* Products */,
 			);
@@ -152,7 +158,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8552BC3329DDCD8E00DC8D7E /* Preview Assets.xcassets in Resources */,
+				8500D02829FB112800CBFD4C /* .gitignore in Resources */,
 				8552BC3029DDCD8E00DC8D7E /* Assets.xcassets in Resources */,
+				8500D02A29FB115700CBFD4C /* .gitattributes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

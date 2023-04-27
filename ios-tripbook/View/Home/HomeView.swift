@@ -22,11 +22,10 @@ struct HomeView: View {
                     Text("Tripbook")
                         .font(.custom("NotoSansKR-Bold", size: 18))
                     Spacer()
-                    Button(action: {
-                        
-                    }) {
+                    NavigationLink(destination: HomeSearchView()) {
                         Image(systemName: "magnifyingglass")
-                    }.foregroundColor(.primary)
+                            .foregroundColor(.primary)
+                    }
                     Text("1,000P")
                         .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 18))
                         .padding(EdgeInsets(top: 0.0, leading: 18.0, bottom: 0.0, trailing: 18.0))

@@ -24,7 +24,7 @@ struct EventBannerView: View {
         .padding()
         .background(Color(red: 217 / 255, green: 217 / 255, blue: 217 / 255))
         .cornerRadius(20.0)
-        .frame(width: .infinity)
+        .frame(maxWidth: .infinity)
     }
 }
 

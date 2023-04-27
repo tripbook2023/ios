@@ -9,13 +9,14 @@ import SwiftUI
 
 struct HomeSearchView: View {
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel = HomeSearchViewModel()
     
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 7.5) {
                 Button(action: {
-                    
+                    self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.backward")
                         .resizable()
@@ -36,7 +37,7 @@ struct HomeSearchView: View {
                 .background(Color(red: 245 / 255, green: 245 / 255, blue: 245 / 255))
                 .cornerRadius(5.0)
                 
-                if !self.viewModel.searchKeyword.isEmpty {
+                if !self.viewModel.searchKeyword.isEmpty && self.viewModel.selectedSearchKeyword != nil {
                     Button("취소") {
                         self.viewModel.returnInitState()
                     }
@@ -45,7 +46,7 @@ struct HomeSearchView: View {
                 }
             }.padding(EdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 14))
             
-            if viewModel.selectedSearchKeyword != nil {
+            if !self.viewModel.searchKeyword.isEmpty && self.viewModel.selectedSearchKeyword != nil {
                 Spacer().frame(height: 25)
                 
                 HStack(spacing: 0) {
@@ -123,6 +124,7 @@ struct HomeSearchView: View {
                 }
             }
         }
+        .navigationBarHidden(true)
     }
 }
 

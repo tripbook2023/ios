@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851BEA5E29FF9328003D60C9 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851BEA5D29FF9328003D60C9 /* HomeHeaderView.swift */; };
 		85338E2329F81DEE00E87792 /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E1D29F81DE500E87792 /* NotoSansKR-Black.otf */; };
 		85338E2429F81DEE00E87792 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E1E29F81DE600E87792 /* NotoSansKR-Bold.otf */; };
 		85338E2529F81DEE00E87792 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E2029F81DE600E87792 /* NotoSansKR-Medium.otf */; };
@@ -27,6 +28,7 @@
 		8552BC2E29DDCD8D00DC8D7E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552BC2D29DDCD8D00DC8D7E /* RootView.swift */; };
 		8552BC3029DDCD8E00DC8D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */; };
 		8552BC3329DDCD8E00DC8D7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC3229DDCD8E00DC8D7E /* Preview Assets.xcassets */; };
+		85561AB429FD403F004B06F8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85561AB329FD403F004B06F8 /* HomeViewModel.swift */; };
 		85F02B4929F68D4D008DABCE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4829F68D4D008DABCE /* HomeView.swift */; };
 		85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4B29F68E7F008DABCE /* TravelReportView.swift */; };
 		85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */; };
@@ -35,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		851BEA5D29FF9328003D60C9 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		85338E1D29F81DE500E87792 /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
 		85338E1E29F81DE600E87792 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		85338E1F29F81DE600E87792 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		8552BC2D29DDCD8D00DC8D7E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8552BC3229DDCD8E00DC8D7E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		85561AB329FD403F004B06F8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		8588E32129EE49A900746B23 /* ios-tripbook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios-tripbook.entitlements"; sourceTree = "<group>"; };
 		85F02B4829F68D4D008DABCE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		85F02B4B29F68E7F008DABCE /* TravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportView.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				85338E4129FA206C00E87792 /* HomeSearchViewModel.swift */,
+				85561AB329FD403F004B06F8 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 				85338E2E29F82BAA00E87792 /* HomeTitleView.swift */,
 				85338E3C29F8851E00E87792 /* HomeSearchView.swift */,
 				85338E3E29F88C9C00E87792 /* HomeSearchKeywordCellView.swift */,
+				851BEA5D29FF9328003D60C9 /* HomeHeaderView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -319,10 +325,12 @@
 				85F02B4929F68D4D008DABCE /* HomeView.swift in Sources */,
 				85F02B5129F690F3008DABCE /* TravelNewsView.swift in Sources */,
 				85338E2F29F82BAA00E87792 /* HomeTitleView.swift in Sources */,
+				85561AB429FD403F004B06F8 /* HomeViewModel.swift in Sources */,
 				85338E4529FA638E00E87792 /* SearchKeywordModel.swift in Sources */,
 				85338E3429F8524000E87792 /* EventBannerView.swift in Sources */,
 				8552BC2E29DDCD8D00DC8D7E /* RootView.swift in Sources */,
 				85338E3F29F88C9C00E87792 /* HomeSearchKeywordCellView.swift in Sources */,
+				851BEA5E29FF9328003D60C9 /* HomeHeaderView.swift in Sources */,
 				85338E3D29F8851E00E87792 /* HomeSearchView.swift in Sources */,
 				85338E4229FA206C00E87792 /* HomeSearchViewModel.swift in Sources */,
 				85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */,

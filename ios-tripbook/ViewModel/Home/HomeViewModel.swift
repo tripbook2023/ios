@@ -192,7 +192,19 @@ extension HomeViewModel {
                 if index != 0 {
                     Spacer().frame(height: 30)
                 }
-                FeedItemView().padding(.horizontal)
+                FeedItemView(
+                    FeedModel(
+                        user: .init(name: "서지혜", profileImage: UIImage(named: "SampleProfileImage")!),
+                        image: UIImage(named: "SampleFeedThumbnail")!,
+                        likeCount: 1,
+                        commentCount: 2,
+                        isSaved: false,
+                        title: "title",
+                        content: "contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent",
+                        isLiked: false,
+                        createdAt: .init()
+                    )
+                ).padding(.horizontal)
             }
         }
     }
@@ -204,7 +216,19 @@ extension HomeViewModel {
                 if index != 0 {
                     Spacer().frame(height: 30)
                 }
-                FeedItemView().padding(.horizontal)
+                FeedItemView(
+                    FeedModel(
+                        user: .init(name: "서지혜", profileImage: UIImage(named: "SampleProfileImage")!),
+                        image: UIImage(named: "SampleFeedThumbnail")!,
+                        likeCount: 1,
+                        commentCount: 2,
+                        isSaved: false,
+                        title: "title",
+                        content: "contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent",
+                        isLiked: false,
+                        createdAt: .init()
+                    )
+                ).padding(.horizontal)
             }
         }
     }
@@ -216,7 +240,19 @@ extension HomeViewModel {
                 if index != 0 {
                     Spacer().frame(height: 30)
                 }
-                FeedItemView().padding(.horizontal)
+                FeedItemView(
+                    FeedModel(
+                        user: .init(name: "서지혜", profileImage: UIImage(named: "SampleProfileImage")!),
+                        image: UIImage(named: "SampleFeedThumbnail")!,
+                        likeCount: 1,
+                        commentCount: 2,
+                        isSaved: false,
+                        title: "title",
+                        content: "contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent",
+                        isLiked: false,
+                        createdAt: .init()
+                    )
+                ).padding(.horizontal)
             }
         }
     }
@@ -228,6 +264,18 @@ extension HomeViewModel {
     
     // Function: 신규 여행소식 View를 로드
     func loadLeastTravelNewsView() -> some View {
-        return FeedItemView().padding(.horizontal)
+        return FeedItemView(
+            FeedModel(
+                user: .init(name: "서지혜", profileImage: UIImage(named: "SampleProfileImage")!),
+                image: UIImage(named: "SampleFeedThumbnail")!,
+                likeCount: 1,
+                commentCount: 2,
+                isSaved: false,
+                title: "title",
+                content: "contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent",
+                isLiked: false,
+                createdAt: .init()
+            )
+        ).padding(.horizontal)
     }
 }

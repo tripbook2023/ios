@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		851BEA5E29FF9328003D60C9 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851BEA5D29FF9328003D60C9 /* HomeHeaderView.swift */; };
+		8527A5772A0366B6003819B1 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527A5762A0366B6003819B1 /* FeedModel.swift */; };
+		8527A5792A036786003819B1 /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527A5782A036786003819B1 /* FeedItemViewModel.swift */; };
 		85338E2329F81DEE00E87792 /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E1D29F81DE500E87792 /* NotoSansKR-Black.otf */; };
 		85338E2429F81DEE00E87792 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E1E29F81DE600E87792 /* NotoSansKR-Bold.otf */; };
 		85338E2529F81DEE00E87792 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E2029F81DE600E87792 /* NotoSansKR-Medium.otf */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		851BEA5D29FF9328003D60C9 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		8527A5762A0366B6003819B1 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
+		8527A5782A036786003819B1 /* FeedItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemViewModel.swift; sourceTree = "<group>"; };
 		85338E1D29F81DE500E87792 /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
 		85338E1E29F81DE600E87792 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		85338E1F29F81DE600E87792 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				85338E4029FA205400E87792 /* Home */,
+				8527A5782A036786003819B1 /* FeedItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				85338E4329FA637E00E87792 /* Home */,
+				8527A5762A0366B6003819B1 /* FeedModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -323,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85F02B4929F68D4D008DABCE /* HomeView.swift in Sources */,
+				8527A5772A0366B6003819B1 /* FeedModel.swift in Sources */,
 				85F02B5129F690F3008DABCE /* TravelNewsView.swift in Sources */,
 				85338E2F29F82BAA00E87792 /* HomeTitleView.swift in Sources */,
 				85561AB429FD403F004B06F8 /* HomeViewModel.swift in Sources */,
@@ -338,6 +345,7 @@
 				85338E2A29F81DFB00E87792 /* Font.swift in Sources */,
 				85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */,
 				85F02B5429F6913F008DABCE /* ProfileView.swift in Sources */,
+				8527A5792A036786003819B1 /* FeedItemViewModel.swift in Sources */,
 				8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,8 +9,17 @@
 import SwiftUI
 
 struct NicknameSettingView: View {
+    @State var inputNickname: String = ""
     var body: some View {
-        Text("Nickname Setting View")
+        VStack{
+            TextField("", text: $inputNickname)
+            Divider()
+                .background(Color.black)
+            Text("한글, 영어, 숫자를 입력해주세요")
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Spacer()
+        }
+        .padding()
     }
 }
 

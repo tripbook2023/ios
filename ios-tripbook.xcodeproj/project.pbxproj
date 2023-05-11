@@ -31,6 +31,8 @@
 		DF46E91629F815DC00C7522F /* PollTransportationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46E91529F815DC00C7522F /* PollTransportationView.swift */; };
 		DF46E91829F8161D00C7522F /* PollPurposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46E91729F8161D00C7522F /* PollPurposeView.swift */; };
 		DF46E91A29F8164E00C7522F /* RegisterDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46E91929F8164E00C7522F /* RegisterDoneView.swift */; };
+		DF46E91D29F8224C00C7522F /* KakaoLoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46E91C29F8224C00C7522F /* KakaoLoginButtonView.swift */; };
+		DF92BA1129FD46CF0045DC69 /* PollProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF92BA1029FD46CF0045DC69 /* PollProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		DF46E91529F815DC00C7522F /* PollTransportationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollTransportationView.swift; sourceTree = "<group>"; };
 		DF46E91729F8161D00C7522F /* PollPurposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollPurposeView.swift; sourceTree = "<group>"; };
 		DF46E91929F8164E00C7522F /* RegisterDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDoneView.swift; sourceTree = "<group>"; };
+		DF46E91C29F8224C00C7522F /* KakaoLoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginButtonView.swift; sourceTree = "<group>"; };
+		DF92BA1029FD46CF0045DC69 /* PollProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +187,7 @@
 		DF46E8F829F8129300C7522F /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
+				DF46E91B29F8222A00C7522F /* Components */,
 				DF46E90C29F814F700C7522F /* Terms */,
 				DF46E90B29F814EE00C7522F /* Register */,
 				DF46E90A29F814E600C7522F /* Poll */,
@@ -202,6 +207,7 @@
 				DF46E91229F815A900C7522F /* PollWithView.swift */,
 				DF46E91529F815DC00C7522F /* PollTransportationView.swift */,
 				DF46E91729F8161D00C7522F /* PollPurposeView.swift */,
+				DF92BA1029FD46CF0045DC69 /* PollProgressView.swift */,
 			);
 			path = Poll;
 			sourceTree = "<group>";
@@ -223,6 +229,14 @@
 				DF46E90429F8140200C7522F /* TermsDetailView.swift */,
 			);
 			path = Terms;
+			sourceTree = "<group>";
+		};
+		DF46E91B29F8222A00C7522F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DF46E91C29F8224C00C7522F /* KakaoLoginButtonView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,6 +317,7 @@
 				DF46E91629F815DC00C7522F /* PollTransportationView.swift in Sources */,
 				8552BC2E29DDCD8D00DC8D7E /* RootView.swift in Sources */,
 				DF46E90329F813C300C7522F /* ProfileImageSettingView.swift in Sources */,
+				DF92BA1129FD46CF0045DC69 /* PollProgressView.swift in Sources */,
 				DF46E8FA29F812A400C7522F /* LoginView.swift in Sources */,
 				DF46E8FF29F8136800C7522F /* SignUpView.swift in Sources */,
 				85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */,
@@ -314,6 +329,7 @@
 				85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */,
 				DF46E8F729F8120400C7522F /* OnboardingView.swift in Sources */,
 				85F02B5429F6913F008DABCE /* ProfileView.swift in Sources */,
+				DF46E91D29F8224C00C7522F /* KakaoLoginButtonView.swift in Sources */,
 				DF46E91129F8156100C7522F /* PollTripCountView.swift in Sources */,
 				8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */,
 				DF46E91A29F8164E00C7522F /* RegisterDoneView.swift in Sources */,

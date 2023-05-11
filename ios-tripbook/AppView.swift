@@ -4,7 +4,7 @@ import SwiftUI
 struct ios_tripbookApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView()
+            SignUpView()
         }
     }
 }

@@ -22,7 +22,7 @@ struct HalfTravelReportItemView: View {
     }
     
     /// 여행 기록 Item View - View Model
-    @ObservedObject var viewModel: FeedItemViewModel
+    @ObservedObject var viewModel: TravelReportItemViewModel
     /// Header 표시 Type 명시
     var type: type
     
@@ -34,7 +34,7 @@ struct HalfTravelReportItemView: View {
         _ data: TravelReportModel,
         type: type = .profile
     ) {
-        self.viewModel = FeedItemViewModel(data)
+        self.viewModel = TravelReportItemViewModel(data)
         self.type = type
     }
     
@@ -43,13 +43,13 @@ struct HalfTravelReportItemView: View {
             switch self.type {
             case .profile:
                 HStack(spacing: 7) {
-                    Image(uiImage: self.viewModel.data.user.profileImage)
+                    Image(uiImage: self.viewModel.data.author.profileImage)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 29, height: 29)
                         .cornerRadius(29 / 2)
                         .clipped()
-                    Text(self.viewModel.data.user.name)
+                    Text(self.viewModel.data.author.name)
                         .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 10))
                 }
             case .information:
@@ -63,40 +63,10 @@ struct HalfTravelReportItemView: View {
                 .frame(width: 178, height: 206)
                 .clipped()
             
-            HStack(spacing: 10) {
-                ToggleButton(
-                    isToggled: self.$viewModel.data.isLiked,
-                    configureByState: [
-                        true: .init(image: Image(systemName: "heart.fill"), color: .pink),
-                        false: .init(image: Image(systemName: "heart"), color: .primary)
-                    ],
-                    isCounting: false,
-                    count: self.$viewModel.data.likeCount
-                ) {
-                    self.viewModel.didTapLikeButton()
-                }
-                ToggleButton(
-                    isToggled: .constant(false),
-                    image: Image(systemName: "text.bubble"),
-                    color: .primary,
-                    isCounting: true,
-                    count: self.$viewModel.data.commentCount
-                ) {
-                    self.viewModel.didTapCommentButton()
-                }
-                
-                Spacer()
-                
-                ToggleButton(
-                    isToggled: self.$viewModel.data.isSaved,
-                    configureByState: [
-                        true: .init(image: Image(systemName: "bookmark.fill"), color: .yellow),
-                        false: .init(image: Image(systemName: "bookmark"), color: .primary)
-                    ]
-                ) {
-                    self.viewModel.didTapSaveButton()
-                }
-            }.padding(EdgeInsets(top: 0, leading: 3, bottom: 0, trailing: 3))
+            DocumentActionBar(
+                self.$viewModel.data,
+                delegate: self.viewModel
+            )
             
             Text(self.viewModel.data.title)
                 .font(.custom(TBFontType.NotoSansKR.medium.rawValue, size: 12))
@@ -110,25 +80,25 @@ struct HalfTravelReportItemView: View {
 /// - Date: 2023/05/01
 struct TravelReportItemView: View {
     /// 여행 기록 Item View - View Model
-    @ObservedObject var viewModel: FeedItemViewModel
+    @ObservedObject var viewModel: TravelReportItemViewModel
     
     /// 여행 기록 Item View Initializer
     /// - Parameters:
     ///     - data: 여행 기록 Data Model
     init(_ data: TravelReportModel) {
-        self.viewModel = FeedItemViewModel(data)
+        self.viewModel = TravelReportItemViewModel(data)
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 7) {
-                Image(uiImage: self.viewModel.data.user.profileImage)
+                Image(uiImage: self.viewModel.data.author.profileImage)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 38, height: 38)
                     .cornerRadius(38 / 2)
                     .clipped()
-                Text(self.viewModel.data.user.name)
+                Text(self.viewModel.data.author.name)
                     .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 13))
             }
             
@@ -139,47 +109,11 @@ struct TravelReportItemView: View {
                 .cornerRadius(20.0)
                 .clipped()
             
-            HStack(spacing: 20) {
-                ToggleButton(
-                    isToggled: self.$viewModel.data.isLiked,
-                    configureByState: [
-                        true: .init(image: Image(systemName: "heart.fill"), color: .pink),
-                        false: .init(image: Image(systemName: "heart"), color: .primary)
-                    ],
-                    isCounting: false,
-                    count: self.$viewModel.data.likeCount
-                ) {
-                    self.viewModel.didTapLikeButton()
-                }
-                ToggleButton(
-                    isToggled: .constant(false),
-                    image: Image(systemName: "text.bubble"),
-                    color: .primary,
-                    isCounting: true,
-                    count: self.$viewModel.data.commentCount
-                ) {
-                    self.viewModel.didTapCommentButton()
-                }
-                
-                Spacer()
-                
-                ToggleButton(
-                    isToggled: .constant(false),
-                    image: Image(systemName: "arrowshape.turn.up.right"),
-                    color: .primary
-                ) {
-                    self.viewModel.didTapShareButton()
-                }
-                ToggleButton(
-                    isToggled: self.$viewModel.data.isSaved,
-                    configureByState: [
-                        true: .init(image: Image(systemName: "bookmark.fill"), color: .yellow),
-                        false: .init(image: Image(systemName: "bookmark"), color: .primary)
-                    ]
-                ) {
-                    self.viewModel.didTapSaveButton()
-                }
-            }.padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 7))
+            DocumentActionBar(
+                self.$viewModel.data,
+                delegate: self.viewModel,
+                canShare: true
+            ).padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 7))
             
             Text(self.viewModel.data.title)
                 .font(.custom(TBFontType.NotoSansKR.medium.rawValue, size: 12))
@@ -197,10 +131,6 @@ struct TravelReportItemView: View {
 struct FeedItemView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            HalfTravelReportItemView(SampleTravelReportModel())
-            .previewLayout(.sizeThatFits)
-            .padding()
-            
             HalfTravelReportItemView(SampleTravelReportModel())
             .previewLayout(.sizeThatFits)
             .padding()

@@ -35,11 +35,10 @@ struct HomeTravelNewsItemView: View {
                     HStack {
                         Spacer()
                         ToggleButton(
-                            isToggled: self.$viewModel.data.isSaved,
-                            configureByState: [
-                                true: .init(image: Image(systemName: "bookmark.fill"), color: .yellow),
-                                false: .init(image: Image(systemName: "bookmark"), color: .white)
-                            ]
+                            image: self.viewModel.data.isSaved ? Image(systemName: "bookmark.fill") : Image(systemName: "bookmark"),
+                            imageColor: self.viewModel.data.isSaved ? .yellow : .white,
+                            labelColor: .primary,
+                            isToggled: self.$viewModel.data.isSaved
                         ) {
                             print("tap")
                         }

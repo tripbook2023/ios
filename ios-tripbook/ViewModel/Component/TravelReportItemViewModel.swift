@@ -10,7 +10,7 @@ import SwiftUI
 /// 여행 기록 Item View - View Model
 /// - Author: 김민규
 /// - Date: 2023/05/15
-class FeedItemViewModel: ObservableObject {
+class TravelReportItemViewModel: ObservableObject {
     @Published var data: TravelReportModel
     
     /// 날짜 표시를 위한 포맷터
@@ -25,7 +25,9 @@ class FeedItemViewModel: ObservableObject {
     init(_ data: TravelReportModel) {
         self.data = data
     }
-    
+}
+
+extension TravelReportItemViewModel: DocumentActionBarDelegate {
     /// 좋아요 버튼 Tap
     func didTapLikeButton() {
         // here is API Service

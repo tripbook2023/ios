@@ -12,9 +12,9 @@ import SwiftUI
 /// - Date: 2023/05/15
 struct HomePointBannerView: View {
     /// 사용자 이름(닉네임)
-    var name: String
+    @Binding var name: String
     /// 사용자 보유 포인트
-    var point: Int
+    @Binding var point: Int
     
     var body: some View {
         Rectangle()
@@ -49,7 +49,7 @@ struct HomePointBannerView: View {
 
 struct HomePointBannerView_Previews: PreviewProvider {
     static var previews: some View {
-        HomePointBannerView(name: "홍길동", point: 1000)
+        HomePointBannerView(name: .constant("홍길동"), point: .constant(1000))
             .previewLayout(.sizeThatFits)
             .padding()
     }

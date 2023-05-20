@@ -19,6 +19,9 @@ import SwiftUI
     - ProfileView
  */
 struct RootView: View {
+    /// Data Manager
+    @StateObject var dataObject = DataObject()
+    
     @ObservedObject var viewModel = RootViewModel()
     
     var body: some View {
@@ -60,7 +63,7 @@ struct RootView: View {
                     .tag(RootViewModel.TabType.profile)
             }
             .accentColor(.primary)
-        }
+        }.environmentObject(dataObject)
     }
 }
 

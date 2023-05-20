@@ -7,198 +7,169 @@
 
 import SwiftUI
 
-/// Tripbook Image Toggle Button
+/// Based Toggle Button Properties
 /// - Author: 김민규
-/// - Date: 2023/05/15
-struct ToggleButton: View {
+/// - Date: 2023/05/20
+protocol ToggleButtonProtocol {
+    /// Toggle Image
+    var image: Image { get }
+    /// Toggle Image Color
+    var imageColor: Color { get }
+    /// Toggle Image Size
+    var imageSize: CGSize { get }
+    /// Text Label Color
+    var labelColor: Color { get }
     
-    /// Button의 독립적인 설정 정의
-    struct configure {
-        /// Button의 이미지
-        let image: Image
-        /// Button의 색상
-        let color: Color
+    /// Toggle 여부
+    var isToggled: Binding<Bool> { get }
+    /// 추가 Click 이벤트
+    var onClickedEvent: () -> Void { get }
+}
+
+/// Based Toggle Button Action
+/// - Author: 김민규
+/// - Date: 2023/05/20
+extension ToggleButtonProtocol {
+    func toggle() {
+        self.isToggled.wrappedValue.toggle()
     }
+}
+
+/// Text Label Toggle Button
+/// - Author: 김민규
+/// - Date: 2023/05/20
+struct TextToggleButton: View, ToggleButtonProtocol {
+    var image: Image
+    var imageColor: Color
+    var imageSize: CGSize = .init(width: 24, height: 24)
+    var labelColor: Color = .primary
     
-    /// 토글 여부
-    @Binding var isToggled: Bool
-    /// 토글 여부에 따른 Button의 설정 정의
-    let configureByState: [Bool:configure]
+    var isToggled: Binding<Bool>
+    /// Text String
+    var text: String
     
-    /// Button 텍스트
-    var text: String? = nil
-    /// Button 토글 Count
-    @Binding var count: Int
-    
-    /// Button 토글 카운팅 여부
-    var isCounting: Bool = false
-    /// 추가적인 Button Click Event
     var onClickedEvent: () -> Void
     
-    /// 토글에 따른 상태 변화가 없는 Text Toggle Button
-    /// - Parameters:
-    ///     - isToggled: 토글 여부
-    ///     - image: Button의 이미지
-    ///     - color: Button의 색상
-    ///     - text: Button 텍스트
-    ///     - onClickedEvent: 추가적인 Button Click Event
-    init(
-        isToggled: Binding<Bool>,
-        image: Image,
-        color: Color,
-        text: String? = nil,
-        _ onClickedEvent: @escaping () -> Void
-    ) {
-        self._isToggled = isToggled
-        self.configureByState = [
-            true: .init(image: image, color: color),
-            false: .init(image: image, color: color)
-        ]
-        if let text = text {
-            self.text = text
-        }
-        self._count = .constant(-1)
-        self.onClickedEvent = onClickedEvent
-    }
-    
-    /// 토글에 따른 상태 변화가 없는 Text Toggle Button
-    /// - Parameters:
-    ///     - isToggled: 토글 여부
-    ///     - image: Button의 이미지
-    ///     - color: Button의 색상
-    ///     - isCounting: Button 토글 카운팅 여부
-    ///     - count: Button 토글 Count
-    ///     - onClickedEvent: 추가적인 Button Click Event
-    init(
-        isToggled: Binding<Bool>,
-        image: Image,
-        color: Color,
-        isCounting: Bool,
-        count: Binding<Int>,
-        _ onClickedEvent: @escaping () -> Void
-    ) {
-        self._isToggled = isToggled
-        self.configureByState = [
-            true: .init(image: image, color: color),
-            false: .init(image: image, color: color)
-        ]
-        self.isCounting = isCounting
-        self._count = count
-        self.onClickedEvent = onClickedEvent
-    }
-    
-    /// 토글에 따른 상태 변화가 없는 Text Toggle Button
-    /// - Parameters:
-    ///     - isToggled: 토글 여부
-    ///     - configureByState: 토글 여부에 따른 Button의 설정 정의
-    ///     - text: Button 텍스트
-    ///     - onClickedEvent: 추가적인 Button Click Event
-    init(
-        isToggled: Binding<Bool>,
-        configureByState: [Bool:configure],
-        text: String? = nil,
-        _ onClickedEvent: @escaping () -> Void
-    ) {
-        self._isToggled = isToggled
-        self.configureByState = configureByState
-        if let text = text {
-            self.text = text
-        }
-        self._count = .constant(-1)
-        self.onClickedEvent = onClickedEvent
-    }
-    
-    /// 토글에 따른 상태 변화가 없는 Text Toggle Button
-    /// - Parameters:
-    ///     - isToggled: 토글 여부
-    ///     - configureByState: 토글 여부에 따른 Button의 설정 정의
-    ///     - isCounting: Button 토글 카운팅 여부
-    ///     - count: Button 토글 Count
-    ///     - onClickedEvent: 추가적인 Button Click Event
-    init(
-        isToggled: Binding<Bool>,
-        configureByState: [Bool:configure],
-        isCounting: Bool,
-        count: Binding<Int>,
-        _ completion: @escaping () -> Void) {
-        self._isToggled = isToggled
-        self.configureByState = configureByState
-        self.isCounting = isCounting
-        self._count = count
-        self.onClickedEvent = completion
-    }
-    
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .top) {
             Button(action: {
-                if isCounting {
-                    if self.isToggled {
-                        self.count -= 1
-                    } else {
-                        self.count += 1
-                    }
-                }
-                
-                self.isToggled.toggle()
-                
+                self.toggle()
+
                 self.onClickedEvent()
             }) {
-                self.configureByState[self.isToggled]!.image
-            }.foregroundColor(self.configureByState[self.isToggled]!.color)
+                self.image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: imageSize.width, height: imageSize.height)
+            }.foregroundColor(self.imageColor)
             
-            if let text = self.text {
-                Text(text)
-                    .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 14))
-            } else if count > 0 {
-                Text("\(count)")
-                    .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 14))
-            }
+            Text(self.text)
+                .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 14))
+                .foregroundColor(self.labelColor)
         }
+    }
+}
+
+/// Counting Text Label Toggle Button
+/// - Author: 김민규
+/// - Date: 2023/05/20
+struct CountingToggleButton: View, ToggleButtonProtocol {
+    var image: Image
+    var imageColor: Color
+    var imageSize: CGSize = .init(width: 24, height: 24)
+    var labelColor: Color = .primary
+    
+    var isToggled: Binding<Bool>
+    /// Current Count
+    @Binding var count: Int
+    
+    var onClickedEvent: () -> Void
+    
+    var body: some View {
+        HStack(alignment: .top) {
+            Button(action: {
+                self.toggle()
+
+                counting()
+
+                self.onClickedEvent()
+            }) {
+                self.image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: imageSize.width, height: imageSize.height)
+            }.foregroundColor(self.imageColor)
+            
+            countView
+        }
+    }
+    
+    /// Toggle에 의한 Count 계산
+    func counting() {
+        self.count += self.isToggled.wrappedValue ? 1 : -1
+    }
+    
+    /// Count Text Label View
+    var countView: some View {
+        Text(self.count > 0 ? String(self.count) : "")
+            .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 14))
+            .foregroundColor(self.labelColor)
+    }
+}
+
+/// Based Toggle Button
+/// - Author: 김민규
+/// - Date: 2023/05/20
+struct ToggleButton: View, ToggleButtonProtocol {
+    var image: Image
+    var imageColor: Color
+    var imageSize: CGSize = .init(width: 24, height: 24)
+    var labelColor: Color = .primary
+    
+    var isToggled: Binding<Bool>
+    
+    var onClickedEvent: () -> Void
+    
+    var body: some View {
+        Button(action: {
+            self.toggle()
+            
+            self.onClickedEvent()
+        }) {
+            self.image
+                .resizable()
+                .scaledToFit()
+                .frame(width: imageSize.width, height: imageSize.height)
+        }.foregroundColor(self.imageColor)
     }
 }
 
 struct ToggleButton_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ToggleButton(
-                isToggled: .constant(false),
+            TextToggleButton(
                 image: Image(systemName: "checkmark.square"),
-                color: .primary,
+                imageColor: .primary,
+                labelColor: .primary,
+                isToggled: .constant(false),
                 text: "(필수) 서비스 이용약관 동의"
-            ) {}
+            ) {
+                
+            }
+            .previewDisplayName("Text ToggleButton")
             .previewLayout(.sizeThatFits)
             .padding()
             
-            ToggleButton(
-                isToggled: .constant(false),
+            CountingToggleButton(
                 image: Image(systemName: "heart"),
-                color: .primary,
-                isCounting: false,
-                count: .constant(1)
-            ) {}
-            .previewLayout(.sizeThatFits)
-            .padding()
-            
-            ToggleButton(
+                imageColor: .primary,
+                labelColor: .primary,
                 isToggled: .constant(false),
-                configureByState: [
-                    true: .init(image: Image(systemName: "checkmark.square.fill"), color: .primary),
-                    false: .init(image: Image(systemName: "checkmark.square"), color: .primary)
-                ],
-                text: "(필수) 서비스 이용약관 동의"
-            ) {}
-            .previewLayout(.sizeThatFits)
-            .padding()
-
-            ToggleButton(
-                isToggled: .constant(true),
-                configureByState: [
-                    true: .init(image: Image(systemName: "heart.fill"), color: .pink),
-                    false: .init(image: Image(systemName: "heart"), color: .primary)
-                ],
-                isCounting: true,
-                count: .constant(2)
-            ) {}
+                count: .constant(1)
+            ) {
+                
+            }
+            .previewDisplayName("Counting ToggleButton")
             .previewLayout(.sizeThatFits)
             .padding()
         }

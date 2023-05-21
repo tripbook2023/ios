@@ -33,6 +33,7 @@
 		DF46E91A29F8164E00C7522F /* RegisterDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46E91929F8164E00C7522F /* RegisterDoneView.swift */; };
 		DF46E91D29F8224C00C7522F /* KakaoLoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46E91C29F8224C00C7522F /* KakaoLoginButtonView.swift */; };
 		DF92BA1129FD46CF0045DC69 /* PollProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF92BA1029FD46CF0045DC69 /* PollProgressView.swift */; };
+		DFF797132A0FBD02000A3BBF /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF797122A0FBD02000A3BBF /* SignInViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		DF46E91929F8164E00C7522F /* RegisterDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDoneView.swift; sourceTree = "<group>"; };
 		DF46E91C29F8224C00C7522F /* KakaoLoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginButtonView.swift; sourceTree = "<group>"; };
 		DF92BA1029FD46CF0045DC69 /* PollProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollProgressView.swift; sourceTree = "<group>"; };
+		DFF797122A0FBD02000A3BBF /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		85B6EE5729DDD2A300898B48 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DFF797112A0FBCF2000A3BBF /* SignIn */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -239,6 +242,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		DFF797112A0FBCF2000A3BBF /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				DFF797122A0FBD02000A3BBF /* SignInViewModel.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -323,6 +334,7 @@
 				85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */,
 				DF46E91329F815A900C7522F /* PollWithView.swift in Sources */,
 				DF46E90129F813A000C7522F /* NicknameSettingView.swift in Sources */,
+				DFF797132A0FBD02000A3BBF /* SignInViewModel.swift in Sources */,
 				DF46E91829F8161D00C7522F /* PollPurposeView.swift in Sources */,
 				DF46E90F29F8153400C7522F /* PollRegionView.swift in Sources */,
 				DF46E90929F814CA00C7522F /* PollView.swift in Sources */,

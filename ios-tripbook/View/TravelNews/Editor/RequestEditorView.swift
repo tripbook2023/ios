@@ -9,83 +9,48 @@ import SwiftUI
 
 /// 에디터 신청하기 화면
 /// - Author: 김민규
-/// - Date:
+/// - Date: 2023/05/21
 struct RequestEditorView: View {
+    @EnvironmentObject var dataObject: DataObject
     @Environment(\.presentationMode) var presentationMode
     
-    @State var emailTextField: String = ""
+    @ObservedObject var viewModel = RequestEditorViewModel()
     
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 /// Header
-                HStack {
-                    ZStack {
-                        HStack {
-                            Spacer()
-                            Text("여행소식 에디터 신청하기")
-                                .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 15))
-                            Spacer()
-                        }
-                        
-                        HStack {
-                            Button(action: {
-                                self.presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Image(systemName: "arrow.backward")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24)
-                            }.foregroundColor(.primary)
-                            Spacer()
-                        }
+                ZStack {
+                    HStack {
+                        Text("여행소식 에디터 신청하기")
+                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 15))
+                    }
+                    
+                    HStack {
+                        Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "arrow.backward")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                        }.foregroundColor(.primary)
+                        Spacer()
                     }
                 }
                 
-                loadGuideViews()
+                self.loadGuideViews()
                 
-                LazyVStack(spacing: 20) {
-                    Text("여행 에디터 지금 바로 신청하기")
-                        .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
-                    
-                    HStack {
-                        Text("이메일")
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 17))
-                        TextField("", text: $emailTextField)
-                    }
-                    .padding(.horizontal)
-                    .frame(height: 58)
-                    .background(Color.init(red: 234 / 255, green: 234 / 255, blue: 234 / 255))
-                    
-                    HStack {
-                        Text("이전 글 불러오기")
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 17))
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                    .frame(height: 58)
-                    .background(Color.init(red: 234 / 255, green: 234 / 255, blue: 234 / 255))
-                    
-                    Button(action: {}) {
-                        Text("여행소식 에디터 신청하기")
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 94)
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
-                            .foregroundColor(.black)
-                            .background(
-                                RoundedRectangle(cornerRadius: 50)
-                                    .foregroundColor(Color.init(red: 255 / 255, green: 248 / 255, blue: 183 / 255))
-                            )
-                    }.padding(.top, 6)
-                }.padding(.top, 67)
+                self.loadFooterView()
             }.padding(.horizontal)
         }.navigationBarHidden(true)
     }
     
+    /// Load 에디터 가이드 Views
     @ViewBuilder
     func loadGuideViews() -> some View {
         LazyVStack(spacing: 0) {
-            LazyVStack(spacing: 0) {
+            VStack(spacing: 0) {
                 Text("여행 기록을 좋아하신다면\n여행 에디터를\n신청해보세요!")
                     .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
                     .multilineTextAlignment(.center)
@@ -101,7 +66,7 @@ struct RequestEditorView: View {
                     .padding(.top, 36)
             }.padding(.top, 75)
             
-            LazyVStack(spacing: 0) {
+            VStack(spacing: 0) {
                 Text("에디터는 어떻게 되나요?")
                     .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
                 
@@ -147,7 +112,7 @@ struct RequestEditorView: View {
                 }.padding(.top, 32)
             }.padding(.top, 38)
             
-            LazyVStack(spacing: 0) {
+            VStack(spacing: 0) {
                 Text("여행 에디터가 되면 뭐가 좋나요?")
                     .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
                 
@@ -194,10 +159,81 @@ struct RequestEditorView: View {
             }.padding(.top, 76)
         }
     }
+    
+    /// Load 에디터 신청/진행 상태 View
+    @ViewBuilder
+    func loadFooterView() -> some View {
+        if self.dataObject.user!.authority == .usual {
+            if self.viewModel.status == .before {
+                VStack(spacing: 20) {
+                    Text("여행 에디터 지금 바로 신청하기")
+                        .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                    
+                    HStack {
+                        Text("이메일")
+                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 17))
+                        TextField("", text: self.$viewModel.emailTextField)
+                    }
+                    .padding(.horizontal)
+                    .frame(height: 58)
+                    .background(Color.init(red: 234 / 255, green: 234 / 255, blue: 234 / 255))
+                    
+                    HStack {
+                        Text("이전 글 불러오기")
+                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 17))
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .frame(height: 58)
+                    .background(Color.init(red: 234 / 255, green: 234 / 255, blue: 234 / 255))
+                    
+                    Button(action: {}) {
+                        Text("여행소식 에디터 신청하기")
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 94)
+                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                            .foregroundColor(.black)
+                            .background(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .foregroundColor(Color.init(red: 255 / 255, green: 248 / 255, blue: 183 / 255))
+                            )
+                    }.padding(.top, 6)
+                }.padding(.top, 67)
+            } else if self.viewModel.status == .inProgress {
+                VStack(spacing: 57) {
+                    Text("지금은 심사중입니다")
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 72)
+                        .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 22))
+                        .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.init(red: 255 / 255, green: 248 / 255, blue: 183 / 255)))
+                    
+                    Text("에디터 신청이\n완료되었습니다!\n\n3-5일 내에\n결과가 발표됩니다.")
+                        .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 19))
+                        .multilineTextAlignment(.center)
+                }.padding(.top, 67)
+            } else if self.viewModel.status == .complete {
+                VStack(spacing: 57) {
+                    NavigationLink(destination: RequestEditorResultView()) {
+                        Text("심사 결과 확인하기")
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 72)
+                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 22))
+                            .foregroundColor(.black)
+                            .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.init(red: 255 / 255, green: 248 / 255, blue: 183 / 255)))
+                    }
+                    
+                    Text("에디터 심사 결과가 나왔습니다.\n어서 확인해보세요.")
+                        .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 19))
+                        .multilineTextAlignment(.center)
+                }.padding(.top, 67)
+            }
+        }
+    }
 }
 
 struct RequestEditorView_Previews: PreviewProvider {
     static var previews: some View {
         RequestEditorView()
+            .environmentObject(DataObject())
     }
 }

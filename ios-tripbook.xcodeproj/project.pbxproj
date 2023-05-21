@@ -49,6 +49,8 @@
 		85C35B792A165CB000DB8E46 /* DocumentActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C35B782A165CB000DB8E46 /* DocumentActionBar.swift */; };
 		85C35B7C2A1683EA00DB8E46 /* RequestEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C35B7B2A1683EA00DB8E46 /* RequestEditorView.swift */; };
 		85C6F8342A18D44B00722ED1 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6F8332A18D44B00722ED1 /* DataObject.swift */; };
+		85C6F8362A19ED0B00722ED1 /* RequestEditorResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6F8352A19ED0B00722ED1 /* RequestEditorResultView.swift */; };
+		85C6F8392A1A013D00722ED1 /* RequestEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6F8382A1A013D00722ED1 /* RequestEditorViewModel.swift */; };
 		85F02B4929F68D4D008DABCE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4829F68D4D008DABCE /* HomeView.swift */; };
 		85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4B29F68E7F008DABCE /* TravelReportView.swift */; };
 		85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */; };
@@ -113,6 +115,8 @@
 		85C35B782A165CB000DB8E46 /* DocumentActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionBar.swift; sourceTree = "<group>"; };
 		85C35B7B2A1683EA00DB8E46 /* RequestEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEditorView.swift; sourceTree = "<group>"; };
 		85C6F8332A18D44B00722ED1 /* DataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
+		85C6F8352A19ED0B00722ED1 /* RequestEditorResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEditorResultView.swift; sourceTree = "<group>"; };
+		85C6F8382A1A013D00722ED1 /* RequestEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEditorViewModel.swift; sourceTree = "<group>"; };
 		85F02B4829F68D4D008DABCE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		85F02B4B29F68E7F008DABCE /* TravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportView.swift; sourceTree = "<group>"; };
 		85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelReportView.swift; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 		8585F4742A13E90500C0A678 /* TravelNews */ = {
 			isa = PBXGroup;
 			children = (
+				85C6F8372A1A012C00722ED1 /* Editor */,
 				8585F4752A13E91C00C0A678 /* TravelNewsViewModel.swift */,
 				8585F4792A15E89F00C0A678 /* TravelNewsItemViewModel.swift */,
 				8585F47B2A15ECBB00C0A678 /* MyTravelNewsItemViewModel.swift */,
@@ -309,6 +314,15 @@
 			isa = PBXGroup;
 			children = (
 				85C35B7B2A1683EA00DB8E46 /* RequestEditorView.swift */,
+				85C6F8352A19ED0B00722ED1 /* RequestEditorResultView.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		85C6F8372A1A012C00722ED1 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				85C6F8382A1A013D00722ED1 /* RequestEditorViewModel.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -464,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8585F4782A13EF2400C0A678 /* MyTravelNewsItemView.swift in Sources */,
+				85C6F8392A1A013D00722ED1 /* RequestEditorViewModel.swift in Sources */,
 				85361DC32A10140800B48B55 /* HomePointBannerView.swift in Sources */,
 				85F02B4929F68D4D008DABCE /* HomeView.swift in Sources */,
 				8527A5772A0366B6003819B1 /* TravelReportModel.swift in Sources */,
@@ -473,6 +488,7 @@
 				8585F47A2A15E89F00C0A678 /* TravelNewsItemViewModel.swift in Sources */,
 				85361DC12A0FFE1800B48B55 /* ToggleButton.swift in Sources */,
 				85C35B792A165CB000DB8E46 /* DocumentActionBar.swift in Sources */,
+				85C6F8362A19ED0B00722ED1 /* RequestEditorResultView.swift in Sources */,
 				85C35B752A16594500DB8E46 /* DocumentModel.swift in Sources */,
 				85561AB429FD403F004B06F8 /* HomeViewModel.swift in Sources */,
 				85C35B772A1659AE00DB8E46 /* UserModel.swift in Sources */,

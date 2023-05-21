@@ -12,5 +12,5 @@ import Foundation
 /// - Date: 2023/05/20
 class DataObject: ObservableObject {
     /// User Data
-    @Published var user: User? = .init(authority: .manager, name: "홍길동", profileImage: .init(named: "SampleProfileImage")!)
+    @Published var user: User? = .init(authority: .usual, name: "홍길동", profileImage: .init(named: "SampleProfileImage")!)
 }

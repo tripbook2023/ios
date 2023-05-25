@@ -14,6 +14,14 @@
 		8552BC3029DDCD8E00DC8D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */; };
 		8552BC3329DDCD8E00DC8D7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC3229DDCD8E00DC8D7E /* Preview Assets.xcassets */; };
 		85F02B3C29F14BDF008DABCE /* TripBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B3B29F14BDF008DABCE /* TripBookTests.swift */; };
+		DF3E9B482A1E697A006EB9BA /* TermsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E9B472A1E697A006EB9BA /* TermsDetailView.swift */; };
+		DF3E9B4A2A1F68B9006EB9BA /* NicknameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E9B492A1F68B9006EB9BA /* NicknameSettingView.swift */; };
+		DF3E9B4C2A1F903B006EB9BA /* ProfileImageSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E9B4B2A1F903B006EB9BA /* ProfileImageSettingView.swift */; };
+		DF91BAEE2A1CFB70000EF375 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF91BAED2A1CFB70000EF375 /* SignUpViewModel.swift */; };
+		DF91BAF02A1CFC15000EF375 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF91BAEF2A1CFC15000EF375 /* SignUpModel.swift */; };
+		DFD59CFE2A1B87E800A4C064 /* SignUpNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD59CFD2A1B87E800A4C064 /* SignUpNavigationBar.swift */; };
+		DFD59D012A1B882200A4C064 /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD59D002A1B882200A4C064 /* TermsView.swift */; };
+		DFD59D042A1B8CFA00A4C064 /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD59D032A1B8CFA00A4C064 /* BottomButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +45,14 @@
 		8588E32129EE49A900746B23 /* ios-tripbook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios-tripbook.entitlements"; sourceTree = "<group>"; };
 		85F02B3929F14BDF008DABCE /* TripBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85F02B3B29F14BDF008DABCE /* TripBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripBookTests.swift; sourceTree = "<group>"; };
+		DF3E9B472A1E697A006EB9BA /* TermsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsDetailView.swift; sourceTree = "<group>"; };
+		DF3E9B492A1F68B9006EB9BA /* NicknameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingView.swift; sourceTree = "<group>"; };
+		DF3E9B4B2A1F903B006EB9BA /* ProfileImageSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageSettingView.swift; sourceTree = "<group>"; };
+		DF91BAED2A1CFB70000EF375 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		DF91BAEF2A1CFC15000EF375 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		DFD59CFD2A1B87E800A4C064 /* SignUpNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNavigationBar.swift; sourceTree = "<group>"; };
+		DFD59D002A1B882200A4C064 /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
+		DFD59D032A1B8CFA00A4C064 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +118,8 @@
 		85B6EE5629DDD29700898B48 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DFD59CFF2A1B880D00A4C064 /* SignUp */,
+				DFD59CFB2A1B87D000A4C064 /* Components */,
 				8552BC2D29DDCD8D00DC8D7E /* ContentView.swift */,
 			);
 			path = View;
@@ -110,6 +128,7 @@
 		85B6EE5729DDD2A300898B48 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DF91BAED2A1CFB70000EF375 /* SignUpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -117,6 +136,7 @@
 		85B6EE5829DDD2B800898B48 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DF91BAEF2A1CFC15000EF375 /* SignUpModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,6 +147,42 @@
 				85F02B3B29F14BDF008DABCE /* TripBookTests.swift */,
 			);
 			path = TripBookTests;
+			sourceTree = "<group>";
+		};
+		DFD59CFB2A1B87D000A4C064 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DFD59D022A1B8CE800A4C064 /* Button */,
+				DFD59CFC2A1B87D800A4C064 /* NavigationBar */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		DFD59CFC2A1B87D800A4C064 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				DFD59CFD2A1B87E800A4C064 /* SignUpNavigationBar.swift */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		DFD59CFF2A1B880D00A4C064 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				DFD59D002A1B882200A4C064 /* TermsView.swift */,
+				DF3E9B472A1E697A006EB9BA /* TermsDetailView.swift */,
+				DF3E9B492A1F68B9006EB9BA /* NicknameSettingView.swift */,
+				DF3E9B4B2A1F903B006EB9BA /* ProfileImageSettingView.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		DFD59D022A1B8CE800A4C064 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				DFD59D032A1B8CFA00A4C064 /* BottomButton.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +287,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFD59D012A1B882200A4C064 /* TermsView.swift in Sources */,
+				DF3E9B482A1E697A006EB9BA /* TermsDetailView.swift in Sources */,
+				DF91BAF02A1CFC15000EF375 /* SignUpModel.swift in Sources */,
+				DFD59D042A1B8CFA00A4C064 /* BottomButton.swift in Sources */,
+				DF3E9B4A2A1F68B9006EB9BA /* NicknameSettingView.swift in Sources */,
+				DF3E9B4C2A1F903B006EB9BA /* ProfileImageSettingView.swift in Sources */,
+				DFD59CFE2A1B87E800A4C064 /* SignUpNavigationBar.swift in Sources */,
 				8552BC2E29DDCD8D00DC8D7E /* ContentView.swift in Sources */,
+				DF91BAEE2A1CFB70000EF375 /* SignUpViewModel.swift in Sources */,
 				8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,7 @@ struct TermsView: View, BottomButtonDelegate {
     /// 바텀버튼의 델리게이트 채택 및 함수 구현
     func didTapBottomButton() {
         print("바텀버튼 클릭")
-        if viewModel.isRequiredAllChecked {
+        if viewModel.checkRequiredTerms() {
             print("필수약관 체크 됨")
             isNavigationLink = true
         }
@@ -40,7 +40,7 @@ struct TermsView: View, BottomButtonDelegate {
                         Image(systemName: "checkmark.square.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .foregroundColor(viewModel.isAllChecked ? .orange : .gray)
+                            .foregroundColor(viewModel.checkedAllTerms() ? .orange : .gray)
                             .frame(width: 24)
                         Text("전체동의")
                             .foregroundColor(.black)
@@ -53,16 +53,15 @@ struct TermsView: View, BottomButtonDelegate {
                 )
                 .padding(EdgeInsets(top: 40, leading: 0, bottom: 32, trailing: 0))
                 
-                TermListView(viewModel: viewModel, index: 0)
-                TermListView(viewModel: viewModel, index: 1)
-                TermListView(viewModel: viewModel, index: 2)
-                TermListView(viewModel: viewModel, index: 3)
+                ForEach(0...viewModel.termList.count - 1, id: \.self) { index in
+                    TermListView(viewModel: viewModel, index: index)
+                }
                 
                 Spacer()
                 
                 /// 바텀버튼
                 NavigationLink(destination: NicknameSettingView(), isActive: $isNavigationLink) {}
-                BottomButton(delegate: self, buttonEnabled: viewModel.isRequiredAllChecked)
+                BottomButton(delegate: self, buttonEnabled: viewModel.checkRequiredTerms())
                 
                 
             }

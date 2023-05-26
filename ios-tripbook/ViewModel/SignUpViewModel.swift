@@ -69,9 +69,8 @@ class SignUpViewModel: ObservableObject {
     }
     
     /// 필수약관 선택 여부 검증 및 전체 약관 선택 여부
-    func checkRequiredTerms() {
+    func checkRequiredTerms() -> Bool {
         let requiredTermsCount: Int = termList.filter({$0.isRequired == true}).count
-        let checkedTermsCount: Int = termChecked.filter({$0 == true}).count
         var checkedRequiredTermCount: Int = 0
         
         for i in 0...termList.count - 1 {
@@ -82,8 +81,15 @@ class SignUpViewModel: ObservableObject {
             }
         }
         
-        isRequiredAllChecked = checkedRequiredTermCount == requiredTermsCount ? true : false
-        isAllChecked = checkedTermsCount >= termList.count ? true : false
+        return checkedRequiredTermCount == requiredTermsCount
+//        isRequiredAllChecked = checkedRequiredTermCount == requiredTermsCount ? true : false
+//        isAllChecked = checkedTermsCount >= termList.count ? true : false
+    }
+    
+    /// 약관이 전부 동의 되었는지 검증
+    func checkedAllTerms() -> Bool {
+        let checkedTermsCount: Int = termChecked.filter({$0 == true}).count
+        return checkedTermsCount >= termList.count ? true : false
     }
     
     /// 약관 전체 동의 버튼 이벤트

@@ -20,7 +20,7 @@ protocol BottomButtonDelegate {
 struct BottomButton: View {
     var delegate: BottomButtonDelegate?
     /// 버튼 활성화 여부 설정
-    var buttonEnabled: Bool
+    var buttonEnabled: Bool = false
     /// 버튼 활성화시 배경색
     var enabledButtonTint: Color = Color(red: 1, green: 0.306, blue: 0.086)
     /// 버튼 비활성화시 배경색
@@ -41,9 +41,9 @@ struct BottomButton: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 12)
-                        .foregroundColor(buttonEnabled ?? false ? enabledButtonTint : disabledButtonTint)
+                        .foregroundColor(buttonEnabled ? enabledButtonTint : disabledButtonTint)
                     )
-                    .foregroundColor(buttonEnabled ?? false ? enabledButtonTextTint : disabledButtonTextTint)
+                    .foregroundColor(buttonEnabled ? enabledButtonTextTint : disabledButtonTextTint)
             }
             .disabled(buttonEnabled ?? false ? false : true)
         }

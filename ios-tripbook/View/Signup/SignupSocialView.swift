@@ -65,7 +65,7 @@ struct SignupSocialView: View {
                 .padding(.horizontal, 20)
                 
                 NavigationLink(isActive: self.$viewModel.navigationTrigger, destination: {
-                    SignupTermsView()
+                    SignupTermsView(self.signupViewModel)
                 }, label: {
                     EmptyView()
                 })

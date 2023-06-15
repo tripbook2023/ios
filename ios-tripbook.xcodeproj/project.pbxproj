@@ -57,6 +57,9 @@
 		85E8CA962A39A65400EBDE7F /* SignupProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CA952A39A65400EBDE7F /* SignupProfileImageView.swift */; };
 		85E8CA982A39A68900EBDE7F /* SignupProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CA972A39A68900EBDE7F /* SignupProfileInfoView.swift */; };
 		85E8CA9B2A39A6A800EBDE7F /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CA9A2A39A6A800EBDE7F /* SignupViewModel.swift */; };
+		85E8CA9E2A39A85D00EBDE7F /* TBComponent in Frameworks */ = {isa = PBXBuildFile; productRef = 85E8CA9D2A39A85D00EBDE7F /* TBComponent */; };
+		85E8CAA02A39A85D00EBDE7F /* TBUtil in Frameworks */ = {isa = PBXBuildFile; productRef = 85E8CA9F2A39A85D00EBDE7F /* TBUtil */; };
+		85E8CAA22A3ACB2300EBDE7F /* SignupSocialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAA12A3ACB2300EBDE7F /* SignupSocialViewModel.swift */; };
 		85F02B4929F68D4D008DABCE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4829F68D4D008DABCE /* HomeView.swift */; };
 		85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4B29F68E7F008DABCE /* TravelReportView.swift */; };
 		85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */; };
@@ -129,6 +132,7 @@
 		85E8CA952A39A65400EBDE7F /* SignupProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileImageView.swift; sourceTree = "<group>"; };
 		85E8CA972A39A68900EBDE7F /* SignupProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileInfoView.swift; sourceTree = "<group>"; };
 		85E8CA9A2A39A6A800EBDE7F /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		85E8CAA12A3ACB2300EBDE7F /* SignupSocialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSocialViewModel.swift; sourceTree = "<group>"; };
 		85F02B4829F68D4D008DABCE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		85F02B4B29F68E7F008DABCE /* TravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportView.swift; sourceTree = "<group>"; };
 		85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelReportView.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85E8CAA02A39A85D00EBDE7F /* TBUtil in Frameworks */,
+				85E8CA9E2A39A85D00EBDE7F /* TBComponent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				85E8CA9A2A39A6A800EBDE7F /* SignupViewModel.swift */,
+				85E8CAA12A3ACB2300EBDE7F /* SignupSocialViewModel.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -419,6 +426,10 @@
 			dependencies = (
 			);
 			name = "ios-tripbook";
+			packageProductDependencies = (
+				85E8CA9D2A39A85D00EBDE7F /* TBComponent */,
+				85E8CA9F2A39A85D00EBDE7F /* TBUtil */,
+			);
 			productName = "ios-tripbook";
 			productReference = 8552BC2829DDCD8D00DC8D7E /* ios-tripbook.app */;
 			productType = "com.apple.product-type.application";
@@ -469,6 +480,9 @@
 				ko,
 			);
 			mainGroup = 8552BC1F29DDCD8D00DC8D7E;
+			packageReferences = (
+				85E8CA9C2A39A85D00EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */,
+			);
 			productRefGroup = 8552BC2929DDCD8D00DC8D7E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -546,6 +560,7 @@
 				85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */,
 				85361DBC2A0FFBCB00B48B55 /* HomeTravelNewsItemViewModel.swift in Sources */,
 				8585F4302A10FE0200C0A678 /* RootViewModel.swift in Sources */,
+				85E8CAA22A3ACB2300EBDE7F /* SignupSocialViewModel.swift in Sources */,
 				85361DB72A0FC13600B48B55 /* HomeTravelNewsItemView.swift in Sources */,
 				85F02B5429F6913F008DABCE /* ProfileView.swift in Sources */,
 				85E8CA922A39A61D00EBDE7F /* SignupTermsView.swift in Sources */,
@@ -848,6 +863,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		85E8CA9C2A39A85D00EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tripbook2023/iOS-TripBook-Component-Package";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		85E8CA9D2A39A85D00EBDE7F /* TBComponent */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85E8CA9C2A39A85D00EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */;
+			productName = TBComponent;
+		};
+		85E8CA9F2A39A85D00EBDE7F /* TBUtil */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85E8CA9C2A39A85D00EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */;
+			productName = TBUtil;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8552BC2029DDCD8D00DC8D7E /* Project object */;
 }

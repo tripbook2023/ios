@@ -8,5 +8,8 @@
 import Foundation
 
 class SignupViewModel: ObservableObject {
-    
+    enum SocialLoginMethod {
+        case KAKAO
+        case APPLE
+    }
 }

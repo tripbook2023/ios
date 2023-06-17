@@ -19,6 +19,8 @@ struct SignupProfileImageView: View {
     @ObservedObject var signupViewModel: SignupViewModel
     @ObservedObject var viewModel = SignupProfileImageViewModel()
     
+    @Environment(\.presentationMode) var presentationMode
+    
     init(_ signupViewModel: SignupViewModel) {
         self.signupViewModel = signupViewModel
     }
@@ -27,7 +29,7 @@ struct SignupProfileImageView: View {
         ZStack {
             VStack(spacing: 0) {
                 TBAppBar() {
-                    
+                    self.presentationMode.wrappedValue.dismiss()
                 }.padding(.bottom, 40)
                 
                 Text("멋진 여행 기록을 위해\n프로필 이미지를 등록해주세요")
@@ -88,7 +90,7 @@ struct SignupProfileImageView: View {
                 NavigationLink(
                     isActive: self.$viewModel.navigationTrigger,
                     destination: {
-                        SignupProfileInfoView()
+                        SignupProfileInfoView(self.signupViewModel)
                     },
                     label: {
                         EmptyView()

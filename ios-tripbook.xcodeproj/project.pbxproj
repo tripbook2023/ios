@@ -61,6 +61,7 @@
 		85E8CAA52A3AD06800EBDE7F /* TBComponent in Frameworks */ = {isa = PBXBuildFile; productRef = 85E8CAA42A3AD06800EBDE7F /* TBComponent */; };
 		85E8CAA72A3AD06800EBDE7F /* TBUtil in Frameworks */ = {isa = PBXBuildFile; productRef = 85E8CAA62A3AD06800EBDE7F /* TBUtil */; };
 		85E8CAA92A3AD74700EBDE7F /* SignupTermsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAA82A3AD74700EBDE7F /* SignupTermsViewModel.swift */; };
+		85E8CAAB2A3B108600EBDE7F /* SignupProfileNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAAA2A3B108600EBDE7F /* SignupProfileNameViewModel.swift */; };
 		85F02B4929F68D4D008DABCE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4829F68D4D008DABCE /* HomeView.swift */; };
 		85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4B29F68E7F008DABCE /* TravelReportView.swift */; };
 		85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */; };
@@ -135,6 +136,7 @@
 		85E8CA9A2A39A6A800EBDE7F /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		85E8CAA12A3ACB2300EBDE7F /* SignupSocialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSocialViewModel.swift; sourceTree = "<group>"; };
 		85E8CAA82A3AD74700EBDE7F /* SignupTermsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTermsViewModel.swift; sourceTree = "<group>"; };
+		85E8CAAA2A3B108600EBDE7F /* SignupProfileNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileNameViewModel.swift; sourceTree = "<group>"; };
 		85F02B4829F68D4D008DABCE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		85F02B4B29F68E7F008DABCE /* TravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportView.swift; sourceTree = "<group>"; };
 		85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelReportView.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				85E8CA9A2A39A6A800EBDE7F /* SignupViewModel.swift */,
 				85E8CAA12A3ACB2300EBDE7F /* SignupSocialViewModel.swift */,
 				85E8CAA82A3AD74700EBDE7F /* SignupTermsViewModel.swift */,
+				85E8CAAA2A3B108600EBDE7F /* SignupProfileNameViewModel.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				85338E2A29F81DFB00E87792 /* Font.swift in Sources */,
 				85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */,
 				85361DBC2A0FFBCB00B48B55 /* HomeTravelNewsItemViewModel.swift in Sources */,
+				85E8CAAB2A3B108600EBDE7F /* SignupProfileNameViewModel.swift in Sources */,
 				8585F4302A10FE0200C0A678 /* RootViewModel.swift in Sources */,
 				85E8CAA22A3ACB2300EBDE7F /* SignupSocialViewModel.swift in Sources */,
 				85361DB72A0FC13600B48B55 /* HomeTravelNewsItemView.swift in Sources */,
@@ -646,7 +650,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -700,7 +704,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -733,7 +737,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -774,7 +778,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

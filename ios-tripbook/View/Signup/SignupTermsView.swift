@@ -32,7 +32,9 @@ struct SignupTermsView: View {
             VStack(alignment: .leading, spacing: 0) {
                 TBAppBar() {
                     self.presentationMode.wrappedValue.dismiss()
-                }.padding(.bottom, 40)
+                }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 40)
                 
                 Text("서비스 이용 약관을 확인해주세요")
                     .font(TBFont.heading_1)
@@ -101,7 +103,7 @@ struct SignupTermsView: View {
                 .padding(.bottom, 56)
                 
                 NavigationLink(isActive: self.$viewModel.navigationTrigger, destination: {
-                    SignupProfileNameView()
+                    SignupProfileNameView(self.signupViewModel)
                 }, label: {
                     EmptyView()
                 })

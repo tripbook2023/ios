@@ -6,15 +6,77 @@
 //
 
 import SwiftUI
+import TBComponent
+import TBUtil
+
+protocol SignupProfileNameViewDelegate {
+    func onChangedNicknameTextField()
+    func onSubmittedNicknameTextField()
+    func didTapDoneButton()
+}
 
 struct SignupProfileNameView: View {
+    @ObservedObject var signupViewModel: SignupViewModel
+    @ObservedObject var viewModel = SignupProfileNameViewModel()
+    
+    @Environment(\.presentationMode) var presentationMode
+    
+    init(_ signupViewModel: SignupViewModel) {
+        self.signupViewModel = signupViewModel
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 0) {
+            TBAppBar() {
+                self.presentationMode.wrappedValue.dismiss()
+            }.padding(.bottom, 40)
+            
+            Text("멋진 여행 기록을 위해\n닉네임을 입력해주세요")
+                .font(TBFont.heading_1)
+                .padding(.bottom, 42)
+            
+            TBTextField(
+                title: "10자 이내 한글, 영문, 숫자 입력",
+                text: self.$viewModel.nicknameText,
+                isValid: Binding(get: {
+                    return self.viewModel.nicknameTextState == .None
+                }, set: {_ in}),
+                warningMessage: Binding(get: {
+                    return self.viewModel.nicknameTextState.getWarningMessage()
+                }, set: {_ in})
+            ) {
+                self.viewModel.onSubmittedNicknameTextField()
+            }
+            .onChange(of: self.viewModel.nicknameText) { _ in
+                self.viewModel.onChangedNicknameTextField()
+            }
+            
+            Spacer()
+            
+            TBPrimaryButton(
+                title: "닉네임 만들었어요",
+                isEnabled: Binding(get: {
+                    return !self.viewModel.nicknameText.isEmpty && self.viewModel.nicknameTextState == .None
+                }, set: {_ in})
+            ) {
+                self.viewModel.didTapDoneButton()
+            }
+            
+            NavigationLink(
+                isActive: self.$viewModel.navigationTrigger,
+                destination: {
+                    SignupProfileImageView()
+                }, label: {
+                    EmptyView()
+                }
+            )
+        }.padding(.horizontal, 20)
     }
 }
 
 struct SignupNicknameView_Previews: PreviewProvider {
     static var previews: some View {
-        SignupProfileNameView()
+        SignupProfileNameView(SignupViewModel())
+            .configureFont()
     }
 }

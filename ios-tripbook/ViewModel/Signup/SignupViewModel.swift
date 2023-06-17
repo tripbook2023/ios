@@ -6,10 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
 
 class SignupViewModel: ObservableObject {
     enum SocialLoginMethod {
         case KAKAO
         case APPLE
+    }
+    
+    var userData = RegisterationUser()
+    
+    func registerUserProfileImage(_ image: Image) {
+        self.userData.profileImage = image
     }
 }

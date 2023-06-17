@@ -100,7 +100,7 @@ struct SignupTermsView: View {
                     self.viewModel.didTapDoneButton()
                 }
                 .padding(.horizontal, 20)
-                .padding(.bottom, 56)
+                .padding(.bottom, 16)
                 
                 NavigationLink(isActive: self.$viewModel.navigationTrigger, destination: {
                     SignupProfileNameView(self.signupViewModel)

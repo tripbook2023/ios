@@ -60,17 +60,19 @@ struct SignupProfileNameView: View {
                 }, set: {_ in})
             ) {
                 self.viewModel.didTapDoneButton()
-            }
+            }.padding(.bottom, 16)
             
             NavigationLink(
                 isActive: self.$viewModel.navigationTrigger,
                 destination: {
-                    SignupProfileImageView()
+                    SignupProfileImageView(self.signupViewModel)
                 }, label: {
                     EmptyView()
                 }
             )
-        }.padding(.horizontal, 20)
+        }
+        .padding(.horizontal, 20)
+        .navigationBarHidden(true)
     }
 }
 

@@ -10,7 +10,7 @@ import TBComponent
 import TBUtil
 
 protocol SignupProfileInfoViewDelegate {
-    func didTapGenderButton(_ gender: SignupProfileInfoViewModel.Gender)
+    func didTapGenderButton(_ gender: RegisterationUser.Gender)
     func didDoneButton()
 }
 
@@ -98,11 +98,17 @@ struct SignupProfileInfoView: View {
             
             TBPrimaryButton(
                 title: "입력완료",
-                isEnabled: .constant(false)
+                isEnabled: Binding(get: {
+                    return self.viewModel.gender != nil && (self.viewModel.isValidAge().wrappedValue != nil)
+                }, set: {_ in})
             ) {
-                
+                self.signupViewModel.registerUserGender(self.viewModel.gender!)
+                self.signupViewModel.registerUserAge(Int(self.viewModel.ageText)!)
+                self.signupViewModel.registerUser()
             }
-        }.padding(.horizontal, 20)
+        }
+        .padding(.horizontal, 20)
+        .navigationBarHidden(true)
     }
 }
 

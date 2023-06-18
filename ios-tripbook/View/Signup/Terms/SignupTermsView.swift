@@ -13,7 +13,6 @@ protocol SignupTermsViewDelegate {
     func didTapAllAgreeCheckBox()
     func didTapAgreeCheckBox(_ type: SignupTermsViewModel.TermType)
     func didTapShowModalButton(_ type: SignupTermsViewModel.TermType)
-    func didTapHideModalButton()
     func didTapDoneButton()
 }
 
@@ -74,7 +73,7 @@ struct SignupTermsView: View {
                                         return self.viewModel.getIsAgreedTermByTermType(type)
                                     }, set: {_ in }))
                                     
-                                    Text("(\(type.isRequired() ? "필수" : "선택")) \(type.rawValue)")
+                                    Text("(\(type.isRequired() ? "필수" : "선택")) \(type.getTitle())")
                                         .font(TBFont.body_2)
                                         .foregroundColor(TBColor.grayscale.levels[7])
                                 }
@@ -97,6 +96,7 @@ struct SignupTermsView: View {
                     title: "다음으로 넘어가요",
                     isEnabled: self.viewModel.isValidTermsChecked()
                 ) {
+                    self.signupViewModel.registerUserTerms(self.viewModel.termList)
                     self.viewModel.didTapDoneButton()
                 }
                 .padding(.horizontal, 20)
@@ -109,51 +109,11 @@ struct SignupTermsView: View {
                 })
             }
             
-            ZStack(alignment: .bottom) {
-                TBColor.grayscale.levels[10].opacity(0.6).ignoresSafeArea()
-                
-                VStack(spacing: 12) {
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(TBColor.grayscale.levels[1])
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 398)
-                        .overlay(
-                            VStack(spacing: 12) {
-                                Text(self.viewModel.selectedModalType?.rawValue ?? "")
-                                    .font(TBFont.title_3)
-                                    .foregroundColor(TBColor.grayscale.levels[9])
-                                    .padding(.top, 24)
-                                ScrollView {
-                                    Text(self.viewModel.selectedModalType?.detailText() ?? "")
-                                    .font(TBFont.caption_1)
-                                    .foregroundColor(TBColor.grayscale.levels[7])
-                                    .lineSpacing(18 / 12)
-                                    .padding(.horizontal, 16)
-                                    .padding(.bottom, 24)
-                                }
-                            }
-                    )
-                    
-                    Button(action: {
-                        self.viewModel.didTapHideModalButton()
-                    }) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 19)
-                                .foregroundColor(TBColor.grayscale.levels[9])
-                            
-                            HStack(spacing: 6.78) {
-                                TBIcon.cancel.iconSize(size: .tiny)
-                                    .foregroundColor(TBColor.grayscale.levels[1])
-                                Text("닫기")
-                                    .font(TBFont.title_4)
-                                    .foregroundColor(TBColor.grayscale.levels[1])
-                            }
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 38)
-                }.padding(.horizontal, 20)
-            }.opacity(self.viewModel.isVisibleModal ? 1 : 0)
+            SignupTermDetailModal(
+                self.viewModel.selectedModalType ?? SignupTermsViewModel.TermType.Service,
+                delegate: self.viewModel
+            )
+            .opacity(self.viewModel.isVisibleModal ? 1 : 0)
         }.navigationBarHidden(true)
     }
 }

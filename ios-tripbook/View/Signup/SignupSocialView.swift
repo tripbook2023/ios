@@ -9,7 +9,7 @@ import SwiftUI
 import TBUtil
 
 protocol SignupSocialViewDelegate {
-    func didTapSocialLoginButton(_ type: SignupViewModel.SocialLoginMethod)
+    func didTapSocialLoginButton(_ type: SignupViewModel.SocialLoginMethod, completion: @escaping (String) -> Void)
 }
 
 struct SignupSocialView: View {
@@ -29,40 +29,45 @@ struct SignupSocialView: View {
                 
                 Spacer().frame(height: 226)
                 
-                Button(action: {
-                    self.viewModel.didTapSocialLoginButton(.KAKAO)
-                }) {
-                    HStack(spacing: 0.89) {
-                        Color.black.frame(width: 21.77, height: 20)
-                        Text("카카오 로그인")
-                            .font(TBFont.body_2)
+                VStack(spacing: 8) {
+                    Button(action: {
+                        self.viewModel.didTapSocialLoginButton(.KAKAO) { email in
+                            self.signupViewModel.registerUserEmail(email)
+                        }
+                    }) {
+                        HStack(spacing: 0.89) {
+                            Color.black.frame(width: 21.77, height: 20)
+                            Text("카카오 로그인")
+                                .font(TBFont.body_2)
+                        }
                     }
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 52)
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .foregroundColor(Color(red: 254 / 255, green: 229 / 255, blue: 0 / 255))
-                )
-                .foregroundColor(TBColor.grayscale.levels[10])
-                .padding(.horizontal, 20)
-                Button(action: {
-                    self.viewModel.didTapSocialLoginButton(.APPLE)
-                }) {
-                    HStack(spacing: 6.47) {
-                        Color.white.frame(width: 13.53, height: 16.62)
-                        Text("Apple로 로그인")
-                            .font(TBFont.body_2)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 52)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .foregroundColor(Color(red: 254 / 255, green: 229 / 255, blue: 0 / 255))
+                    )
+                    .foregroundColor(TBColor.grayscale.levels[10])
+                    
+                    Button(action: {
+                        self.viewModel.didTapSocialLoginButton(.APPLE) { email in
+                            self.signupViewModel.registerUserEmail(email)
+                        }
+                    }) {
+                        HStack(spacing: 6.47) {
+                            Color.white.frame(width: 13.53, height: 16.62)
+                            Text("Apple로 로그인")
+                                .font(TBFont.body_2)
+                        }
                     }
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 52)
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .foregroundColor(TBColor.grayscale.levels[10])
-                )
-                .foregroundColor(TBColor.grayscale.levels[0])
-                .padding(.horizontal, 20)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 52)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .foregroundColor(TBColor.grayscale.levels[10])
+                    )
+                    .foregroundColor(TBColor.grayscale.levels[0])
+                }.padding(.horizontal, 20)
                 
                 NavigationLink(isActive: self.$viewModel.navigationTrigger, destination: {
                     SignupTermsView(self.signupViewModel)

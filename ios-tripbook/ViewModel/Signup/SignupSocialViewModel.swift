@@ -12,7 +12,7 @@ class SignupSocialViewModel: ObservableObject {
 }
 
 extension SignupSocialViewModel: SignupSocialViewDelegate {
-    func didTapSocialLoginButton(_ type: SignupViewModel.SocialLoginMethod) {
+    func didTapSocialLoginButton(_ type: SignupViewModel.SocialLoginMethod, completion: @escaping (String) -> Void) {
         switch type {
         case .KAKAO: break
         case .APPLE: break

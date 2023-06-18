@@ -9,12 +9,7 @@ import Foundation
 import SwiftUI
 
 class SignupProfileInfoViewModel: ObservableObject {
-    enum Gender {
-        case Male
-        case Female
-    }
-    
-    @Published var gender: Gender? = nil
+    @Published var gender: RegisterationUser.Gender? = nil
     @Published var ageText: String = ""
     
     func isValidAge() -> Binding<Bool?> {
@@ -33,7 +28,7 @@ class SignupProfileInfoViewModel: ObservableObject {
 }
 
 extension SignupProfileInfoViewModel: SignupProfileInfoViewDelegate {
-    func didTapGenderButton(_ gender: Gender) {
+    func didTapGenderButton(_ gender: RegisterationUser.Gender) {
         self.gender = gender
     }
     

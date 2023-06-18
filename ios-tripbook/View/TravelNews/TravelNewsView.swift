@@ -46,43 +46,43 @@ struct TravelNewsView: View {
     /// 에디터 / 관리자 전용 View
     @ViewBuilder
     func loadAdditionalEditorView() -> some View {
-        if self.dataObject.user?.authority == .editor || self.dataObject.user?.authority == .manager {
-            VStack {
-                HStack(alignment: .bottom) {
-                    (
-                        Text("\(self.dataObject.user?.name ?? "") 님은 여행기록을\n") +
-                        Text("3편 ")
-                            .foregroundColor(.init(red: 255 / 255, green: 78 / 255, blue: 0 / 255)) +
-                        Text("작성하셨네요!")
-                    ).font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 3) {
-                        Text("새 여행기록 작성하기")
-                            .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 13))
-                            .underline()
-                            .foregroundColor(.init(red: 255 / 255, green: 78 / 255, blue: 0 / 255))
-                        
-                        Image(systemName: "pencil.line")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 11)
-                            .foregroundColor(.black)
-                            .padding(.all, 4)
-                            .background(Circle().foregroundColor(.init(red: 255 / 255, green: 228 / 255, blue: 216 / 255)))
-                    }
-                }.padding(.horizontal)
-                
-                Spacer().frame(height: 25)
-                
-                VStack(spacing: 23) {
-                    self.loadMyTravelNewsListView(status: .done)
-                    
-                    self.loadMyTravelNewsListView(status: .waiting)
-                }
-            }.padding(.top, 29)
-        }
+//        if self.dataObject.user?.authority == .editor || self.dataObject.user?.authority == .manager {
+//            VStack {
+//                HStack(alignment: .bottom) {
+//                    (
+//                        Text("\(self.dataObject.user?.name ?? "") 님은 여행기록을\n") +
+//                        Text("3편 ")
+//                            .foregroundColor(.init(red: 255 / 255, green: 78 / 255, blue: 0 / 255)) +
+//                        Text("작성하셨네요!")
+//                    ).font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+//                    
+//                    Spacer()
+//                    
+//                    HStack(spacing: 3) {
+//                        Text("새 여행기록 작성하기")
+//                            .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 13))
+//                            .underline()
+//                            .foregroundColor(.init(red: 255 / 255, green: 78 / 255, blue: 0 / 255))
+//                        
+//                        Image(systemName: "pencil.line")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 11)
+//                            .foregroundColor(.black)
+//                            .padding(.all, 4)
+//                            .background(Circle().foregroundColor(.init(red: 255 / 255, green: 228 / 255, blue: 216 / 255)))
+//                    }
+//                }.padding(.horizontal)
+//                
+//                Spacer().frame(height: 25)
+//                
+//                VStack(spacing: 23) {
+//                    self.loadMyTravelNewsListView(status: .done)
+//                    
+//                    self.loadMyTravelNewsListView(status: .waiting)
+//                }
+//            }.padding(.top, 29)
+//        }
     }
     
     /// 에디터/관리자 본인 여행소식 게시물 List View

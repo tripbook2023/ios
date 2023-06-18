@@ -59,6 +59,7 @@ struct SignupProfileNameView: View {
                     return !self.viewModel.nicknameText.isEmpty && self.viewModel.nicknameTextState == .None
                 }, set: {_ in})
             ) {
+                self.signupViewModel.registerUserName(self.viewModel.nicknameText)
                 self.viewModel.didTapDoneButton()
             }.padding(.bottom, 16)
             

@@ -63,7 +63,7 @@ struct SignupProfileImageView: View {
                     }
                 }
                 
-                Text(self.signupViewModel.userData.nickname)
+                Text(self.signupViewModel.userData.name)
                     .font(TBFont.body_1)
                     .padding(.top, 16)
                 
@@ -84,6 +84,7 @@ struct SignupProfileImageView: View {
                         return self.viewModel.profileImage != nil
                     }, set: {_ in})
                 ) {
+                    self.signupViewModel.registerUserProfileImage(self.viewModel.profileImage!)
                     self.viewModel.didTapDoneButton()
                 }.padding(.bottom, 16)
                 

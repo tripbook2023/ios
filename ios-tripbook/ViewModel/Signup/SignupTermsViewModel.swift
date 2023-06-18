@@ -10,21 +10,30 @@ import SwiftUI
 
 class SignupTermsViewModel: ObservableObject {
     enum TermType: String, CaseIterable {
-        case Service = "서비스 이용약관 동의"
-        case PersonalInfo = "개인정보 수집 및 이용 동의"
-        case Location = "위치정보수집 및 이용동의"
-        case Marketing = "마케팅 수신 동의"
+        case Service        = "termsOfService"
+        case PersonalInfo   = "termsOfPrivacy"
+        case Location       = "termsOfLocation"
+        case Marketing      = "marketingConsent"
         
         func isRequired() -> Bool {
             switch self {
-            case .Service: return true
+            case .Service:      return true
             case .PersonalInfo: return true
-            case .Location: return true
-            case .Marketing: return false
+            case .Location:     return true
+            case .Marketing:    return false
             }
         }
         
-        func detailText() -> String {
+        func getTitle() -> String {
+            switch self {
+            case .Service:      return "서비스 이용약관 동의"
+            case .PersonalInfo: return "개인정보 수집 및 이용 동의"
+            case .Location:     return "위치정보수집 및 이용동의"
+            case .Marketing:    return "마케팅 수신 동의"
+            }
+        }
+        
+        func getDescription() -> String {
             switch self {
             default:
                 return """
@@ -39,19 +48,24 @@ class SignupTermsViewModel: ObservableObject {
         }
     }
     
-    @Published var isAgreedList: [Bool] = Array(repeating: false, count: TermType.allCases.count)
+    @Published var termList: [String:Bool] = [
+        TermType.Service.rawValue       : false,
+        TermType.PersonalInfo.rawValue  : false,
+        TermType.Location.rawValue      : false,
+        TermType.Marketing.rawValue     : false
+    ]
     @Published var selectedModalType: TermType? = nil
     
     @Published var isVisibleModal: Bool = false
     @Published var navigationTrigger: Bool = false
     
     func getIsAgreedTermByTermType(_ type: TermType) -> Bool {
-        return self.isAgreedList[TermType.allCases.firstIndex(where: { $0 == type })!]
+        return self.termList[type.rawValue] ?? false
     }
     
     func isAllAgreed() -> Binding<Bool> {
         return Binding(get: {
-            return self.isAgreedList.count == self.isAgreedList.filter({ $0 }).count
+            return self.termList.count == self.termList.values.filter({ _ in false }).count
         }, set: {_ in})
     }
     
@@ -65,11 +79,11 @@ class SignupTermsViewModel: ObservableObject {
 
 extension SignupTermsViewModel: SignupTermsViewDelegate {
     func didTapAllAgreeCheckBox() {
-        self.isAgreedList = Array(repeating: self.isAgreedList.contains(false), count: TermType.allCases.count)
+        self.termList = self.termList.mapValues { _ in self.termList.values.contains(false) }
     }
     
     func didTapAgreeCheckBox(_ type: TermType) {
-        self.isAgreedList[TermType.allCases.firstIndex(where: { $0 == type })!].toggle()
+        self.termList[type.rawValue]?.toggle()
     }
     
     func didTapShowModalButton(_ type: TermType) {
@@ -77,11 +91,13 @@ extension SignupTermsViewModel: SignupTermsViewDelegate {
         self.isVisibleModal = true
     }
     
-    func didTapHideModalButton() {
-        self.isVisibleModal = false
-    }
-    
     func didTapDoneButton() {
         self.navigationTrigger.toggle()
+    }
+}
+
+extension SignupTermsViewModel: SignupTermDetailModalDelegate {
+    func didTapHideModalButton() {
+        self.isVisibleModal = false
     }
 }

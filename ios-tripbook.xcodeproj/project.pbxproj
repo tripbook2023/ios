@@ -73,6 +73,7 @@
 		85F02B5129F690F3008DABCE /* TravelNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B5029F690F3008DABCE /* TravelNewsView.swift */; };
 		85F02B5429F6913F008DABCE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B5329F6913F008DABCE /* ProfileView.swift */; };
 		85F03BE82A3EE4C900A0B931 /* SignupTermDetailModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F03BE72A3EE4C900A0B931 /* SignupTermDetailModal.swift */; };
+		85F03BEB2A3EF5A000A0B931 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 85F03BEA2A3EF5A000A0B931 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85F03BEB2A3EF5A000A0B931 /* Alamofire in Frameworks */,
 				85E8CAA72A3AD06800EBDE7F /* TBUtil in Frameworks */,
 				85E8CAA52A3AD06800EBDE7F /* TBComponent in Frameworks */,
 			);
@@ -485,6 +487,7 @@
 			packageProductDependencies = (
 				85E8CAA42A3AD06800EBDE7F /* TBComponent */,
 				85E8CAA62A3AD06800EBDE7F /* TBUtil */,
+				85F03BEA2A3EF5A000A0B931 /* Alamofire */,
 			);
 			productName = "ios-tripbook";
 			productReference = 8552BC2829DDCD8D00DC8D7E /* ios-tripbook.app */;
@@ -538,6 +541,7 @@
 			mainGroup = 8552BC1F29DDCD8D00DC8D7E;
 			packageReferences = (
 				85E8CAA32A3AD06800EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */,
+				85F03BE92A3EF5A000A0B931 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 8552BC2929DDCD8D00DC8D7E /* Products */;
 			projectDirPath = "";
@@ -939,6 +943,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		85F03BE92A3EF5A000A0B931 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -951,6 +963,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 85E8CAA32A3AD06800EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */;
 			productName = TBUtil;
+		};
+		85F03BEA2A3EF5A000A0B931 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85F03BE92A3EF5A000A0B931 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

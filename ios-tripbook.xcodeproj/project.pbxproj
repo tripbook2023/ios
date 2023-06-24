@@ -31,6 +31,8 @@
 		85361DBE2A0FFC1C00B48B55 /* TravelNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85361DBD2A0FFC1C00B48B55 /* TravelNewsModel.swift */; };
 		85361DC12A0FFE1800B48B55 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85361DC02A0FFE1800B48B55 /* ToggleButton.swift */; };
 		85361DC32A10140800B48B55 /* HomePointBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85361DC22A10140800B48B55 /* HomePointBannerView.swift */; };
+		853EA91E2A46F363001890DE /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 853EA91D2A46F363001890DE /* Auth0 */; };
+		853EA9202A46F3D3001890DE /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 853EA91F2A46F3D3001890DE /* Auth0.plist */; };
 		8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552BC2B29DDCD8D00DC8D7E /* AppView.swift */; };
 		8552BC2E29DDCD8D00DC8D7E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552BC2D29DDCD8D00DC8D7E /* RootView.swift */; };
 		8552BC3029DDCD8E00DC8D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */; };
@@ -112,6 +114,7 @@
 		85361DBD2A0FFC1C00B48B55 /* TravelNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsModel.swift; sourceTree = "<group>"; };
 		85361DC02A0FFE1800B48B55 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		85361DC22A10140800B48B55 /* HomePointBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePointBannerView.swift; sourceTree = "<group>"; };
+		853EA91F2A46F3D3001890DE /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Auth0.plist; sourceTree = "<group>"; };
 		8552BC2829DDCD8D00DC8D7E /* ios-tripbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-tripbook.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8552BC2B29DDCD8D00DC8D7E /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		8552BC2D29DDCD8D00DC8D7E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -165,6 +168,7 @@
 				85F03BEB2A3EF5A000A0B931 /* Alamofire in Frameworks */,
 				85E8CAA72A3AD06800EBDE7F /* TBUtil in Frameworks */,
 				85E8CAA52A3AD06800EBDE7F /* TBComponent in Frameworks */,
+				853EA91E2A46F363001890DE /* Auth0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +253,7 @@
 		8552BC1F29DDCD8D00DC8D7E = {
 			isa = PBXGroup;
 			children = (
+				853EA91F2A46F3D3001890DE /* Auth0.plist */,
 				85338E3829F8837C00E87792 /* .gitignore */,
 				85338E3629F8836F00E87792 /* .gitattributes */,
 				8552BC2A29DDCD8D00DC8D7E /* ios-tripbook */,
@@ -488,6 +493,7 @@
 				85E8CAA42A3AD06800EBDE7F /* TBComponent */,
 				85E8CAA62A3AD06800EBDE7F /* TBUtil */,
 				85F03BEA2A3EF5A000A0B931 /* Alamofire */,
+				853EA91D2A46F363001890DE /* Auth0 */,
 			);
 			productName = "ios-tripbook";
 			productReference = 8552BC2829DDCD8D00DC8D7E /* ios-tripbook.app */;
@@ -542,6 +548,7 @@
 			packageReferences = (
 				85E8CAA32A3AD06800EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */,
 				85F03BE92A3EF5A000A0B931 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				853EA91C2A46F363001890DE /* XCRemoteSwiftPackageReference "Auth0" */,
 			);
 			productRefGroup = 8552BC2929DDCD8D00DC8D7E /* Products */;
 			projectDirPath = "";
@@ -566,6 +573,7 @@
 				8552BC3329DDCD8E00DC8D7E /* Preview Assets.xcassets in Resources */,
 				85338E2529F81DEE00E87792 /* NotoSansKR-Medium.otf in Resources */,
 				85338E2429F81DEE00E87792 /* NotoSansKR-Bold.otf in Resources */,
+				853EA9202A46F3D3001890DE /* Auth0.plist in Resources */,
 				85338E2629F81DEE00E87792 /* NotoSansKR-Regular.otf in Resources */,
 				8552BC3029DDCD8E00DC8D7E /* Assets.xcassets in Resources */,
 			);
@@ -935,6 +943,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		853EA91C2A46F363001890DE /* XCRemoteSwiftPackageReference "Auth0" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/Auth0.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.0;
+			};
+		};
 		85E8CAA32A3AD06800EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tripbook2023/iOS-TripBook-Component-Package";
@@ -954,6 +970,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		853EA91D2A46F363001890DE /* Auth0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 853EA91C2A46F363001890DE /* XCRemoteSwiftPackageReference "Auth0" */;
+			productName = Auth0;
+		};
 		85E8CAA42A3AD06800EBDE7F /* TBComponent */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 85E8CAA32A3AD06800EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */;

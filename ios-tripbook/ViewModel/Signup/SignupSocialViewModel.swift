@@ -6,18 +6,28 @@
 //
 
 import Foundation
+import AuthenticationServices
 
 class SignupSocialViewModel: ObservableObject {
     @Published var navigationTrigger: Bool = false
 }
 
 extension SignupSocialViewModel: SignupSocialViewDelegate {
-    func didTapSocialLoginButton(_ type: SignupViewModel.SocialLoginMethod, completion: @escaping (String) -> Void) {
-        switch type {
-        case .KAKAO: break
-        case .APPLE: break
-        }
+    func didTapAppleLoginButton(_ credential: ASAuthorizationCredential) async {
+        let loginResult = await Auth0Service.appleAuthLogin(credential)
         
-        self.navigationTrigger.toggle()
+        if loginResult.isSuccessed {
+            self.navigationTrigger.toggle()
+        }
+    }
+    
+    func didTapKakaoLoginButton() async -> String {
+        let loginResult = await Auth0Service.kakaoAuthLogin()
+        
+        // Auth0Service Login이 성공했을 때
+        if loginResult.isSuccessed {
+            self.navigationTrigger.toggle()
+        }
+        return ""
     }
 }

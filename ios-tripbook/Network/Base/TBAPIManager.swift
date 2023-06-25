@@ -9,7 +9,9 @@ import Foundation
 import Alamofire
 
 struct TBAPIManager {
-    static let sessionManager: Session = {
+    static let shared = TBAPIManager()
+    
+    let sessionManager: Session = {
         let configuration = URLSessionConfiguration.af.default
         let interceptor = TBAuthInterceptor()
         let apiLogger = TBAPIEventLogger()

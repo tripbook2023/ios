@@ -90,7 +90,9 @@ struct SignupProfileImageSelectOptionView: View {
                             .foregroundColor(TBColor.grayscale.levels[0])
                     }
                 }
-            }.padding(.horizontal, 20)
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 12)
         }
     }
 }

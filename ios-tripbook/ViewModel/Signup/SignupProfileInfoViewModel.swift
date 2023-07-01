@@ -84,22 +84,16 @@ extension SignupProfileInfoViewModel: SignupProfileInfoViewDelegate {
     func didTapYearButton(_ year: String) {
         self.birth.year = year
         self.showBirthYearPicker = false
-        
-        print(self.birth.toDomain)
     }
     
     func didTapMonthButton(_ month: String) {
         self.birth.month = month
         self.showBirthMonthPicker = false
-        
-        print(self.birth.toDomain)
     }
     
     func didTapDayButton(_ day: String) {
         self.birth.day = day
         self.showBirthDayPicker = false
-        
-        print(self.birth.toDomain)
     }
     
     func didDoneButton() {

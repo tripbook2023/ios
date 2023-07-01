@@ -86,7 +86,7 @@ struct SignupProfileImageView: View {
                 ) {
                     self.signupViewModel.registerUserProfileImage(self.viewModel.profileImage!)
                     self.viewModel.didTapDoneButton()
-                }.padding(.bottom, 16)
+                }.padding(.bottom, 12)
                 
                 NavigationLink(
                     isActive: self.$viewModel.navigationTrigger,

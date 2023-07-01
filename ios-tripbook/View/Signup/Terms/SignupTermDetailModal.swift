@@ -66,7 +66,9 @@ struct SignupTermDetailModal: View {
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 38)
-            }.padding(.horizontal, 20)
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 12)
         }
     }
 }

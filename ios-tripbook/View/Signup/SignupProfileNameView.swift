@@ -61,7 +61,7 @@ struct SignupProfileNameView: View {
             ) {
                 self.signupViewModel.registerUserName(self.viewModel.nicknameText)
                 self.viewModel.didTapDoneButton()
-            }.padding(.bottom, 16)
+            }.padding(.bottom, 12)
             
             NavigationLink(
                 isActive: self.$viewModel.navigationTrigger,

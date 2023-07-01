@@ -286,6 +286,7 @@ struct SignupProfileInfoView: View {
             }
         }
         .padding(.horizontal, 20)
+        .padding(.bottom, 12)
         .navigationBarHidden(true)
     }
 }

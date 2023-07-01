@@ -36,12 +36,11 @@ class SignupViewModel: ObservableObject {
         self.userData.gender = gender
     }
     
-    func registerUserAge(_ age: Int) {
-        let birth = Calendar.current.date(byAdding: .year, value: -age, to: Date())
+    func registerUserBirth(_ birth: Date) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        self.userData.birth = dateFormatter.string(from: birth!)
+        self.userData.birth = dateFormatter.string(from: birth)
     }
     
     func registerUser() {

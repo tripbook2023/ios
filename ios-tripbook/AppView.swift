@@ -5,7 +5,7 @@ import TBUtil
 struct ios_tripbookApp: App {
     var body: some Scene {
         WindowGroup {
-            SignupSocialView().configureFont()
+            SignupProfileInfoView(SignupViewModel()).configureFont()
         }
     }
 }

@@ -64,7 +64,7 @@ struct SignupProfileImageView: View {
                 }
                 
                 Text(self.signupViewModel.userData.name)
-                    .font(TBFont.body_1)
+                    .font(TBFont.body_2)
                     .padding(.top, 16)
                 
                 Spacer()

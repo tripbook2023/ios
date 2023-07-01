@@ -37,13 +37,14 @@ struct SignupProfileImageSelectOptionView: View {
                                 .foregroundColor(TBColor.grayscale.levels[2])
                             
                             Text("앨범에서 사진 선택")
-                                .font(TBFont.body_3)
+                                .font(TBFont.body_4)
                                 .foregroundColor(TBColor.grayscale.levels[10])
                         }
                     }
                     
                     Divider()
-                        .foregroundColor(TBColor.grayscale.levels[3])
+                        .frame(minHeight: 1)
+                        .overlay(TBColor.grayscale.levels[4])
                     
                     Button(action: {
                         self.delgate.didTapCameraButton()
@@ -54,13 +55,14 @@ struct SignupProfileImageSelectOptionView: View {
                                 .foregroundColor(TBColor.grayscale.levels[2])
                             
                             Text("지금 사진 촬영")
-                                .font(TBFont.body_3)
+                                .font(TBFont.body_4)
                                 .foregroundColor(TBColor.grayscale.levels[10])
                         }
                     }
                     
                     Divider()
-                        .foregroundColor(TBColor.grayscale.levels[3])
+                        .frame(minHeight: 1)
+                        .overlay(TBColor.grayscale.levels[4])
                     
                     Button(action: {
                         self.delgate.didTapUseDefaultImageButton()
@@ -71,7 +73,7 @@ struct SignupProfileImageSelectOptionView: View {
                                 .foregroundColor(TBColor.grayscale.levels[2])
                             
                             Text("기본 이미지 사용")
-                                .font(TBFont.body_3)
+                                .font(TBFont.body_4)
                                 .foregroundColor(TBColor.grayscale.levels[10])
                         }
                     }

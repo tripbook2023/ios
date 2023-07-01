@@ -74,7 +74,7 @@ struct SignupTermsView: View {
                                     }, set: {_ in }))
                                     
                                     Text("(\(type.isRequired() ? "필수" : "선택")) \(type.getTitle())")
-                                        .font(TBFont.body_2)
+                                        .font(TBFont.body_3)
                                         .foregroundColor(TBColor.grayscale.levels[7])
                                 }
                             }

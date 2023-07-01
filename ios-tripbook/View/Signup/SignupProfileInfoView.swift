@@ -43,9 +43,9 @@ struct SignupProfileInfoView: View {
                 .foregroundColor(TBColor.grayscale.levels[9])
                 .padding(.bottom, 56)
             
-            VStack(alignment: .leading, spacing: 25) {
+            VStack(alignment: .leading, spacing: 24) {
                 Text("성별을 선택해주세요")
-                    .font(TBFont.body_1)
+                    .font(TBFont.body_2)
                     .foregroundColor(TBColor.grayscale.levels[8])
                 
                 HStack(spacing: 7) {
@@ -61,7 +61,7 @@ struct SignupProfileInfoView: View {
                                 .frame(height: 48)
                             
                             Text("여성")
-                                .font(self.viewModel.gender == .Female ? TBFont.title_3 : TBFont.body_3)
+                                .font(self.viewModel.gender == .Female ? TBFont.title_3 : TBFont.body_4)
                                 .foregroundColor(self.viewModel.gender == .Female ? TBColor.primary.main : TBColor.grayscale.levels[3])
                         }
                     }
@@ -78,17 +78,17 @@ struct SignupProfileInfoView: View {
                                 .frame(height: 48)
                             
                             Text("남성")
-                                .font(self.viewModel.gender == .Male ? TBFont.title_3 : TBFont.body_3)
+                                .font(self.viewModel.gender == .Male ? TBFont.title_3 : TBFont.body_4)
                                 .foregroundColor(self.viewModel.gender == .Male ? TBColor.primary.main : TBColor.grayscale.levels[3])
                         }
                     }
-                }.padding(.bottom, 48)
+                }
             }.padding(.bottom, 48)
             
             if self.viewModel.gender != nil {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("생일을 선택해주세요")
-                        .font(TBFont.body_1)
+                        .font(TBFont.body_2)
                         .foregroundColor(TBColor.grayscale.levels[8])
                     
                     HStack(spacing: 4) {
@@ -97,13 +97,18 @@ struct SignupProfileInfoView: View {
                         }) {
                             HStack {
                                 Text(self.viewModel.birth.year ?? "YYYY")
-                                    .font(.suit(self.viewModel.birth.year != nil ? .bold : .medium, size: 14))
+                                    .font(self.viewModel.birth.year != nil ? TBFont.title_3 : TBFont.body_4)
                                     .foregroundColor(self.viewModel.birth.year != nil ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74))
                                 
                                 Spacer()
                                 
-                                TBIcon.down.iconSize(size: .small)
-                                    .foregroundColor(self.viewModel.showBirthYearPicker ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74))
+                                if self.viewModel.showBirthYearPicker {
+                                    TBIcon.up.iconSize(size: .small)
+                                        .foregroundColor(Color(red: 0.11, green: 0.09, blue: 0.09))
+                                } else {
+                                    TBIcon.down[0].iconSize(size: .small)
+                                        .foregroundColor(Color(red: 0.78, green: 0.75, blue: 0.74))
+                                }
                             }
                         }
                         .frame(maxWidth: .infinity)
@@ -121,13 +126,18 @@ struct SignupProfileInfoView: View {
                         }) {
                             HStack {
                                 Text(self.viewModel.birth.month ?? "MM")
-                                    .font(.suit(self.viewModel.birth.month != nil ? .bold : .medium, size: 14))
+                                    .font(self.viewModel.birth.year != nil ? TBFont.title_3 : TBFont.body_4)
                                     .foregroundColor(self.viewModel.birth.month != nil ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74))
                                 
                                 Spacer()
                                 
-                                TBIcon.down.iconSize(size: .small)
-                                    .foregroundColor(self.viewModel.showBirthMonthPicker ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74))
+                                if self.viewModel.showBirthMonthPicker {
+                                    TBIcon.up.iconSize(size: .small)
+                                        .foregroundColor(Color(red: 0.11, green: 0.09, blue: 0.09))
+                                } else {
+                                    TBIcon.down[0].iconSize(size: .small)
+                                        .foregroundColor(Color(red: 0.78, green: 0.75, blue: 0.74))
+                                }
                             }
                         }
                         .frame(maxWidth: .infinity)
@@ -145,13 +155,18 @@ struct SignupProfileInfoView: View {
                         }) {
                             HStack {
                                 Text(self.viewModel.birth.day ?? "DD")
-                                    .font(.suit(self.viewModel.birth.day != nil ? .bold : .medium, size: 14))
+                                    .font(self.viewModel.birth.year != nil ? TBFont.title_3 : TBFont.body_4)
                                     .foregroundColor(self.viewModel.birth.day != nil ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74))
                                 
                                 Spacer()
                                 
-                                TBIcon.down.iconSize(size: .small)
-                                    .foregroundColor(self.viewModel.showBirthDayPicker ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74))
+                                if self.viewModel.showBirthDayPicker {
+                                    TBIcon.up.iconSize(size: .small)
+                                        .foregroundColor(Color(red: 0.11, green: 0.09, blue: 0.09))
+                                } else {
+                                    TBIcon.down[0].iconSize(size: .small)
+                                        .foregroundColor(Color(red: 0.78, green: 0.75, blue: 0.74))
+                                }
                             }
                         }
                         .frame(maxWidth: .infinity)
@@ -185,7 +200,7 @@ struct SignupProfileInfoView: View {
                                 .inset(by: 0.5)
                                 .stroke(Color(red: 0.11, green: 0.09, blue: 0.09), lineWidth: 1)
                                 .frame(maxWidth: .infinity)
-                                .frame(height: 188)
+                                .frame(height: 170)
                                 .background(.white)
                                 .overlay(
                                     ScrollView {
@@ -214,7 +229,7 @@ struct SignupProfileInfoView: View {
                                 .inset(by: 0.5)
                                 .stroke(Color(red: 0.11, green: 0.09, blue: 0.09), lineWidth: 1)
                                 .frame(maxWidth: .infinity)
-                                .frame(height: 188)
+                                .frame(height: 170)
                                 .background(.white)
                                 .overlay(
                                     ScrollView {
@@ -243,7 +258,7 @@ struct SignupProfileInfoView: View {
                                 .inset(by: 0.5)
                                 .stroke(Color(red: 0.11, green: 0.09, blue: 0.09), lineWidth: 1)
                                 .frame(maxWidth: .infinity)
-                                .frame(height: 188)
+                                .frame(height: 170)
                                 .background(.white)
                                 .overlay(
                                     ScrollView {

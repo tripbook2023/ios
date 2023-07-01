@@ -54,6 +54,7 @@
 		85569CAB2A4FFD5700515DE3 /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CAA2A4FFD5700515DE3 /* AuthenticationResponse.swift */; };
 		85569CAE2A4FFECF00515DE3 /* TBAuthAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CAD2A4FFECF00515DE3 /* TBAuthAPIRouter.swift */; };
 		85569CB02A50084000515DE3 /* AuthenticationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CAF2A50084000515DE3 /* AuthenticationResult.swift */; };
+		85569CB22A5071B400515DE3 /* SignupCompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CB12A5071B400515DE3 /* SignupCompletionView.swift */; };
 		8585F4302A10FE0200C0A678 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585F42F2A10FE0200C0A678 /* RootViewModel.swift */; };
 		8585F4682A12942A00C0A678 /* TripBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585F4672A12942A00C0A678 /* TripBookTests.swift */; };
 		8585F46F2A12990A00C0A678 /* TravelNewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585F46E2A12990A00C0A678 /* TravelNewsHeaderView.swift */; };
@@ -153,6 +154,7 @@
 		85569CAA2A4FFD5700515DE3 /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		85569CAD2A4FFECF00515DE3 /* TBAuthAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAuthAPIRouter.swift; sourceTree = "<group>"; };
 		85569CAF2A50084000515DE3 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
+		85569CB12A5071B400515DE3 /* SignupCompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupCompletionView.swift; sourceTree = "<group>"; };
 		8585F42F2A10FE0200C0A678 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		8585F4652A12942A00C0A678 /* TripBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8585F4672A12942A00C0A678 /* TripBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripBookTests.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 				85E8CA932A39A63F00EBDE7F /* SignupProfileNameView.swift */,
 				85E8CAB12A3DF58C00EBDE7F /* Profile Image Views */,
 				85E8CA972A39A68900EBDE7F /* SignupProfileInfoView.swift */,
+				85569CB12A5071B400515DE3 /* SignupCompletionView.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				853EA93B2A48118A001890DE /* NicknameValidationRequest.swift in Sources */,
 				85C05C902A3E246F006758EF /* SignupProfileInfoViewModel.swift in Sources */,
 				853EA9292A472888001890DE /* TBAuthInterceptor.swift in Sources */,
+				85569CB22A5071B400515DE3 /* SignupCompletionView.swift in Sources */,
 				8552BC2E29DDCD8D00DC8D7E /* RootView.swift in Sources */,
 				85361DBE2A0FFC1C00B48B55 /* TravelNewsModel.swift in Sources */,
 				85338E3F29F88C9C00E87792 /* HomeSearchKeywordCellView.swift in Sources */,

@@ -65,14 +65,15 @@ class SignupTermsViewModel: ObservableObject {
     
     func isAllAgreed() -> Binding<Bool> {
         return Binding(get: {
-            return self.termList.count == self.termList.values.filter({ _ in false }).count
+            return self.termList.count == self.termList.values.filter({ value in value == true }).count
         }, set: {_ in})
     }
     
     func isValidTermsChecked() -> Binding<Bool> {
         return Binding(get: {
-            let requiredTermDatas = TermType.allCases.filter({ $0.isRequired() })
-            return requiredTermDatas.count == requiredTermDatas.map({ self.getIsAgreedTermByTermType($0) }).filter({ $0 }).count
+            let requiredTermList = TermType.allCases.filter({ $0.isRequired() })
+            
+            return requiredTermList.count == requiredTermList.map({ self.getIsAgreedTermByTermType($0) }).filter({ $0 }).count
         }, set: {_ in})
     }
 }

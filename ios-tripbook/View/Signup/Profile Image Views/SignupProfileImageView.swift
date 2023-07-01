@@ -41,7 +41,7 @@ struct SignupProfileImageView: View {
                     self.viewModel.didTapImageButton()
                 }) {
                     if let profileImage = self.viewModel.profileImage {
-                        profileImage
+                        Image(uiImage: profileImage)
                             .resizable()
                             .scaledToFill()
                             .frame(width: 140, height: 140)

@@ -19,7 +19,7 @@ protocol SignupProfileInfoViewDelegate {
     func didTapMonthButton(_ month: String)
     func didTapDayButton(_ day: String)
     
-    func didDoneButton()
+    func didTapDoneButton()
 }
 
 struct SignupProfileInfoView: View {
@@ -297,8 +297,19 @@ struct SignupProfileInfoView: View {
             ) {
                 self.signupViewModel.registerUserGender(self.viewModel.gender!)
                 self.signupViewModel.registerUserBirth(self.viewModel.birth.toDomain)
-                self.signupViewModel.registerUser()
+                self.signupViewModel.registerUser() {
+                    self.viewModel.didTapDoneButton()
+                }
             }
+            
+            NavigationLink(
+                isActive: self.$viewModel.navigationTrigger,
+                destination: {
+                    SignupCompletionView()
+                }, label: {
+                    EmptyView()
+                }
+            )
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 12)

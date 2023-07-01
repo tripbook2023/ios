@@ -18,9 +18,11 @@ class SignupProfileInfoViewModel: ObservableObject {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             
-            return dateFormatter.date(from: "\(year ?? String(1930))-\(month ?? String(1))-\((Int(day ?? String(1)) ?? 1) + 1)") ?? Date()
+            return dateFormatter.date(from: "\(year ?? String(1930))-\(month ?? String(1))-\(Int(day ?? String(1)) ?? 1)") ?? Date()
         }
     }
+    
+    @Published var navigationTrigger: Bool = false
     
     @Published var gender: RegisterationUser.Gender? = nil
     @Published var birth = SignupBirthInput()
@@ -96,7 +98,7 @@ extension SignupProfileInfoViewModel: SignupProfileInfoViewDelegate {
         self.showBirthDayPicker = false
     }
     
-    func didDoneButton() {
-        
+    func didTapDoneButton() {
+        self.navigationTrigger = true
     }
 }

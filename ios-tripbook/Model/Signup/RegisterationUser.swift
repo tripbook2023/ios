@@ -22,7 +22,7 @@ struct RegisterationUser {
     
     var email: String = ""
     var name: String = ""
-    var profileImage: Image? = nil
+    var profileImage: UIImage? = nil
     var terms: [String:Bool] = [
         Term.Service.rawValue       : false,
         Term.PersonalInfo.rawValue  : false,

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 
 class SignupProfileImageViewModel: ObservableObject {
     @Published var isShowOptionView: Bool = false
@@ -15,7 +16,7 @@ class SignupProfileImageViewModel: ObservableObject {
     @Published var isNavigateImagePickerView: Bool = false
     @Published var isNavigateCameraView: Bool = false
     
-    @Published var profileImage: Image? = nil
+    @Published var profileImage: UIImage? = nil
 }
 
 extension SignupProfileImageViewModel: SignupProfileImageViewDelegate {

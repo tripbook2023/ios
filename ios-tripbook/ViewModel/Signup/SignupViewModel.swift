@@ -28,7 +28,7 @@ class SignupViewModel: ObservableObject {
         self.userData.name = name
     }
     
-    func registerUserProfileImage(_ image: Image) {
+    func registerUserProfileImage(_ image: UIImage) {
         self.userData.profileImage = image
     }
     
@@ -43,8 +43,24 @@ class SignupViewModel: ObservableObject {
         self.userData.birth = dateFormatter.string(from: birth)
     }
     
-    func registerUser() {
-        print("User:", self.userData)
+    func registerUser(completion: @escaping () -> Void) {
+        print("User: ", self.userData)
+        
+        TBMemberAPI.signup(
+            .init(
+                name: self.userData.name,
+                email: self.userData.email,
+                imageFile: self.userData.profileImage,
+                termsOfService: self.userData.terms[RegisterationUser.Term.Service.rawValue]!,
+                termsOfPrivacy: self.userData.terms[RegisterationUser.Term.PersonalInfo.rawValue]!,
+                termsOfLocation: self.userData.terms[RegisterationUser.Term.Location.rawValue]!,
+                marketingConsent: self.userData.terms[RegisterationUser.Term.Marketing.rawValue]!,
+                gender: self.userData.gender!.rawValue,
+                birth: self.userData.birth
+            )
+        ) {
+            completion()
+        }
     }
 }
 

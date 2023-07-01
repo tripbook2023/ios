@@ -22,7 +22,7 @@ struct SignupCompletionView: View {
             
             Text("나만의 소중한 여행기록을 작성해보세요.")
                 .font(TBFont.body_4)
-        }
+        }.navigationBarHidden(true)
     }
 }
 

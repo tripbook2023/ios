@@ -8,6 +8,8 @@
 import Foundation
 
 struct TBAPIPath {
+    static let base = "http://13.124.98.251:9000"
+    
     static let Member = TBMemberAPIPath()
     static let Auth = TBAuthAPIPath()
 }

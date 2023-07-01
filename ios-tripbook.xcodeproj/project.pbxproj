@@ -49,6 +49,11 @@
 		8552BC3029DDCD8E00DC8D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */; };
 		8552BC3329DDCD8E00DC8D7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8552BC3229DDCD8E00DC8D7E /* Preview Assets.xcassets */; };
 		85561AB429FD403F004B06F8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85561AB329FD403F004B06F8 /* HomeViewModel.swift */; };
+		85569CA62A4F8EC000515DE3 /* TBAuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CA52A4F8EC000515DE3 /* TBAuthAPI.swift */; };
+		85569CA92A4FFC7500515DE3 /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CA82A4FFC7500515DE3 /* AuthenticationRequest.swift */; };
+		85569CAB2A4FFD5700515DE3 /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CAA2A4FFD5700515DE3 /* AuthenticationResponse.swift */; };
+		85569CAE2A4FFECF00515DE3 /* TBAuthAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CAD2A4FFECF00515DE3 /* TBAuthAPIRouter.swift */; };
+		85569CB02A50084000515DE3 /* AuthenticationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CAF2A50084000515DE3 /* AuthenticationResult.swift */; };
 		8585F4302A10FE0200C0A678 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585F42F2A10FE0200C0A678 /* RootViewModel.swift */; };
 		8585F4682A12942A00C0A678 /* TripBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585F4672A12942A00C0A678 /* TripBookTests.swift */; };
 		8585F46F2A12990A00C0A678 /* TravelNewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585F46E2A12990A00C0A678 /* TravelNewsHeaderView.swift */; };
@@ -143,6 +148,11 @@
 		8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8552BC3229DDCD8E00DC8D7E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		85561AB329FD403F004B06F8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		85569CA52A4F8EC000515DE3 /* TBAuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAuthAPI.swift; sourceTree = "<group>"; };
+		85569CA82A4FFC7500515DE3 /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
+		85569CAA2A4FFD5700515DE3 /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
+		85569CAD2A4FFECF00515DE3 /* TBAuthAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAuthAPIRouter.swift; sourceTree = "<group>"; };
+		85569CAF2A50084000515DE3 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
 		8585F42F2A10FE0200C0A678 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		8585F4652A12942A00C0A678 /* TripBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8585F4672A12942A00C0A678 /* TripBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripBookTests.swift; sourceTree = "<group>"; };
@@ -289,7 +299,7 @@
 				853EA9252A46FC43001890DE /* TBAPIManager.swift */,
 				853EA9282A472888001890DE /* TBAuthInterceptor.swift */,
 				853EA92A2A476841001890DE /* TBAPIEventLogger.swift */,
-				853EA92C2A4771B4001890DE /* TBAPIRouter.swift */,
+				85569CAC2A4FFEB500515DE3 /* Router */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -307,6 +317,7 @@
 		853EA9352A480FA8001890DE /* API */ = {
 			isa = PBXGroup;
 			children = (
+				85569CA42A4F8EAA00515DE3 /* Auth */,
 				853EA9362A480FB4001890DE /* Member */,
 			);
 			path = API;
@@ -315,19 +326,19 @@
 		853EA9362A480FB4001890DE /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				853EA9392A481159001890DE /* Models */,
+				853EA9392A481159001890DE /* Model */,
 				853EA9372A480FC7001890DE /* TBMemberAPI.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
 		};
-		853EA9392A481159001890DE /* Models */ = {
+		853EA9392A481159001890DE /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				853EA93A2A48118A001890DE /* NicknameValidationRequest.swift */,
 				853EA93E2A481489001890DE /* NicknameValidationResponse.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8552BC1F29DDCD8D00DC8D7E = {
@@ -375,6 +386,33 @@
 				8552BC3229DDCD8E00DC8D7E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		85569CA42A4F8EAA00515DE3 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				85569CA72A4FFBA200515DE3 /* Model */,
+				85569CA52A4F8EC000515DE3 /* TBAuthAPI.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		85569CA72A4FFBA200515DE3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85569CA82A4FFC7500515DE3 /* AuthenticationRequest.swift */,
+				85569CAA2A4FFD5700515DE3 /* AuthenticationResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		85569CAC2A4FFEB500515DE3 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				853EA92C2A4771B4001890DE /* TBAPIRouter.swift */,
+				85569CAD2A4FFECF00515DE3 /* TBAuthAPIRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		8585F4662A12942A00C0A678 /* TripBookTests */ = {
@@ -481,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				85E8CAAF2A3DEF2800EBDE7F /* RegisterationUser.swift */,
+				85569CAF2A50084000515DE3 /* AuthenticationResult.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -690,6 +729,7 @@
 				85361DC12A0FFE1800B48B55 /* ToggleButton.swift in Sources */,
 				85C35B792A165CB000DB8E46 /* DocumentActionBar.swift in Sources */,
 				85C6F8362A19ED0B00722ED1 /* RequestEditorResultView.swift in Sources */,
+				85569CB02A50084000515DE3 /* AuthenticationResult.swift in Sources */,
 				85C35B752A16594500DB8E46 /* DocumentModel.swift in Sources */,
 				85561AB429FD403F004B06F8 /* HomeViewModel.swift in Sources */,
 				85C35B772A1659AE00DB8E46 /* UserModel.swift in Sources */,
@@ -697,6 +737,7 @@
 				85338E3429F8524000E87792 /* EventBannerView.swift in Sources */,
 				85C35B7C2A1683EA00DB8E46 /* RequestEditorView.swift in Sources */,
 				85E8CA902A39A5F600EBDE7F /* SignupSocialView.swift in Sources */,
+				85569CAB2A4FFD5700515DE3 /* AuthenticationResponse.swift in Sources */,
 				85361DB92A0FCC2700B48B55 /* TooltipView.swift in Sources */,
 				8585F47C2A15ECBB00C0A678 /* MyTravelNewsItemViewModel.swift in Sources */,
 				85E8CAAD2A3DEB7700EBDE7F /* SignupProfileImageViewModel.swift in Sources */,
@@ -717,7 +758,9 @@
 				85338E2A29F81DFB00E87792 /* Font.swift in Sources */,
 				85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */,
 				85361DBC2A0FFBCB00B48B55 /* HomeTravelNewsItemViewModel.swift in Sources */,
+				85569CA92A4FFC7500515DE3 /* AuthenticationRequest.swift in Sources */,
 				853EA9242A46F98C001890DE /* Auth0Service.swift in Sources */,
+				85569CA62A4F8EC000515DE3 /* TBAuthAPI.swift in Sources */,
 				853EA9342A480E64001890DE /* TBAuthAPIPath.swift in Sources */,
 				85E8CAAB2A3B108600EBDE7F /* SignupProfileNameViewModel.swift in Sources */,
 				853EA92F2A480D05001890DE /* TBAPIPath.swift in Sources */,
@@ -734,6 +777,7 @@
 				85E8CA9B2A39A6A800EBDE7F /* SignupViewModel.swift in Sources */,
 				85E8CA982A39A68900EBDE7F /* SignupProfileInfoView.swift in Sources */,
 				85E8CA962A39A65400EBDE7F /* SignupProfileImageView.swift in Sources */,
+				85569CAE2A4FFECF00515DE3 /* TBAuthAPIRouter.swift in Sources */,
 				8527A5792A036786003819B1 /* TravelReportItemViewModel.swift in Sources */,
 				8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */,
 				8585F4762A13E91C00C0A678 /* TravelNewsViewModel.swift in Sources */,

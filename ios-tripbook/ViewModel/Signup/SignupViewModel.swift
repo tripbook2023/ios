@@ -48,3 +48,11 @@ class SignupViewModel: ObservableObject {
         print("User:", self.userData)
     }
 }
+
+extension SignupViewModel: SignupSocialViewModelDelegate {
+    func completionAuthentication(email: String) {
+        self.registerUserEmail(email)
+        
+        print("Current User Data: ", self.userData)
+    }
+}

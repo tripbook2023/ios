@@ -93,12 +93,19 @@ struct SignupSocialView: View {
                     .cornerRadius(12)
                 }.padding(.horizontal, 20)
                 
-                NavigationLink(isActive: self.$viewModel.navigationTrigger, destination: {
+                NavigationLink(isActive: self.$viewModel.goToRootNavigationTrigger, destination: {
+                    RootView()
+                }, label: {
+                    EmptyView()
+                })
+                NavigationLink(isActive: self.$viewModel.continueNavigationTrigger, destination: {
                     SignupTermsView(self.signupViewModel)
                 }, label: {
                     EmptyView()
                 })
             }
+        }.onAppear {
+            self.viewModel.delegate = self.signupViewModel
         }
     }
 }

@@ -15,7 +15,7 @@ struct TBMemberAPI {
     
     static func validationNickname(_ parameter: NicknameValidationRequest, completion: @escaping (Bool) -> Void) {
         guard let data: Data = try? JSONEncoder().encode(parameter) else { return }
-        let router = TBAPIRouter(path: TBAPIPath.Member.signup, parameters: data, apiType: .member)
+        let router = TBAPIRouter(path: TBAPIPath.Member.nicknameValidate, parameters: data, apiType: .member)
         
         TBAPIManager.shared.sessionManager.request(router).responseDecodable(of: NicknameValidationResponse.self, completionHandler: { response in
             switch response.result {

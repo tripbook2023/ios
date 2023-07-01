@@ -8,5 +8,5 @@
 import Foundation
 
 struct TBAuthAPIPath {
-    static let auth0Token = "/login/oauth2/"
+    let authentication = "/login/oauth2/"
 }

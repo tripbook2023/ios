@@ -8,6 +8,7 @@
 import Auth0
 import AuthenticationServices
 import SimpleKeychain
+import JWTDecode
 
 class Auth0Service: NSObject {
     enum AuthenticationSocialType: String {
@@ -45,8 +46,6 @@ class Auth0Service: NSObject {
                 let result = try await Auth0
                     .authentication()
                     .login(appleAuthorizationCode: authCode, fullName: appleIDCredential.fullName).start()
-                
-                print("Auth0 Success: \(result)")
                 
                 return Auth0LoginModel(isSuccessed: true, accessToken: result.accessToken)
             } else {

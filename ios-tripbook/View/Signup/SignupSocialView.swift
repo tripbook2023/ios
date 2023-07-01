@@ -74,23 +74,39 @@ struct SignupSocialView: View {
 //                    )
 //                    .foregroundColor(TBColor.grayscale.levels[0])
                     
-                    SignInWithAppleButton(
-                        onRequest: { request in
-                            request.requestedScopes = [.email, .fullName]
-                        }, onCompletion: { result in
-                            switch result {
-                            case .success(let authResults):
-                                print("Apple Login Successful")
-                                Task {
-                                    await self.viewModel.didTapAppleLoginButton(authResults.credential)
-                                }
-                            case .failure(let error):
-                                print(error.localizedDescription)
-                            }
+                    ZStack {
+                        HStack(spacing: 6.47) {
+                            Color.white.frame(width: 13.53191, height: 16.62397)
+                            Text("Apple로 로그인")
+                                .font(TBFont.body_2)
+                                .foregroundColor(.white)
                         }
-                    )
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(.black)
+                        .cornerRadius(12)
+                        
+                        SignInWithAppleButton(
+                            onRequest: { request in
+                                request.requestedScopes = [.email, .fullName]
+                            }, onCompletion: { result in
+                                switch result {
+                                case .success(let authResults):
+                                    print("Apple Login Successful")
+                                    Task {
+                                        await self.viewModel.didTapAppleLoginButton(authResults.credential)
+                                    }
+                                case .failure(let error):
+                                    print(error.localizedDescription)
+                                }
+                            }
+                        )
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .opacity(0.011)
+                    }
+                    .frame(maxWidth: .infinity)
                     .frame(height: 52)
-                    .cornerRadius(12)
                 }.padding(.horizontal, 20)
                 
                 NavigationLink(isActive: self.$viewModel.goToRootNavigationTrigger, destination: {

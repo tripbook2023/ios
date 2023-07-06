@@ -15,8 +15,6 @@ import SwiftUI
  - Body: HomeViewModel 참조.
  */
 struct HomeView: View {
-    @EnvironmentObject var dataObject: DataObject
-    
     @ObservedObject var viewModel: HomeViewModel
     
     init(selectedTab: Binding<RootViewModel.TabType>) {
@@ -34,8 +32,6 @@ struct HomeView: View {
                 // Body
                 self.loadViews()
             }.padding(.bottom)
-        }.onAppear {
-            self.viewModel.setup(dataObject)
         }
     }
     
@@ -44,7 +40,7 @@ struct HomeView: View {
     @ViewBuilder
     func loadViews() -> some View {
         VStack(spacing: 0) {
-            ForEach(self.viewModel.viewProperties[self.dataObject.user != nil]!.sections, id: \.id) { section in
+            ForEach(self.viewModel.viewProperties[self.viewModel.dataStorage.user != nil]!.sections, id: \.id) { section in
                 LazyVStack(spacing: 0) {
                     // section - title View
                     if let title = section.type.title {
@@ -107,7 +103,7 @@ extension HomeView {
                 .foregroundColor(Color(red: 245 / 255, green: 245 / 255, blue: 245 / 255))
                 .overlay(
                     VStack {
-                        Text("\(self.dataObject.user?.name ?? "")님은\n아직 여행기록이\n없어요!")
+                        Text("\(self.viewModel.dataStorage.user?.info?.name ?? "")님은\n아직 여행기록이\n없어요!")
                             .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 24))
                             .multilineTextAlignment(.center)
                         
@@ -148,7 +144,7 @@ extension HomeView {
     func loadTravelReportViews(count: Int) -> some View {
         // TODO: - API Service 연동
         VStack {
-            if self.dataObject.user != nil {
+            if self.viewModel.dataStorage.user != nil {
                 VStack(alignment: .leading) {
                     Text("최근 본 여행기록")
                         .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
@@ -346,13 +342,12 @@ extension HomeView {
         // TODO: - API Service 연동
         var point = 1000
         
-        HomePointBannerView(name: .constant(self.dataObject.user?.name ?? ""), point: .constant(point)).padding(.horizontal)
+        HomePointBannerView(name: .constant(self.viewModel.dataStorage.user?.info?.name ?? ""), point: .constant(point)).padding(.horizontal)
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(selectedTab: .constant(.home))
-            .environmentObject(DataObject())
     }
 }

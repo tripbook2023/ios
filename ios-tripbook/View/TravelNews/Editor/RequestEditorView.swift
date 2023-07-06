@@ -11,7 +11,6 @@ import SwiftUI
 /// - Author: 김민규
 /// - Date: 2023/05/21
 struct RequestEditorView: View {
-    @EnvironmentObject var dataObject: DataObject
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewModel = RequestEditorViewModel()
@@ -163,7 +162,7 @@ struct RequestEditorView: View {
     /// Load 에디터 신청/진행 상태 View
     @ViewBuilder
     func loadFooterView() -> some View {
-        if self.dataObject.user!.authority == .usual {
+        if self.viewModel.dataStorage.user?.role == .usual {
             if self.viewModel.status == .before {
                 VStack(spacing: 20) {
                     Text("여행 에디터 지금 바로 신청하기")
@@ -234,6 +233,5 @@ struct RequestEditorView: View {
 struct RequestEditorView_Previews: PreviewProvider {
     static var previews: some View {
         RequestEditorView()
-            .environmentObject(DataObject())
     }
 }

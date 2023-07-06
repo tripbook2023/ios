@@ -23,6 +23,8 @@ class RequestEditorViewModel: ObservableObject {
         case complete
     }
     
+    let dataStorage = DataStorage.shared
+    
     /// 에디터 신청 상태
     @Published var status: ReviewStatus = .complete
     

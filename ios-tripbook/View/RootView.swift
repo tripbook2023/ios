@@ -19,9 +19,6 @@ import SwiftUI
     - ProfileView
  */
 struct RootView: View {
-    /// Data Manager
-    @StateObject var dataObject = DataObject()
-    
     @ObservedObject var viewModel = RootViewModel()
     
     var body: some View {
@@ -61,9 +58,8 @@ struct RootView: View {
                         Text("내 정보")
                     }
                     .tag(RootViewModel.TabType.profile)
-            }
-            .accentColor(.primary)
-        }.environmentObject(dataObject)
+            }.accentColor(.primary)
+        }.navigationBarHidden(true)
     }
 }
 

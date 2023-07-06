@@ -24,11 +24,16 @@ struct TravelNewsItemView: View {
                 .foregroundColor(.init(red: 243 / 255, green: 243 / 255, blue: 243 / 255))
                 .overlay(
                     HStack {
-                        Image(uiImage: self.viewModel.data.author.profileImage)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 38, height: 38)
-                            .clipShape(Circle())
+//                        if let profileImage = self.viewModel.data.author.profileImage {
+//                            Image(uiImage: profileImage)
+//                                .resizable()
+//                                .scaledToFill()
+//                                .frame(width: 38, height: 38)
+//                                .clipShape(Circle())
+//                        } else {
+                            Circle()
+                                .frame(width: 38, height: 38)
+//                        }
                         
                         Text(self.viewModel.data.author.name)
                             .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 10))

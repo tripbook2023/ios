@@ -52,7 +52,7 @@ class SampleTravelReportModel: TravelReportModel {
     /// Default 여행 기록 Dummy Data Model Initializer
     init() {
         super.init(
-            author: .init(authority: .usual, name: "서지혜", profileImage: UIImage(named: "SampleProfileImage")!),
+            author: .init(name: "서지혜", email: ""),
             title: "title",
             image: UIImage(named: "SampleFeedThumbnail")!,
             likeCount: 1,

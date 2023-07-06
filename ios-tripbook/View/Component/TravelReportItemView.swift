@@ -43,12 +43,17 @@ struct HalfTravelReportItemView: View {
             switch self.type {
             case .profile:
                 HStack(spacing: 7) {
-                    Image(uiImage: self.viewModel.data.author.profileImage)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 29, height: 29)
-                        .cornerRadius(29 / 2)
-                        .clipped()
+//                    if let profileImage = self.viewModel.data.author.profileImage {
+//                        Image(uiImage: profileImage)
+//                            .resizable()
+//                            .scaledToFill()
+//                            .frame(width: 29, height: 29)
+//                            .cornerRadius(29 / 2)
+//                            .clipped()
+//                    } else {
+                        RoundedRectangle(cornerRadius: 29 / 2)
+                            .frame(width: 29, height: 29)
+//                    }
                     Text(self.viewModel.data.author.name)
                         .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 10))
                 }
@@ -92,12 +97,17 @@ struct TravelReportItemView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 7) {
-                Image(uiImage: self.viewModel.data.author.profileImage)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 38, height: 38)
-                    .cornerRadius(38 / 2)
-                    .clipped()
+//                if let profileImage = self.viewModel.data.author.profileImage {
+//                    Image(uiImage: profileImage)
+//                        .resizable()
+//                        .scaledToFill()
+//                        .frame(width: 38, height: 38)
+//                        .cornerRadius(38 / 2)
+//                        .clipped()
+//                } else {
+                    RoundedRectangle(cornerRadius: 38 / 2)
+                        .frame(width: 38, height: 38)
+//                }
                 Text(self.viewModel.data.author.name)
                     .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 13))
             }

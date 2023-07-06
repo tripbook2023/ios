@@ -75,7 +75,7 @@ class SampleTravelNewsModel: TravelNewsModel {
     /// 여행 소식 Dummy Data Model Initializer
     init() {
         super.init(
-            author: .init(authority: .usual, name: "서지혜", profileImage: UIImage(named: "SampleProfileImage")!),
+            author: .init(name: "서지혜", email: ""),
             title: "뚜벅이가 여행하기 좋은 장소 Top 5",
             image: UIImage(named: "SampleFeedThumbnail")!,
             likeCount: 1,
@@ -95,7 +95,7 @@ class SampleMyTravelNewsModel: MyTravelNewsModel {
     ///     - status: 상태
     init(_ status: Status) {
         super.init(
-            author: .init(authority: .editor, name: "서지혜", profileImage: UIImage(named: "SampleProfileImage")!),
+            author: .init(name: "서지혜", email: ""),
             title: "업무가 하기 싫을 때 기분 전환할 수 있는 바다 여행지 BEST3",
             image: UIImage(named: "SampleFeedThumbnail")!,
             likeCount: 1,

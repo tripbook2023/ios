@@ -9,6 +9,8 @@ import SwiftUI
 import TBUtil
 
 struct SignupCompletionView: View {
+    @State var navigationTrigger: Bool = false
+    
     var body: some View {
         VStack(spacing: 0) {
             Rectangle()
@@ -22,7 +24,19 @@ struct SignupCompletionView: View {
             
             Text("나만의 소중한 여행기록을 작성해보세요.")
                 .font(TBFont.body_4)
-        }.navigationBarHidden(true)
+            
+            NavigationLink(isActive: self.$navigationTrigger, destination: {
+                RootView()
+            }, label: {
+                EmptyView()
+            })
+        }
+        .navigationBarHidden(true)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.navigationTrigger = true
+            }
+        }
     }
 }
 

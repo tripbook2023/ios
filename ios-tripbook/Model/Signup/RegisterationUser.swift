@@ -9,17 +9,6 @@ import Foundation
 import SwiftUI
 
 struct RegisterationUser {
-    enum Term: String {
-        case Service        = "termsOfService"
-        case PersonalInfo   = "termsOfPrivacy"
-        case Location       = "termsOfLocation"
-        case Marketing      = "marketingConsent"
-    }
-    enum Gender: String {
-        case Male           = "MALE"
-        case Female         = "FEMALE"
-    }
-    
     var email: String = ""
     var name: String = ""
     var profileImage: UIImage? = nil

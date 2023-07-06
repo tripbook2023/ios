@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct SignupResponse {
-    let accessToken: String?
-    let refreshToken: String?
-    let message: String?
+struct SignupResponse: Decodable {
+    let accessToken: String
+    let refreshToken: String
+    let message: String
 }

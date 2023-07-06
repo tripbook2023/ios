@@ -11,9 +11,6 @@ import SwiftUI
 /// - Author: 김민규
 /// - Date: 2023/05/20
 struct TravelNewsView: View {
-    /// Data Manager
-    @EnvironmentObject var dataObject: DataObject
-    
     @ObservedObject var viewModel = TravelNewsViewModel()
     
     var body: some View {
@@ -38,8 +35,6 @@ struct TravelNewsView: View {
                 
                 self.loadTravelNewsListView()
             }.padding(.bottom)
-        }.onAppear {
-            self.viewModel.setup(self.dataObject)
         }
     }
     

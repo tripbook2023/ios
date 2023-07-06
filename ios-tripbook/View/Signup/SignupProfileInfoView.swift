@@ -10,15 +10,8 @@ import TBComponent
 import TBUtil
 
 protocol SignupProfileInfoViewDelegate {
-    func didTapGenderButton(_ gender: RegisterationUser.Gender)
-    
-    func didTapYearPickerButton()
-    func didTapMonthPickerButton()
-    func didTapDayPickerButton()
-    func didTapYearButton(_ year: String)
-    func didTapMonthButton(_ month: String)
-    func didTapDayButton(_ day: String)
-    
+    func didTapGenderButton(_ gender: Gender)
+    func didTapBirthButton()
     func didTapDoneButton()
 }
 
@@ -91,198 +84,28 @@ struct SignupProfileInfoView: View {
                         .font(TBFont.body_2)
                         .foregroundColor(TBColor.grayscale.levels[8])
                     
-                    HStack(spacing: 4) {
+                    VStack(alignment: .leading, spacing: 0) {
                         Button(action: {
-                            self.viewModel.didTapYearPickerButton()
+                            self.showDatePickerAlert()
                         }) {
                             HStack {
-                                Text(self.viewModel.birth.year ?? "YYYY")
-                                    .font(self.viewModel.birth.year != nil ? TBFont.title_3 : TBFont.body_4)
-                                    .foregroundColor(self.viewModel.birth.year != nil ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74))
+                                Text(self.viewModel.birth == nil ? "YYYY - MM - DD" : self.viewModel.birthText)
+                                    .font(TBFont.body_4)
+                                    .foregroundColor(self.viewModel.birth == nil ? TBColor.grayscale.levels[2] : TBColor.grayscale.levels[9])
                                 
                                 Spacer()
                                 
-                                if self.viewModel.showBirthYearPicker {
-                                    TBIcon.up.iconSize(size: .small)
-                                        .foregroundColor(Color(red: 0.11, green: 0.09, blue: 0.09))
-                                } else {
-                                    TBIcon.down[0].iconSize(size: .small)
-                                        .foregroundColor(Color(red: 0.78, green: 0.75, blue: 0.74))
-                                }
+                                // TODO: - Calendar Icon
                             }
                         }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 48)
-                        .padding(.leading, 16)
-                        .padding(.trailing, 12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 4)
-                                .inset(by: 0.5)
-                                .stroke(self.viewModel.showBirthYearPicker ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74), lineWidth: 1)
-                        )
+                        .padding(.top, 10)
+                        .padding(.vertical, 14)
                         
-                        Button(action: {
-                            self.viewModel.didTapMonthPickerButton()
-                        }) {
-                            HStack {
-                                Text(self.viewModel.birth.month ?? "MM")
-                                    .font(self.viewModel.birth.year != nil ? TBFont.title_3 : TBFont.body_4)
-                                    .foregroundColor(self.viewModel.birth.month != nil ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74))
-                                
-                                Spacer()
-                                
-                                if self.viewModel.showBirthMonthPicker {
-                                    TBIcon.up.iconSize(size: .small)
-                                        .foregroundColor(Color(red: 0.11, green: 0.09, blue: 0.09))
-                                } else {
-                                    TBIcon.down[0].iconSize(size: .small)
-                                        .foregroundColor(Color(red: 0.78, green: 0.75, blue: 0.74))
-                                }
-                            }
-                        }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 48)
-                        .padding(.leading, 16)
-                        .padding(.trailing, 12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 4)
-                                .inset(by: 0.5)
-                                .stroke(self.viewModel.showBirthMonthPicker ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74), lineWidth: 1)
-                        )
-                        
-                        Button(action: {
-                            self.viewModel.didTapDayPickerButton()
-                        }) {
-                            HStack {
-                                Text(self.viewModel.birth.day ?? "DD")
-                                    .font(self.viewModel.birth.year != nil ? TBFont.title_3 : TBFont.body_4)
-                                    .foregroundColor(self.viewModel.birth.day != nil ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74))
-                                
-                                Spacer()
-                                
-                                if self.viewModel.showBirthDayPicker {
-                                    TBIcon.up.iconSize(size: .small)
-                                        .foregroundColor(Color(red: 0.11, green: 0.09, blue: 0.09))
-                                } else {
-                                    TBIcon.down[0].iconSize(size: .small)
-                                        .foregroundColor(Color(red: 0.78, green: 0.75, blue: 0.74))
-                                }
-                            }
-                        }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 48)
-                        .padding(.leading, 16)
-                        .padding(.trailing, 12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 4)
-                                .inset(by: 0.5)
-                                .stroke(self.viewModel.showBirthDayPicker ? Color(red: 0.11, green: 0.09, blue: 0.09) : Color(red: 0.78, green: 0.75, blue: 0.74), lineWidth: 1)
-                        )
-                    }.padding(.top, 11)
-                    
-                    ZStack(alignment: .topLeading) {
-                        if self.viewModel.birth.year == nil || self.viewModel.birth.month == nil || self.viewModel.birth.day == nil {
-                            HStack(spacing: 4) {
-                                Image(systemName: "exclamationmark")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 12, height: 12)
-                                    .foregroundColor(TBColor.state.warning)
-                                
-                                Text(self.viewModel.birthWarningMessages().wrappedValue)
-                                    .font(TBFont.caption_1)
-                                    .foregroundColor(TBColor.state.warning)
-                            }.padding(.top, 8)
-                        }
-                        
-                        HStack(spacing: 4) {
-                            RoundedRectangle(cornerRadius: 4)
-                                .inset(by: 0.5)
-                                .stroke(Color(red: 0.11, green: 0.09, blue: 0.09), lineWidth: 1)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 170)
-                                .background(.white)
-                                .overlay(
-                                    ScrollView {
-                                        VStack(spacing: 0) {
-                                            ForEach(self.viewModel.years, id: \.self) { year in
-                                                Button(action: {
-                                                    self.viewModel.didTapYearButton(year)
-                                                }) {
-                                                    HStack {
-                                                        Text(year)
-                                                        Spacer()
-                                                    }
-                                                    .frame(maxWidth: .infinity)
-                                                    .frame(height: 36)
-                                                    .padding(.horizontal, 16)
-                                                    .font(.suit(.medium, size: 14))
-                                                    .foregroundColor(Color(red: 0.05, green: 0.05, blue: 0.05))
-                                                    .background(self.viewModel.birth.year == year ? Color(red: 1, green: 0.97, blue: 0.95) : .clear)
-                                                }
-                                            }
-                                        }
-                                    }.padding(1.5)
-                                ).opacity(self.viewModel.showBirthYearPicker ? 1 : 0)
-                            
-                            RoundedRectangle(cornerRadius: 4)
-                                .inset(by: 0.5)
-                                .stroke(Color(red: 0.11, green: 0.09, blue: 0.09), lineWidth: 1)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 170)
-                                .background(.white)
-                                .overlay(
-                                    ScrollView {
-                                        VStack(spacing: 0) {
-                                            ForEach(self.viewModel.months, id: \.self) { month in
-                                                Button(action: {
-                                                    self.viewModel.didTapMonthButton(month)
-                                                }) {
-                                                    HStack {
-                                                        Text(month)
-                                                        Spacer()
-                                                    }
-                                                    .frame(maxWidth: .infinity)
-                                                    .frame(height: 36)
-                                                    .padding(.horizontal, 16)
-                                                    .font(.suit(.medium, size: 14))
-                                                    .foregroundColor(Color(red: 0.05, green: 0.05, blue: 0.05))
-                                                    .background(self.viewModel.birth.month == month ? Color(red: 1, green: 0.97, blue: 0.95) : .clear)
-                                                }
-                                            }
-                                        }
-                                    }.padding(1.5)
-                                ).opacity(self.viewModel.showBirthMonthPicker ? 1 : 0)
-                            
-                            RoundedRectangle(cornerRadius: 4)
-                                .inset(by: 0.5)
-                                .stroke(Color(red: 0.11, green: 0.09, blue: 0.09), lineWidth: 1)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 170)
-                                .background(.white)
-                                .overlay(
-                                    ScrollView {
-                                        VStack(spacing: 0) {
-                                            ForEach(self.viewModel.days().wrappedValue, id: \.self) { day in
-                                                Button(action: {
-                                                    self.viewModel.didTapDayButton(day)
-                                                }) {
-                                                    HStack {
-                                                        Text(day)
-                                                        Spacer()
-                                                    }
-                                                    .frame(maxWidth: .infinity)
-                                                    .frame(height: 36)
-                                                    .padding(.horizontal, 16)
-                                                    .font(.suit(.medium, size: 14))
-                                                    .foregroundColor(Color(red: 0.05, green: 0.05, blue: 0.05))
-                                                    .background(self.viewModel.birth.day == day ? Color(red: 1, green: 0.97, blue: 0.95) : .clear)
-                                                }
-                                            }
-                                        }
-                                    }.padding(1.5)
-                                ).opacity(self.viewModel.showBirthDayPicker ? 1 : 0)
-                        }.padding(.top, 4)
+                        Divider()
+                            .frame(minHeight: 1)
+                            .overlay(
+                                self.viewModel.birth == nil ? TBColor.grayscale.levels[1] : TBColor.grayscale.levels[8]
+                            )
                     }
                 }
             }
@@ -292,11 +115,11 @@ struct SignupProfileInfoView: View {
             TBPrimaryButton(
                 title: "입력완료",
                 isEnabled: Binding(get: {
-                    return self.viewModel.gender != nil && (self.viewModel.birth.toDomain != Date())
+                    return self.viewModel.gender != nil && self.viewModel.birth != nil
                 }, set: {_ in})
             ) {
                 self.signupViewModel.registerUserGender(self.viewModel.gender!)
-                self.signupViewModel.registerUserBirth(self.viewModel.birth.toDomain)
+                self.signupViewModel.registerUserBirth(self.viewModel.birth!)
                 self.signupViewModel.registerUser() {
                     self.viewModel.didTapDoneButton()
                 }
@@ -314,6 +137,36 @@ struct SignupProfileInfoView: View {
         .padding(.horizontal, 20)
         .padding(.bottom, 12)
         .navigationBarHidden(true)
+    }
+    
+    func showDatePickerAlert() {
+        let alertVC = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        alertVC.view.tintColor = UIColor(cgColor: TBColor.primary.main.cgColor!)
+        
+        let datePicker: UIDatePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .inline
+        datePicker.maximumDate = .now
+        datePicker.date = self.viewModel.birth ?? .now
+        datePicker.tintColor = UIColor(cgColor: TBColor.primary.main.cgColor!)
+        
+        alertVC.view.addSubview(datePicker)
+        
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.topAnchor.constraint(equalTo: alertVC.view.topAnchor).isActive = true
+        datePicker.leadingAnchor.constraint(equalTo: alertVC.view.leadingAnchor, constant: 20).isActive = true
+        datePicker.trailingAnchor.constraint(equalTo: alertVC.view.trailingAnchor, constant: -20).isActive = true
+        
+        let okAction = UIAlertAction(title: "확인", style: .default) { _ in
+            self.viewModel.birth = datePicker.date
+        }
+        alertVC.addAction(okAction)
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+//        alertVC.addAction(cancelAction)
+        
+        if let viewController = UIApplication.shared.windows.first?.rootViewController {
+            viewController.present(alertVC, animated: true, completion: nil)
+        }
     }
 }
 

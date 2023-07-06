@@ -97,7 +97,7 @@ struct HomeViewProperties {
 /// - Author: 김민규
 /// - Date: 2023/05/01
 class HomeViewModel: ObservableObject {
-    @Published var dataObject: DataObject?
+    var dataStorage = DataStorage.shared
     
     @Binding var selectedTab: RootViewModel.TabType
     
@@ -133,10 +133,6 @@ class HomeViewModel: ObservableObject {
     
     init(selectedTab: Binding<RootViewModel.TabType>) {
         self._selectedTab = selectedTab
-    }
-    
-    func setup(_ dataObject: DataObject) {
-        self.dataObject = dataObject
     }
 }
 

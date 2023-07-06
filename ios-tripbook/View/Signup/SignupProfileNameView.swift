@@ -19,6 +19,7 @@ struct SignupProfileNameView: View {
     @ObservedObject var signupViewModel: SignupViewModel
     @ObservedObject var viewModel = SignupProfileNameViewModel()
     
+    @FocusState var isFocused: Bool
     @Environment(\.presentationMode) var presentationMode
     
     init(_ signupViewModel: SignupViewModel) {
@@ -47,6 +48,8 @@ struct SignupProfileNameView: View {
             ) {
                 self.viewModel.onSubmittedNicknameTextField()
             }
+            .submitLabel(.done)
+            .focused(self.$isFocused)
             .onChange(of: self.viewModel.nicknameText) { _ in
                 self.viewModel.onChangedNicknameTextField()
             }
@@ -74,6 +77,11 @@ struct SignupProfileNameView: View {
         }
         .padding(.horizontal, 20)
         .navigationBarHidden(true)
+        .background(
+            Color.white.onTapGesture {
+                self.isFocused = false
+            }
+        )
     }
 }
 

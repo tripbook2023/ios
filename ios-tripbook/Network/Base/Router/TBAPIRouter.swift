@@ -14,8 +14,6 @@ class TBAPIRouter: URLRequestConvertible {
         case member
     }
     
-    var url = "http://13.124.98.251:9000"
-    
     var path: String
     var httpMethod: HTTPMethod
     var parameters: Data?
@@ -29,7 +27,7 @@ class TBAPIRouter: URLRequestConvertible {
     }
     
     func asURLRequest() throws -> URLRequest {
-        let fullURL = url + path
+        let fullURL = TBAPIPath.base + path
         let encodedURL = fullURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         var urlComponent = URLComponents(string: encodedURL)!
         
@@ -46,6 +44,7 @@ class TBAPIRouter: URLRequestConvertible {
         }
         
         var request = try URLRequest(url: urlComponent.url!, method: httpMethod)
+        request.headers.add(.userAgent("IOS_APP"))
         
         if httpMethod == .post, let params = parameters {
             request.httpBody = params

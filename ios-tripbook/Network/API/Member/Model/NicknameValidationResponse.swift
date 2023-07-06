@@ -8,12 +8,11 @@
 import Foundation
 
 struct NicknameValidationResponse: Decodable {
-    let status: String?
-    let message: [String]?
+    let status: String
 }
 
 extension NicknameValidationResponse {
     var toDomain: Bool {
-        return self.status != nil && self.message != nil
+        return self.status == "OK"
     }
 }

@@ -12,8 +12,6 @@ import TBUtil
 /// - Author: 김민규
 /// - Date: 2023/05/21
 struct RequestEditorResultView: View {
-    /// Data Manager
-    @EnvironmentObject var dataObject: DataObject
     @Environment(\.presentationMode) var presentationMode
     
     /// 승인 여부
@@ -84,10 +82,7 @@ struct RequestEditorResultView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             RequestEditorResultView(isApproved: true)
-                .environmentObject(DataObject())
-            
             RequestEditorResultView(isApproved: false)
-                .environmentObject(DataObject())
         }
     }
 }

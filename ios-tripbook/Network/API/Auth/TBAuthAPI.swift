@@ -15,6 +15,8 @@ struct TBAuthAPI {
         TBAPIManager.shared.sessionManager.request(router).responseDecodable(of: AuthenticationResponse.self, completionHandler: { response in
             switch response.result {
             case .success(let value):
+                TokenStorage.shared.accessToken = value.accessToken
+                
                 completion(value.toDomain)
             case .failure(let error):
                 print("authentication Error: \(error)")

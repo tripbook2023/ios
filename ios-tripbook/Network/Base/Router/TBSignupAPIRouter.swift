@@ -9,8 +9,6 @@ import Foundation
 import Alamofire
 
 class TBSignupAPIRouter: URLRequestConvertible {
-    var url = "http://13.124.98.251:9000"
-    
     var path: String
     var httpMethod: HTTPMethod
     var multipartFormData: MultipartFormData
@@ -24,11 +22,12 @@ class TBSignupAPIRouter: URLRequestConvertible {
     }
     
     func asURLRequest() throws -> URLRequest {
-        let fullURL = url + path
+        let fullURL = TBAPIPath.base + path
         let encodedURL = fullURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         var urlComponent = URLComponents(string: encodedURL)!
         
         var request = try URLRequest(url: urlComponent.url!, method: httpMethod)
+        request.headers.add(.userAgent("IOS_APP"))
         
         return request
     }

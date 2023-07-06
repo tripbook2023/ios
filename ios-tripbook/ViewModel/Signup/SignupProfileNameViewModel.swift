@@ -59,7 +59,13 @@ extension SignupProfileNameViewModel: SignupProfileNameViewDelegate {
     
     func onSubmittedNicknameTextField() {
         if self.nicknameTextState == .None {
-            
+            TBMemberAPI.validationNickname(.init(name: self.nicknameText)) { isValid in
+                if !isValid {
+                    self.nicknameTextState = .Duplicate
+                } else {
+                    self.nicknameTextState = .None
+                }
+            }
         }
     }
     

@@ -32,7 +32,7 @@ class SignupViewModel: ObservableObject {
         self.userData.profileImage = image
     }
     
-    func registerUserGender(_ gender: RegisterationUser.Gender) {
+    func registerUserGender(_ gender: Gender) {
         self.userData.gender = gender
     }
     
@@ -51,10 +51,10 @@ class SignupViewModel: ObservableObject {
                 name: self.userData.name,
                 email: self.userData.email,
                 imageFile: self.userData.profileImage,
-                termsOfService: self.userData.terms[RegisterationUser.Term.Service.rawValue]!,
-                termsOfPrivacy: self.userData.terms[RegisterationUser.Term.PersonalInfo.rawValue]!,
-                termsOfLocation: self.userData.terms[RegisterationUser.Term.Location.rawValue]!,
-                marketingConsent: self.userData.terms[RegisterationUser.Term.Marketing.rawValue]!,
+                termsOfService: self.userData.terms[Term.Service.rawValue]!,
+                termsOfPrivacy: self.userData.terms[Term.PersonalInfo.rawValue]!,
+                termsOfLocation: self.userData.terms[Term.Location.rawValue]!,
+                marketingConsent: self.userData.terms[Term.Marketing.rawValue]!,
                 gender: self.userData.gender!.rawValue,
                 birth: self.userData.birth
             )

@@ -47,14 +47,14 @@ struct SignupSocialView: View {
                             Text("카카오 로그인")
                                 .font(TBFont.body_3)
                         }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundColor(Color(red: 254 / 255, green: 229 / 255, blue: 0 / 255))
+                        )
+                        .foregroundColor(TBColor.grayscale.levels[10])
                     }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 52)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .foregroundColor(Color(red: 254 / 255, green: 229 / 255, blue: 0 / 255))
-                    )
-                    .foregroundColor(TBColor.grayscale.levels[10])
                     
                     ZStack {
                         HStack(spacing: 6.47) {

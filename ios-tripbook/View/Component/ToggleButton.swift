@@ -64,7 +64,7 @@ struct TextToggleButton: View, ToggleButtonProtocol {
             }.foregroundColor(self.imageColor)
             
             Text(self.text)
-                .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 14))
+                .font(.suit(.regular, size: 14))
                 .foregroundColor(self.labelColor)
         }
     }
@@ -112,7 +112,7 @@ struct CountingToggleButton: View, ToggleButtonProtocol {
     /// Count Text Label View
     var countView: some View {
         Text(self.count > 0 ? String(self.count) : "")
-            .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 14))
+            .font(.suit(.regular, size: 14))
             .foregroundColor(self.labelColor)
     }
 }

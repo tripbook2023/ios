@@ -31,7 +31,7 @@ struct HomeSearchView: View {
                         .frame(width: 24, height: 24)
                     
                     TextField("벚꽃축제여행", text: self.$viewModel.searchKeyword)
-                        .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 18))
+                        .font(.suit(.regular, size: 18))
                 }
                 .padding(7.5)
                 .background(Color(red: 245 / 255, green: 245 / 255, blue: 245 / 255))
@@ -41,7 +41,7 @@ struct HomeSearchView: View {
                     Button("취소") {
                         self.viewModel.returnInitState()
                     }
-                    .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 16))
+                    .font(.suit(.regular, size: 16))
                     .foregroundColor(.primary)
                 }
             }.padding(EdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 14))
@@ -55,7 +55,7 @@ struct HomeSearchView: View {
                             Button(tab.rawValue) {
                                 self.viewModel.selectedResultTab = tab
                             }
-                            .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 18))
+                            .font(.suit(.regular, size: 18))
                             .frame(maxWidth: .infinity)
                             .padding()
                             .foregroundColor(.primary)
@@ -97,7 +97,7 @@ struct HomeSearchView: View {
                 
                 HStack(alignment: .bottom) {
                     Text("최근 검색어")
-                        .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 15))
+                        .font(.suit(.regular, size: 15))
                         .foregroundColor(Color(red: 112 / 255, green: 112 / 255, blue: 112 / 255))
                     
                     Spacer()
@@ -106,7 +106,7 @@ struct HomeSearchView: View {
                         
                     }) {
                         Text("전체 삭제")
-                            .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 13))
+                            .font(.suit(.regular, size: 13))
                             .foregroundColor(Color(red: 112 / 255, green: 112 / 255, blue: 112 / 255))
                     }
                 }.padding(.horizontal)

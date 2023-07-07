@@ -42,7 +42,7 @@ struct TooltipView: View {
             .foregroundColor(Color(red: 244 / 255, green: 135 / 255, blue: 135 / 255))
             .overlay(
                 Text(text)
-                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 16))
+                    .font(.suit(.bold, size: 16))
                     .foregroundColor(.white)
             )
             .opacity(isShow ? 0.0 : 1.0)

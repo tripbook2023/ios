@@ -27,7 +27,7 @@ struct HomeTravelNewsItemView: View {
                 VStack(alignment: .leading) {
                     Text(self.viewModel.data.title)
                         .frame(width: 231 / 1.5)
-                        .font(.custom(TBFontType.NotoSansKR.bold.rawValue, fixedSize: 19))
+                        .font(.suit(.bold, size: 19))
                         .shadow(radius: 4, y: 4)
                         .foregroundColor(.white)
                         .lineLimit(2)

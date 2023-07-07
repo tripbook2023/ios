@@ -13,7 +13,7 @@ struct HomeSearchKeywordCellView: View {
     var body: some View {
         HStack {
             Text(self.cellText)
-                .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 18))
+                .font(.suit(.regular, size: 18))
             Spacer()
         }
         .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))

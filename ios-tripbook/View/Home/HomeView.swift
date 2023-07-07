@@ -46,14 +46,14 @@ struct HomeView: View {
                     if let title = section.type.title {
                         Text(title)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 23))
+                            .font(.suit(.bold, size: 23))
                     }
                     
                     // section - sub-title View
                     if let subTitle = section.type.description {
                         Text(subTitle)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 18))
+                            .font(.suit(.regular, size: 18))
                             .foregroundColor(Color(red: 151 / 255, green: 151 / 255, blue: 151 / 255))
                     }
                 }.padding(.horizontal)
@@ -104,7 +104,7 @@ extension HomeView {
                 .overlay(
                     VStack {
                         Text("\(self.viewModel.dataStorage.user?.info?.name ?? "")님은\n아직 여행기록이\n없어요!")
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 24))
+                            .font(.suit(.bold, size: 24))
                             .multilineTextAlignment(.center)
                         
                         Spacer()
@@ -115,7 +115,7 @@ extension HomeView {
                                     .resizable()
                                     .frame(width: 20, height: 20)
                                 Text("지금 바로 작성하기")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 18))
+                                    .font(.suit(.bold, size: 18))
                             }
                         }.foregroundColor(Color(red: 255 / 255, green: 78 / 255, blue: 0 / 255))
                     }.padding()
@@ -147,7 +147,7 @@ extension HomeView {
             if self.viewModel.dataStorage.user != nil {
                 VStack(alignment: .leading) {
                     Text("최근 본 여행기록")
-                        .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                        .font(.suit(.bold, size: 19))
                         .padding(.horizontal)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -227,7 +227,7 @@ extension HomeView {
                         .overlay(
                             VStack {
                                 Text("트립북\n인스타그램")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 17))
+                                    .font(.suit(.bold, size: 17))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .multilineTextAlignment(.leading)
                                 Spacer()
@@ -242,7 +242,7 @@ extension HomeView {
                         .overlay(
                             VStack {
                                 Text("트립북\n네이버 블로그")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 17))
+                                    .font(.suit(.bold, size: 17))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .multilineTextAlignment(.leading)
                                 Spacer()
@@ -257,7 +257,7 @@ extension HomeView {
                         .overlay(
                             VStack {
                                 Text("여행소식\n에디터 신청")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 17))
+                                    .font(.suit(.bold, size: 17))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .multilineTextAlignment(.leading)
                                 Spacer()
@@ -272,7 +272,7 @@ extension HomeView {
                         .overlay(
                             VStack {
                                 Text("트립북\n선물샵 구경")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 17))
+                                    .font(.suit(.bold, size: 17))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .multilineTextAlignment(.leading)
                                 Spacer()
@@ -289,7 +289,7 @@ extension HomeView {
                     .overlay(
                         HStack {
                             Text("Tripbook이 궁금하시다고요?")
-                                .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                                .font(.suit(.bold, size: 19))
                                 .foregroundColor(Color(red: 255 / 255, green: 78 / 255, blue: 0 / 255))
                             Spacer()
                             Circle()

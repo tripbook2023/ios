@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TBUtil
 
 protocol SignupTermDetailModalDelegate {
     func didTapHideModalButton()

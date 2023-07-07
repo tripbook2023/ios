@@ -1,5 +1,4 @@
 import SwiftUI
-import TBUtil
 
 @main
 struct ios_tripbookApp: App {
@@ -8,9 +7,9 @@ struct ios_tripbookApp: App {
     var body: some Scene {
         WindowGroup {
             if let _ = tokenStorage.accessToken {
-                RootView().configureFont()
+                RootView()
             } else {
-                SignupSocialView().configureFont()
+                SignupSocialView()
             }
         }
     }

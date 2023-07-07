@@ -36,39 +36,39 @@ struct TravelNewsItemView: View {
 //                        }
                         
                         Text(self.viewModel.data.author.name)
-                            .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 10))
+                            .font(.suit(.regular, size: 10))
                         
                         Spacer()
                     }.padding(.horizontal)
                 )
             
-            Rectangle()
-                .frame(height: 520)
-                .overlay(
-                    Image(uiImage: self.viewModel.data.image)
-                        .resizable()
-                        .scaledToFill()
-                )
-                .overlay(
-                    VStack(alignment: .leading) {
-                        Text(self.viewModel.data.title)
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 27))
-                            .foregroundColor(.white)
-                            .shadow(color: .init(red: 120 / 255, green: 120 / 255, blue: 120 / 255), radius: 1)
-                        
-                        Spacer()
-                        
-                        DocumentActionBar(
-                            self.$viewModel.data,
-                            delegate: self.viewModel,
-                            canShare: true,
-                            color: .white
-                        )
-                    }
-                        .padding()
-                        .background(Color.init(red: 120 / 255, green: 120 / 255, blue: 120 / 255).opacity(0.4))
-                )
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+//            Rectangle()
+//                .frame(height: 520)
+//                .overlay(
+//                    Image(uiImage: self.viewModel.data.image)
+//                        .resizable()
+//                        .scaledToFill()
+//                )
+//                .overlay(
+//                    VStack(alignment: .leading) {
+//                        Text(self.viewModel.data.title)
+//                            .font(.custom(.bold, size: 27))
+//                            .foregroundColor(.white)
+//                            .shadow(color: .init(red: 120 / 255, green: 120 / 255, blue: 120 / 255), radius: 1)
+//                        
+//                        Spacer()
+//                        
+//                        DocumentActionBar(
+//                            self.$viewModel.data,
+//                            delegate: self.viewModel,
+//                            canShare: true,
+//                            color: .white
+//                        )
+//                    }
+//                        .padding()
+//                        .background(Color.init(red: 120 / 255, green: 120 / 255, blue: 120 / 255).opacity(0.4))
+//                )
+//                .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
 }

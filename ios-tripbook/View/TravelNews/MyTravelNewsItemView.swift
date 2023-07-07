@@ -38,10 +38,10 @@ struct MyTravelNewsItemView: View {
                 HStack(alignment: .top, spacing: 10) {
                     VStack(alignment: .leading) {
                         Text(self.viewModel.data.title)
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 20))
+                            .font(.suit(.bold, size: 20))
                             .foregroundColor(.white)
                         Text("\(self.viewModel.data.createdAt, formatter: self.viewModel.dateFormatter)")
-                            .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 16))
+                            .font(.suit(.bold, size: 16))
                             .foregroundColor(.white)
                     }.frame(maxWidth: width * 0.5)
                     
@@ -72,7 +72,7 @@ struct MyTravelNewsItemView: View {
             if !self.viewModel.data.isApprovedDateOver(days: 3) {
                 Text("승인완료")
                     .frame(width: 62, height: 22)
-                    .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 11))
+                    .font(.suit(.regular, size: 11))
                     .foregroundColor(.white)
                     .background(Color(red: 255 / 255, green: 78 / 255, blue: 0 / 255))
                     .cornerRadius(5)
@@ -82,7 +82,7 @@ struct MyTravelNewsItemView: View {
         case .waiting:
             Text("승인대기중")
                 .frame(width: 62, height: 22)
-                .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 11))
+                .font(.suit(.regular, size: 11))
                 .foregroundColor(.init(red: 151 / 255, green: 151 / 255, blue: 151 / 255))
                 .background(Color(red: 234 / 255, green: 234 / 255, blue: 234 / 255))
                 .cornerRadius(5)

@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import TBComponent
-import TBUtil
 
 protocol SignupProfileInfoViewDelegate {
     func didTapGenderButton(_ gender: Gender)
@@ -173,6 +171,5 @@ struct SignupProfileInfoView: View {
 struct SignupProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
         SignupProfileInfoView(SignupViewModel())
-            .configureFont()
     }
 }

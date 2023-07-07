@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TBUtil
 import _AuthenticationServices_SwiftUI
 
 protocol SignupSocialViewDelegate {
@@ -113,6 +112,6 @@ struct SignupSocialView: View {
 
 struct SignupSocialView_Previews: PreviewProvider {
     static var previews: some View {
-        SignupSocialView().configureFont()
+        SignupSocialView()
     }
 }

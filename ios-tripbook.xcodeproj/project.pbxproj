@@ -10,13 +10,6 @@
 		851BEA5E29FF9328003D60C9 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851BEA5D29FF9328003D60C9 /* HomeHeaderView.swift */; };
 		8527A5772A0366B6003819B1 /* TravelReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527A5762A0366B6003819B1 /* TravelReportModel.swift */; };
 		8527A5792A036786003819B1 /* TravelReportItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527A5782A036786003819B1 /* TravelReportItemViewModel.swift */; };
-		85338E2329F81DEE00E87792 /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E1D29F81DE500E87792 /* NotoSansKR-Black.otf */; };
-		85338E2429F81DEE00E87792 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E1E29F81DE600E87792 /* NotoSansKR-Bold.otf */; };
-		85338E2529F81DEE00E87792 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E2029F81DE600E87792 /* NotoSansKR-Medium.otf */; };
-		85338E2629F81DEE00E87792 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E2129F81DE600E87792 /* NotoSansKR-Regular.otf */; };
-		85338E2729F81DEE00E87792 /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E2229F81DE600E87792 /* NotoSansKR-Thin.otf */; };
-		85338E2829F81DEE00E87792 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85338E1F29F81DE600E87792 /* NotoSansKR-Light.otf */; };
-		85338E2A29F81DFB00E87792 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85338E2929F81DFB00E87792 /* Font.swift */; };
 		85338E3229F8426800E87792 /* TravelReportItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85338E3129F8426800E87792 /* TravelReportItemView.swift */; };
 		85338E3429F8524000E87792 /* EventBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85338E3329F8524000E87792 /* EventBannerView.swift */; };
 		85338E3729F8836F00E87792 /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 85338E3629F8836F00E87792 /* .gitattributes */; };
@@ -66,6 +59,22 @@
 		8585F4782A13EF2400C0A678 /* MyTravelNewsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585F4772A13EF2400C0A678 /* MyTravelNewsItemView.swift */; };
 		8585F47A2A15E89F00C0A678 /* TravelNewsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585F4792A15E89F00C0A678 /* TravelNewsItemViewModel.swift */; };
 		8585F47C2A15ECBB00C0A678 /* MyTravelNewsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585F47B2A15ECBB00C0A678 /* MyTravelNewsItemViewModel.swift */; };
+		85A6B1282A58364D0050FF68 /* SUIT-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85A6B11F2A58364C0050FF68 /* SUIT-Bold.otf */; };
+		85A6B1292A58364D0050FF68 /* SUIT-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85A6B1202A58364C0050FF68 /* SUIT-ExtraLight.otf */; };
+		85A6B12A2A58364D0050FF68 /* SUIT-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85A6B1212A58364C0050FF68 /* SUIT-Heavy.otf */; };
+		85A6B12B2A58364D0050FF68 /* SUIT-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85A6B1222A58364C0050FF68 /* SUIT-Medium.otf */; };
+		85A6B12C2A58364D0050FF68 /* SUIT-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85A6B1232A58364C0050FF68 /* SUIT-Thin.otf */; };
+		85A6B12D2A58364D0050FF68 /* SUIT-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85A6B1242A58364C0050FF68 /* SUIT-ExtraBold.otf */; };
+		85A6B12E2A58364D0050FF68 /* SUIT-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85A6B1252A58364C0050FF68 /* SUIT-Light.otf */; };
+		85A6B12F2A58364D0050FF68 /* SUIT-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85A6B1262A58364D0050FF68 /* SUIT-Regular.otf */; };
+		85A6B1302A58364D0050FF68 /* SUIT-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85A6B1272A58364D0050FF68 /* SUIT-SemiBold.otf */; };
+		85A6B1342A58367A0050FF68 /* TBFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B1312A58367A0050FF68 /* TBFont.swift */; };
+		85A6B1352A58367A0050FF68 /* TBIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B1322A58367A0050FF68 /* TBIcon.swift */; };
+		85A6B1362A58367A0050FF68 /* TBColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B1332A58367A0050FF68 /* TBColorPalette.swift */; };
+		85A6B13B2A58368C0050FF68 /* TBCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B1372A58368C0050FF68 /* TBCheckBox.swift */; };
+		85A6B13C2A58368C0050FF68 /* TBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B1382A58368C0050FF68 /* TBTextField.swift */; };
+		85A6B13D2A58368C0050FF68 /* TBPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B1392A58368C0050FF68 /* TBPrimaryButton.swift */; };
+		85A6B13E2A58368C0050FF68 /* TBAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B13A2A58368C0050FF68 /* TBAppBar.swift */; };
 		85C05C902A3E246F006758EF /* SignupProfileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C05C8F2A3E246F006758EF /* SignupProfileInfoViewModel.swift */; };
 		85C35B752A16594500DB8E46 /* DocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C35B742A16594500DB8E46 /* DocumentModel.swift */; };
 		85C35B772A1659AE00DB8E46 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C35B762A1659AE00DB8E46 /* User.swift */; };
@@ -81,8 +90,6 @@
 		85E8CA982A39A68900EBDE7F /* SignupProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CA972A39A68900EBDE7F /* SignupProfileInfoView.swift */; };
 		85E8CA9B2A39A6A800EBDE7F /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CA9A2A39A6A800EBDE7F /* SignupViewModel.swift */; };
 		85E8CAA22A3ACB2300EBDE7F /* SignupSocialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAA12A3ACB2300EBDE7F /* SignupSocialViewModel.swift */; };
-		85E8CAA52A3AD06800EBDE7F /* TBComponent in Frameworks */ = {isa = PBXBuildFile; productRef = 85E8CAA42A3AD06800EBDE7F /* TBComponent */; };
-		85E8CAA72A3AD06800EBDE7F /* TBUtil in Frameworks */ = {isa = PBXBuildFile; productRef = 85E8CAA62A3AD06800EBDE7F /* TBUtil */; };
 		85E8CAA92A3AD74700EBDE7F /* SignupTermsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAA82A3AD74700EBDE7F /* SignupTermsViewModel.swift */; };
 		85E8CAAB2A3B108600EBDE7F /* SignupProfileNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAAA2A3B108600EBDE7F /* SignupProfileNameViewModel.swift */; };
 		85E8CAAD2A3DEB7700EBDE7F /* SignupProfileImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAAC2A3DEB7700EBDE7F /* SignupProfileImageViewModel.swift */; };
@@ -113,13 +120,6 @@
 		851BEA5D29FF9328003D60C9 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		8527A5762A0366B6003819B1 /* TravelReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportModel.swift; sourceTree = "<group>"; };
 		8527A5782A036786003819B1 /* TravelReportItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportItemViewModel.swift; sourceTree = "<group>"; };
-		85338E1D29F81DE500E87792 /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
-		85338E1E29F81DE600E87792 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
-		85338E1F29F81DE600E87792 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
-		85338E2029F81DE600E87792 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
-		85338E2129F81DE600E87792 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
-		85338E2229F81DE600E87792 /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
-		85338E2929F81DFB00E87792 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		85338E2B29F828EC00E87792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		85338E3129F8426800E87792 /* TravelReportItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportItemView.swift; sourceTree = "<group>"; };
 		85338E3329F8524000E87792 /* EventBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBannerView.swift; sourceTree = "<group>"; };
@@ -172,6 +172,22 @@
 		8585F4792A15E89F00C0A678 /* TravelNewsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsItemViewModel.swift; sourceTree = "<group>"; };
 		8585F47B2A15ECBB00C0A678 /* MyTravelNewsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTravelNewsItemViewModel.swift; sourceTree = "<group>"; };
 		8588E32129EE49A900746B23 /* ios-tripbook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios-tripbook.entitlements"; sourceTree = "<group>"; };
+		85A6B11F2A58364C0050FF68 /* SUIT-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Bold.otf"; sourceTree = "<group>"; };
+		85A6B1202A58364C0050FF68 /* SUIT-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-ExtraLight.otf"; sourceTree = "<group>"; };
+		85A6B1212A58364C0050FF68 /* SUIT-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Heavy.otf"; sourceTree = "<group>"; };
+		85A6B1222A58364C0050FF68 /* SUIT-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Medium.otf"; sourceTree = "<group>"; };
+		85A6B1232A58364C0050FF68 /* SUIT-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Thin.otf"; sourceTree = "<group>"; };
+		85A6B1242A58364C0050FF68 /* SUIT-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-ExtraBold.otf"; sourceTree = "<group>"; };
+		85A6B1252A58364C0050FF68 /* SUIT-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Light.otf"; sourceTree = "<group>"; };
+		85A6B1262A58364D0050FF68 /* SUIT-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Regular.otf"; sourceTree = "<group>"; };
+		85A6B1272A58364D0050FF68 /* SUIT-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-SemiBold.otf"; sourceTree = "<group>"; };
+		85A6B1312A58367A0050FF68 /* TBFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBFont.swift; sourceTree = "<group>"; };
+		85A6B1322A58367A0050FF68 /* TBIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBIcon.swift; sourceTree = "<group>"; };
+		85A6B1332A58367A0050FF68 /* TBColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBColorPalette.swift; sourceTree = "<group>"; };
+		85A6B1372A58368C0050FF68 /* TBCheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBCheckBox.swift; sourceTree = "<group>"; };
+		85A6B1382A58368C0050FF68 /* TBTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBTextField.swift; sourceTree = "<group>"; };
+		85A6B1392A58368C0050FF68 /* TBPrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBPrimaryButton.swift; sourceTree = "<group>"; };
+		85A6B13A2A58368C0050FF68 /* TBAppBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBAppBar.swift; sourceTree = "<group>"; };
 		85C05C8F2A3E246F006758EF /* SignupProfileInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileInfoViewModel.swift; sourceTree = "<group>"; };
 		85C35B742A16594500DB8E46 /* DocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentModel.swift; sourceTree = "<group>"; };
 		85C35B762A1659AE00DB8E46 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -208,8 +224,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				85F03BEB2A3EF5A000A0B931 /* Alamofire in Frameworks */,
-				85E8CAA72A3AD06800EBDE7F /* TBUtil in Frameworks */,
-				85E8CAA52A3AD06800EBDE7F /* TBComponent in Frameworks */,
 				853EA91E2A46F363001890DE /* Auth0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,34 +238,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		85338E1A29F81D8A00E87792 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				85338E1C29F81DD100E87792 /* Font */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
 		85338E1B29F81DB300E87792 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				85338E2929F81DFB00E87792 /* Font.swift */,
+				85A6B1332A58367A0050FF68 /* TBColorPalette.swift */,
+				85A6B1312A58367A0050FF68 /* TBFont.swift */,
+				85A6B1322A58367A0050FF68 /* TBIcon.swift */,
 				85C6F8332A18D44B00722ED1 /* DataStorage.swift */,
 			);
 			path = Util;
-			sourceTree = "<group>";
-		};
-		85338E1C29F81DD100E87792 /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				85338E1D29F81DE500E87792 /* NotoSansKR-Black.otf */,
-				85338E1E29F81DE600E87792 /* NotoSansKR-Bold.otf */,
-				85338E1F29F81DE600E87792 /* NotoSansKR-Light.otf */,
-				85338E2029F81DE600E87792 /* NotoSansKR-Medium.otf */,
-				85338E2129F81DE600E87792 /* NotoSansKR-Regular.otf */,
-				85338E2229F81DE600E87792 /* NotoSansKR-Thin.otf */,
-			);
-			path = Font;
 			sourceTree = "<group>";
 		};
 		85338E3029F8423200E87792 /* Component */ = {
@@ -383,10 +378,10 @@
 				85B6EE5629DDD29700898B48 /* View */,
 				85B6EE5729DDD2A300898B48 /* ViewModel */,
 				85B6EE5829DDD2B800898B48 /* Model */,
-				8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */,
-				85338E1A29F81D8A00E87792 /* Resource */,
-				85338E1B29F81DB300E87792 /* Util */,
 				853EA9222A46F976001890DE /* Network */,
+				85A6B11B2A5836060050FF68 /* Component */,
+				85338E1B29F81DB300E87792 /* Util */,
+				85A6B11D2A58362F0050FF68 /* Resource */,
 				8552BC3129DDCD8E00DC8D7E /* Preview Content */,
 			);
 			path = "ios-tripbook";
@@ -445,6 +440,42 @@
 				8585F47B2A15ECBB00C0A678 /* MyTravelNewsItemViewModel.swift */,
 			);
 			path = TravelNews;
+			sourceTree = "<group>";
+		};
+		85A6B11B2A5836060050FF68 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				85A6B13A2A58368C0050FF68 /* TBAppBar.swift */,
+				85A6B1372A58368C0050FF68 /* TBCheckBox.swift */,
+				85A6B1392A58368C0050FF68 /* TBPrimaryButton.swift */,
+				85A6B1382A58368C0050FF68 /* TBTextField.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		85A6B11D2A58362F0050FF68 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */,
+				85A6B11E2A5836360050FF68 /* Font */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		85A6B11E2A5836360050FF68 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				85A6B11F2A58364C0050FF68 /* SUIT-Bold.otf */,
+				85A6B1242A58364C0050FF68 /* SUIT-ExtraBold.otf */,
+				85A6B1202A58364C0050FF68 /* SUIT-ExtraLight.otf */,
+				85A6B1212A58364C0050FF68 /* SUIT-Heavy.otf */,
+				85A6B1252A58364C0050FF68 /* SUIT-Light.otf */,
+				85A6B1222A58364C0050FF68 /* SUIT-Medium.otf */,
+				85A6B1262A58364D0050FF68 /* SUIT-Regular.otf */,
+				85A6B1272A58364D0050FF68 /* SUIT-SemiBold.otf */,
+				85A6B1232A58364C0050FF68 /* SUIT-Thin.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		85B6EE5629DDD29700898B48 /* View */ = {
@@ -625,8 +656,6 @@
 			);
 			name = "ios-tripbook";
 			packageProductDependencies = (
-				85E8CAA42A3AD06800EBDE7F /* TBComponent */,
-				85E8CAA62A3AD06800EBDE7F /* TBUtil */,
 				85F03BEA2A3EF5A000A0B931 /* Alamofire */,
 				853EA91D2A46F363001890DE /* Auth0 */,
 			);
@@ -681,7 +710,6 @@
 			);
 			mainGroup = 8552BC1F29DDCD8D00DC8D7E;
 			packageReferences = (
-				85E8CAA32A3AD06800EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */,
 				85F03BE92A3EF5A000A0B931 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				853EA91C2A46F363001890DE /* XCRemoteSwiftPackageReference "Auth0" */,
 			);
@@ -700,16 +728,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85A6B1292A58364D0050FF68 /* SUIT-ExtraLight.otf in Resources */,
+				85A6B12D2A58364D0050FF68 /* SUIT-ExtraBold.otf in Resources */,
 				85338E3929F8837C00E87792 /* .gitignore in Resources */,
-				85338E2329F81DEE00E87792 /* NotoSansKR-Black.otf in Resources */,
+				85A6B12E2A58364D0050FF68 /* SUIT-Light.otf in Resources */,
 				85338E3729F8836F00E87792 /* .gitattributes in Resources */,
-				85338E2729F81DEE00E87792 /* NotoSansKR-Thin.otf in Resources */,
-				85338E2829F81DEE00E87792 /* NotoSansKR-Light.otf in Resources */,
+				85A6B12B2A58364D0050FF68 /* SUIT-Medium.otf in Resources */,
 				8552BC3329DDCD8E00DC8D7E /* Preview Assets.xcassets in Resources */,
-				85338E2529F81DEE00E87792 /* NotoSansKR-Medium.otf in Resources */,
-				85338E2429F81DEE00E87792 /* NotoSansKR-Bold.otf in Resources */,
+				85A6B12F2A58364D0050FF68 /* SUIT-Regular.otf in Resources */,
+				85A6B12A2A58364D0050FF68 /* SUIT-Heavy.otf in Resources */,
+				85A6B1282A58364D0050FF68 /* SUIT-Bold.otf in Resources */,
+				85A6B12C2A58364D0050FF68 /* SUIT-Thin.otf in Resources */,
+				85A6B1302A58364D0050FF68 /* SUIT-SemiBold.otf in Resources */,
 				853EA9202A46F3D3001890DE /* Auth0.plist in Resources */,
-				85338E2629F81DEE00E87792 /* NotoSansKR-Regular.otf in Resources */,
 				8552BC3029DDCD8E00DC8D7E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -729,6 +760,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E8CA942A39A63F00EBDE7F /* SignupProfileNameView.swift in Sources */,
+				85A6B1352A58367A0050FF68 /* TBIcon.swift in Sources */,
+				85A6B13D2A58368C0050FF68 /* TBPrimaryButton.swift in Sources */,
 				8585F4782A13EF2400C0A678 /* MyTravelNewsItemView.swift in Sources */,
 				85C6F8392A1A013D00722ED1 /* RequestEditorViewModel.swift in Sources */,
 				85361DC32A10140800B48B55 /* HomePointBannerView.swift in Sources */,
@@ -747,6 +780,7 @@
 				85C6F8362A19ED0B00722ED1 /* RequestEditorResultView.swift in Sources */,
 				85569CB02A50084000515DE3 /* AuthenticationResult.swift in Sources */,
 				85C35B752A16594500DB8E46 /* DocumentModel.swift in Sources */,
+				85A6B13E2A58368C0050FF68 /* TBAppBar.swift in Sources */,
 				85561AB429FD403F004B06F8 /* HomeViewModel.swift in Sources */,
 				85C35B772A1659AE00DB8E46 /* User.swift in Sources */,
 				85338E4529FA638E00E87792 /* SearchKeywordModel.swift in Sources */,
@@ -756,10 +790,12 @@
 				85E8CA902A39A5F600EBDE7F /* SignupSocialView.swift in Sources */,
 				85569CAB2A4FFD5700515DE3 /* AuthenticationResponse.swift in Sources */,
 				85361DB92A0FCC2700B48B55 /* TooltipView.swift in Sources */,
+				85A6B13C2A58368C0050FF68 /* TBTextField.swift in Sources */,
 				8585F47C2A15ECBB00C0A678 /* MyTravelNewsItemViewModel.swift in Sources */,
 				85E8CAAD2A3DEB7700EBDE7F /* SignupProfileImageViewModel.swift in Sources */,
 				85E8CAA92A3AD74700EBDE7F /* SignupTermsViewModel.swift in Sources */,
 				853EA93B2A48118A001890DE /* NicknameValidationRequest.swift in Sources */,
+				85A6B1342A58367A0050FF68 /* TBFont.swift in Sources */,
 				85C05C902A3E246F006758EF /* SignupProfileInfoViewModel.swift in Sources */,
 				853EA9292A472888001890DE /* TBAuthInterceptor.swift in Sources */,
 				85569CB22A5071B400515DE3 /* SignupCompletionView.swift in Sources */,
@@ -774,8 +810,8 @@
 				85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */,
 				85338E3229F8426800E87792 /* TravelReportItemView.swift in Sources */,
 				85569CB82A507B0400515DE3 /* TBSignupAPIRouter.swift in Sources */,
+				85A6B13B2A58368C0050FF68 /* TBCheckBox.swift in Sources */,
 				85F31B5B2A543A3500493B5F /* GetUserResponse.swift in Sources */,
-				85338E2A29F81DFB00E87792 /* Font.swift in Sources */,
 				85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */,
 				85361DBC2A0FFBCB00B48B55 /* HomeTravelNewsItemViewModel.swift in Sources */,
 				85569CA92A4FFC7500515DE3 /* AuthenticationRequest.swift in Sources */,
@@ -794,6 +830,7 @@
 				853EA93F2A481489001890DE /* NicknameValidationResponse.swift in Sources */,
 				85F02B5429F6913F008DABCE /* ProfileView.swift in Sources */,
 				85E8CA922A39A61D00EBDE7F /* SignupTermsView.swift in Sources */,
+				85A6B1362A58367A0050FF68 /* TBColorPalette.swift in Sources */,
 				85E8CA9B2A39A6A800EBDE7F /* SignupViewModel.swift in Sources */,
 				85E8CA982A39A68900EBDE7F /* SignupProfileInfoView.swift in Sources */,
 				85E8CA962A39A65400EBDE7F /* SignupProfileImageView.swift in Sources */,
@@ -943,6 +980,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "ios-tripbook/ios-tripbook.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -967,7 +1005,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tripbookteam07.tripbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -985,6 +1023,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "ios-tripbook/ios-tripbook.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1009,7 +1048,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tripbookteam07.tripbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1107,14 +1146,6 @@
 				minimumVersion = 2.4.0;
 			};
 		};
-		85E8CAA32A3AD06800EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tripbook2023/iOS-TripBook-Component-Package";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		85F03BE92A3EF5A000A0B931 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1130,16 +1161,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 853EA91C2A46F363001890DE /* XCRemoteSwiftPackageReference "Auth0" */;
 			productName = Auth0;
-		};
-		85E8CAA42A3AD06800EBDE7F /* TBComponent */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 85E8CAA32A3AD06800EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */;
-			productName = TBComponent;
-		};
-		85E8CAA62A3AD06800EBDE7F /* TBUtil */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 85E8CAA32A3AD06800EBDE7F /* XCRemoteSwiftPackageReference "iOS-TripBook-Component-Package" */;
-			productName = TBUtil;
 		};
 		85F03BEA2A3EF5A000A0B931 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

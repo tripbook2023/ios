@@ -55,11 +55,11 @@ struct HalfTravelReportItemView: View {
                             .frame(width: 29, height: 29)
 //                    }
                     Text(self.viewModel.data.author.name)
-                        .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 10))
+                        .font(.suit(.regular, size: 10))
                 }
             case .information:
                 Text("\(self.viewModel.data.createdAt, formatter: self.viewModel.dateFormat)\n\(self.viewModel.data.locate)")
-                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 15))
+                    .font(.suit(.bold, size: 15))
             }
             
             Image(uiImage: self.viewModel.data.image)
@@ -74,7 +74,7 @@ struct HalfTravelReportItemView: View {
             )
             
             Text(self.viewModel.data.title)
-                .font(.custom(TBFontType.NotoSansKR.medium.rawValue, size: 12))
+                .font(.suit(.medium, size: 12))
                 .padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 7))
         }.frame(width: 178)
     }
@@ -109,7 +109,7 @@ struct TravelReportItemView: View {
                         .frame(width: 38, height: 38)
 //                }
                 Text(self.viewModel.data.author.name)
-                    .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 13))
+                    .font(.suit(.regular, size: 13))
             }
             
             Image(uiImage: self.viewModel.data.image)
@@ -126,11 +126,11 @@ struct TravelReportItemView: View {
             ).padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 7))
             
             Text(self.viewModel.data.title)
-                .font(.custom(TBFontType.NotoSansKR.medium.rawValue, size: 12))
+                .font(.suit(.medium, size: 12))
                 .padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 7))
             
             Text(self.viewModel.data.content)
-                .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 12))
+                .font(.suit(.regular, size: 12))
                 .lineLimit(2)
                 .frame(width: UIScreen.main.bounds.width - 36)
                 .padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 7))

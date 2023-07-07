@@ -36,7 +36,7 @@ struct EventBannerView: View {
             .overlay(
                 HStack(spacing: 10) {
                     Text(self.text)
-                        .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                        .font(.suit(.bold, size: 19))
                         .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.black)

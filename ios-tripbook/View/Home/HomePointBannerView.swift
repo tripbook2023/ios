@@ -30,14 +30,14 @@ struct HomePointBannerView: View {
                     
                     VStack(alignment: .leading) {
                         Text("\(self.name)님의 보유 포인트")
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 10))
+                            .font(.suit(.bold, size: 10))
                             .foregroundColor(.black)
                         Text("\(self.point) 포인트")
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 15))
+                            .font(.suit(.bold, size: 15))
                             .foregroundColor(.black)
                         Button(action: {}) {
                             Text("포인트 더 모으기 >")
-                                .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 10))
+                                .font(.suit(.regular, size: 10))
                         }
                     }
                 }

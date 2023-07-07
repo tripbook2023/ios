@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TBUtil
 
 /// 여행소식 에디터 신청결과화면
 /// - Author: 김민규

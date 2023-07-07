@@ -90,7 +90,7 @@ struct TravelNewsView: View {
             VStack(alignment: .leading, spacing: 10) {
                 if status == .waiting {
                     Text("승인대기중 \(count)건")
-                        .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                        .font(.suit(.bold, size: 19))
                         .padding(.horizontal)
                 }
                 

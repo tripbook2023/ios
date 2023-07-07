@@ -17,12 +17,15 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>NotoSansKR-Thin.otf</string>
-		<string>NotoSansKR-Light.otf</string>
-		<string>NotoSansKR-Regular.otf</string>
-		<string>NotoSansKR-Medium.otf</string>
-		<string>NotoSansKR-Bold.otf</string>
-		<string>NotoSansKR-Black.otf</string>
+		<string>SUIT-Thin.otf</string>
+		<string>SUIT-ExtraLight.otf</string>
+		<string>SUIT-Light.otf</string>
+		<string>SUIT-Regular.otf</string>
+		<string>SUIT-Medium.otf</string>
+		<string>SUIT-SemiBold.otf</string>
+		<string>SUIT-Bold.otf</string>
+		<string>SUIT-ExtraBold.otf</string>
+		<string>SUIT-Heavy.otf</string>
 	</array>
 </dict>
 </plist>

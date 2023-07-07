@@ -22,7 +22,7 @@ struct RequestEditorView: View {
                 ZStack {
                     HStack {
                         Text("여행소식 에디터 신청하기")
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 15))
+                            .font(.suit(.bold, size: 15))
                     }
                     
                     HStack {
@@ -51,7 +51,7 @@ struct RequestEditorView: View {
         LazyVStack(spacing: 0) {
             VStack(spacing: 0) {
                 Text("여행 기록을 좋아하신다면\n여행 에디터를\n신청해보세요!")
-                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                    .font(.suit(.bold, size: 19))
                     .multilineTextAlignment(.center)
                 
                 Rectangle()
@@ -59,7 +59,7 @@ struct RequestEditorView: View {
                     .foregroundColor(.init(red: 255 / 255, green: 248 / 255, blue: 183 / 255))
                     .overlay(
                         Text("에디터 신청만 해도\n5,000P 지급")
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                            .font(.suit(.bold, size: 19))
                             .multilineTextAlignment(.center)
                     )
                     .padding(.top, 36)
@@ -67,7 +67,7 @@ struct RequestEditorView: View {
             
             VStack(spacing: 0) {
                 Text("에디터는 어떻게 되나요?")
-                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                    .font(.suit(.bold, size: 19))
                 
                 HStack(spacing: 11) {
                     Rectangle()
@@ -76,10 +76,10 @@ struct RequestEditorView: View {
                         .overlay(
                             VStack {
                                 Text("STEP 1")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                                    .font(.suit(.bold, size: 19))
                                 Spacer()
                                 Text("신청")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 25))
+                                    .font(.suit(.bold, size: 25))
                             }.padding(EdgeInsets(top: 23, leading: 21, bottom: 23, trailing: 21))
                         )
                     
@@ -89,10 +89,10 @@ struct RequestEditorView: View {
                         .overlay(
                             VStack {
                                 Text("STEP 2")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                                    .font(.suit(.bold, size: 19))
                                 Spacer()
                                 Text("심사")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 25))
+                                    .font(.suit(.bold, size: 25))
                             }.padding(EdgeInsets(top: 23, leading: 21, bottom: 23, trailing: 21))
                         )
                     
@@ -102,10 +102,10 @@ struct RequestEditorView: View {
                         .overlay(
                             VStack {
                                 Text("STEP 3")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                                    .font(.suit(.bold, size: 19))
                                 Spacer()
                                 Text("합격")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 25))
+                                    .font(.suit(.bold, size: 25))
                             }.padding(EdgeInsets(top: 23, leading: 21, bottom: 23, trailing: 21))
                         )
                 }.padding(.top, 32)
@@ -113,7 +113,7 @@ struct RequestEditorView: View {
             
             VStack(spacing: 0) {
                 Text("여행 에디터가 되면 뭐가 좋나요?")
-                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                    .font(.suit(.bold, size: 19))
                 
                 VStack(spacing: 20) {
                     Rectangle()
@@ -124,7 +124,7 @@ struct RequestEditorView: View {
                                 Rectangle()
                                     .frame(width: 128, height: 128)
                                 Text("많은 사람들이 내 콘텐츠를\n볼 수 있어요!")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                                    .font(.suit(.bold, size: 19))
                                     .multilineTextAlignment(.center)
                             }
                         )
@@ -137,7 +137,7 @@ struct RequestEditorView: View {
                                 Rectangle()
                                     .frame(width: 128, height: 128)
                                 Text("나만의 여행기록 콘텐츠를\n쌓아갈 수 있어요!")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                                    .font(.suit(.bold, size: 19))
                                     .multilineTextAlignment(.center)
                             }
                         )
@@ -150,7 +150,7 @@ struct RequestEditorView: View {
                                 Rectangle()
                                     .frame(width: 128, height: 128)
                                 Text("임명장/수료증 발급해드려요.")
-                                    .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                                    .font(.suit(.bold, size: 19))
                                     .multilineTextAlignment(.center)
                             }
                         )
@@ -166,11 +166,11 @@ struct RequestEditorView: View {
             if self.viewModel.status == .before {
                 VStack(spacing: 20) {
                     Text("여행 에디터 지금 바로 신청하기")
-                        .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                        .font(.suit(.bold, size: 19))
                     
                     HStack {
                         Text("이메일")
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 17))
+                            .font(.suit(.bold, size: 17))
                         TextField("", text: self.$viewModel.emailTextField)
                     }
                     .padding(.horizontal)
@@ -179,7 +179,7 @@ struct RequestEditorView: View {
                     
                     HStack {
                         Text("이전 글 불러오기")
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 17))
+                            .font(.suit(.bold, size: 17))
                         Spacer()
                     }
                     .padding(.horizontal)
@@ -190,7 +190,7 @@ struct RequestEditorView: View {
                         Text("여행소식 에디터 신청하기")
                             .frame(maxWidth: .infinity)
                             .frame(height: 94)
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
+                            .font(.suit(.bold, size: 19))
                             .foregroundColor(.black)
                             .background(
                                 RoundedRectangle(cornerRadius: 50)
@@ -203,11 +203,11 @@ struct RequestEditorView: View {
                     Text("지금은 심사중입니다")
                         .frame(maxWidth: .infinity)
                         .frame(height: 72)
-                        .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 22))
+                        .font(.suit(.bold, size: 22))
                         .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.init(red: 255 / 255, green: 248 / 255, blue: 183 / 255)))
                     
                     Text("에디터 신청이\n완료되었습니다!\n\n3-5일 내에\n결과가 발표됩니다.")
-                        .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 19))
+                        .font(.suit(.bold, size: 19))
                         .multilineTextAlignment(.center)
                 }.padding(.top, 67)
             } else if self.viewModel.status == .complete {
@@ -216,13 +216,13 @@ struct RequestEditorView: View {
                         Text("심사 결과 확인하기")
                             .frame(maxWidth: .infinity)
                             .frame(height: 72)
-                            .font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 22))
+                            .font(.suit(.bold, size: 22))
                             .foregroundColor(.black)
                             .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.init(red: 255 / 255, green: 248 / 255, blue: 183 / 255)))
                     }
                     
                     Text("에디터 심사 결과가 나왔습니다.\n어서 확인해보세요.")
-                        .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 19))
+                        .font(.suit(.bold, size: 19))
                         .multilineTextAlignment(.center)
                 }.padding(.top, 67)
             }

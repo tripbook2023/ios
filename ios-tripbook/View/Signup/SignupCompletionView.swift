@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TBUtil
 
 struct SignupCompletionView: View {
     @State var navigationTrigger: Bool = false

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import UIKit
-import TBUtil
 
 struct SignupProfileImagePickerView: UIViewControllerRepresentable {
     var sourceType: UIImagePickerController.SourceType = .photoLibrary

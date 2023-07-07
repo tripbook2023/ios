@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import TBComponent
-import TBUtil
 
 protocol SignupTermsViewDelegate {
     func didTapAllAgreeCheckBox()
@@ -121,6 +119,5 @@ struct SignupTermsView: View {
 struct SignupTermsView_Previews: PreviewProvider {
     static var previews: some View {
         SignupTermsView(SignupViewModel())
-            .configureFont()
     }
 }

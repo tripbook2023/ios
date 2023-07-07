@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import TBComponent
-import TBUtil
 
 protocol SignupProfileNameViewDelegate {
     func onChangedNicknameTextField()
@@ -88,6 +86,5 @@ struct SignupProfileNameView: View {
 struct SignupNicknameView_Previews: PreviewProvider {
     static var previews: some View {
         SignupProfileNameView(SignupViewModel())
-            .configureFont()
     }
 }

@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import TBComponent
-import TBUtil
 
 protocol SignupProfileImageViewDelegate {
     func didTapImageButton()
@@ -117,6 +115,5 @@ struct SignupProfileImageView: View {
 struct SignupProfileImageView_Previews: PreviewProvider {
     static var previews: some View {
         SignupProfileImageView(SignupViewModel())
-            .configureFont()
     }
 }

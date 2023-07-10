@@ -77,6 +77,7 @@
 		85A6B13E2A58368C0050FF68 /* TBAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B13A2A58368C0050FF68 /* TBAppBar.swift */; };
 		85A6B1402A5C53E00050FF68 /* TBAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B13F2A5C53E00050FF68 /* TBAvatar.swift */; };
 		85A6B1422A5C55E70050FF68 /* TBShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B1412A5C55E70050FF68 /* TBShadow.swift */; };
+		85A6B1442A5C5E210050FF68 /* TBSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B1432A5C5E210050FF68 /* TBSearchBar.swift */; };
 		85C05C902A3E246F006758EF /* SignupProfileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C05C8F2A3E246F006758EF /* SignupProfileInfoViewModel.swift */; };
 		85C35B752A16594500DB8E46 /* DocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C35B742A16594500DB8E46 /* DocumentModel.swift */; };
 		85C35B772A1659AE00DB8E46 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C35B762A1659AE00DB8E46 /* User.swift */; };
@@ -192,6 +193,7 @@
 		85A6B13A2A58368C0050FF68 /* TBAppBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBAppBar.swift; sourceTree = "<group>"; };
 		85A6B13F2A5C53E00050FF68 /* TBAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAvatar.swift; sourceTree = "<group>"; };
 		85A6B1412A5C55E70050FF68 /* TBShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBShadow.swift; sourceTree = "<group>"; };
+		85A6B1432A5C5E210050FF68 /* TBSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBSearchBar.swift; sourceTree = "<group>"; };
 		85C05C8F2A3E246F006758EF /* SignupProfileInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileInfoViewModel.swift; sourceTree = "<group>"; };
 		85C35B742A16594500DB8E46 /* DocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentModel.swift; sourceTree = "<group>"; };
 		85C35B762A1659AE00DB8E46 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				85A6B1392A58368C0050FF68 /* TBPrimaryButton.swift */,
 				85A6B1382A58368C0050FF68 /* TBTextField.swift */,
 				85A6B13F2A5C53E00050FF68 /* TBAvatar.swift */,
+				85A6B1432A5C5E210050FF68 /* TBSearchBar.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -824,6 +827,7 @@
 				85569CA92A4FFC7500515DE3 /* AuthenticationRequest.swift in Sources */,
 				853EA9242A46F98C001890DE /* Auth0Service.swift in Sources */,
 				85569CA62A4F8EC000515DE3 /* TBAuthAPI.swift in Sources */,
+				85A6B1442A5C5E210050FF68 /* TBSearchBar.swift in Sources */,
 				853EA9342A480E64001890DE /* TBAuthAPIPath.swift in Sources */,
 				85E8CAAB2A3B108600EBDE7F /* SignupProfileNameViewModel.swift in Sources */,
 				853EA92F2A480D05001890DE /* TBAPIPath.swift in Sources */,

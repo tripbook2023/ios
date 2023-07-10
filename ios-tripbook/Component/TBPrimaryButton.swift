@@ -32,12 +32,12 @@ public struct TBPrimaryButton: View {
         }) {
             RoundedRectangle(cornerRadius: 12)
                 .frame(height: 52)
-                .foregroundColor(self.isEnabled ? TBColor.primary.main : TBColor.grayscale.levels[2])
+                .foregroundColor(self.isEnabled ? TBColor.primary._50 : TBColor.grayscale._10)
                 .overlay(
                     Text(self.title)
                         .font(TBFont.body_3)
                 )
-        }.foregroundColor(self.isEnabled ? TBColor.grayscale.levels[0] : TBColor.grayscale.levels[7])
+        }.foregroundColor(self.isEnabled ? .white : TBColor.grayscale._60)
     }
 }
 
@@ -67,10 +67,10 @@ public struct TBBorderButton: View {
                         .font(TBFont.body_3)
                 )
         }
-        .foregroundColor(TBColor.primary.main)
+        .foregroundColor(TBColor.primary._50)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(TBColor.primary.main, lineWidth: 1)
+                .stroke(TBColor.primary._50, lineWidth: 1)
         )
     }
 }

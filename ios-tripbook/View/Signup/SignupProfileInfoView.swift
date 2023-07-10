@@ -31,13 +31,13 @@ struct SignupProfileInfoView: View {
             
             Text("조금 더 알아볼게요")
                 .font(TBFont.heading_1)
-                .foregroundColor(TBColor.grayscale.levels[9])
+                .foregroundColor(TBColor.grayscale._80)
                 .padding(.bottom, 56)
             
             VStack(alignment: .leading, spacing: 24) {
                 Text("성별을 선택해주세요")
                     .font(TBFont.body_2)
-                    .foregroundColor(TBColor.grayscale.levels[8])
+                    .foregroundColor(TBColor.grayscale._70)
                 
                 HStack(spacing: 7) {
                     Button(action: {
@@ -46,14 +46,14 @@ struct SignupProfileInfoView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 4)
                                 .stroke(
-                                    self.viewModel.gender == .Female ? TBColor.primary.main : TBColor.grayscale.levels[3],
+                                    self.viewModel.gender == .Female ? TBColor.primary._50 : TBColor.grayscale._20,
                                     lineWidth: self.viewModel.gender == .Female ? 2 : 1
                                 )
                                 .frame(height: 48)
                             
                             Text("여성")
                                 .font(self.viewModel.gender == .Female ? TBFont.title_3 : TBFont.body_4)
-                                .foregroundColor(self.viewModel.gender == .Female ? TBColor.primary.main : TBColor.grayscale.levels[3])
+                                .foregroundColor(self.viewModel.gender == .Female ? TBColor.primary._50 : TBColor.grayscale._20)
                         }
                     }
                     
@@ -63,14 +63,14 @@ struct SignupProfileInfoView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 4)
                                 .stroke(
-                                    self.viewModel.gender == .Male ? TBColor.primary.main : TBColor.grayscale.levels[3],
+                                    self.viewModel.gender == .Male ? TBColor.primary._50 : TBColor.grayscale._20,
                                     lineWidth: self.viewModel.gender == .Male ? 2 : 1
                                 )
                                 .frame(height: 48)
                             
                             Text("남성")
                                 .font(self.viewModel.gender == .Male ? TBFont.title_3 : TBFont.body_4)
-                                .foregroundColor(self.viewModel.gender == .Male ? TBColor.primary.main : TBColor.grayscale.levels[3])
+                                .foregroundColor(self.viewModel.gender == .Male ? TBColor.primary._50 : TBColor.grayscale._20)
                         }
                     }
                 }
@@ -80,7 +80,7 @@ struct SignupProfileInfoView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("생일을 선택해주세요")
                         .font(TBFont.body_2)
-                        .foregroundColor(TBColor.grayscale.levels[8])
+                        .foregroundColor(TBColor.grayscale._70)
                     
                     VStack(alignment: .leading, spacing: 0) {
                         Button(action: {
@@ -89,7 +89,7 @@ struct SignupProfileInfoView: View {
                             HStack {
                                 Text(self.viewModel.birth == nil ? "YYYY - MM - DD" : self.viewModel.birthText)
                                     .font(TBFont.body_4)
-                                    .foregroundColor(self.viewModel.birth == nil ? TBColor.grayscale.levels[2] : TBColor.grayscale.levels[9])
+                                    .foregroundColor(self.viewModel.birth == nil ? TBColor.grayscale._20 : TBColor.grayscale._90)
                                 
                                 Spacer()
                                 
@@ -102,7 +102,7 @@ struct SignupProfileInfoView: View {
                         Divider()
                             .frame(minHeight: 1)
                             .overlay(
-                                self.viewModel.birth == nil ? TBColor.grayscale.levels[1] : TBColor.grayscale.levels[8]
+                                self.viewModel.birth == nil ? TBColor.grayscale._10 : TBColor.grayscale._80
                             )
                     }
                 }
@@ -139,14 +139,14 @@ struct SignupProfileInfoView: View {
     
     func showDatePickerAlert() {
         let alertVC = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
-        alertVC.view.tintColor = UIColor(cgColor: TBColor.primary.main.cgColor!)
+        alertVC.view.tintColor = UIColor(cgColor: TBColor.primary._50.cgColor!)
         
         let datePicker: UIDatePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .inline
         datePicker.maximumDate = .now
         datePicker.date = self.viewModel.birth ?? .now
-        datePicker.tintColor = UIColor(cgColor: TBColor.primary.main.cgColor!)
+        datePicker.tintColor = UIColor(cgColor: TBColor.primary._50.cgColor!)
         
         alertVC.view.addSubview(datePicker)
         

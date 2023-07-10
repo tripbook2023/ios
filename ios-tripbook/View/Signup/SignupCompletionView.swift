@@ -14,15 +14,16 @@ struct SignupCompletionView: View {
         VStack(spacing: 0) {
             Rectangle()
                 .frame(width: 140, height: 140)
-                .foregroundColor(TBColor.grayscale.levels[2])
+                .foregroundColor(TBColor.grayscale._20)
             
             Text("트립북 가입을 축하드려요!")
                 .font(TBFont.heading_1)
-                .foregroundColor(TBColor.grayscale.levels[9])
+                .foregroundColor(TBColor.grayscale._90)
                 .padding(.top, 16)
             
             Text("나만의 소중한 여행기록을 작성해보세요.")
                 .font(TBFont.body_4)
+                .foregroundColor(TBColor.grayscale._60)
             
             NavigationLink(isActive: self.$navigationTrigger, destination: {
                 RootView()

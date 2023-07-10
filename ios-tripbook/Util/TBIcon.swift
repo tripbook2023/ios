@@ -33,8 +33,8 @@ enum TBIconSize: CGFloat {
 /// - Date: 2023/05/25
 struct TBIcon {
     struct TBIconState {
-        public let normal: Image
-        public let active: Image
+        let normal: Image
+        let active: Image
         
         init(_ iconName: String) {
             self.normal = Image(iconName + "/Default")
@@ -56,9 +56,11 @@ struct TBIcon {
     static let before = Image("Before")
     static let bell = Image("Bell")
     static let bookmark = Image("Bookmark")
+    static let calendar = Image("Calendar")
     static let camera = Image("Camera")
     static let cancel = Image("Cancel")
     static let check = Image("Check")
+    static let clear = Image("Clear")
     static let comment = Image("Comment")
     static let delete = Image("Delete")
     static let down: [Image] = [
@@ -75,11 +77,12 @@ struct TBIcon {
     ]
     static let more = TBIconState("More")
     static let navigation = TBNavigationIcons()
-    static let next: Image = Image("Next")
-    static let picture: Image = Image("Picture")
+    static let next = Image("Next")
+    static let picture = Image("Picture")
+    static let report = Image("Report")
     static let search = Image("Search")
     static let share = Image("Share")
-    static let timer: Image = Image("Timer")
+    static let timer = Image("Timer")
     static let txt = Image("Txt")
     static let up = Image("Up")
     static let writing = Image("Writing")

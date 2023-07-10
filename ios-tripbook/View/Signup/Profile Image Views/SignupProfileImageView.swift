@@ -46,17 +46,17 @@ struct SignupProfileImageView: View {
                             .clipShape(Circle())
                             .overlay(
                                 Circle()
-                                    .stroke(TBColor.grayscale.levels[2], lineWidth: 1)
+                                    .stroke(TBColor.grayscale._10, lineWidth: 1)
                             )
                     } else {
                         TBIcon.picture.iconSize(size: .big)
                             .frame(width: 140, height: 140)
-                            .background(TBColor.grayscale.levels[1])
-                            .foregroundColor(TBColor.grayscale.levels[9])
+                            .background(TBColor.grayscale._5)
+                            .foregroundColor(TBColor.grayscale._80)
                             .clipShape(Circle())
                             .overlay(
                                 Circle()
-                                    .stroke(TBColor.grayscale.levels[2], lineWidth: 1)
+                                    .stroke(TBColor.grayscale._10, lineWidth: 1)
                             )
                     }
                 }
@@ -73,7 +73,7 @@ struct SignupProfileImageView: View {
                     Text("다음에 할게요")
                         .font(TBFont.caption_1)
                 }
-                .foregroundColor(TBColor.grayscale.levels[6])
+                .foregroundColor(TBColor.grayscale._50)
                 .padding(.bottom, 10)
                 
                 TBPrimaryButton(

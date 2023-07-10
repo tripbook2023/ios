@@ -26,7 +26,7 @@ struct SignupProfileImagePickerView: UIViewControllerRepresentable {
         pickerController.allowsEditing = true
         pickerController.delegate = context.coordinator
         
-        pickerController.navigationController?.navigationBar.tintColor = UIColor(cgColor: TBColor.grayscale.levels[10].cgColor!)
+        pickerController.navigationController?.navigationBar.tintColor = UIColor(cgColor: TBColor.grayscale._80.cgColor!)
         
         return pickerController
     }

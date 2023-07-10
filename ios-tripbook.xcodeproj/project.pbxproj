@@ -78,6 +78,7 @@
 		85A6B1402A5C53E00050FF68 /* TBAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B13F2A5C53E00050FF68 /* TBAvatar.swift */; };
 		85A6B1422A5C55E70050FF68 /* TBShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B1412A5C55E70050FF68 /* TBShadow.swift */; };
 		85A6B1442A5C5E210050FF68 /* TBSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B1432A5C5E210050FF68 /* TBSearchBar.swift */; };
+		85A6B1462A5C61590050FF68 /* TBTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B1452A5C61590050FF68 /* TBTag.swift */; };
 		85C05C902A3E246F006758EF /* SignupProfileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C05C8F2A3E246F006758EF /* SignupProfileInfoViewModel.swift */; };
 		85C35B752A16594500DB8E46 /* DocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C35B742A16594500DB8E46 /* DocumentModel.swift */; };
 		85C35B772A1659AE00DB8E46 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C35B762A1659AE00DB8E46 /* User.swift */; };
@@ -194,6 +195,7 @@
 		85A6B13F2A5C53E00050FF68 /* TBAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAvatar.swift; sourceTree = "<group>"; };
 		85A6B1412A5C55E70050FF68 /* TBShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBShadow.swift; sourceTree = "<group>"; };
 		85A6B1432A5C5E210050FF68 /* TBSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBSearchBar.swift; sourceTree = "<group>"; };
+		85A6B1452A5C61590050FF68 /* TBTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBTag.swift; sourceTree = "<group>"; };
 		85C05C8F2A3E246F006758EF /* SignupProfileInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileInfoViewModel.swift; sourceTree = "<group>"; };
 		85C35B742A16594500DB8E46 /* DocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentModel.swift; sourceTree = "<group>"; };
 		85C35B762A1659AE00DB8E46 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				85A6B1382A58368C0050FF68 /* TBTextField.swift */,
 				85A6B13F2A5C53E00050FF68 /* TBAvatar.swift */,
 				85A6B1432A5C5E210050FF68 /* TBSearchBar.swift */,
+				85A6B1452A5C61590050FF68 /* TBTag.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -808,6 +811,7 @@
 				85A6B1342A58367A0050FF68 /* TBFont.swift in Sources */,
 				85C05C902A3E246F006758EF /* SignupProfileInfoViewModel.swift in Sources */,
 				853EA9292A472888001890DE /* TBAuthInterceptor.swift in Sources */,
+				85A6B1462A5C61590050FF68 /* TBTag.swift in Sources */,
 				85569CB22A5071B400515DE3 /* SignupCompletionView.swift in Sources */,
 				8552BC2E29DDCD8D00DC8D7E /* RootView.swift in Sources */,
 				85361DBE2A0FFC1C00B48B55 /* TravelNewsModel.swift in Sources */,

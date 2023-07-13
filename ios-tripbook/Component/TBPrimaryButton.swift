@@ -7,93 +7,241 @@
 
 import SwiftUI
 
-/// Tripbook Primary Button
-/// - Author: 김민규
-/// - Date: 2023/06/14
-public struct TBPrimaryButton: View {
-    /// Button Text
-    var title: String
-    /// Button State
-    @Binding var isEnabled: Bool
-    /// Button OnClicked Event
-    var onClickedEvent: () -> Void
+enum TBButtonSize {
+    case small, regular, medium, none
     
-    public init(title: String, isEnabled: Binding<Bool>, onClickedEvent: @escaping () -> Void) {
+    var horizontalPadding: CGFloat {
+        switch self {
+        case .small: return 12
+        case .regular: return 16
+        case .medium: return 18
+        default: return 24
+        }
+    }
+    var verticalPadding: CGFloat {
+        switch self {
+        case .small: return 6
+        case .regular: return 14
+        case .medium: return 14
+        default: return 16
+        }
+    }
+    var cornerRadius: CGFloat {
+        switch self {
+        case .small: return 6
+        case .regular: return 8
+        case .medium: return 12
+        default: return 12
+        }
+    }
+    var titleFont: Font {
+        switch self {
+        case .small: return TBFont.body_4
+        case .regular: return TBFont.body_4
+        case .medium: return TBFont.body_3
+        case .none: return TBFont.body_3
+        }
+    }
+}
+
+enum TBButtonType {
+    case filled, outline
+    
+    var backgroundColor: Color {
+        switch self {
+        case .filled: return TBColor.primary._50
+        case .outline: return .clear
+        }
+    }
+    var pressedBackgroundColor: Color {
+        switch self {
+        case .filled: return TBColor.primary._60
+        case .outline: return TBColor.primary._5
+        }
+    }
+    var disabledBackgroundColor: Color {
+        switch self {
+        case .filled: return TBColor.grayscale._10
+        case .outline: return TBColor.grayscale._1
+        }
+    }
+    
+    var strokeColor: Color {
+        switch self {
+        case .filled: return .clear
+        case .outline: return TBColor.primary._50
+        }
+    }
+    var pressedStrokeColor: Color {
+        switch self {
+        case .filled: return .clear
+        case .outline: return TBColor.primary._60
+        }
+    }
+    var disabledStrokeColor: Color {
+        switch self {
+        case .filled: return .clear
+        case .outline: return TBColor.grayscale._20
+        }
+    }
+    
+    var fontColor: Color {
+        switch self {
+        case .filled: return .white
+        case .outline: return TBColor.primary._50
+        }
+    }
+    var pressedFontColor: Color {
+        switch self {
+        case .filled: return .white
+        case .outline: return TBColor.primary._60
+        }
+    }
+    var disabledFontColor: Color {
+        switch self {
+        case .filled: return TBColor.grayscale._60
+        case .outline: return TBColor.grayscale._20
+        }
+    }
+}
+
+struct TBButton: View {
+    let type: TBButtonType
+    let size: TBButtonSize
+    let title: String
+    @Binding var isEnabled: Bool
+    @State var isPressed = false
+    let onClickedEvent: (() -> Void)?
+    
+    init(type: TBButtonType, size: TBButtonSize, title: String, isEnabled: Binding<Bool>, onClickedEvent: (() -> Void)? = nil) {
+        self.type = type
+        self.size = size
         self.title = title
         self._isEnabled = isEnabled
         self.onClickedEvent = onClickedEvent
     }
     
-    public var body: some View {
+    var body: some View {
         Button(action: {
             if self.isEnabled {
-                self.onClickedEvent()
+                self.onClickedEvent?()
+            }
+        }) {
+            Text(self.title)
+                .padding(.horizontal, self.size.horizontalPadding)
+                .padding(.vertical, self.size.verticalPadding)
+                .font(self.size.titleFont)
+                .foregroundColor(
+                    self.isEnabled ?
+                    (self.isPressed ?
+                     self.type.pressedFontColor :
+                        self.type.fontColor) :
+                        self.type.disabledFontColor
+                )
+                .background(
+                    ZStack {
+                        RoundedRectangle(cornerRadius: self.size.cornerRadius)
+                            .foregroundColor(
+                                self.isEnabled ?
+                                (self.isPressed ? self.type.pressedBackgroundColor : self.type.backgroundColor) :
+                                    self.type.disabledBackgroundColor
+                            )
+                        
+                        RoundedRectangle(cornerRadius: self.size.cornerRadius)
+                            .inset(by: 0.5)
+                            .stroke(
+                                self.isEnabled ?
+                                (self.isPressed ? self.type.pressedStrokeColor : self.type.strokeColor) :
+                                    self.type.disabledStrokeColor,
+                                lineWidth: 1)
+                    }
+                )
+                .gesture(
+                    DragGesture(minimumDistance: 0)
+                        .onChanged { _ in self.isPressed = true }
+                        .onEnded { _ in self.isPressed = false }
+                )
+        }.cornerRadius(self.size.cornerRadius)
+    }
+}
+
+/// Tripbook Primary Button
+/// - Author: 김민규
+/// - Date: 2023/06/14
+struct TBPrimaryButton: View {
+    let title: String
+    @Binding var isEnabled: Bool
+    @State var isPressed = false
+    let onClickedEvent: (() -> Void)?
+    
+    init(title: String, isEnabled: Binding<Bool>, onClickedEvent: (() -> Void)? = nil) {
+        self.title = title
+        self._isEnabled = isEnabled
+        self.onClickedEvent = onClickedEvent
+    }
+    
+    var body: some View {
+        Button(action: {
+            if self.isEnabled {
+                self.onClickedEvent?()
             }
         }) {
             RoundedRectangle(cornerRadius: 12)
                 .frame(height: 52)
-                .foregroundColor(self.isEnabled ? TBColor.primary._50 : TBColor.grayscale._10)
+                .foregroundColor(self.isEnabled ? self.isPressed ? TBColor.primary._60 : TBColor.primary._50 : TBColor.grayscale._10)
                 .overlay(
                     Text(self.title)
                         .font(TBFont.body_3)
+                )
+                .gesture(DragGesture(minimumDistance: 0)
+                    .onChanged { _ in self.isPressed = true }
+                    .onEnded { _ in self.isPressed = false }
                 )
         }.foregroundColor(self.isEnabled ? .white : TBColor.grayscale._60)
-    }
-}
-
-/// Tripbook Border Button
-/// - Author: 김민규
-/// - Date: 2023/06/14
-public struct TBBorderButton: View {
-    /// Button Text
-    var title: String
-    /// Button OnClicked Event
-    var onClickedEvent: () -> Void
-    
-    public init(title: String, onClickedEvent: @escaping () -> Void) {
-        self.title = title
-        self.onClickedEvent = onClickedEvent
-    }
-    
-    public var body: some View {
-        Button(action: {
-            self.onClickedEvent()
-        }) {
-            RoundedRectangle(cornerRadius: 12)
-                .frame(height: 52)
-                .foregroundColor(.clear)
-                .overlay(
-                    Text(self.title)
-                        .font(TBFont.body_3)
-                )
-        }
-        .foregroundColor(TBColor.primary._50)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(TBColor.primary._50, lineWidth: 1)
-        )
     }
 }
 
 struct TBPrimaryButton_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TBPrimaryButton(
-                title: "label",
-                isEnabled: .constant(true)
-            ) {
-                
+            VStack {
+                TBPrimaryButton(title: "label", isEnabled: .constant(true))
+                TBPrimaryButton(title: "label",isEnabled: .constant(false))
             }
             
-            TBPrimaryButton(
-                title: "label",
-                isEnabled: .constant(false)
-            ) {
+            VStack {
+                VStack {
+                    HStack {
+                        TBButton(type: .filled, size: .small, title: "label", isEnabled: .constant(true))
+                        TBButton(type: .outline, size: .small, title: "label", isEnabled: .constant(true))
+                    }
+                    HStack {
+                        TBButton(type: .filled, size: .small, title: "label", isEnabled: .constant(false))
+                        TBButton(type: .outline, size: .small, title: "label", isEnabled: .constant(false))
+                    }
+                }
                 
-            }
-            
-            TBBorderButton(title: "label") {
+                VStack {
+                    HStack {
+                        TBButton(type: .filled, size: .regular, title: "label", isEnabled: .constant(true))
+                        TBButton(type: .outline, size: .regular, title: "label", isEnabled: .constant(true))
+                    }
+                    HStack {
+                        TBButton(type: .filled, size: .regular, title: "label", isEnabled: .constant(false))
+                        TBButton(type: .outline, size: .regular, title: "label", isEnabled: .constant(false))
+                    }
+                }
                 
+                VStack {
+                    HStack {
+                        TBButton(type: .filled, size: .medium, title: "label", isEnabled: .constant(true))
+                        TBButton(type: .outline, size: .medium, title: "label", isEnabled: .constant(true))
+                    }
+                    HStack {
+                        TBButton(type: .filled, size: .medium, title: "label", isEnabled: .constant(false))
+                        TBButton(type: .outline, size: .medium, title: "label", isEnabled: .constant(false))
+                    }
+                }
             }
         }
         .previewDevice("iPhone 14 Pro")

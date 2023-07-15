@@ -109,14 +109,20 @@ struct TBButton: View {
     let type: TBButtonType
     let size: TBButtonSize
     let title: String
+    let maxWidth: CGFloat?
+    let titleTextColor: Color?
+    let backgroundColor: Color?
     @Binding var isEnabled: Bool
     @State var isPressed = false
     let onClickedEvent: (() -> Void)?
     
-    init(type: TBButtonType, size: TBButtonSize, title: String, isEnabled: Binding<Bool>, onClickedEvent: (() -> Void)? = nil) {
+    init(type: TBButtonType, size: TBButtonSize, title: String, maxWidth: CGFloat? = nil, titleTextColor: Color? = nil, backgroundColor: Color? = nil, isEnabled: Binding<Bool>, onClickedEvent: (() -> Void)? = nil) {
         self.type = type
         self.size = size
         self.title = title
+        self.maxWidth = maxWidth
+        self.titleTextColor = titleTextColor
+        self.backgroundColor = backgroundColor
         self._isEnabled = isEnabled
         self.onClickedEvent = onClickedEvent
     }
@@ -128,31 +134,38 @@ struct TBButton: View {
             }
         }) {
             Text(self.title)
+                .frame(maxWidth: self.maxWidth)
                 .padding(.horizontal, self.size.horizontalPadding)
                 .padding(.vertical, self.size.verticalPadding)
                 .font(self.size.titleFont)
                 .foregroundColor(
-                    self.isEnabled ?
-                    (self.isPressed ?
-                     self.type.pressedFontColor :
-                        self.type.fontColor) :
-                        self.type.disabledFontColor
+                    self.titleTextColor != nil ?
+                    self.titleTextColor! :
+                        (self.isEnabled ?
+                         (self.isPressed ?
+                          self.type.pressedFontColor :
+                            self.type.fontColor) :
+                            self.type.disabledFontColor)
                 )
                 .background(
                     ZStack {
                         RoundedRectangle(cornerRadius: self.size.cornerRadius)
                             .foregroundColor(
-                                self.isEnabled ?
-                                (self.isPressed ? self.type.pressedBackgroundColor : self.type.backgroundColor) :
-                                    self.type.disabledBackgroundColor
+                                self.backgroundColor != nil ?
+                                self.backgroundColor! :
+                                    (self.isEnabled ?
+                                     (self.isPressed ? self.type.pressedBackgroundColor : self.type.backgroundColor) :
+                                        self.type.disabledBackgroundColor)
                             )
                         
                         RoundedRectangle(cornerRadius: self.size.cornerRadius)
                             .inset(by: 0.5)
                             .stroke(
-                                self.isEnabled ?
-                                (self.isPressed ? self.type.pressedStrokeColor : self.type.strokeColor) :
-                                    self.type.disabledStrokeColor,
+                                self.backgroundColor != nil ?
+                                self.backgroundColor! :
+                                    (self.isEnabled ?
+                                     (self.isPressed ? self.type.pressedStrokeColor : self.type.strokeColor) :
+                                        self.type.disabledStrokeColor),
                                 lineWidth: 1)
                     }
                 )

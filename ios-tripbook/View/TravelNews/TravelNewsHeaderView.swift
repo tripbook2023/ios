@@ -24,7 +24,7 @@ struct TravelNewsHeaderView: View {
                 TBIcon.search.iconSize(size: .medium)
                     .foregroundColor(TBColor.grayscale._90)
             }
-            NavigationLink(destination: EmptyView()) {
+            NavigationLink(destination: NotificationView()) {
                 TBIcon.bell.iconSize(size: .medium)
                     .foregroundColor(TBColor.grayscale._90)
             }

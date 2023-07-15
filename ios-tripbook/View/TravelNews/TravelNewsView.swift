@@ -18,6 +18,7 @@ struct TravelNewsView: View {
             ZStack(alignment: .bottomTrailing) {
                 VStack {
                     TravelNewsHeaderView()
+                    
                     ScrollView {
                         LazyVStack(alignment: .leading, spacing: 0) {
                             TabView {

@@ -51,7 +51,7 @@ struct TBTag: View {
                             self.type == .rejected ? TBColor.grayscale._10 : .clear
                     )
             )
-        }
+        }.shadow(TBShadow._1)
     }
 }
 

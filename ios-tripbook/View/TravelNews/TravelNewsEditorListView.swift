@@ -18,9 +18,7 @@ struct TravelNewsEditorListView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: {
-                    
-                }) {
+                NavigationLink(destination: TravelNewsEditorListDetailView()) {
                     TBIcon.next.iconSize(size: .medium)
                         .foregroundColor(TBColor.grayscale._70)
                 }

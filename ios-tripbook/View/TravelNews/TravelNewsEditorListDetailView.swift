@@ -37,7 +37,7 @@ struct TravelNewsEditorListDetailView: View {
             }
             .padding(.trailing, 20)
             .padding(.bottom, 28)
-        }
+        }.navigationBarHidden(true)
     }
 }
 

@@ -20,8 +20,6 @@ struct TravelNewsView: View {
                     TravelNewsHeaderView()
                     ScrollView {
                         LazyVStack(alignment: .leading, spacing: 0) {
-                            
-                            
                             TabView {
                                 ForEach(0..<3, id: \.self) { _ in
                                     NavigationLink(destination: RequestEditorView()) {

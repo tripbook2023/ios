@@ -39,6 +39,15 @@ struct TravelNewsListItemView: View {
                 .resizable()
                 .frame(height: 335)
                 .aspectRatio(1, contentMode: .fill)
+                .overlay(LinearGradient(
+                    stops: [
+                        Gradient.Stop(color: Color(red: 0.85, green: 0.85, blue: 0.85).opacity(0), location: 0.00),
+                        Gradient.Stop(color: Color(red: 0.43, green: 0.43, blue: 0.43).opacity(0.25), location: 0.35),
+                        Gradient.Stop(color: .black.opacity(0.5), location: 0.92),
+                    ],
+                    startPoint: UnitPoint(x: 0.5, y: 0.04),
+                    endPoint: UnitPoint(x: 0.5, y: 0.69)
+                ))
                 .clipShape(RoundedRectangle(cornerRadius: 12.5625))
             
             VStack(alignment: .leading, spacing: 0) {

@@ -46,7 +46,7 @@ struct TBTag: View {
             .background(
                 RoundedRectangle(cornerRadius: 4)
                     .foregroundColor(
-                        self.type == .awaitingApproval ? TBColor.state.success :
+                        self.type == .awaitingApproval ? TBColor.point.green[0] :
                             self.type == .approved ? TBColor.primary._50 :
                             self.type == .rejected ? TBColor.grayscale._10 : .clear
                     )

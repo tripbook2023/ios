@@ -14,106 +14,47 @@ struct TravelNewsView: View {
     @ObservedObject var viewModel = TravelNewsViewModel()
     
     var body: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 0) {
-                TravelNewsHeaderView()
-                
-                TabView {
-                    ForEach(0..<3, id: \.self) { _ in
-                        NavigationLink(destination: RequestEditorView()) {
-                            EventBannerView(text: "여행소식 에디터 신청하고 포폴 만들자!").padding(.horizontal)
-                        }
+        NavigationView {
+            ZStack(alignment: .bottomTrailing) {
+                VStack {
+                    TravelNewsHeaderView()
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 0) {
+                            
+                            
+                            TabView {
+                                ForEach(0..<3, id: \.self) { _ in
+                                    NavigationLink(destination: RequestEditorView()) {
+                                        EventBannerView(text: "여행소식 에디터 신청하고 포폴 만들자!").padding(.horizontal)
+                                    }
+                                }
+                            }
+                            .frame(height: 110)
+                            .tabViewStyle(.page)
+                            
+                            TravelNewsEditorListView()
+                                .padding(.top, 48)
+                            
+                            TravelNewsListView()
+                                .padding(.top, 56)
+                        }.padding(.bottom)
                     }
                 }
-                .frame(height: 110)
-                .padding(.top, 47)
-                .tabViewStyle(.page)
                 
-                self.loadAdditionalEditorView()
-                
-                Spacer().frame(height: 25)
-                
-                self.loadTravelNewsListView()
-            }.padding(.bottom)
-        }
-    }
-    
-    /// 에디터 / 관리자 전용 View
-    @ViewBuilder
-    func loadAdditionalEditorView() -> some View {
-//        if self.dataObject.user?.authority == .editor || self.dataObject.user?.authority == .manager {
-//            VStack {
-//                HStack(alignment: .bottom) {
-//                    (
-//                        Text("\(self.dataObject.user?.name ?? "") 님은 여행기록을\n") +
-//                        Text("3편 ")
-//                            .foregroundColor(.init(red: 255 / 255, green: 78 / 255, blue: 0 / 255)) +
-//                        Text("작성하셨네요!")
-//                    ).font(.custom(TBFontType.NotoSansKR.bold.rawValue, size: 19))
-//                    
-//                    Spacer()
-//                    
-//                    HStack(spacing: 3) {
-//                        Text("새 여행기록 작성하기")
-//                            .font(.custom(TBFontType.NotoSansKR.regular.rawValue, size: 13))
-//                            .underline()
-//                            .foregroundColor(.init(red: 255 / 255, green: 78 / 255, blue: 0 / 255))
-//                        
-//                        Image(systemName: "pencil.line")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 11)
-//                            .foregroundColor(.black)
-//                            .padding(.all, 4)
-//                            .background(Circle().foregroundColor(.init(red: 255 / 255, green: 228 / 255, blue: 216 / 255)))
-//                    }
-//                }.padding(.horizontal)
-//                
-//                Spacer().frame(height: 25)
-//                
-//                VStack(spacing: 23) {
-//                    self.loadMyTravelNewsListView(status: .done)
-//                    
-//                    self.loadMyTravelNewsListView(status: .waiting)
-//                }
-//            }.padding(.top, 29)
-//        }
-    }
-    
-    /// 에디터/관리자 본인 여행소식 게시물 List View
-    @ViewBuilder
-    func loadMyTravelNewsListView(status: MyTravelNewsModel.Status) -> some View {
-        let list = self.viewModel.myTravelNewsList.filter({ $0.status == status })
-        let count = list.count
-        
-        if count > 0 {
-            VStack(alignment: .leading, spacing: 10) {
-                if status == .waiting {
-                    Text("승인대기중 \(count)건")
-                        .font(.suit(.bold, size: 19))
-                        .padding(.horizontal)
+                Button(action: {
+                    
+                }) {
+                    Circle().foregroundColor(TBColor.primary._50)
+                        .frame(width: 60, height: 60)
+                        .shadow(TBShadow._2)
+                        .overlay(
+                            TBIcon.writing.iconSize(size: .big).foregroundColor(.white)
+                        )
                 }
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: 13) {
-                        ForEach(list, id: \.id) { data in
-                            MyTravelNewsItemView(data)
-                        }
-                    }.padding(.horizontal)
-                }
+                .padding(.trailing, 20)
+                .padding(.bottom, 28)
             }
         }
-    }
-    
-    /// 여행소식 게시물 List View
-    @ViewBuilder
-    func loadTravelNewsListView() -> some View {
-        VStack(spacing: 23) {
-            ForEach(self.viewModel.travelNewsList, id: \.id) { news in
-                TravelNewsItemView(news)
-            }
-        }.padding(.horizontal)
-        
     }
 }
 

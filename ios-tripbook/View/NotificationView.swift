@@ -7,54 +7,65 @@
 
 import SwiftUI
 
+protocol NotificationViewDelegate {
+    func didTapNotificationItemView()
+}
+
+protocol NotificationHeaderViewDelegate {
+    func didTapEditButton()
+}
+
+protocol NotificationItemViewDelegate {
+    func didTapConfirmButton()
+    func didTapDismissButton()
+}
+
 struct NotificationView: View {
-    @State var isClicked = true
+    @ObservedObject var viewModel = NotificationViewModel()
     
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                NotificationHeaderView()
+                NotificationHeaderView {
+                    self.viewModel.didTapEditButton()
+                }
                 
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         ForEach(0..<3, id: \.self) { _ in
-                            NotificationItemView() {
-                                self.isClicked = true
-                            }
+                            NotificationItemView(isEdit: self.$viewModel.isEdit, didPressView: self.viewModel.didTapNotificationItemView)
                         }
                     }.padding(.vertical, 16)
                 }
             }
             
-            if self.isClicked {
-                ZStack {
-                    Color.black.opacity(0.6)
-                    
-                    TBPopup(
-                        title: "삭제하시겠습니까?",
-                        confirmButtonText: "삭제하기",
-                        dismissButtonText: "닫기",
-                        didTapConfirmButton: {
-                            self.isClicked = false
-                        },
-                        didTapDismissButton: {
-                            self.isClicked = false
-                        }
-                    )
-                }.ignoresSafeArea()
+            ZStack {
+                Color.black.opacity(0.6)
+                
+                TBPopup(
+                    title: "삭제하시겠습니까?",
+                    confirmButtonText: "삭제하기",
+                    dismissButtonText: "닫기",
+                    didTapConfirmButton: self.viewModel.didTapConfirmButton,
+                    didTapDismissButton: self.viewModel.didTapDismissButton
+                )
             }
+            .ignoresSafeArea()
+            .opacity(self.viewModel.isShowEditModal ? 1 : 0)
         }
         .navigationBarHidden(true)
     }
 }
 
 struct NotificationItemView: View {
-    @State var isPressed = false
+    @Binding var isEdit: Bool
     let didPressView: () -> Void
     
     var body: some View {
         Button(action: {
-            self.didPressView()
+            if self.isEdit {
+                self.didPressView()
+            }
         }) {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 8) {
@@ -71,9 +82,15 @@ struct NotificationItemView: View {
                         .font(TBFont.body_4)
                         .foregroundColor(TBColor.grayscale._60)
                     
-                    TBIcon.next.iconSize(size: .small)
-                        .padding(.leading, 27)
-                        .foregroundColor(TBColor.grayscale._50)
+                    if self.isEdit {
+                        TBIcon.delete.iconSize(size: .small)
+                            .padding(.leading, 27)
+                            .foregroundColor(TBColor.grayscale._50)
+                    } else {
+                        TBIcon.next.iconSize(size: .small)
+                            .padding(.leading, 27)
+                            .foregroundColor(TBColor.grayscale._50)
+                    }
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.top, 8)
@@ -85,22 +102,36 @@ struct NotificationItemView: View {
             }
             .padding(.vertical, 16)
             .padding(.horizontal, 20)
-            .background(self.isPressed ? TBColor.primary._1 : .white)
-            .gesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged { _ in self.isPressed = true }
-                    .onEnded { _ in self.isPressed = false }
-            )
-        }
+        }.buttonStyle(NotificationItemViewStyle())
+    }
+}
+
+struct NotificationItemViewStyle: PrimitiveButtonStyle {
+    @State var isPressed = false
+    
+    func makeBody(configuration: Configuration) -> some View {
+        let gesture = DragGesture(minimumDistance: 0)
+            .onChanged { _ in self.isPressed = true }
+            .onEnded { _ in
+                self.isPressed = false
+                configuration.trigger()
+            }
+        
+        return configuration.label
+            .background(self.isPressed ? TBColor.primary._1 : .clear)
+            .gesture(gesture)
     }
 }
 
 struct NotificationHeaderView: View {
+    @Environment(\.presentationMode) var presentationMode
+    let didTapEditButton: () -> Void
+    
     var body: some View {
         ZStack {
             HStack {
                 Button(action: {
-                    
+                    self.presentationMode.wrappedValue.dismiss()
                 }) {
                     TBIcon.before.iconSize(size: .medium)
                         .foregroundColor(TBColor.grayscale._90)
@@ -118,8 +149,8 @@ struct NotificationHeaderView: View {
             
             HStack {
                 Spacer()
-                TBButton(type: .filled, size: .small, title: "편집", isEnabled: .constant(true)) {
-                    
+                TBButton(type: .filled, size: .small, title: "편집", titleTextColor: TBColor.grayscale._5, backgroundColor: TBColor.grayscale._60, isEnabled: .constant(true)) {
+                    self.didTapEditButton()
                 }
             }
         }

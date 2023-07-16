@@ -113,7 +113,6 @@ struct TBButton: View {
     let titleTextColor: Color?
     let backgroundColor: Color?
     @Binding var isEnabled: Bool
-    @State var isPressed = false
     let onClickedEvent: (() -> Void)?
     
     init(type: TBButtonType, size: TBButtonSize, title: String, maxWidth: CGFloat? = nil, titleTextColor: Color? = nil, backgroundColor: Color? = nil, isEnabled: Binding<Bool>, onClickedEvent: (() -> Void)? = nil) {
@@ -138,43 +137,59 @@ struct TBButton: View {
                 .padding(.horizontal, self.size.horizontalPadding)
                 .padding(.vertical, self.size.verticalPadding)
                 .font(self.size.titleFont)
-                .foregroundColor(
-                    self.titleTextColor != nil ?
-                    self.titleTextColor! :
-                        (self.isEnabled ?
-                         (self.isPressed ?
-                          self.type.pressedFontColor :
-                            self.type.fontColor) :
-                            self.type.disabledFontColor)
-                )
-                .background(
-                    ZStack {
-                        RoundedRectangle(cornerRadius: self.size.cornerRadius)
-                            .foregroundColor(
-                                self.backgroundColor != nil ?
-                                self.backgroundColor! :
-                                    (self.isEnabled ?
-                                     (self.isPressed ? self.type.pressedBackgroundColor : self.type.backgroundColor) :
-                                        self.type.disabledBackgroundColor)
-                            )
-                        
-                        RoundedRectangle(cornerRadius: self.size.cornerRadius)
-                            .inset(by: 0.5)
-                            .stroke(
-                                self.backgroundColor != nil ?
-                                self.backgroundColor! :
-                                    (self.isEnabled ?
-                                     (self.isPressed ? self.type.pressedStrokeColor : self.type.strokeColor) :
-                                        self.type.disabledStrokeColor),
-                                lineWidth: 1)
-                    }
-                )
-                .gesture(
-                    DragGesture(minimumDistance: 0)
-                        .onChanged { _ in self.isPressed = true }
-                        .onEnded { _ in self.isPressed = false }
-                )
-        }.cornerRadius(self.size.cornerRadius)
+        }
+        .cornerRadius(self.size.cornerRadius)
+        .buttonStyle(TBButtonStyle(type: self.type, size: self.size, titleTextColor: self.titleTextColor, backgroundColor: self.backgroundColor, isEnabled: self.$isEnabled))
+    }
+}
+
+struct TBButtonStyle: PrimitiveButtonStyle {
+    @State var isPressed = false
+    
+    let type: TBButtonType
+    let size: TBButtonSize
+    let titleTextColor: Color?
+    var backgroundColor: Color? = nil
+    @Binding var isEnabled: Bool
+    
+    func makeBody(configuration: Configuration) -> some View {
+        print(self.type.backgroundColor, self.type.pressedBackgroundColor, self.type.pressedStrokeColor)
+        
+        let gesture = DragGesture(minimumDistance: 0)
+            .onChanged { _ in self.isPressed = true }
+            .onEnded { _ in
+                self.isPressed = false
+                configuration.trigger()
+            }
+        
+        return configuration.label
+            .foregroundColor(
+                self.titleTextColor != nil ?
+                self.titleTextColor! :
+                    (self.isEnabled ?
+                     (self.isPressed ?
+                      self.type.pressedFontColor :
+                        self.type.fontColor) :
+                        self.type.disabledFontColor)
+            )
+            .background(
+                RoundedRectangle(cornerRadius: self.size.cornerRadius)
+                    .inset(by: 0.5)
+                    .stroke(
+                        self.backgroundColor != nil ?
+                        self.backgroundColor! :
+                            (self.isEnabled ?
+                             (self.isPressed ? self.type.pressedStrokeColor : self.type.strokeColor) :
+                                self.type.disabledStrokeColor),
+                        lineWidth: 1)
+                    .background(
+                        self.backgroundColor != nil ?
+                        self.backgroundColor! :
+                            (self.isEnabled ?
+                             (self.isPressed ? self.type.pressedBackgroundColor : self.type.backgroundColor) :
+                                self.type.disabledBackgroundColor)
+                    )
+            ).gesture(gesture)
     }
 }
 
@@ -184,7 +199,6 @@ struct TBButton: View {
 struct TBPrimaryButton: View {
     let title: String
     @Binding var isEnabled: Bool
-    @State var isPressed = false
     let onClickedEvent: (() -> Void)?
     
     init(title: String, isEnabled: Binding<Bool>, onClickedEvent: (() -> Void)? = nil) {
@@ -201,14 +215,10 @@ struct TBPrimaryButton: View {
         }) {
             RoundedRectangle(cornerRadius: 12)
                 .frame(height: 52)
-                .foregroundColor(self.isEnabled ? self.isPressed ? TBColor.primary._60 : TBColor.primary._50 : TBColor.grayscale._10)
+                .foregroundColor(self.isEnabled ? TBColor.primary._50 : TBColor.grayscale._10)
                 .overlay(
                     Text(self.title)
                         .font(TBFont.body_3)
-                )
-                .gesture(DragGesture(minimumDistance: 0)
-                    .onChanged { _ in self.isPressed = true }
-                    .onEnded { _ in self.isPressed = false }
                 )
         }.foregroundColor(self.isEnabled ? .white : TBColor.grayscale._60)
     }

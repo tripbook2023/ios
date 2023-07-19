@@ -22,10 +22,22 @@ class SignupProfileInfoViewModel: ObservableObject {
         }
     }
     
+    let startDate = Calendar.current.date(from: {
+        var dateComponents = DateComponents()
+        
+        dateComponents.year = 1930
+        dateComponents.month = 1
+        dateComponents.day = 1
+        
+        return dateComponents
+    }())!
+    let endDate: Date = .now
+    
+    @Published var isShowBirthModal: Bool = false
     @Published var navigationTrigger: Bool = false
     
     @Published var gender: Gender? = nil
-    @Published var birth: Date? = nil
+    @Published var birth: Date?
     var birthText: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy - MM - dd"
@@ -40,7 +52,7 @@ extension SignupProfileInfoViewModel: SignupProfileInfoViewDelegate {
     }
     
     func didTapBirthButton() {
-        
+        self.isShowBirthModal = true
     }
     
     func didTapDoneButton() {

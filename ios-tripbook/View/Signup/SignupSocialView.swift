@@ -104,7 +104,9 @@ struct SignupSocialView: View {
                     EmptyView()
                 })
             }
-        }.onAppear {
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
             self.viewModel.delegate = self.signupViewModel
         }
     }

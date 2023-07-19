@@ -19,6 +19,8 @@ struct SignupProfileInfoView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    @State var selectedDate: Date = .now
+    
     init(_ signupViewModel: SignupViewModel) {
         self.signupViewModel = signupViewModel
     }
@@ -84,7 +86,7 @@ struct SignupProfileInfoView: View {
                     
                     VStack(alignment: .leading, spacing: 0) {
                         Button(action: {
-                            self.showDatePickerAlert()
+                            self.viewModel.didTapBirthButton()
                         }) {
                             HStack {
                                 Text(self.viewModel.birth == nil ? "YYYY - MM - DD" : self.viewModel.birthText)
@@ -135,35 +137,63 @@ struct SignupProfileInfoView: View {
         .padding(.horizontal, 20)
         .padding(.bottom, 12)
         .navigationBarHidden(true)
+        .overlay(self.birthModal)
     }
     
-    func showDatePickerAlert() {
-        let alertVC = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
-        alertVC.view.tintColor = UIColor(cgColor: TBColor.primary.main.cgColor!)
-        
-        let datePicker: UIDatePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .inline
-        datePicker.maximumDate = .now
-        datePicker.date = self.viewModel.birth ?? .now
-        datePicker.tintColor = UIColor(cgColor: TBColor.primary.main.cgColor!)
-        
-        alertVC.view.addSubview(datePicker)
-        
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.topAnchor.constraint(equalTo: alertVC.view.topAnchor).isActive = true
-        datePicker.leadingAnchor.constraint(equalTo: alertVC.view.leadingAnchor, constant: 20).isActive = true
-        datePicker.trailingAnchor.constraint(equalTo: alertVC.view.trailingAnchor, constant: -20).isActive = true
-        
-        let okAction = UIAlertAction(title: "확인", style: .default) { _ in
-            self.viewModel.birth = datePicker.date
-        }
-        alertVC.addAction(okAction)
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-//        alertVC.addAction(cancelAction)
-        
-        if let viewController = UIApplication.shared.windows.first?.rootViewController {
-            viewController.present(alertVC, animated: true, completion: nil)
+    @ViewBuilder
+    var birthModal: some View {
+        if self.viewModel.isShowBirthModal {
+            ZStack {
+                Color.black.opacity(0.6)
+                
+                VStack(spacing: 24) {
+                    DatePicker("", selection: self.$selectedDate, in: ...(.now), displayedComponents: .date)
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                        .tint(TBColor.primary.main)
+                    
+                    HStack(spacing: 8) {
+                        Button(action: {
+                            self.viewModel.isShowBirthModal = false
+                        }) {
+                            Text("닫기")
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 14)
+                                .font(.suit(.medium, size: 14))
+                                .foregroundColor(TBColor.grayscale.levels[5])
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .foregroundColor(TBColor.grayscale.levels[1])
+                                )
+                        }
+                        
+                        Button(action: {
+                            print(self.selectedDate)
+                            self.viewModel.isShowBirthModal = false
+                            self.viewModel.birth = self.selectedDate
+                        }) {
+                            Text("선택")
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 14)
+                                .font(.suit(.medium, size: 14))
+                                .foregroundColor(.white)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .foregroundColor(TBColor.primary.main)
+                                )
+                        }
+                    }
+                }
+                .frame(maxWidth: 300)
+                .padding(.all, 20)
+                .background(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            .ignoresSafeArea()
+        } else {
+            ZStack {
+                Color.clear
+            }
+            .ignoresSafeArea()
         }
     }
 }

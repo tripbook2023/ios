@@ -60,6 +60,7 @@ struct RootView: View {
                     .tag(RootViewModel.TabType.profile)
             }.accentColor(.primary)
         }.navigationBarHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

@@ -16,7 +16,6 @@ struct RequestEditorView: View {
     @ObservedObject var viewModel = RequestEditorViewModel()
     
     var body: some View {
-        TBColor.grayscale.levels[10].ignoresSafeArea(edges: .top)
         ScrollView {
             LazyVStack(spacing: 0) {
                 /// Header
@@ -45,7 +44,9 @@ struct RequestEditorView: View {
                 
                 self.loadFooterView()
             }.padding(.horizontal)
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
+        .background(TBColor.grayscale.levels[10].ignoresSafeArea(edges: .top))
     }
     
     /// Load 에디터 가이드 Views

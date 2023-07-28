@@ -104,6 +104,7 @@
 		85F03BE82A3EE4C900A0B931 /* SignupTermDetailModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F03BE72A3EE4C900A0B931 /* SignupTermDetailModal.swift */; };
 		85F03BEB2A3EF5A000A0B931 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 85F03BEA2A3EF5A000A0B931 /* Alamofire */; };
 		85F31B5B2A543A3500493B5F /* GetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F31B5A2A543A3500493B5F /* GetUserResponse.swift */; };
+		9B5C1BDC2A73BCE900A386E1 /* RequestEditorBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5C1BDB2A73BCE900A386E1 /* RequestEditorBannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,6 +217,7 @@
 		85F02B5329F6913F008DABCE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		85F03BE72A3EE4C900A0B931 /* SignupTermDetailModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTermDetailModal.swift; sourceTree = "<group>"; };
 		85F31B5A2A543A3500493B5F /* GetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserResponse.swift; sourceTree = "<group>"; };
+		9B5C1BDB2A73BCE900A386E1 /* RequestEditorBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEditorBannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -522,6 +524,7 @@
 			isa = PBXGroup;
 			children = (
 				85C35B7B2A1683EA00DB8E46 /* RequestEditorView.swift */,
+				9B5C1BDB2A73BCE900A386E1 /* RequestEditorBannerView.swift */,
 				85C6F8352A19ED0B00722ED1 /* RequestEditorResultView.swift */,
 			);
 			path = Editor;
@@ -817,6 +820,7 @@
 				85569CA92A4FFC7500515DE3 /* AuthenticationRequest.swift in Sources */,
 				853EA9242A46F98C001890DE /* Auth0Service.swift in Sources */,
 				85569CA62A4F8EC000515DE3 /* TBAuthAPI.swift in Sources */,
+				9B5C1BDC2A73BCE900A386E1 /* RequestEditorBannerView.swift in Sources */,
 				853EA9342A480E64001890DE /* TBAuthAPIPath.swift in Sources */,
 				85E8CAAB2A3B108600EBDE7F /* SignupProfileNameViewModel.swift in Sources */,
 				853EA92F2A480D05001890DE /* TBAPIPath.swift in Sources */,

@@ -16,6 +16,7 @@ struct RequestEditorView: View {
     @ObservedObject var viewModel = RequestEditorViewModel()
     
     var body: some View {
+        TBColor.grayscale.levels[10].ignoresSafeArea(edges: .top)
         ScrollView {
             LazyVStack(spacing: 0) {
                 /// Header

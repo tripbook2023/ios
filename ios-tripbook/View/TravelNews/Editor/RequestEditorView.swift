@@ -22,8 +22,9 @@ struct RequestEditorView: View {
                 /// Header
                 ZStack {
                     HStack {
-                        Text("여행소식 에디터 신청하기")
-                            .font(.suit(.bold, size: 15))
+                        Text("에디터 신청")
+                            .font(TBFont.body_3)
+                            .foregroundColor(.white)
                     }
                     
                     HStack {

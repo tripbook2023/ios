@@ -31,10 +31,11 @@ struct RequestEditorView: View {
                         Button(action: {
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
-                            Image(systemName: "arrow.backward")
+                            Image("Before")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 24, height: 24)
+                                .foregroundColor(.white)
                         }.foregroundColor(.primary)
                         Spacer()
                     }

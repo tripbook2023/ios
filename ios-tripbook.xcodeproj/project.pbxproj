@@ -105,6 +105,7 @@
 		85F03BEB2A3EF5A000A0B931 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 85F03BEA2A3EF5A000A0B931 /* Alamofire */; };
 		85F31B5B2A543A3500493B5F /* GetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F31B5A2A543A3500493B5F /* GetUserResponse.swift */; };
 		9B5C1BDC2A73BCE900A386E1 /* RequestEditorBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5C1BDB2A73BCE900A386E1 /* RequestEditorBannerView.swift */; };
+		9B64A1562A7917FE008BD596 /* RequestEditorGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B64A1552A7917FE008BD596 /* RequestEditorGuideView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,6 +219,7 @@
 		85F03BE72A3EE4C900A0B931 /* SignupTermDetailModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTermDetailModal.swift; sourceTree = "<group>"; };
 		85F31B5A2A543A3500493B5F /* GetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserResponse.swift; sourceTree = "<group>"; };
 		9B5C1BDB2A73BCE900A386E1 /* RequestEditorBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEditorBannerView.swift; sourceTree = "<group>"; };
+		9B64A1552A7917FE008BD596 /* RequestEditorGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEditorGuideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				85C35B7B2A1683EA00DB8E46 /* RequestEditorView.swift */,
+				9B64A1552A7917FE008BD596 /* RequestEditorGuideView.swift */,
 				9B5C1BDB2A73BCE900A386E1 /* RequestEditorBannerView.swift */,
 				85C6F8352A19ED0B00722ED1 /* RequestEditorResultView.swift */,
 			);
@@ -834,6 +837,7 @@
 				853EA93F2A481489001890DE /* NicknameValidationResponse.swift in Sources */,
 				85F02B5429F6913F008DABCE /* ProfileView.swift in Sources */,
 				85E8CA922A39A61D00EBDE7F /* SignupTermsView.swift in Sources */,
+				9B64A1562A7917FE008BD596 /* RequestEditorGuideView.swift in Sources */,
 				85A6B1362A58367A0050FF68 /* TBColorPalette.swift in Sources */,
 				85E8CA9B2A39A6A800EBDE7F /* SignupViewModel.swift in Sources */,
 				85E8CA982A39A68900EBDE7F /* SignupProfileInfoView.swift in Sources */,

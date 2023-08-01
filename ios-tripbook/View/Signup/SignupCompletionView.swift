@@ -12,9 +12,9 @@ struct SignupCompletionView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Rectangle()
-                .frame(width: 140, height: 140)
-                .foregroundColor(TBColor.grayscale.levels[2])
+            Image("Welcome")
+                .resizable()
+                .frame(width: 232, height: 178)
             
             Text("트립북 가입을 축하드려요!")
                 .font(TBFont.heading_1)

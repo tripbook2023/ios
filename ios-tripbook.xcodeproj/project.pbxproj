@@ -106,6 +106,7 @@
 		85F31B5B2A543A3500493B5F /* GetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F31B5A2A543A3500493B5F /* GetUserResponse.swift */; };
 		9B5C1BDC2A73BCE900A386E1 /* RequestEditorBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5C1BDB2A73BCE900A386E1 /* RequestEditorBannerView.swift */; };
 		9B64A1562A7917FE008BD596 /* RequestEditorGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B64A1552A7917FE008BD596 /* RequestEditorGuideView.swift */; };
+		9BD13B5C2A7BA3FE006D64EA /* EditorBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD13B5B2A7BA3FE006D64EA /* EditorBenefitsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,6 +221,7 @@
 		85F31B5A2A543A3500493B5F /* GetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserResponse.swift; sourceTree = "<group>"; };
 		9B5C1BDB2A73BCE900A386E1 /* RequestEditorBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEditorBannerView.swift; sourceTree = "<group>"; };
 		9B64A1552A7917FE008BD596 /* RequestEditorGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEditorGuideView.swift; sourceTree = "<group>"; };
+		9BD13B5B2A7BA3FE006D64EA /* EditorBenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorBenefitsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -529,6 +531,7 @@
 				9B64A1552A7917FE008BD596 /* RequestEditorGuideView.swift */,
 				9B5C1BDB2A73BCE900A386E1 /* RequestEditorBannerView.swift */,
 				85C6F8352A19ED0B00722ED1 /* RequestEditorResultView.swift */,
+				9BD13B5B2A7BA3FE006D64EA /* EditorBenefitsView.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				8585F47A2A15E89F00C0A678 /* TravelNewsItemViewModel.swift in Sources */,
 				85569CB62A5079F900515DE3 /* SignupResponse.swift in Sources */,
 				853EA92B2A476841001890DE /* TBAPIEventLogger.swift in Sources */,
+				9BD13B5C2A7BA3FE006D64EA /* EditorBenefitsView.swift in Sources */,
 				85361DC12A0FFE1800B48B55 /* ToggleButton.swift in Sources */,
 				85C35B792A165CB000DB8E46 /* DocumentActionBar.swift in Sources */,
 				85C6F8362A19ED0B00722ED1 /* RequestEditorResultView.swift in Sources */,

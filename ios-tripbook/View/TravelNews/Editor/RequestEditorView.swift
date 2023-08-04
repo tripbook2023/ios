@@ -50,10 +50,17 @@ struct RequestEditorView: View {
                         .frame(width: geometry.size.width, height: 260)
                         .background(TBColor.grayscale.levels[2])
                     
+                    EditorBenefitsView()
+                        .frame(width: geometry.size.width, height: 752)
+                        .background(TBColor.primary.levels[5])
+                    
                 }.padding(.horizontal)
             }
             .onAppear {
                 UIScrollView.appearance().bounces = false
+            }
+            .onDisappear {
+                UIScrollView.appearance().bounces = true
             }
             .navigationBarHidden(true)
             .background(TBColor.grayscale.levels[10].ignoresSafeArea(edges: .top))

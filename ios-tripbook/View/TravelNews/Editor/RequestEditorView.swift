@@ -49,9 +49,11 @@ struct RequestEditorView: View {
                     RequestEditorGuideView()
                         .frame(width: geometry.size.width, height: 260)
                         .background(TBColor.grayscale.levels[2])
-                        .ignoresSafeArea(edges: [.trailing, .leading])
                     
                 }.padding(.horizontal)
+            }
+            .onAppear {
+                UIScrollView.appearance().bounces = false
             }
             .navigationBarHidden(true)
             .background(TBColor.grayscale.levels[10].ignoresSafeArea(edges: .top))

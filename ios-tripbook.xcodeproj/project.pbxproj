@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850E29B62A7F3A85000EB5B2 /* TravelNewsSearchLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E29B52A7F3A85000EB5B2 /* TravelNewsSearchLocationView.swift */; };
 		851BEA5E29FF9328003D60C9 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851BEA5D29FF9328003D60C9 /* HomeHeaderView.swift */; };
 		8527A5772A0366B6003819B1 /* TravelReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527A5762A0366B6003819B1 /* TravelReportModel.swift */; };
 		8527A5792A036786003819B1 /* TravelReportItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527A5782A036786003819B1 /* TravelReportItemViewModel.swift */; };
@@ -129,6 +130,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		850E29B52A7F3A85000EB5B2 /* TravelNewsSearchLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsSearchLocationView.swift; sourceTree = "<group>"; };
 		851BEA5D29FF9328003D60C9 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		8527A5762A0366B6003819B1 /* TravelReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportModel.swift; sourceTree = "<group>"; };
 		8527A5782A036786003819B1 /* TravelReportItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportItemViewModel.swift; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 				85CF96322A64324D000725DD /* TravelNewsPostView.swift */,
 				85C35B7B2A1683EA00DB8E46 /* RequestEditorView.swift */,
 				85C6F8352A19ED0B00722ED1 /* RequestEditorResultView.swift */,
+				850E29B52A7F3A85000EB5B2 /* TravelNewsSearchLocationView.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -814,6 +817,7 @@
 				8585F46F2A12990A00C0A678 /* TravelNewsHeaderView.swift in Sources */,
 				8585F47A2A15E89F00C0A678 /* TravelNewsItemViewModel.swift in Sources */,
 				85569CB62A5079F900515DE3 /* SignupResponse.swift in Sources */,
+				850E29B62A7F3A85000EB5B2 /* TravelNewsSearchLocationView.swift in Sources */,
 				853EA92B2A476841001890DE /* TBAPIEventLogger.swift in Sources */,
 				85361DC12A0FFE1800B48B55 /* ToggleButton.swift in Sources */,
 				85C35B792A165CB000DB8E46 /* DocumentActionBar.swift in Sources */,

@@ -56,7 +56,7 @@ struct RequestEditorGuideView: View {
     }
     
     @ViewBuilder
-    func makeRoundedBordeRectangle<V>(content: () -> V) -> some View where V : View {
+    private func makeRoundedBordeRectangle<V>(content: () -> V) -> some View where V : View {
         ZStack(alignment: .center) {
             RoundedRectangle(
                 cornerRadius: 13

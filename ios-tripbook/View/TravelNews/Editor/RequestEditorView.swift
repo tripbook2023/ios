@@ -15,7 +15,6 @@ struct RequestEditorView: View {
     
     @ObservedObject var viewModel = RequestEditorViewModel()
     
-    @State private var email: String = ""
     @State private var text: String = ""
     @State private var isHidden: Bool = true
     @State private var isTimer: Bool = false
@@ -68,12 +67,12 @@ struct RequestEditorView: View {
                             .foregroundColor(TBColor.grayscale.levels[2])
                             .overlay {
                                 HStack {
-                                    TextField("이메일@.com", text: $email)
+                                    TextField("이메일@.com", text: $viewModel.emailTextField)
                                         .padding(.leading, 10)
                                     
                                     Button {
                                         isHidden = false
-                                        if isValidEmail(testStr: email) {
+                                        if isValidEmail(testStr: viewModel.emailTextField) {
                                             isTimer = true
                                             time = 60 * 10
                                             text = "방금 메일이 발송되었습니다\n10분 이내로 이메일 인증해주세요."

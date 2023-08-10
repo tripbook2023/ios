@@ -42,7 +42,7 @@ struct RequestEditorView: View {
                             }
                             Spacer()
                         }
-                    }.padding([.top, .bottom])
+                    }.padding(.vertical, 12)
                     
                     RequestEditorBannerView()
                         .padding(.top ,40)
@@ -83,8 +83,8 @@ struct RequestEditorView: View {
                                     } label: {
                                         Text("인증 메일 발송")
                                             .font(TBFont.body_4)
-                                            .padding([.top, .bottom], 6)
-                                            .padding([.leading, .trailing], 12)
+                                            .padding(.vertical, 6)
+                                            .padding(.horizontal, 12)
                                             .foregroundColor(TBColor.grayscale.levels[4])
                                             .background(TBColor.grayscale.levels[2])
                                             .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -123,7 +123,7 @@ struct RequestEditorView: View {
                         }
                         Spacer()
                     }
-                    .padding([.leading, .trailing], 20)
+                    .padding(.horizontal, 20)
                     .frame(width: geometry.size.width, height: 372)
                     .background(.white)
                 }.padding(.horizontal)

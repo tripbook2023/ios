@@ -38,10 +38,7 @@ struct RequestEditorView: View {
                             Button(action: {
                                 self.presentationMode.wrappedValue.dismiss()
                             }) {
-                                Image("Before")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24)
+                                TBIcon.before.iconSize(size: .medium)
                                     .foregroundColor(.white)
                             }.foregroundColor(.primary)
                             Spacer()

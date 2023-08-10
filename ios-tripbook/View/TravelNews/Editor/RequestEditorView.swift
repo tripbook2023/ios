@@ -39,7 +39,7 @@ struct RequestEditorView: View {
                             }) {
                                 TBIcon.before.iconSize(size: .medium)
                                     .foregroundColor(.white)
-                            }.foregroundColor(.primary)
+                            }
                             Spacer()
                         }
                     }.padding([.top, .bottom])

@@ -7,11 +7,17 @@
 
 import SwiftUI
 
+struct Benefit {
+    let imageName: String
+    let caption: String
+    let title: String
+}
+
 struct EditorBenefitsView: View {
     let benefits = [
-        ["Benefits1", "나는 여행 인플루언서!", "많은 사람들과 내 콘텐츠를 보고 소통해요"],
-        ["Benefits2", "오래도록 간직하는 내 기록!", "나만의 여행 기록을 쌓아갈 수 있어요"],
-        ["Benefits3", "어디서나 자랑 가능!", "수료증을 발급해드려요"]
+        Benefit(imageName: "Benefits1", caption: "나는 여행 인플루언서!", title: "많은 사람들과 내 콘텐츠를 보고 소통해요"),
+        Benefit(imageName: "Benefits2", caption: "오래도록 간직하는 내 기록!", title: "나만의 여행 기록을 쌓아갈 수 있어요"),
+        Benefit(imageName: "Benefits3", caption: "어디서나 자랑 가능!", title: "수료증을 발급해드려요")
     ]
     
     var body: some View {
@@ -26,13 +32,13 @@ struct EditorBenefitsView: View {
                     .frame(width: 335, height: 188)
                     .overlay {
                         VStack {
-                            Image(benefits[index][0])
+                            Image(benefits[index].imageName)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 124,height: 98)
-                            Text(benefits[index][1])
+                            Text(benefits[index].caption)
                                 .font(TBFont.caption_1)
-                            Text(benefits[index][2])
+                            Text(benefits[index].title)
                                 .font(TBFont.title_3)
                         }
                     }

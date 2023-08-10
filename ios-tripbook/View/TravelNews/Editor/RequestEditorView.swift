@@ -142,26 +142,25 @@ struct RequestEditorView: View {
     @ViewBuilder
     private func showEmailCertificationGuide() -> some View {
         HStack(alignment: .top) {
-            TBIcon.TBStateIcons().error
+            TBIcon.state.error
                 .padding(.top, 2)
             Text(text)
                 .font(TBFont.caption_1)
                 .foregroundColor(TBColor.state.warning)
             Spacer()
             if isTimer {
-                HStack(alignment: .center) {
+                HStack(alignment: .center, spacing: 0) {
                     TBIcon.timer
-                    
-                    let h = time / 60 < 10 ? "0\(time / 60)" : String(time / 60)
-                    let m = time % 60 < 10 ? "0\(time % 60)" : String(time % 60)
-                    
-                    Text("\(h):\(m)")
-                        .onReceive(timer) { _ in
-                            if self.time > 0 {
-                                self.time -= 1
-                            }
-                        }.frame(width: 34)
-                        .font(TBFont.caption_1)
+                    Text(
+                        Date().addingTimeInterval(TimeInterval(time)),
+                        style: .timer
+                    )
+                    .onReceive(timer) { _ in
+                        if self.time > 0 {
+                            self.time -= 1
+                        }
+                    }
+                    .font(TBFont.caption_1)
                 }
             }
             

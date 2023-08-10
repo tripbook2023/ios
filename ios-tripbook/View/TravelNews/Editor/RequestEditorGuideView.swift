@@ -18,14 +18,14 @@ struct RequestEditorGuideView: View {
             
             ZStack {
                 HStack(spacing: 10) {
-                    ForEach(0..<procedures.count, id: \.self) { index in
+                    ForEach(Array(procedures.enumerated()), id: \.offset) { index, procedure in
                         makeRoundedBordeRectangle {
                             VStack {
                                 Text("STEP \(index + 1)")
                                     .foregroundColor(TBColor.primary.levels[5])
                                     .font(TBFont.body_4)
                                 Spacer().frame(height: 16)
-                                Text(procedures[index])
+                                Text(procedure)
                                     .foregroundColor(.white)
                                     .font(TBFont.body_4)
                                     .padding(.bottom)

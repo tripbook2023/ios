@@ -74,7 +74,7 @@ struct SignupProfileImageView: View {
                         .font(TBFont.caption_1)
                 }
                 .foregroundColor(TBColor.grayscale.levels[6])
-                .padding(.bottom, 10)
+                .padding(.bottom, 16)
                 
                 TBPrimaryButton(
                     title: "이미지 등록했어요",

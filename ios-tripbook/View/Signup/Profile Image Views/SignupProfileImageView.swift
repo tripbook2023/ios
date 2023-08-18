@@ -82,7 +82,9 @@ struct SignupProfileImageView: View {
                         return self.viewModel.profileImage != nil
                     }, set: {_ in})
                 ) {
-                    self.signupViewModel.registerUserProfileImage(self.viewModel.profileImage!)
+                    if !self.viewModel.isSelectDefaultProfile {
+                        self.signupViewModel.registerUserProfileImage(self.viewModel.profileImage!)
+                    }
                     self.viewModel.didTapDoneButton()
                 }.padding(.bottom, 12)
                 

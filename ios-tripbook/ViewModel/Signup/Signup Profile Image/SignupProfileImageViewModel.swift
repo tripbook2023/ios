@@ -17,6 +17,7 @@ class SignupProfileImageViewModel: ObservableObject {
     @Published var isNavigateCameraView: Bool = false
     
     @Published var profileImage: UIImage? = nil
+    var isSelectDefaultProfile: Bool = false
 }
 
 extension SignupProfileImageViewModel: SignupProfileImageViewDelegate {
@@ -42,15 +43,18 @@ extension SignupProfileImageViewModel: SignupProfileImageSelectOptionViewDelegat
     func didTapSelectPhotoButton() {
         self.isShowOptionView = false
         self.isNavigateImagePickerView = true
+        self.isSelectDefaultProfile = false
     }
     
     func didTapCameraButton() {
         self.isShowOptionView = false
         self.isNavigateCameraView = true
+        self.isSelectDefaultProfile = false
     }
     
     func didTapUseDefaultImageButton() {
         self.isShowOptionView = false
-        self.profileImage = nil
+        self.isSelectDefaultProfile = true
+        self.profileImage = .init(named: "DefaultProfileImage")
     }
 }

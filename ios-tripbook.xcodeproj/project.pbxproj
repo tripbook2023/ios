@@ -469,7 +469,7 @@
 		8585F4742A13E90500C0A678 /* TravelNews */ = {
 			isa = PBXGroup;
 			children = (
-				85C6F8372A1A012C00722ED1 /* Editor */,
+				85C6F8372A1A012C00722ED1 /*  RequestEditor */,
 				8585F4752A13E91C00C0A678 /* TravelNewsViewModel.swift */,
 				8585F4792A15E89F00C0A678 /* TravelNewsItemViewModel.swift */,
 				8585F47B2A15ECBB00C0A678 /* MyTravelNewsItemViewModel.swift */,
@@ -570,12 +570,12 @@
 			path = Editor;
 			sourceTree = "<group>";
 		};
-		85C6F8372A1A012C00722ED1 /* Editor */ = {
+		85C6F8372A1A012C00722ED1 /*  RequestEditor */ = {
 			isa = PBXGroup;
 			children = (
 				85C6F8382A1A013D00722ED1 /* RequestEditorViewModel.swift */,
 			);
-			path = Editor;
+			path = " RequestEditor";
 			sourceTree = "<group>";
 		};
 		85E8CA8E2A39A57A00EBDE7F /* Signup */ = {

@@ -14,11 +14,6 @@ struct RequestEditorView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewModel = RequestEditorViewModel()
-    
-    @State private var text: String = ""
-    @State private var isHidden: Bool = true
-    @State private var isTimer: Bool = false
-    @State private var time = 60 * 10
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -71,14 +66,14 @@ struct RequestEditorView: View {
                                         .padding(.leading, 10)
                                     
                                     Button {
-                                        isHidden = false
-                                        if isValidEmail(testStr: viewModel.emailTextField) {
-                                            isTimer = true
-                                            time = 60 * 10
-                                            text = "방금 메일이 발송되었습니다\n10분 이내로 이메일 인증해주세요."
+                                        viewModel.isHidden = false
+                                        if viewModel.isValidEmail(testStr: viewModel.emailTextField) {
+                                            viewModel.isTimer = true
+                                            viewModel.time = 60 * 10
+                                            viewModel.errorMessage = "방금 메일이 발송되었습니다\n10분 이내로 이메일 인증해주세요."
                                         } else {
-                                            isTimer = false
-                                            text = "tripbook@tripbook.com 형태로 입력해주세요"
+                                            viewModel.isTimer = false
+                                            viewModel.errorMessage = "tripbook@tripbook.com 형태로 입력해주세요"
                                         }
                                     } label: {
                                         Text("인증 메일 발송")
@@ -92,7 +87,7 @@ struct RequestEditorView: View {
 
                                 }
                             }
-                        if !isHidden {
+                        if !viewModel.isHidden {
                             showEmailCertificationGuide()
                         }
                         Button {
@@ -144,34 +139,28 @@ struct RequestEditorView: View {
         HStack(alignment: .top) {
             TBIcon.state.error
                 .padding(.top, 2)
-            Text(text)
+            Text(viewModel.errorMessage)
                 .font(TBFont.caption_1)
                 .foregroundColor(TBColor.state.warning)
             Spacer()
-            if isTimer {
+            if viewModel.isTimer {
                 HStack(alignment: .center, spacing: 0) {
                     TBIcon.timer
                     Text(
-                        Date().addingTimeInterval(TimeInterval(time)),
+                        Date().addingTimeInterval(TimeInterval(viewModel.time)),
                         style: .timer
-                    )
-                    .onReceive(timer) { _ in
-                        if self.time > 0 {
-                            self.time -= 1
+                    ).foregroundColor(TBColor.state.warning)
+                        .onReceive(timer) { _ in
+                            if viewModel.time > 0 {
+                                viewModel.time -= 1
+                            }
                         }
-                    }
-                    .font(TBFont.caption_1)
+                        .font(TBFont.caption_1)
                 }
             }
             
         }.frame(width: 335)
         
-    }
-    
-    private func isValidEmail(testStr:String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: testStr)
     }
 }
 

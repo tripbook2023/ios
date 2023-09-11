@@ -104,6 +104,7 @@
 		85F03BE82A3EE4C900A0B931 /* SignupTermDetailModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F03BE72A3EE4C900A0B931 /* SignupTermDetailModal.swift */; };
 		85F03BEB2A3EF5A000A0B931 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 85F03BEA2A3EF5A000A0B931 /* Alamofire */; };
 		85F31B5B2A543A3500493B5F /* GetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F31B5A2A543A3500493B5F /* GetUserResponse.swift */; };
+		9B8964B32AAB02C100B6E3CA /* TBImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8964B22AAB02C100B6E3CA /* TBImagePicker */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85F03BEB2A3EF5A000A0B931 /* Alamofire in Frameworks */,
+				9B8964B32AAB02C100B6E3CA /* TBImagePicker in Frameworks */,
 				853EA91E2A46F363001890DE /* Auth0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,6 +660,7 @@
 			packageProductDependencies = (
 				85F03BEA2A3EF5A000A0B931 /* Alamofire */,
 				853EA91D2A46F363001890DE /* Auth0 */,
+				9B8964B22AAB02C100B6E3CA /* TBImagePicker */,
 			);
 			productName = "ios-tripbook";
 			productReference = 8552BC2829DDCD8D00DC8D7E /* ios-tripbook.app */;
@@ -712,6 +715,7 @@
 			packageReferences = (
 				85F03BE92A3EF5A000A0B931 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				853EA91C2A46F363001890DE /* XCRemoteSwiftPackageReference "Auth0" */,
+				9B8964B12AAB02C100B6E3CA /* XCRemoteSwiftPackageReference "iOS-TripBook-ImagePicker-Package" */,
 			);
 			productRefGroup = 8552BC2929DDCD8D00DC8D7E /* Products */;
 			projectDirPath = "";
@@ -1154,6 +1158,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		9B8964B12AAB02C100B6E3CA /* XCRemoteSwiftPackageReference "iOS-TripBook-ImagePicker-Package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tripbook2023/iOS-TripBook-ImagePicker-Package";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1166,6 +1178,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 85F03BE92A3EF5A000A0B931 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		9B8964B22AAB02C100B6E3CA /* TBImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B8964B12AAB02C100B6E3CA /* XCRemoteSwiftPackageReference "iOS-TripBook-ImagePicker-Package" */;
+			productName = TBImagePicker;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -177,6 +177,8 @@ struct TravelNewsPostHeaderView: View {
     }
 }
 
-#Preview {
-    TravelNewsPostView()
+struct TravelNewsPostView_Previews: PreviewProvider {
+    static var previews: some View {
+        TravelNewsPostView()
+    }
 }

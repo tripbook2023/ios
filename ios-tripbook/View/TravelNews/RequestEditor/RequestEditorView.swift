@@ -51,11 +51,11 @@ struct RequestEditorView: View {
                     
                     RequestEditorGuideView()
                         .frame(width: geometry.size.width, height: 260)
-                        .background(TBColor.grayscale.levels[2])
+                        .background(TBColor.grayscale._5)
                     
                     EditorBenefitsView()
                         .frame(width: geometry.size.width, height: 752)
-                        .background(TBColor.primary.levels[5])
+                        .background(TBColor.primary._50)
                     VStack {
                         Text("에디터 신청")
                             .font(TBFont.heading_2)
@@ -64,7 +64,7 @@ struct RequestEditorView: View {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(lineWidth: 1)
                             .frame(height: 48)
-                            .foregroundColor(TBColor.grayscale.levels[2])
+                            .foregroundColor(TBColor.grayscale._20)
                             .overlay {
                                 HStack {
                                     TextField("이메일@.com", text: $viewModel.emailTextField)
@@ -85,8 +85,8 @@ struct RequestEditorView: View {
                                             .font(TBFont.body_4)
                                             .padding(.vertical, 6)
                                             .padding(.horizontal, 12)
-                                            .foregroundColor(TBColor.grayscale.levels[4])
-                                            .background(TBColor.grayscale.levels[2])
+                                            .foregroundColor(TBColor.grayscale._30)
+                                            .background(TBColor.grayscale._10)
                                             .clipShape(RoundedRectangle(cornerRadius: 8))
                                     }.padding(.trailing, 10)
 
@@ -100,11 +100,11 @@ struct RequestEditorView: View {
                         } label: {
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(lineWidth: 1)
-                                .foregroundColor(TBColor.primary.levels[4])
+                                .foregroundColor(TBColor.primary._50)
                                 .frame(height: 48)
                                 .overlay {
                                     Text("내 여행기록 불러오기")
-                                        .foregroundColor(TBColor.primary.levels[4])
+                                        .foregroundColor(TBColor.primary._50)
                                 }
                             
                         }
@@ -113,11 +113,11 @@ struct RequestEditorView: View {
                             
                         } label: {
                             RoundedRectangle(cornerRadius: 8)
-                                .foregroundColor(TBColor.grayscale.levels[2])
+                                .foregroundColor(TBColor.grayscale._10)
                                 .frame(height: 52)
                                 .overlay {
                                     Text("에디터 신청하기")
-                                        .foregroundColor(TBColor.grayscale.levels[7])
+                                        .foregroundColor(TBColor.grayscale._60)
                                 }
                             
                         }
@@ -135,7 +135,7 @@ struct RequestEditorView: View {
                 UIScrollView.appearance().bounces = true
             }
             .navigationBarHidden(true)
-            .background(TBColor.grayscale.levels[10].ignoresSafeArea(edges: .top))
+            .background(TBColor.grayscale._90.ignoresSafeArea(edges: .top))
         }
         
     }

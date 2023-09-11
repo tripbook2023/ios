@@ -54,6 +54,8 @@ struct TravelNewsSearchLocationView: View {
     }
 }
 
-#Preview {
-    TravelNewsSearchLocationView()
+struct TravelNewsSearchLocationView_Previews: PreviewProvider {
+    static var previews: some View {
+        TravelNewsSearchLocationView()
+    }
 }

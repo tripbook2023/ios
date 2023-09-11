@@ -65,6 +65,8 @@ struct TravelNewsTemporaryStorageListView: View {
     }
 }
 
-#Preview {
-    TravelNewsTemporaryStorageListView()
+struct TravelNewsTemporaryStorageListView_Previews: PreviewProvider {
+    static var previews: some View {
+        TravelNewsTemporaryStorageListView()
+    }
 }

@@ -14,7 +14,7 @@ struct RequestEditorGuideView: View {
         VStack(alignment: .center, spacing: 24) {
             Text("에디터 신청 방법")
                 .font(TBFont.heading_2)
-                .foregroundColor(TBColor.grayscale.levels[9])
+                .foregroundColor(TBColor.grayscale._90)
             
             ZStack {
                 HStack(spacing: 10) {
@@ -22,7 +22,7 @@ struct RequestEditorGuideView: View {
                         makeRoundedBordeRectangle {
                             VStack {
                                 Text("STEP \(index + 1)")
-                                    .foregroundColor(TBColor.primary.levels[5])
+                                    .foregroundColor(TBColor.primary._50)
                                     .font(TBFont.body_4)
                                 Spacer().frame(height: 16)
                                 Text(procedure)
@@ -36,7 +36,7 @@ struct RequestEditorGuideView: View {
                 
                 HStack {
                     Circle().frame(width: 28, height: 28)
-                        .foregroundColor(TBColor.primary.levels[4])
+                        .foregroundColor(TBColor.primary._40)
                         .overlay {
                             TBIcon.next.iconSize(size: .tiny)
                                 .foregroundColor(.white)
@@ -45,7 +45,7 @@ struct RequestEditorGuideView: View {
                     Spacer().frame(width: 87)
                     
                     Circle().frame(width: 28, height: 28)
-                        .foregroundColor(TBColor.primary.levels[4])
+                        .foregroundColor(TBColor.primary._40)
                         .overlay {
                             TBIcon.next.iconSize(size: .tiny)
                                 .foregroundColor(.white)
@@ -61,15 +61,15 @@ struct RequestEditorGuideView: View {
             RoundedRectangle(
                 cornerRadius: 13
             ).frame(width: 105, height: 88)
-            .foregroundColor(TBColor.grayscale.levels[3])
+                .foregroundColor(TBColor.grayscale._10)
             
             RoundedRectangle(
                 cornerRadius: 12
             ).frame(width: 103, height: 86)
-            .foregroundColor(TBColor.grayscale.levels[9])
-            .overlay {
-                content()
-            }
+                .foregroundColor(TBColor.grayscale._90)
+                .overlay {
+                    content()
+                }
         }
     }
 }

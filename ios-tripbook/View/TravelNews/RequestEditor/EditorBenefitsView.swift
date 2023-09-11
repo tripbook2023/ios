@@ -51,6 +51,6 @@ struct EditorBenefitsView: View {
 struct EditorBenefitsView_Previews: PreviewProvider {
     static var previews: some View {
         EditorBenefitsView()
-            .background(TBColor.primary.levels[5])
+            .background(TBColor.primary._50)
     }
 }

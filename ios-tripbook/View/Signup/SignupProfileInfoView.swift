@@ -113,7 +113,7 @@ struct SignupProfileInfoView: View {
             Spacer()
             
             TBPrimaryButton(
-                title: "입력완료",
+                title: "입력 완료했어요!",
                 isEnabled: Binding(get: {
                     return self.viewModel.gender != nil && self.viewModel.birth != nil
                 }, set: {_ in})

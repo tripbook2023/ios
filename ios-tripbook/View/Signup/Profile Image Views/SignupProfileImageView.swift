@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TBImagePicker
 
 protocol SignupProfileImageViewDelegate {
     func didTapImageButton()
@@ -74,7 +75,7 @@ struct SignupProfileImageView: View {
                         .font(TBFont.caption_1)
                 }
                 .foregroundColor(TBColor.grayscale.levels[6])
-                .padding(.bottom, 10)
+                .padding(.bottom, 16)
                 
                 TBPrimaryButton(
                     title: "이미지 등록했어요",
@@ -82,7 +83,9 @@ struct SignupProfileImageView: View {
                         return self.viewModel.profileImage != nil
                     }, set: {_ in})
                 ) {
-                    self.signupViewModel.registerUserProfileImage(self.viewModel.profileImage!)
+                    if !self.viewModel.isSelectDefaultProfile {
+                        self.signupViewModel.registerUserProfileImage(self.viewModel.profileImage!)
+                    }
                     self.viewModel.didTapDoneButton()
                 }.padding(.bottom, 12)
                 
@@ -100,9 +103,18 @@ struct SignupProfileImageView: View {
             SignupProfileImageSelectOptionView(delgate: self.viewModel)
                 .opacity(self.viewModel.isShowOptionView ? 1 : 0)
         }
-        .sheet(isPresented: self.$viewModel.isNavigateImagePickerView) {
-            SignupProfileImagePickerView(image: self.$viewModel.profileImage, isPresented: self.$viewModel.isNavigateImagePickerView)
-                .navigationBarHidden(true)
+        .fullScreenCover(isPresented: self.$viewModel.isNavigateImagePickerView) {
+            TBImagePickerView(
+                .single,
+                onFinish: { assetManagers in
+                    assetManagers.first?.request(
+                        size: .init(width: 140, height: 140),
+                        completion: { image, _ in
+                            viewModel.profileImage = image
+                        }
+                    )
+                }
+            )
         }
         .sheet(isPresented: self.$viewModel.isNavigateCameraView) {
             SignupProfileImagePickerView(sourceType: .camera, image: self.$viewModel.profileImage, isPresented: self.$viewModel.isNavigateCameraView)

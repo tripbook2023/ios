@@ -19,8 +19,6 @@ struct SignupProfileInfoView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @State var selectedDate: Date = .now
-    
     init(_ signupViewModel: SignupViewModel) {
         self.signupViewModel = signupViewModel
     }
@@ -33,13 +31,13 @@ struct SignupProfileInfoView: View {
             
             Text("조금 더 알아볼게요")
                 .font(TBFont.heading_1)
-                .foregroundColor(TBColor.grayscale.levels[9])
+                .foregroundColor(TBColor.grayscale._80)
                 .padding(.bottom, 56)
             
             VStack(alignment: .leading, spacing: 24) {
                 Text("성별을 선택해주세요")
                     .font(TBFont.body_2)
-                    .foregroundColor(TBColor.grayscale.levels[8])
+                    .foregroundColor(TBColor.grayscale._70)
                 
                 HStack(spacing: 7) {
                     Button(action: {
@@ -48,14 +46,14 @@ struct SignupProfileInfoView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 4)
                                 .stroke(
-                                    self.viewModel.gender == .Female ? TBColor.primary.main : TBColor.grayscale.levels[3],
+                                    self.viewModel.gender == .Female ? TBColor.primary._50 : TBColor.grayscale._20,
                                     lineWidth: self.viewModel.gender == .Female ? 2 : 1
                                 )
                                 .frame(height: 48)
                             
                             Text("여성")
                                 .font(self.viewModel.gender == .Female ? TBFont.title_3 : TBFont.body_4)
-                                .foregroundColor(self.viewModel.gender == .Female ? TBColor.primary.main : TBColor.grayscale.levels[3])
+                                .foregroundColor(self.viewModel.gender == .Female ? TBColor.primary._50 : TBColor.grayscale._20)
                         }
                     }
                     
@@ -65,14 +63,14 @@ struct SignupProfileInfoView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 4)
                                 .stroke(
-                                    self.viewModel.gender == .Male ? TBColor.primary.main : TBColor.grayscale.levels[3],
+                                    self.viewModel.gender == .Male ? TBColor.primary._50 : TBColor.grayscale._20,
                                     lineWidth: self.viewModel.gender == .Male ? 2 : 1
                                 )
                                 .frame(height: 48)
                             
                             Text("남성")
                                 .font(self.viewModel.gender == .Male ? TBFont.title_3 : TBFont.body_4)
-                                .foregroundColor(self.viewModel.gender == .Male ? TBColor.primary.main : TBColor.grayscale.levels[3])
+                                .foregroundColor(self.viewModel.gender == .Male ? TBColor.primary._50 : TBColor.grayscale._20)
                         }
                     }
                 }
@@ -82,16 +80,16 @@ struct SignupProfileInfoView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("생일을 선택해주세요")
                         .font(TBFont.body_2)
-                        .foregroundColor(TBColor.grayscale.levels[8])
+                        .foregroundColor(TBColor.grayscale._70)
                     
                     VStack(alignment: .leading, spacing: 0) {
                         Button(action: {
-                            self.viewModel.didTapBirthButton()
+                            self.showDatePickerAlert()
                         }) {
                             HStack {
                                 Text(self.viewModel.birth == nil ? "YYYY - MM - DD" : self.viewModel.birthText)
                                     .font(TBFont.body_4)
-                                    .foregroundColor(self.viewModel.birth == nil ? TBColor.grayscale.levels[2] : TBColor.grayscale.levels[9])
+                                    .foregroundColor(self.viewModel.birth == nil ? TBColor.grayscale._20 : TBColor.grayscale._90)
                                 
                                 Spacer()
                                 
@@ -104,7 +102,7 @@ struct SignupProfileInfoView: View {
                         Divider()
                             .frame(minHeight: 1)
                             .overlay(
-                                self.viewModel.birth == nil ? TBColor.grayscale.levels[1] : TBColor.grayscale.levels[8]
+                                self.viewModel.birth == nil ? TBColor.grayscale._10 : TBColor.grayscale._80
                             )
                     }
                 }
@@ -137,63 +135,35 @@ struct SignupProfileInfoView: View {
         .padding(.horizontal, 20)
         .padding(.bottom, 12)
         .navigationBarHidden(true)
-        .overlay(self.birthModal)
     }
     
-    @ViewBuilder
-    var birthModal: some View {
-        if self.viewModel.isShowBirthModal {
-            ZStack {
-                Color.black.opacity(0.6)
-                
-                VStack(spacing: 24) {
-                    DatePicker("", selection: self.$selectedDate, in: ...(.now), displayedComponents: .date)
-                        .datePickerStyle(GraphicalDatePickerStyle())
-                        .tint(TBColor.primary.main)
-                    
-                    HStack(spacing: 8) {
-                        Button(action: {
-                            self.viewModel.isShowBirthModal = false
-                        }) {
-                            Text("닫기")
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 14)
-                                .font(.suit(.medium, size: 14))
-                                .foregroundColor(TBColor.grayscale.levels[5])
-                                .background(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .foregroundColor(TBColor.grayscale.levels[1])
-                                )
-                        }
-                        
-                        Button(action: {
-                            print(self.selectedDate)
-                            self.viewModel.isShowBirthModal = false
-                            self.viewModel.birth = self.selectedDate
-                        }) {
-                            Text("선택")
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 14)
-                                .font(.suit(.medium, size: 14))
-                                .foregroundColor(.white)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .foregroundColor(TBColor.primary.main)
-                                )
-                        }
-                    }
-                }
-                .frame(maxWidth: 300)
-                .padding(.all, 20)
-                .background(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-            }
-            .ignoresSafeArea()
-        } else {
-            ZStack {
-                Color.clear
-            }
-            .ignoresSafeArea()
+    func showDatePickerAlert() {
+        let alertVC = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        alertVC.view.tintColor = UIColor(cgColor: TBColor.primary._50.cgColor!)
+        
+        let datePicker: UIDatePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .inline
+        datePicker.maximumDate = .now
+        datePicker.date = self.viewModel.birth ?? .now
+        datePicker.tintColor = UIColor(cgColor: TBColor.primary._50.cgColor!)
+        
+        alertVC.view.addSubview(datePicker)
+        
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.topAnchor.constraint(equalTo: alertVC.view.topAnchor).isActive = true
+        datePicker.leadingAnchor.constraint(equalTo: alertVC.view.leadingAnchor, constant: 20).isActive = true
+        datePicker.trailingAnchor.constraint(equalTo: alertVC.view.trailingAnchor, constant: -20).isActive = true
+        
+        let okAction = UIAlertAction(title: "확인", style: .default) { _ in
+            self.viewModel.birth = datePicker.date
+        }
+        alertVC.addAction(okAction)
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+//        alertVC.addAction(cancelAction)
+        
+        if let viewController = UIApplication.shared.windows.first?.rootViewController {
+            viewController.present(alertVC, animated: true, completion: nil)
         }
     }
 }

@@ -23,23 +23,23 @@ struct SignupTermDetailModal: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            TBColor.grayscale.levels[10].opacity(0.6).ignoresSafeArea()
+            Color.black.opacity(0.6).ignoresSafeArea()
             
             VStack(spacing: 12) {
                 RoundedRectangle(cornerRadius: 8)
-                    .foregroundColor(TBColor.grayscale.levels[1])
+                    .foregroundColor(TBColor.grayscale._5)
                     .frame(maxWidth: .infinity)
                     .frame(height: 398)
                     .overlay(
                         VStack(spacing: 12) {
                             Text(self.term.getTitle())
                                 .font(TBFont.title_3)
-                                .foregroundColor(TBColor.grayscale.levels[9])
+                                .foregroundColor(TBColor.grayscale._80)
                                 .padding(.top, 24)
                             ScrollView {
                                 Text(self.term.getDescription())
                                 .font(TBFont.caption_1)
-                                .foregroundColor(TBColor.grayscale.levels[7])
+                                .foregroundColor(TBColor.grayscale._60)
                                 .lineSpacing(18 / 12)
                                 .padding(.horizontal, 16)
                                 .padding(.bottom, 24)
@@ -52,14 +52,14 @@ struct SignupTermDetailModal: View {
                 }) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 19)
-                            .foregroundColor(TBColor.grayscale.levels[9])
+                            .foregroundColor(TBColor.grayscale._80)
                         
-                        HStack(spacing: 6.78) {
+                        HStack(spacing: 4) {
                             TBIcon.cancel.iconSize(size: .tiny)
-                                .foregroundColor(TBColor.grayscale.levels[1])
+                                .foregroundColor(TBColor.grayscale._5)
                             Text("닫기")
                                 .font(TBFont.title_4)
-                                .foregroundColor(TBColor.grayscale.levels[1])
+                                .foregroundColor(TBColor.grayscale._5)
                         }
                     }
                 }

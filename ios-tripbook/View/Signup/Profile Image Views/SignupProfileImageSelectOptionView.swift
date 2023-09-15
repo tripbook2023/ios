@@ -33,17 +33,17 @@ struct SignupProfileImageSelectOptionView: View {
                         ZStack {
                             Rectangle()
                                 .frame(height: 56)
-                                .foregroundColor(TBColor.grayscale.levels[2])
+                                .foregroundColor(TBColor.grayscale._10)
                             
                             Text("앨범에서 사진 선택")
                                 .font(TBFont.body_4)
-                                .foregroundColor(TBColor.grayscale.levels[10])
+                                .foregroundColor(TBColor.grayscale._90)
                         }
                     }
                     
                     Divider()
                         .frame(minHeight: 1)
-                        .overlay(TBColor.grayscale.levels[4])
+                        .overlay(TBColor.grayscale._20)
                     
                     Button(action: {
                         self.delgate.didTapCameraButton()
@@ -51,17 +51,17 @@ struct SignupProfileImageSelectOptionView: View {
                         ZStack {
                             Rectangle()
                                 .frame(height: 56)
-                                .foregroundColor(TBColor.grayscale.levels[2])
+                                .foregroundColor(TBColor.grayscale._10)
                             
                             Text("지금 사진 촬영")
                                 .font(TBFont.body_4)
-                                .foregroundColor(TBColor.grayscale.levels[10])
+                                .foregroundColor(TBColor.grayscale._90)
                         }
                     }
                     
                     Divider()
                         .frame(minHeight: 1)
-                        .overlay(TBColor.grayscale.levels[4])
+                        .overlay(TBColor.grayscale._20)
                     
                     Button(action: {
                         self.delgate.didTapUseDefaultImageButton()
@@ -69,11 +69,11 @@ struct SignupProfileImageSelectOptionView: View {
                         ZStack {
                             Rectangle()
                                 .frame(height: 56)
-                                .foregroundColor(TBColor.grayscale.levels[2])
+                                .foregroundColor(TBColor.grayscale._10)
                             
                             Text("기본 이미지 사용")
                                 .font(TBFont.body_4)
-                                .foregroundColor(TBColor.grayscale.levels[10])
+                                .foregroundColor(TBColor.grayscale._90)
                         }
                     }
                 }.clipShape(RoundedRectangle(cornerRadius: 8))
@@ -84,11 +84,11 @@ struct SignupProfileImageSelectOptionView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 19)
                             .frame(height: 38)
-                            .foregroundColor(TBColor.grayscale.levels[10])
+                            .foregroundColor(TBColor.grayscale._90)
                         
                         Text("취소")
                             .font(TBFont.caption_1)
-                            .foregroundColor(TBColor.grayscale.levels[0])
+                            .foregroundColor(.white)
                     }
                 }
             }

@@ -42,7 +42,7 @@ public struct TBTextField: View {
                     .padding(.vertical, 14)
                     .background(Color.clear)
                     .font(TBFont.body_4)
-                    .foregroundColor(!self.text.isEmpty || self.isFocused ? TBColor.grayscale.levels[10] : TBColor.grayscale.levels[3])
+                    .foregroundColor(!self.text.isEmpty || self.isFocused ? TBColor.grayscale._90 : TBColor.grayscale._20)
                     .autocorrectionDisabled(true)
                     .onSubmit {
                         self.onSubmitEvent()
@@ -53,14 +53,14 @@ public struct TBTextField: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 20, height: 20)
-                            .foregroundColor(TBColor.primary.main)
+                            .foregroundColor(TBColor.primary._50)
                     } else {
                         Button(action: {
                             self.text = ""
                         }) {
                             ZStack {
                                 Circle()
-                                    .foregroundColor(TBColor.grayscale.levels[2])
+                                    .foregroundColor(TBColor.grayscale._20)
                                     
                                 TBIcon.cancel.iconSize(size: .tiny)
                                     .foregroundColor(.white)
@@ -76,8 +76,8 @@ public struct TBTextField: View {
                 .background((!self.text.isEmpty && (self.isValid != nil && !self.isValid!)) ?
                             TBColor.state.warning :
                                 (!self.text.isEmpty || self.isFocused) ?
-                            TBColor.grayscale.levels[9] :
-                                TBColor.grayscale.levels[2]
+                            TBColor.grayscale._80 :
+                                TBColor.grayscale._10
                 )
             
             if self.warningMessage != nil && !self.text.isEmpty && (self.isValid != nil && !self.isValid!) {

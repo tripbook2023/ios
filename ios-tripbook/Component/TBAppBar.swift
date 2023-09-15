@@ -30,13 +30,13 @@ public struct TBAppBar: View {
                     self.onClickedBackButton()
                 }) {
                     TBIcon.before.iconSize(size: .medium)
-                }.foregroundColor(TBColor.grayscale.levels[10])
+                }.foregroundColor(TBColor.grayscale._90)
                 Spacer()
             }
             
             Text(self.title)
                 .font(TBFont.body_3)
-                .foregroundColor(TBColor.grayscale.levels[9])
+                .foregroundColor(TBColor.grayscale._80)
         }.frame(height: 48)
     }
 }

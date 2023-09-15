@@ -12,24 +12,25 @@ import SwiftUI
 /// - Date: 2023/05/16
 struct TravelNewsHeaderView: View {
     var body: some View {
-        ZStack {
-            HStack {
-                Text("여행소식")
-                    .font(.custom("NotoSansKR-Bold", size: 15))
-            }
+        HStack(spacing: 16) {
+            Image("Logo/Black")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100)
             
-            HStack {
-                Spacer()
-                NavigationLink(destination: HomeSearchView()) {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.primary)
-                }
-                NavigationLink(destination: EmptyView()) {
-                    Image(systemName: "slider.horizontal.3")
-                        .foregroundColor(.primary)
-                }
-            }.padding(.horizontal)
+            Spacer()
+            
+            NavigationLink(destination: HomeSearchView()) {
+                TBIcon.search.iconSize(size: .medium)
+                    .foregroundColor(TBColor.grayscale._90)
+            }
+            NavigationLink(destination: NotificationView()) {
+                TBIcon.bell.iconSize(size: .medium)
+                    .foregroundColor(TBColor.grayscale._90)
+            }
         }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
     }
 }
 

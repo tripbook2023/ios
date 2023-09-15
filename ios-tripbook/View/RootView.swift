@@ -31,13 +31,6 @@ struct RootView: View {
                     }
                     .tag(RootViewModel.TabType.home)
                 
-                TravelReportView()
-                    .tabItem {
-                        Image(systemName: "square.and.pencil")
-                        Text("여행기록")
-                    }
-                    .tag(RootViewModel.TabType.travelReport)
-                
                 RegisterTravelReportView()
                     .tabItem {
                         Image(systemName: "plus.circle")

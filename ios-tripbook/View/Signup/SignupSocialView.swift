@@ -26,7 +26,7 @@ struct SignupSocialView: View {
                     .frame(width: 134, height: 38)
                 Text("내 손안에 특별한 여행북")
                     .font(TBFont.body_4)
-                    .foregroundColor(TBColor.grayscale.levels[6])
+                    .foregroundColor(TBColor.grayscale._50)
                 
                 Spacer().frame(height: 226)
                 
@@ -50,9 +50,9 @@ struct SignupSocialView: View {
                         .frame(height: 52)
                         .background(
                             RoundedRectangle(cornerRadius: 12)
-                                .foregroundColor(Color(red: 254 / 255, green: 229 / 255, blue: 0 / 255))
+                                .foregroundColor(.init(rgb: .init(red: 254, green: 229, blue: 0)))
                         )
-                        .foregroundColor(TBColor.grayscale.levels[10])
+                        .foregroundColor(.black)
                     }
                     
                     ZStack {

@@ -46,7 +46,7 @@ struct SignupTermsView: View {
                         
                         Text("전체동의")
                             .font(TBFont.title_2)
-                            .foregroundColor(TBColor.grayscale.levels[8])
+                            .foregroundColor(TBColor.grayscale._70)
                         
                         Spacer()
                     }
@@ -55,7 +55,7 @@ struct SignupTermsView: View {
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .foregroundColor(TBColor.grayscale.levels[1])
+                        .foregroundColor(TBColor.grayscale._5)
                 )
                 .padding(.horizontal, 20)
                 .padding(.bottom, 32)
@@ -73,7 +73,7 @@ struct SignupTermsView: View {
                                     
                                     Text("(\(type.isRequired() ? "필수" : "선택")) \(type.getTitle())")
                                         .font(TBFont.body_3)
-                                        .foregroundColor(TBColor.grayscale.levels[7])
+                                        .foregroundColor(TBColor.grayscale._60)
                                 }
                             }
                             
@@ -83,7 +83,7 @@ struct SignupTermsView: View {
                                 self.viewModel.didTapShowModalButton(type)
                             }) {
                                 TBIcon.next.iconSize(size: .small)
-                            }.foregroundColor(TBColor.grayscale.levels[4])
+                            }.foregroundColor(TBColor.grayscale._30)
                         }
                     }
                 }.padding(.horizontal, 36)

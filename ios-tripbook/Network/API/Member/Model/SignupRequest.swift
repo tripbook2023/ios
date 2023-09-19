@@ -6,16 +6,27 @@
 //
 
 import Foundation
-import UIKit
 
-struct SignupRequest {
+struct SignupRequest: Requestable {
     let name: String
     let email: String
-    let imageFile: UIImage?
     let termsOfService: Bool
     let termsOfPrivacy: Bool
     let termsOfLocation: Bool
     let marketingConsent: Bool
     let gender: String
     let birth: String
+    
+    var parameter: [String : Any] {
+        return [
+            "name": name,
+            "email": email,
+            "termsOfService": termsOfService,
+            "termsOfPrivacy": termsOfPrivacy,
+            "termsOfLocation": termsOfLocation,
+            "marketingConsent": marketingConsent,
+            "gender": gender,
+            "birth": birth
+        ]
+    }
 }

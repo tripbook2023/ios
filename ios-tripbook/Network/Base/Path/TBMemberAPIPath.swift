@@ -8,7 +8,8 @@
 import Foundation
 
 struct TBMemberAPIPath {
+    let update = "/member/update"
     let signup = "/member/signup"
     let nicknameValidate = "/member/nickname/validate"
-    let getUser = "/member/select"
+    let select = "/member/select"
 }

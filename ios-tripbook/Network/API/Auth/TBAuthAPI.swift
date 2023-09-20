@@ -8,20 +8,41 @@
 import Foundation
 import Alamofire
 
-struct TBAuthAPI {
-    static func authentication(_ headers: AuthenticationRequest, completion: @escaping (AuthenticationResult) -> Void) {
-        let router = TBAuthAPIRouter(path: TBAPIPath.Auth.authentication, headers: headers, apiType: .auth)
-        
-        TBAPIManager.shared.sessionManager.request(router).responseDecodable(of: AuthenticationResponse.self, completionHandler: { response in
-            switch response.result {
-            case .success(let value):
-                TokenStorage.shared.accessToken = value.accessToken
-                
-                completion(value.toDomain)
-            case .failure(let error):
-                print("authentication Error: \(error)")
-                break
-            }
-        })
+enum TBAuthAPI: APIable {
+    case authentication(accessToken: String)
+    
+    var baseURL: String {
+        TBAPIPath.base
+    }
+    
+    var path: String {
+        switch self {
+        case .authentication(_):
+            return TBAPIPath.Auth.authentication
+        }
+    }
+    
+    var method: HTTPMethod {
+        switch self {
+        case .authentication(_):
+            return .get
+        }
+    }
+    
+    var parameters: Parameters {
+        switch self {
+        case .authentication(_):
+            return [:]
+        }
+    }
+    
+    var headers: HTTPHeaders {
+        var headers = HTTPHeaders()
+        switch self {
+        case .authentication(let accessToken):
+            headers.add(.userAgent("IOS_APP"))
+            headers.add(.authorization(bearerToken: accessToken))
+        }
+        return headers
     }
 }

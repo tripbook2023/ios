@@ -31,7 +31,6 @@
 		853EA9262A46FC43001890DE /* TBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853EA9252A46FC43001890DE /* TBAPIManager.swift */; };
 		853EA9292A472888001890DE /* TBAuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853EA9282A472888001890DE /* TBAuthInterceptor.swift */; };
 		853EA92B2A476841001890DE /* TBAPIEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853EA92A2A476841001890DE /* TBAPIEventLogger.swift */; };
-		853EA92D2A4771B4001890DE /* TBAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853EA92C2A4771B4001890DE /* TBAPIRouter.swift */; };
 		853EA92F2A480D05001890DE /* TBAPIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853EA92E2A480D05001890DE /* TBAPIPath.swift */; };
 		853EA9322A480D4C001890DE /* TBMemberAPIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853EA9312A480D4C001890DE /* TBMemberAPIPath.swift */; };
 		853EA9342A480E64001890DE /* TBAuthAPIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853EA9332A480E64001890DE /* TBAuthAPIPath.swift */; };
@@ -45,7 +44,6 @@
 		85569CA62A4F8EC000515DE3 /* TBAuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CA52A4F8EC000515DE3 /* TBAuthAPI.swift */; };
 		85569CA92A4FFC7500515DE3 /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CA82A4FFC7500515DE3 /* AuthenticationRequest.swift */; };
 		85569CAB2A4FFD5700515DE3 /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CAA2A4FFD5700515DE3 /* AuthenticationResponse.swift */; };
-		85569CAE2A4FFECF00515DE3 /* TBAuthAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CAD2A4FFECF00515DE3 /* TBAuthAPIRouter.swift */; };
 		85569CB02A50084000515DE3 /* AuthenticationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CAF2A50084000515DE3 /* AuthenticationResult.swift */; };
 		85569CB22A5071B400515DE3 /* SignupCompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CB12A5071B400515DE3 /* SignupCompletionView.swift */; };
 		85569CB42A50780400515DE3 /* SignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85569CB32A50780400515DE3 /* SignupRequest.swift */; };
@@ -161,7 +159,6 @@
 		853EA9252A46FC43001890DE /* TBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAPIManager.swift; sourceTree = "<group>"; };
 		853EA9282A472888001890DE /* TBAuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAuthInterceptor.swift; sourceTree = "<group>"; };
 		853EA92A2A476841001890DE /* TBAPIEventLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAPIEventLogger.swift; sourceTree = "<group>"; };
-		853EA92C2A4771B4001890DE /* TBAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAPIRouter.swift; sourceTree = "<group>"; };
 		853EA92E2A480D05001890DE /* TBAPIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAPIPath.swift; sourceTree = "<group>"; };
 		853EA9312A480D4C001890DE /* TBMemberAPIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBMemberAPIPath.swift; sourceTree = "<group>"; };
 		853EA9332A480E64001890DE /* TBAuthAPIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAuthAPIPath.swift; sourceTree = "<group>"; };
@@ -176,7 +173,6 @@
 		85569CA52A4F8EC000515DE3 /* TBAuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAuthAPI.swift; sourceTree = "<group>"; };
 		85569CA82A4FFC7500515DE3 /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
 		85569CAA2A4FFD5700515DE3 /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
-		85569CAD2A4FFECF00515DE3 /* TBAuthAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBAuthAPIRouter.swift; sourceTree = "<group>"; };
 		85569CAF2A50084000515DE3 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
 		85569CB12A5071B400515DE3 /* SignupCompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupCompletionView.swift; sourceTree = "<group>"; };
 		85569CB32A50780400515DE3 /* SignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequest.swift; sourceTree = "<group>"; };
@@ -458,8 +454,6 @@
 		85569CAC2A4FFEB500515DE3 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				853EA92C2A4771B4001890DE /* TBAPIRouter.swift */,
-				85569CAD2A4FFECF00515DE3 /* TBAuthAPIRouter.swift */,
 				85569CB72A507B0400515DE3 /* TBSignupAPIRouter.swift */,
 			);
 			path = Router;
@@ -911,7 +905,6 @@
 				853EA9262A46FC43001890DE /* TBAPIManager.swift in Sources */,
 				85F03BE82A3EE4C900A0B931 /* SignupTermDetailModal.swift in Sources */,
 				85A6B1422A5C55E70050FF68 /* TBShadow.swift in Sources */,
-				853EA92D2A4771B4001890DE /* TBAPIRouter.swift in Sources */,
 				85361DB72A0FC13600B48B55 /* HomeTravelNewsItemView.swift in Sources */,
 				853EA93F2A481489001890DE /* NicknameValidationResponse.swift in Sources */,
 				85F02B5429F6913F008DABCE /* ProfileView.swift in Sources */,
@@ -921,7 +914,6 @@
 				85E8CA982A39A68900EBDE7F /* SignupProfileInfoView.swift in Sources */,
 				9B026BF42AB85A9000F6C81C /* APIManagerable.swift in Sources */,
 				85E8CA962A39A65400EBDE7F /* SignupProfileImageView.swift in Sources */,
-				85569CAE2A4FFECF00515DE3 /* TBAuthAPIRouter.swift in Sources */,
 				8527A5792A036786003819B1 /* TravelReportItemViewModel.swift in Sources */,
 				9B6C9FBB2AAEE11C00206AFC /* RequestEditorBannerView.swift in Sources */,
 				8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */,

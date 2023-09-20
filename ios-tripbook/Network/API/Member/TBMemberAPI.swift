@@ -9,10 +9,10 @@ import Foundation
 import Alamofire
 
 enum TBMemberAPI: APIable {
-    case update(Requestable)
-    case signup(Requestable)
+    case update(request: Requestable)
+    case signup(request: Requestable)
     case select
-    case nicknameValidate(String)
+    case nicknameValidate(name: String)
     
     
     var baseURL: String {

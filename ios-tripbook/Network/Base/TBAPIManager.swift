@@ -37,7 +37,7 @@ extension TBAPIManager {
     
     private func dataRequest(_ api: APIable) throws -> DataRequest {
         guard let url = URL(string: "\(api.baseURL)/\(api.path)") else {
-            fatalError("")
+            throw TBNetworkError.createURLError
         }
         
         return session.request(
@@ -83,7 +83,7 @@ extension TBAPIManager {
         withName: ImageUploadName
     ) throws -> UploadRequest {
         guard let url = URL(string: "\(api.baseURL)/\(api.path)") else {
-            fatalError("")
+            throw TBNetworkError.createURLError
         }
         
         return session.upload(

@@ -121,6 +121,7 @@
 		9B6C9FBE2AAEE11C00206AFC /* RequestEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C9FB92AAEE11C00206AFC /* RequestEditorView.swift */; };
 		9B6C9FBF2AAEE11C00206AFC /* RequestEditorResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C9FBA2AAEE11C00206AFC /* RequestEditorResultView.swift */; };
 		9B8964B32AAB02C100B6E3CA /* TBImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8964B22AAB02C100B6E3CA /* TBImagePicker */; };
+		9BF5F6BD2ABC244E007E2063 /* TBNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +249,7 @@
 		9B6C9FB82AAEE11C00206AFC /* EditorBenefitsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorBenefitsView.swift; sourceTree = "<group>"; };
 		9B6C9FB92AAEE11C00206AFC /* RequestEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestEditorView.swift; sourceTree = "<group>"; };
 		9B6C9FBA2AAEE11C00206AFC /* RequestEditorResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestEditorResultView.swift; sourceTree = "<group>"; };
+		9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBNetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +277,7 @@
 		85338E1B29F81DB300E87792 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				9BF5F6BB2ABC2436007E2063 /* Error */,
 				85A6B1332A58367A0050FF68 /* TBColorPalette.swift */,
 				85A6B1312A58367A0050FF68 /* TBFont.swift */,
 				85A6B1322A58367A0050FF68 /* TBIcon.swift */,
@@ -696,6 +699,14 @@
 			path = RequestEditor;
 			sourceTree = "<group>";
 		};
+		9BF5F6BB2ABC2436007E2063 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -845,6 +856,7 @@
 				853EA92B2A476841001890DE /* TBAPIEventLogger.swift in Sources */,
 				85361DC12A0FFE1800B48B55 /* ToggleButton.swift in Sources */,
 				85C35B792A165CB000DB8E46 /* DocumentActionBar.swift in Sources */,
+				9BF5F6BD2ABC244E007E2063 /* TBNetworkError.swift in Sources */,
 				85569CB02A50084000515DE3 /* AuthenticationResult.swift in Sources */,
 				85C35B752A16594500DB8E46 /* DocumentModel.swift in Sources */,
 				85A6B13E2A58368C0050FF68 /* TBAppBar.swift in Sources */,

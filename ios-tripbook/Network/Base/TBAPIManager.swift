@@ -53,35 +53,23 @@ extension TBAPIManager {
 // MARK: - Upload
 
 extension TBAPIManager {
-    func upload<T: Decodable>(
-        _ api: APIable,
-        uploadImages: [Data],
-        withName: ImageUploadName,
-        type: T.Type
+    func upload<T: Decodable>(_ api: APIable, type: T.Type
     ) async throws -> T {
-        let data = try await upload(api, uploadImages: uploadImages, withName: withName)
+        let data = try await upload(api)
         let result = try JSONDecoder().decode(type, from: data)
         
         return result
     }
     
-    func upload(
-        _ api: APIable,
-        uploadImages: [Data],
-        withName: ImageUploadName
-    ) async throws -> Data {
-        let dataRequest = try uploadRequest(api, uploadImages: uploadImages, withName: withName)
+    func upload(_ api: APIable) async throws -> Data {
+        let dataRequest = try uploadRequest(api)
         let result = dataRequest
             .serializingResponse(using: .data)
         
         return try await result.value
     }
     
-    private func uploadRequest(
-        _ api: APIable,
-        uploadImages: [Data],
-        withName: ImageUploadName
-    ) throws -> UploadRequest {
+    private func uploadRequest(_ api: APIable) throws -> UploadRequest {
         guard let url = URL(string: "\(api.baseURL)/\(api.path)") else {
             throw TBNetworkError.createURLError
         }
@@ -91,9 +79,12 @@ extension TBAPIManager {
                 for (key, value) in api.parameters {
                     multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
                 }
-                uploadImages.forEach { image in
-                    multipartFormData.append(image, withName: withName.rawValue, fileName: "\(image).jpeg", mimeType: "image/jpeg")
+                for (key, value) in api.uploadImages ?? [:] {
+                    value.forEach { image in
+                        multipartFormData.append(image, withName: key.rawValue, fileName: "\(image).jpeg", mimeType: "image/jpeg")
+                    }
                 }
+
             },
             to: url,
             usingThreshold: .init(),

@@ -8,66 +8,71 @@
 import Foundation
 import Alamofire
 
-enum TBMemberAPI: APIable {
-    case update(request: Requestable)
-    case signup(request: Requestable)
-    case select
-    case nicknameValidate(name: String)
+struct TBMemberAPI: APIable {
+    var baseURL: String = TBAPIPath.base
+    var path: String
+    var method: HTTPMethod
+    var parameters: Parameters
+    var headers: HTTPHeaders
+    var uploadImages: [ImageUploadName : [Data]]
     
-    
-    var baseURL: String {
-        TBAPIPath.base
-    }
-    
-    var path: String {
-        switch self {
-        case .update:
-            return TBAPIPath.Member.update
-        case .signup:
-            return TBAPIPath.Member.signup
-        case .select:
-            return TBAPIPath.Member.select
-        case .nicknameValidate:
-            return TBAPIPath.Member.nicknameValidate
-        }
-    }
-    
-    var method: HTTPMethod {
-        switch self {
-        case .update:
-            return .post
-        case .signup:
-            return .post
-        case .select:
-            return .get
-        case .nicknameValidate:
-            return .get
-        }
-    }
-    
-    var parameters: Parameters {
-        switch self {
-        case .update(let request):
-            return request.parameter
-        case .signup(let request):
-            return request.parameter
-        case .select:
-            return [:]
-        case .nicknameValidate(let name):
-            return ["name": name]
-        }
-    }
-    
-    var headers: HTTPHeaders {
+    static func update(request: Requestable, images: [ImageUploadName : [Data]]) -> Self {
         var headers = HTTPHeaders()
         headers.add(.userAgent("IOS_APP"))
-        switch self {
-        case .update, .signup:
-            headers.add(.contentType("multipart/form-data"))
-        case .select, .nicknameValidate:
-            break
-        }
-        return headers
+        headers.add(.contentType("multipart/form-data"))
+        return TBMemberAPI(
+            path: TBAPIPath.Member.update,
+            method: .post,
+            parameters: request.parameter,
+            headers: headers,
+            uploadImages: images
+        )
     }
     
+    static func signup(request: Requestable, images: [ImageUploadName : [Data]]) -> Self {
+        var headers = HTTPHeaders()
+        headers.add(.userAgent("IOS_APP"))
+        headers.add(.contentType("multipart/form-data"))
+        return TBMemberAPI(
+            path: TBAPIPath.Member.signup,
+            method: .post,
+            parameters: request.parameter,
+            headers: headers,
+            uploadImages: images
+        )
+    }
+    
+    static func select() -> Self {
+        var headers = HTTPHeaders()
+        return TBMemberAPI(
+            path: TBAPIPath.Member.select,
+            method: .get,
+            parameters: [:],
+            headers: headers,
+            uploadImages: [:]
+        )
+    }
+    
+    static func nicknameValidate(name: String) -> Self {
+        var headers = HTTPHeaders()
+        return TBMemberAPI(
+            path: TBAPIPath.Member.nicknameValidate,
+            method: .get,
+            parameters: ["name": name.addingPercentEncodingForRFC3986() as Any],
+            headers: headers,
+            uploadImages: [:]
+        )
+    }
+    
+    
+}
+
+private extension String {
+    // percent encode by encoding except alphanumeric + unreserved special charcter(-._~/?)
+    func addingPercentEncodingForRFC3986() -> String? {
+        let unreserved = "-._~/?"
+        let allowed = NSMutableCharacterSet.alphanumeric()
+        allowed.addCharacters(in: unreserved)
+        return addingPercentEncoding(withAllowedCharacters: allowed as CharacterSet)
+    }
 }

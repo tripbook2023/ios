@@ -8,41 +8,23 @@
 import Foundation
 import Alamofire
 
-enum TBAuthAPI: APIable {
-    case authentication(accessToken: String)
+struct TBAuthAPI: APIable {
+    var baseURL: String = TBAPIPath.base
+    var path: String
+    var method: HTTPMethod
+    var parameters: Parameters
+    var headers: HTTPHeaders
+    var uploadImages: [ImageUploadName : [Data]] = [:]
     
-    var baseURL: String {
-        TBAPIPath.base
-    }
-    
-    var path: String {
-        switch self {
-        case .authentication(_):
-            return TBAPIPath.Auth.authentication
-        }
-    }
-    
-    var method: HTTPMethod {
-        switch self {
-        case .authentication(_):
-            return .get
-        }
-    }
-    
-    var parameters: Parameters {
-        switch self {
-        case .authentication(_):
-            return [:]
-        }
-    }
-    
-    var headers: HTTPHeaders {
+    static func authentication(accessToken: String) -> Self {
         var headers = HTTPHeaders()
-        switch self {
-        case .authentication(let accessToken):
-            headers.add(.userAgent("IOS_APP"))
-            headers.add(.authorization(bearerToken: accessToken))
-        }
-        return headers
+        headers.add(.userAgent("IOS_APP"))
+        headers.add(.authorization(bearerToken: accessToken))
+        return TBAuthAPI(
+            path: TBAPIPath.Auth.authentication,
+            method: .get,
+            parameters: [:],
+            headers: headers
+        )
     }
 }

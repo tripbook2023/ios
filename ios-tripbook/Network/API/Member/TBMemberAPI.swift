@@ -43,7 +43,7 @@ struct TBMemberAPI: APIable {
     }
     
     static func select() -> Self {
-        var headers = HTTPHeaders()
+        let headers = HTTPHeaders()
         return TBMemberAPI(
             path: TBAPIPath.Member.select,
             method: .get,
@@ -54,7 +54,7 @@ struct TBMemberAPI: APIable {
     }
     
     static func nicknameValidate(name: String) -> Self {
-        var headers = HTTPHeaders()
+        let headers = HTTPHeaders()
         return TBMemberAPI(
             path: TBAPIPath.Member.nicknameValidate,
             method: .get,

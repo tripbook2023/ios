@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 protocol SignupProfileInfoViewDelegate {
     func didTapGenderButton(_ gender: Gender)
@@ -118,9 +119,18 @@ struct SignupProfileInfoView: View {
             ) {
                 self.signupViewModel.registerUserGender(self.viewModel.gender!)
                 self.signupViewModel.registerUserBirth(self.viewModel.birth!)
-                self.signupViewModel.registerUser() {
-                    self.viewModel.didTapDoneButton()
-                }
+                _ = self.signupViewModel.registerUser()
+                    .sink { completion in
+                        switch completion {
+                        case .finished:
+                            break
+                        case .failure(let error):
+                            // 에러 핸들링
+                            print(error.localizedDescription)
+                        }
+                    } receiveValue: {
+                        self.viewModel.didTapDoneButton()
+                    }
             }
             
             NavigationLink(

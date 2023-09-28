@@ -61,7 +61,7 @@ struct TravelNewsEditorListDetailHeaderView: View {
             
             Spacer()
             
-            NavigationLink(destination: HomeSearchView()) {
+            NavigationLink(destination: EmptyView()) {
                 TBIcon.search.iconSize(size: .medium)
                     .foregroundColor(.black)
             }

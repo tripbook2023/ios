@@ -24,34 +24,46 @@ struct RootView: View {
     var body: some View {
         NavigationView {
             TabView(selection: self.$viewModel.selectedTab) {
-                HomeView(selectedTab: self.$viewModel.selectedTab)
+                
+                TravelNewsView()
                     .tabItem {
-                        Image(systemName: "house")
+                        if viewModel.selectedTab == .home {
+                            TBIcon.navigation.home.active
+                        } else {
+                            TBIcon.navigation.home.normal
+                        }
+                        
                         Text("홈")
                     }
                     .tag(RootViewModel.TabType.home)
                 
                 RegisterTravelReportView()
                     .tabItem {
-                        Image(systemName: "plus.circle")
+                        if viewModel.selectedTab == .registerTravelReport {
+                            TBIcon.navigation.plus.active
+                        } else {
+                            TBIcon.navigation.plus.normal
+                        }
+                        
                         Text("등록")
                     }
                     .tag(RootViewModel.TabType.registerTravelReport)
                 
-                TravelNewsView()
-                    .tabItem {
-                        Image(systemName: "book")
-                        Text("여행소식")
-                    }
-                    .tag(RootViewModel.TabType.travelNews)
-                
                 ProfileView()
                     .tabItem {
-                        Image(systemName: "person.circle")
+                        if viewModel.selectedTab == .profile {
+                            TBIcon.navigation.mypage.active
+                        } else {
+                            TBIcon.navigation.mypage.normal
+                        }
+                        
                         Text("내 정보")
                     }
                     .tag(RootViewModel.TabType.profile)
-            }.accentColor(.primary)
+            }.onAppear() {
+                UITabBar.appearance().barTintColor = .white
+            }
+            .accentColor(TBColor.primary._50)
         }.navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
     }

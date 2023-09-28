@@ -74,7 +74,7 @@ class SignupViewModel: ObservableObject {
             Task {
                 do {
                     let response = try await owner.apiManager.upload(
-                        TBMemberAPI.signup(request: request, images: [.imageFile: [imageData]]),
+                        TBMemberAPI.signup(request: request, images: ["imageFile": [imageData]]),
                         type: SignupResponse.self
                     )
                     owner.tokenStorage.setTokens(accessToken: response.accessToken, refreshToken: response.refreshToken)

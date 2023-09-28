@@ -14,7 +14,7 @@ struct TBAuthAPI: APIable {
     var method: HTTPMethod
     var parameters: Parameters
     var headers: HTTPHeaders
-    var uploadImages: [ImageUploadName : [Data]] = [:]
+    var uploadImages: [String : [Data]] = [:]
     
     static func authentication(accessToken: String) -> Self {
         var headers = HTTPHeaders()

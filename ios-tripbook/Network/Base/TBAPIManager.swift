@@ -79,9 +79,9 @@ extension TBAPIManager {
                 for (key, value) in api.parameters {
                     multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
                 }
-                for (key, value) in api.uploadImages ?? [:] {
+                for (key, value) in api.uploadImages {
                     value.forEach { image in
-                        multipartFormData.append(image, withName: key.rawValue, fileName: "\(image).jpeg", mimeType: "image/jpeg")
+                        multipartFormData.append(image, withName: key, fileName: "\(image).jpeg", mimeType: "image/jpeg")
                     }
                 }
 

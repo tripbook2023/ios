@@ -14,9 +14,9 @@ struct TBMemberAPI: APIable {
     var method: HTTPMethod
     var parameters: Parameters
     var headers: HTTPHeaders
-    var uploadImages: [ImageUploadName : [Data]]
+    var uploadImages: [String : [Data]]
     
-    static func update(request: Requestable, images: [ImageUploadName : [Data]]) -> Self {
+    static func update(request: Requestable, images: [String : [Data]]) -> Self {
         var headers = HTTPHeaders()
         headers.add(.userAgent("IOS_APP"))
         headers.add(.contentType("multipart/form-data"))
@@ -29,7 +29,7 @@ struct TBMemberAPI: APIable {
         )
     }
     
-    static func signup(request: Requestable, images: [ImageUploadName : [Data]]) -> Self {
+    static func signup(request: Requestable, images: [String : [Data]]) -> Self {
         var headers = HTTPHeaders()
         headers.add(.userAgent("IOS_APP"))
         headers.add(.contentType("multipart/form-data"))

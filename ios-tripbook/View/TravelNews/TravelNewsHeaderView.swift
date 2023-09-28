@@ -20,7 +20,7 @@ struct TravelNewsHeaderView: View {
             
             Spacer()
             
-            NavigationLink(destination: HomeSearchView()) {
+            NavigationLink(destination: EmptyView()) {
                 TBIcon.search.iconSize(size: .medium)
                     .foregroundColor(TBColor.grayscale._90)
             }

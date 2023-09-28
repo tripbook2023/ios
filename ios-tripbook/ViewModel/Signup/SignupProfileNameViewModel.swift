@@ -24,10 +24,16 @@ class SignupProfileNameViewModel: ObservableObject {
         }
     }
     
+    private let apiManager: APIManagerable
+    
     @Published var nicknameText: String = ""
     @Published var nicknameTextState: NicknameTextState = .None
     
     @Published var navigationTrigger: Bool = false
+    
+    init(apiManager: APIManagerable = TBAPIManager()) {
+        self.apiManager = apiManager
+    }
     
     func checkValidationNickname() {
         let regex = "[가-힣a-zA-Z0-9]"
@@ -59,11 +65,20 @@ extension SignupProfileNameViewModel: SignupProfileNameViewDelegate {
     
     func onSubmittedNicknameTextField() {
         if self.nicknameTextState == .None {
-            TBMemberAPI.validationNickname(.init(name: self.nicknameText)) { isValid in
-                if !isValid {
-                    self.nicknameTextState = .Duplicate
-                } else {
-                    self.nicknameTextState = .None
+            Task {
+                do {
+                    let isValid = try await apiManager.request(
+                        TBMemberAPI.nicknameValidate(name: nicknameText),
+                        type: NicknameValidationResponse.self
+                    ).toDomain
+                    
+                    if !isValid {
+                        nicknameTextState = .Duplicate
+                    } else {
+                        nicknameTextState = .None
+                    }
+                } catch {
+                    
                 }
             }
         }

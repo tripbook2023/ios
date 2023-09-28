@@ -7,8 +7,20 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class SignupViewModel: ObservableObject {
+    private let apiManager: APIManagerable
+    private let tokenStorage: TokenStorage
+    
+    init(
+        apiManager: APIManagerable = TBAPIManager(),
+        tokenStorage: TokenStorage = .shared
+    ) {
+        self.apiManager = apiManager
+        self.tokenStorage = tokenStorage
+    }
+    
     enum SocialLoginMethod {
         case KAKAO
         case APPLE
@@ -43,24 +55,35 @@ class SignupViewModel: ObservableObject {
         self.userData.birth = dateFormatter.string(from: birth)
     }
     
-    func registerUser(completion: @escaping () -> Void) {
+    func registerUser() -> AnyPublisher<Void, Error> {
         print("User: ", self.userData)
+        let request: SignupRequest = .init(
+            name: self.userData.name,
+            email: self.userData.email,
+            termsOfService: self.userData.terms[Term.Service.rawValue]!,
+            termsOfPrivacy: self.userData.terms[Term.PersonalInfo.rawValue]!,
+            termsOfLocation: self.userData.terms[Term.Location.rawValue]!,
+            marketingConsent: self.userData.terms[Term.Marketing.rawValue]!,
+            gender: self.userData.gender!.rawValue,
+            birth: self.userData.birth
+        )
         
-        TBMemberAPI.signup(
-            .init(
-                name: self.userData.name,
-                email: self.userData.email,
-                imageFile: self.userData.profileImage,
-                termsOfService: self.userData.terms[Term.Service.rawValue]!,
-                termsOfPrivacy: self.userData.terms[Term.PersonalInfo.rawValue]!,
-                termsOfLocation: self.userData.terms[Term.Location.rawValue]!,
-                marketingConsent: self.userData.terms[Term.Marketing.rawValue]!,
-                gender: self.userData.gender!.rawValue,
-                birth: self.userData.birth
-            )
-        ) {
-            completion()
-        }
+        return Future<Void, Error> { [weak self] promise in
+            guard let owner = self else { return }
+            guard let imageData = owner.userData.profileImage?.jpegData(compressionQuality: 0.5) else { return }
+            Task {
+                do {
+                    let response = try await owner.apiManager.upload(
+                        TBMemberAPI.signup(request: request, images: ["imageFile": [imageData]]),
+                        type: SignupResponse.self
+                    )
+                    owner.tokenStorage.setTokens(accessToken: response.accessToken, refreshToken: response.refreshToken)
+                    promise(.success(()))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }.eraseToAnyPublisher()
     }
 }
 

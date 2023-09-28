@@ -97,7 +97,7 @@ struct HomeViewProperties {
 /// - Author: 김민규
 /// - Date: 2023/05/01
 class HomeViewModel: ObservableObject {
-    var dataStorage = DataStorage.shared
+    @ObservedObject var dataStorage = DataStorage.shared
     
     @Binding var selectedTab: RootViewModel.TabType
     

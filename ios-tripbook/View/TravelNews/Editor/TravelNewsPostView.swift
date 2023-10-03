@@ -8,64 +8,120 @@
 import SwiftUI
 
 struct TravelNewsPostView: View {
+    @ObservedObject var viewModel = TravelNewsPostViewModel()
+    
     var deviceWidth: CGFloat {
         return UIScreen.main.bounds.width
     }
     
     @State var actionBarOffset: CGFloat = UIScreen.main.bounds.width/2
+    @FocusState private var focusedField: Field?
+    
+    enum Field: Hashable {
+        case title
+        case content
+    }
     
     var body: some View {
         
         VStack(spacing: 0) {
-            ScrollView {
-                VStack(spacing: 0) {
-                    TravelNewsPostHeaderView(isEnabledPostButton: .constant(false))
-                    
-                    ZStack(alignment: .bottom) {
-                        Image("")
-                            .resizable()
-                            .frame(height: 400)
-                            .aspectRatio(0.9375, contentMode: .fill)
-                            .background(TBColor.grayscale._90.opacity(0.3))
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(spacing: 0) {
+                        TravelNewsPostHeaderView(isEnabledPostButton: .constant(false))
                         
-                        Button(action: {
+                        ZStack(alignment: .bottom) {
+                            Image("")
+                                .resizable()
+                                .frame(height: 400)
+                                .aspectRatio(0.9375, contentMode: .fill)
+                                .background(TBColor.grayscale._90.opacity(0.3))
                             
-                        }) {
-                            VStack(spacing: 8) {
-                                TBIcon.picture.iconSize(size: .big)
-                                    .foregroundColor(TBColor.grayscale._1)
+                            Button(action: {
                                 
-                                Text("사진을 등록해주세요")
-                                    .font(.suit(.regular, size: 10))
-                                    .foregroundColor(TBColor.grayscale._5)
+                            }) {
+                                VStack(spacing: 8) {
+                                    TBIcon.picture.iconSize(size: .big)
+                                        .foregroundColor(TBColor.grayscale._1)
+                                    
+                                    Text("사진을 등록해주세요")
+                                        .font(.suit(.regular, size: 10))
+                                        .foregroundColor(TBColor.grayscale._5)
+                                }
+                            }.padding(.bottom, 161)
+                            
+                            VStack(spacing: 16) {
+                                TextField("제목을 입력해주세요", text: $viewModel.title)
+                                    .lineLimit(2)
+                                    .font(TBFont.heading_1)
+                                    .foregroundColor(.white)
+                                    .focused($focusedField, equals: .title)
+                                    .shadow(TBShadow._1)
+                                    .onSubmit {
+                                        focusedField = .content
+                                    }
+                                
+                                HStack(spacing: 1) {
+                                    Spacer()
+                                    
+                                    (Text("\(viewModel.title.count)").foregroundColor(TBColor.primary._20) +
+                                     Text("/30").foregroundColor(TBColor.grayscale._5))
+                                    .font(.suit(.medium, size: 10))
+                                }.padding(.vertical, 10)
                             }
-                        }.padding(.bottom, 161)
+                            .padding(.horizontal, 20)
+                            .id(Field.title)
+                            .onChange(of: viewModel.title) { newTitle in
+                                if newTitle.count > 30 {
+                                    let editiedTitle = String(newTitle.prefix(30))
+                                    viewModel.title = editiedTitle
+                                }
+                            }
+                        }
                         
-                        VStack(spacing: 16) {
-                            TextField("제목을 입력해주세요", text: .constant(""))
-                                .lineLimit(2)
-                                .font(TBFont.heading_1)
-                                .foregroundColor(.white)
-                                .shadow(TBShadow._1)
+                        VStack(spacing: 0) {
+                            // add location
                             
-                            HStack(spacing: 1) {
-                                Spacer()
+                            ZStack(alignment: .topLeading) {
                                 
-                                (Text("0").foregroundColor(TBColor.primary._20) +
-                                 Text("/30").foregroundColor(TBColor.grayscale._5))
-                                .font(.suit(.medium, size: 10))
-                            }.padding(.vertical, 10)
+                                if viewModel.textContent.count == 0 {
+                                    Text("최소 800자 이상의 글자수를 작성해주세요")
+                                        .font(TBFont.body_4)
+                                        .padding(.top, 4)
+                                        .padding(.leading, 4)
+                                }
+                                
+                                TextEditor(text: $viewModel.textContent)
+                                    .font(TBFont.body_4)
+                                    .frame(minHeight: 200)
+                                    .focused($focusedField, equals: .content)
+                                    .overlay(alignment: .topLeading) {
+                                        if viewModel.textContent.count == 0 {
+                                            Text("최소 800자 이상의 글자수를 작성해주세요")
+                                                .font(TBFont.body_4)
+                                                .foregroundColor(TBColor.grayscale._20)
+                                                .padding(.top, 8)
+                                                .padding(.leading, 4)
+                                                .onTapGesture {
+                                                    focusedField = .content
+                                                }
+                                        }
+                                    }
+                                
+                            }
+                            .padding(.top, 32)
+                            .id(Field.content)
                         }
                         .padding(.horizontal, 20)
                     }
-                    
-                    VStack(spacing: 0) {
-                        TextField("최소 800자 이상의 글자수를 작성해주세요", text: .constant(""))
-                            .padding(.top, 32)
-                            .font(TBFont.body_4)
-                    }.padding(.horizontal, 20)
+                }
+                .onChange(of: focusedField) { newFocusedField in
+                    withAnimation {
+                        proxy.scrollTo(newFocusedField, anchor: .center)
+                    }
                 }
             }
+
             
             decorationView
                 .ignoresSafeArea(edges: .top)
@@ -76,7 +132,7 @@ struct TravelNewsPostView: View {
         VStack(alignment: .center, spacing: 0) {
             HStack(spacing: 1) {
                 Spacer()
-                (Text("0").foregroundColor(TBColor.primary._70) +
+                (Text("\(viewModel.textContent.count)").foregroundColor(TBColor.primary._70) +
                  Text("/10,000").foregroundColor(TBColor.grayscale._20))
                 .font(.suit(.medium, size: 10))
             }
@@ -176,7 +232,7 @@ struct TravelNewsPostView: View {
                     .font(TBFont.body_4)
                     .foregroundColor(TBColor.grayscale._50)
             }
-
+            
             Button {
                 
             } label: {

@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct TravelNewsPostView: View {
+    var deviceWidth: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    @State var actionBarOffset: CGFloat = UIScreen.main.bounds.width/2
+    
     var body: some View {
         
         VStack(spacing: 0) {
             ScrollView {
                 VStack(spacing: 0) {
+                    TravelNewsPostHeaderView(isEnabledPostButton: .constant(false))
+                    
                     ZStack(alignment: .bottom) {
                         Image("")
                             .resizable()
@@ -59,80 +67,143 @@ struct TravelNewsPostView: View {
                 }
             }
             
-            VStack(spacing: 0) {
-                HStack(spacing: 1) {
-                    Spacer()
-                    (Text("0").foregroundColor(TBColor.primary._70) +
-                     Text("/10,000").foregroundColor(TBColor.grayscale._20))
-                    .font(.suit(.medium, size: 10))
-                }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 10)
-                
-                Divider()
-                    .frame(minHeight: 1)
-                    .overlay(TBColor.grayscale._5)
-                
-                HStack(spacing: 0) {
-                    Button(action: {
-                        
-                    }) {
-                        TBIcon.keyboard.iconSize(size: .medium)
-                            .foregroundColor(TBColor.grayscale._40)
-                    }
-                    
-                    Rectangle()
-                        .frame(width: 1, height: 24)
-                        .padding(.horizontal, 14)
-                        .foregroundColor(TBColor.grayscale._10)
-                    
-                    HStack(spacing: 20) {
-                        Button(action: {
-                            
-                        }) {
-                            TBIcon.txt.iconSize(size: .medium)
-                                .foregroundColor(TBColor.grayscale._40)
-                        }
-                        
-                        Button(action: {
-                            
-                        }) {
-                            TBIcon.picture.iconSize(size: .medium)
-                                .foregroundColor(TBColor.grayscale._40)
-                        }
-                        
-                        Button(action: {
-                            
-                        }) {
-                            TBIcon.location[0].iconSize(size: .medium)
-                                .foregroundColor(TBColor.grayscale._40)
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 16) {
-                        Text("임시 1")
-                            .font(TBFont.body_4)
-                            .foregroundColor(TBColor.grayscale._30)
-                        
-                        Button(action: {
-                            
-                        }) {
-                            Text("임시저장")
-                                .font(TBFont.body_4)
-                                .foregroundColor(TBColor.grayscale._30)
-                        }
-                    }
-                }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 12)
+            decorationView
+                .ignoresSafeArea(edges: .top)
+        }
+    }
+    
+    var decorationView: some View {
+        VStack(alignment: .center, spacing: 0) {
+            HStack(spacing: 1) {
+                Spacer()
+                (Text("0").foregroundColor(TBColor.primary._70) +
+                 Text("/10,000").foregroundColor(TBColor.grayscale._20))
+                .font(.suit(.medium, size: 10))
             }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            
+            Divider()
+                .frame(minHeight: 1)
+                .overlay(TBColor.grayscale._5)
+            HStack {
+                actionView
+                    .frame(width: deviceWidth)
+                
+                textDecorationView
+                    .frame(width: deviceWidth)
+            }
+            .offset(x: actionBarOffset)
+            
         }
-        .ignoresSafeArea(edges: .top)
-        .safeAreaInset(edge: .top) {
-            TravelNewsPostHeaderView(isEnabledPostButton: .constant(false))
+    }
+    
+    var actionView: some View {
+        HStack(spacing: 0) {
+            Button(action: {
+                
+            }) {
+                TBIcon.keyboard.iconSize(size: .medium)
+                    .foregroundColor(TBColor.grayscale._40)
+            }
+            
+            Rectangle()
+                .frame(width: 1, height: 24)
+                .padding(.horizontal, 14)
+                .foregroundColor(TBColor.grayscale._10)
+            
+            HStack(spacing: 20) {
+                Button(action: {
+                    withAnimation {
+                        actionBarOffset = -(deviceWidth / 2)
+                    }
+                }) {
+                    TBIcon.txt.iconSize(size: .medium)
+                        .foregroundColor(TBColor.grayscale._40)
+                }
+                
+                Button(action: {
+                    
+                }) {
+                    TBIcon.picture.iconSize(size: .medium)
+                        .foregroundColor(TBColor.grayscale._40)
+                }
+                
+                Button(action: {
+                    
+                }) {
+                    TBIcon.location[0].iconSize(size: .medium)
+                        .foregroundColor(TBColor.grayscale._40)
+                }
+            }
+            
+            Spacer()
+            
+            HStack(spacing: 16) {
+                Text("임시 1")
+                    .font(TBFont.body_4)
+                    .foregroundColor(TBColor.grayscale._30)
+                
+                Button(action: {
+                    
+                }) {
+                    Text("임시저장")
+                        .font(TBFont.body_4)
+                        .foregroundColor(TBColor.grayscale._30)
+                }
+            }
+            
         }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 20)
+    }
+    
+    var textDecorationView: some View {
+        HStack(spacing: 24) {
+            Button {
+                withAnimation {
+                    actionBarOffset = (deviceWidth / 2)
+                }
+            } label: {
+                TBIcon.before[1]
+                    .imageScale(.medium)
+            }
+            
+            Button {
+                
+            } label: {
+                Text("제목")
+                    .font(TBFont.body_4)
+                    .foregroundColor(TBColor.grayscale._50)
+            }
+
+            Button {
+                
+            } label: {
+                Text("소제목")
+                    .font(TBFont.body_4)
+                    .foregroundColor(TBColor.grayscale._50)
+            }
+            
+            Button {
+                
+            } label: {
+                Text("본문")
+                    .font(TBFont.body_4)
+                    .foregroundColor(TBColor.grayscale._50)
+            }
+            
+            Button {
+                
+            } label: {
+                Text("B")
+                    .font(TBFont.body_4)
+                    .foregroundColor(TBColor.grayscale._50)
+            }
+            
+            Spacer()
+        }
+        .padding(.horizontal, 20)
     }
 }
 
@@ -147,8 +218,8 @@ struct TravelNewsPostHeaderView: View {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    TBIcon.before.iconSize(size: .medium)
-                        .foregroundColor(.white)
+                    TBIcon.before[0].iconSize(size: .medium)
+                        .foregroundColor(.black)
                 }.shadow(TBShadow._1)
                 
                 Spacer()
@@ -159,7 +230,7 @@ struct TravelNewsPostHeaderView: View {
                 
                 Text("여행소식 작성")
                     .font(TBFont.body_3)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                 
                 Spacer()
             }

@@ -29,7 +29,8 @@ public struct TBAppBar: View {
                 Button(action: {
                     self.onClickedBackButton()
                 }) {
-                    TBIcon.before.iconSize(size: .medium)
+                    TBIcon.before[0]
+                        .iconSize(size: .medium)
                 }.foregroundColor(TBColor.grayscale._90)
                 Spacer()
             }

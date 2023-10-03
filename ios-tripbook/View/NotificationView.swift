@@ -133,7 +133,8 @@ struct NotificationHeaderView: View {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    TBIcon.before.iconSize(size: .medium)
+                    TBIcon.before[0]
+                        .iconSize(size: .medium)
                         .foregroundColor(TBColor.grayscale._90)
                 }
                 Spacer()

@@ -41,7 +41,7 @@ struct TravelNewsView: View {
                 }
                 
                 Button(action: {
-                    
+                    viewModel.isShowEditorView = true
                 }) {
                     Circle().foregroundColor(TBColor.primary._50)
                         .frame(width: 60, height: 60)
@@ -52,6 +52,9 @@ struct TravelNewsView: View {
                 }
                 .padding(.trailing, 20)
                 .padding(.bottom, 28)
+                .sheet(isPresented: $viewModel.isShowEditorView) {
+                    TravelNewsPostView()
+                }
             }
         }
     }

@@ -17,6 +17,8 @@ class TravelNewsViewModel: ObservableObject {
     /// 여행소식 게시물 LIst
     @Published var travelNewsList: [TravelNewsModel] = []
     
+    @Published var isShowEditorView: Bool = false
+    
     /// 현재 여행소식 게시물 List Page Number
     var currentPage = 0
     

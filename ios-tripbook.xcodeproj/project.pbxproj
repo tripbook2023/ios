@@ -106,7 +106,6 @@
 		9B0696122AC7E63B00006A84 /* TBTravelNewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696112AC7E63B00006A84 /* TBTravelNewsAPI.swift */; };
 		9B0696152AC7EBC000006A84 /* TBArticlesAPIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696142AC7EBC000006A84 /* TBArticlesAPIPath.swift */; };
 		9B0696192ACE7D0600006A84 /* TravelNewsSortPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696182ACE7D0600006A84 /* TravelNewsSortPopupView.swift */; };
-		9B06961B2ACE7F3500006A84 /* TravelNewsSortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06961A2ACE7F3500006A84 /* TravelNewsSortViewModel.swift */; };
 		9B4F1F9B2AB184CB000747A9 /* TravelNewsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4F1F9A2AB184CB000747A9 /* TravelNewsListItemView.swift */; };
 		9B6C9FBB2AAEE11C00206AFC /* RequestEditorBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C9FB62AAEE11C00206AFC /* RequestEditorBannerView.swift */; };
 		9B6C9FBC2AAEE11C00206AFC /* RequestEditorGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C9FB72AAEE11C00206AFC /* RequestEditorGuideView.swift */; };
@@ -228,7 +227,6 @@
 		9B0696112AC7E63B00006A84 /* TBTravelNewsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBTravelNewsAPI.swift; sourceTree = "<group>"; };
 		9B0696142AC7EBC000006A84 /* TBArticlesAPIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBArticlesAPIPath.swift; sourceTree = "<group>"; };
 		9B0696182ACE7D0600006A84 /* TravelNewsSortPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsSortPopupView.swift; sourceTree = "<group>"; };
-		9B06961A2ACE7F3500006A84 /* TravelNewsSortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsSortViewModel.swift; sourceTree = "<group>"; };
 		9B4F1F9A2AB184CB000747A9 /* TravelNewsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsListItemView.swift; sourceTree = "<group>"; };
 		9B6C9FB62AAEE11C00206AFC /* RequestEditorBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestEditorBannerView.swift; sourceTree = "<group>"; };
 		9B6C9FB72AAEE11C00206AFC /* RequestEditorGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestEditorGuideView.swift; sourceTree = "<group>"; };
@@ -435,7 +433,6 @@
 				8585F4752A13E91C00C0A678 /* TravelNewsViewModel.swift */,
 				8585F4792A15E89F00C0A678 /* TravelNewsItemViewModel.swift */,
 				8585F47B2A15ECBB00C0A678 /* MyTravelNewsItemViewModel.swift */,
-				9B06961A2ACE7F3500006A84 /* TravelNewsSortViewModel.swift */,
 			);
 			path = TravelNews;
 			sourceTree = "<group>";
@@ -877,7 +874,6 @@
 				9B0696152AC7EBC000006A84 /* TBArticlesAPIPath.swift in Sources */,
 				9B026BF42AB85A9000F6C81C /* APIManagerable.swift in Sources */,
 				85E8CA962A39A65400EBDE7F /* SignupProfileImageView.swift in Sources */,
-				9B06961B2ACE7F3500006A84 /* TravelNewsSortViewModel.swift in Sources */,
 				8527A5792A036786003819B1 /* TravelReportItemViewModel.swift in Sources */,
 				9B6C9FBB2AAEE11C00206AFC /* RequestEditorBannerView.swift in Sources */,
 				8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */,

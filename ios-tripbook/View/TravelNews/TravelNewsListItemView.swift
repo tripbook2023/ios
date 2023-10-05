@@ -16,14 +16,6 @@ struct TravelNewsListItemView: View {
                 .overlay(TBColor.grayscale._90.opacity(0.4))
                 .overlay(alignment: .top) {
                     HStack(spacing: 0) {
-                        Spacer()
-                        
-                        Button(action: {
-
-                        }) {
-                            TBIcon.bookmark.iconSize(size: .medium)
-                                .foregroundColor(.white)
-                        }
                     }.padding(.top, 12)
                     .padding(.horizontal, 12)
                 }
@@ -67,14 +59,6 @@ struct TravelNewsListItemView: View {
                             .font(TBFont.caption_1)
                             .foregroundColor(TBColor.grayscale._1)
                     }
-
-                    Button(action: {
-
-                    }) {
-                        TBIcon.share.iconSize(size: .medium)
-                            .foregroundColor(.white)
-                    }
-                    
                     Spacer()
                 }.padding(.top, 16)
             }

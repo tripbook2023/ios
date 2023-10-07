@@ -56,7 +56,6 @@ class SignupViewModel: ObservableObject {
     }
     
     func registerUser() -> AnyPublisher<Void, Error> {
-        print("User: ", self.userData)
         let request: SignupRequest = .init(
             name: self.userData.name,
             email: self.userData.email,
@@ -90,7 +89,5 @@ class SignupViewModel: ObservableObject {
 extension SignupViewModel: SignupSocialViewModelDelegate {
     func completionAuthentication(email: String) {
         self.registerUserEmail(email)
-        
-        print("Current User Data: ", self.userData)
     }
 }

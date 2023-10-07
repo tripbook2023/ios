@@ -70,7 +70,7 @@ class SignupViewModel: ObservableObject {
         
         return Future<Void, Error> { [weak self] promise in
             guard let owner = self else { return }
-            guard let imageData = owner.userData.profileImage?.jpegData(compressionQuality: 0.5) else { return }
+            let imageData = owner.userData.profileImage?.jpegData(compressionQuality: 0.5)
             Task {
                 do {
                     let response = try await owner.apiManager.upload(

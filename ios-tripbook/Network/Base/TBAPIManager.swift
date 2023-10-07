@@ -80,7 +80,9 @@ extension TBAPIManager {
                 }
                 for (key, value) in api.uploadImages {
                     value.forEach { image in
-                        multipartFormData.append(image, withName: key, fileName: "\(image).jpeg", mimeType: "image/jpeg")
+                        if let image = image {
+                            multipartFormData.append(image, withName: key, fileName: "\(image).jpeg", mimeType: "image/jpeg")
+                        }
                     }
                 }
 

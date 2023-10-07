@@ -14,7 +14,7 @@ protocol APIable {
     var method: HTTPMethod { get }
     var parameters: Parameters { get }
     var headers: HTTPHeaders { get }
-    var uploadImages: [String: [Data]] { get }
+    var uploadImages: [String: [Data?]] { get }
 }
 
 protocol Requestable: Encodable {

@@ -14,5 +14,5 @@ struct TBTravelNewsAPI: APIable {
     var method: HTTPMethod
     var parameters: Parameters
     var headers: HTTPHeaders
-    var uploadImages: [String : [Data]]
+    var uploadImages: [String : [Data?]]
 }

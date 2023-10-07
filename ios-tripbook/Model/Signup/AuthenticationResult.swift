@@ -15,5 +15,6 @@ struct AuthenticationResult {
     
     let email: String
     let accessToken: String?
+    let refreshToken: String?
     let status: AuthStatus
 }

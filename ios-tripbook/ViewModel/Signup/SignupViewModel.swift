@@ -56,7 +56,6 @@ class SignupViewModel: ObservableObject {
     }
     
     func registerUser() -> AnyPublisher<Void, Error> {
-        print("User: ", self.userData)
         let request: SignupRequest = .init(
             name: self.userData.name,
             email: self.userData.email,
@@ -70,7 +69,7 @@ class SignupViewModel: ObservableObject {
         
         return Future<Void, Error> { [weak self] promise in
             guard let owner = self else { return }
-            guard let imageData = owner.userData.profileImage?.jpegData(compressionQuality: 0.5) else { return }
+            let imageData = owner.userData.profileImage?.jpegData(compressionQuality: 0.5)
             Task {
                 do {
                     let response = try await owner.apiManager.upload(
@@ -90,7 +89,5 @@ class SignupViewModel: ObservableObject {
 extension SignupViewModel: SignupSocialViewModelDelegate {
     func completionAuthentication(email: String) {
         self.registerUserEmail(email)
-        
-        print("Current User Data: ", self.userData)
     }
 }

@@ -17,6 +17,7 @@ protocol SignupProfileInfoViewDelegate {
 struct SignupProfileInfoView: View {
     @ObservedObject var signupViewModel: SignupViewModel
     @ObservedObject var viewModel = SignupProfileInfoViewModel()
+    @State private var anyCancellable = Set<AnyCancellable>()
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -119,7 +120,8 @@ struct SignupProfileInfoView: View {
             ) {
                 self.signupViewModel.registerUserGender(self.viewModel.gender!)
                 self.signupViewModel.registerUserBirth(self.viewModel.birth!)
-                _ = self.signupViewModel.registerUser()
+                self.signupViewModel.registerUser()
+                    .receive(on: DispatchQueue.main)
                     .sink { completion in
                         switch completion {
                         case .finished:
@@ -130,7 +132,7 @@ struct SignupProfileInfoView: View {
                         }
                     } receiveValue: {
                         self.viewModel.didTapDoneButton()
-                    }
+                    }.store(in: &anyCancellable)
             }
             
             NavigationLink(

@@ -39,29 +39,25 @@ class SignupSocialViewModel: ObservableObject {
 extension SignupSocialViewModel: SignupSocialViewDelegate {
     func didTapAppleLoginButton(_ credential: ASAuthorizationCredential) async {
         let loginResult = await Auth0Service.appleAuthLogin(credential)
-        
+        await requestAuth(loginResult: loginResult)
+    }
+    
+    func didTapKakaoLoginButton() async {
+        let loginResult = await Auth0Service.kakaoAuthLogin()
+        await requestAuth(loginResult: loginResult)
+    }
+    
+    private func requestAuth(loginResult: Auth0Service.Auth0LoginModel) async {
         if loginResult.isSuccessed {
             guard let accessToken = loginResult.accessToken else { return }
             guard let authResult = try? await apiManager.request(
                 TBAuthAPI.authentication(accessToken: accessToken),
                 type: AuthenticationResponse.self
             ).toDomain else { return }
-            succeededAuthentication(authResult)
+            
+            DispatchQueue.main.async {
+                self.succeededAuthentication(authResult)
+            }
         }
-    }
-    
-    func didTapKakaoLoginButton() async {
-        let loginResult = await Auth0Service.kakaoAuthLogin()
-        
-        // Auth0Service Login이 성공했을 때
-        if loginResult.isSuccessed {
-            guard let accessToken = loginResult.accessToken else { return "" }
-            guard let authResult = try? await apiManager.request(
-                TBAuthAPI.authentication(accessToken: accessToken),
-                type: AuthenticationResponse.self
-            ).toDomain else { return "" }
-            succeededAuthentication(authResult)
-        }
-        return ""
     }
 }

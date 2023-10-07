@@ -19,16 +19,22 @@ class SignupSocialViewModel: ObservableObject {
     
     var delegate: SignupSocialViewModelDelegate?
     private let apiManager: APIManagerable
+    private let tokenStorage: TokenStorage
     
-    init(apiManager: APIManagerable = TBAPIManager()) {
+    init(
+        apiManager: APIManagerable = TBAPIManager(),
+        tokenStorage: TokenStorage = .shared
+    ) {
         self.apiManager = apiManager
+        self.tokenStorage = tokenStorage
     }
     
     func succeededAuthentication(_ result: AuthenticationResult) {
         switch result.status {
         case .normal:
-            self.goToRootNavigationTrigger = true
-            break
+            guard let accessToken = result.accessToken else { break }
+            guard let refreshToken = result.refreshToken else { break }
+            tokenStorage.setTokens(accessToken: accessToken, refreshToken: refreshToken)
         case .requiredAuth:
             self.delegate?.completionAuthentication(email: result.email)
             self.continueNavigationTrigger = true

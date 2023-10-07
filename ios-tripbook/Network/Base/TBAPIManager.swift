@@ -36,7 +36,7 @@ extension TBAPIManager {
     }
     
     private func dataRequest(_ api: APIable) throws -> DataRequest {
-        guard let url = URL(string: "\(api.baseURL)/\(api.path)") else {
+        guard let url = URL(string: "\(api.baseURL)\(api.path)") else {
             throw TBNetworkError.createURLError
         }
         
@@ -44,7 +44,6 @@ extension TBAPIManager {
             url,
             method: api.method,
             parameters: api.parameters,
-            encoding: JSONEncoding.default,
             headers: api.headers
         ).validate(statusCode: 200..<300)
     }
@@ -70,7 +69,7 @@ extension TBAPIManager {
     }
     
     private func uploadRequest(_ api: APIable) throws -> UploadRequest {
-        guard let url = URL(string: "\(api.baseURL)/\(api.path)") else {
+        guard let url = URL(string: "\(api.baseURL)\(api.path)") else {
             throw TBNetworkError.createURLError
         }
         

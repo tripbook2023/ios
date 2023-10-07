@@ -50,7 +50,7 @@ extension SignupSocialViewModel: SignupSocialViewDelegate {
         }
     }
     
-    func didTapKakaoLoginButton() async -> String {
+    func didTapKakaoLoginButton() async {
         let loginResult = await Auth0Service.kakaoAuthLogin()
         
         // Auth0Service Login이 성공했을 때

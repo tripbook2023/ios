@@ -32,6 +32,7 @@ class SignupSocialViewModel: ObservableObject {
     func succeededAuthentication(_ result: AuthenticationResult) {
         switch result.status {
         case .normal:
+            self.goToRootNavigationTrigger = true
             guard let accessToken = result.accessToken else { break }
             guard let refreshToken = result.refreshToken else { break }
             tokenStorage.setTokens(accessToken: accessToken, refreshToken: refreshToken)

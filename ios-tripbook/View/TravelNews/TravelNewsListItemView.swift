@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct TravelNewsListItemView: View {
+    private let item: TravelNewsModel
+    
+    init(item: TravelNewsModel) {
+        self.item = item
+    }
+    
     var body: some View {
         ZStack(alignment: .bottom) {
-            Image("SampleFeedThumbnail")
+            Image(uiImage: item.image)
                 .resizable()
                 .frame(height: 335)
                 .overlay(TBColor.grayscale._90.opacity(0.4))
@@ -23,12 +29,12 @@ struct TravelNewsListItemView: View {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 4) {
                     TBAvatar(type: .editor)
-                    Text("에디터D")
+                    Text(item.author.name)
                         .font(.suit(.medium, size: 12))
                         .foregroundColor(TBColor.grayscale._1)
                 }
 
-                Text("혼자 가기 좋은\n벚꽃여행지 BEST 5")
+                Text(item.title)
                     .font(TBFont.heading_2)
                     .foregroundColor(.white)
                     .padding(.top, 8)
@@ -42,7 +48,7 @@ struct TravelNewsListItemView: View {
                                 .foregroundColor(.white)
                         }
 
-                        Text("2")
+                        Text("\(item.likeCount)")
                             .font(TBFont.caption_1)
                             .foregroundColor(TBColor.grayscale._1)
                     }
@@ -55,7 +61,7 @@ struct TravelNewsListItemView: View {
                                 .foregroundColor(.white)
                         }
 
-                        Text("57")
+                        Text("\(item.commentCount)")
                             .font(TBFont.caption_1)
                             .foregroundColor(TBColor.grayscale._1)
                     }
@@ -70,6 +76,6 @@ struct TravelNewsListItemView: View {
 
 struct TravelNewsListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TravelNewsListItemView()
+        TravelNewsListItemView(item: SampleTravelNewsModel())
     }
 }

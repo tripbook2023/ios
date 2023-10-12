@@ -107,6 +107,7 @@
 		9B0696152AC7EBC000006A84 /* TBArticlesAPIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696142AC7EBC000006A84 /* TBArticlesAPIPath.swift */; };
 		9B0696192ACE7D0600006A84 /* TravelNewsSortPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696182ACE7D0600006A84 /* TravelNewsSortPopupView.swift */; };
 		9B06961E2AD7E4A100006A84 /* KaKaoLocationSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06961D2AD7E4A100006A84 /* KaKaoLocationSearchAPI.swift */; };
+		9B06961E2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06961D2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift */; };
 		9B0696202AD800F400006A84 /* KakaoAPIInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B06961F2AD800F400006A84 /* KakaoAPIInfo.plist */; };
 		9B0696232AD801C100006A84 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696222AD801C100006A84 /* Bundle+Extension.swift */; };
 		9B4F1F9B2AB184CB000747A9 /* TravelNewsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4F1F9A2AB184CB000747A9 /* TravelNewsListItemView.swift */; };
@@ -231,6 +232,7 @@
 		9B0696142AC7EBC000006A84 /* TBArticlesAPIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBArticlesAPIPath.swift; sourceTree = "<group>"; };
 		9B0696182ACE7D0600006A84 /* TravelNewsSortPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsSortPopupView.swift; sourceTree = "<group>"; };
 		9B06961D2AD7E4A100006A84 /* KaKaoLocationSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaKaoLocationSearchAPI.swift; sourceTree = "<group>"; };
+		9B06961D2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLocationSearchAPI.swift; sourceTree = "<group>"; };
 		9B06961F2AD800F400006A84 /* KakaoAPIInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = KakaoAPIInfo.plist; sourceTree = "<group>"; };
 		9B0696222AD801C100006A84 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		9B4F1F9A2AB184CB000747A9 /* TravelNewsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsListItemView.swift; sourceTree = "<group>"; };
@@ -659,7 +661,7 @@
 		9B06961C2AD7E47100006A84 /* LocationSearch */ = {
 			isa = PBXGroup;
 			children = (
-				9B06961D2AD7E4A100006A84 /* KaKaoLocationSearchAPI.swift */,
+				9B06961D2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift */,
 			);
 			path = LocationSearch;
 			sourceTree = "<group>";
@@ -878,7 +880,7 @@
 				85F31B5B2A543A3500493B5F /* GetUserResponse.swift in Sources */,
 				9B0696192ACE7D0600006A84 /* TravelNewsSortPopupView.swift in Sources */,
 				85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */,
-				9B06961E2AD7E4A100006A84 /* KaKaoLocationSearchAPI.swift in Sources */,
+				9B06961E2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift in Sources */,
 				858681BB2A62E3D300072B52 /* TravelNewsListView.swift in Sources */,
 				9B6C9FBE2AAEE11C00206AFC /* RequestEditorView.swift in Sources */,
 				853EA9242A46F98C001890DE /* Auth0Service.swift in Sources */,

@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import RichTextKit
 
 struct TravelNewsPostView: View {
-    @ObservedObject var viewModel = TravelNewsPostViewModel()
+    @ObservedObject var viewModel = TravelNewsPostViewModel(title: "", textContent: .init(string: "aa"))
+    
+    @StateObject var context = RichTextContext()
     
     var deviceWidth: CGFloat {
         return UIScreen.main.bounds.width
@@ -84,33 +87,21 @@ struct TravelNewsPostView: View {
                             
                             ZStack(alignment: .topLeading) {
                                 
-                                if viewModel.textContent.count == 0 {
+                                if viewModel.textContent.length == 0 {
                                     Text("최소 800자 이상의 글자수를 작성해주세요")
                                         .font(TBFont.body_4)
                                         .padding(.top, 4)
                                         .padding(.leading, 4)
                                 }
                                 
-                                TextEditor(text: $viewModel.textContent)
-                                    .font(TBFont.body_4)
-                                    .frame(minHeight: 200)
+                                RichTextEditor(text: $viewModel.textContent, context: context)
+                                    .frame(width: 300, height: 200)
                                     .focused($focusedField, equals: .content)
-                                    .overlay(alignment: .topLeading) {
-                                        if viewModel.textContent.count == 0 {
-                                            Text("최소 800자 이상의 글자수를 작성해주세요")
-                                                .font(TBFont.body_4)
-                                                .foregroundColor(TBColor.grayscale._20)
-                                                .padding(.top, 8)
-                                                .padding(.leading, 4)
-                                                .onTapGesture {
-                                                    focusedField = .content
-                                                }
-                                        }
-                                    }
                                 
                             }
                             .padding(.top, 32)
                             .id(Field.content)
+                            
                         }
                         .padding(.horizontal, 20)
                     }
@@ -132,7 +123,7 @@ struct TravelNewsPostView: View {
         VStack(alignment: .center, spacing: 0) {
             HStack(spacing: 1) {
                 Spacer()
-                (Text("\(viewModel.textContent.count)").foregroundColor(TBColor.primary._70) +
+                (Text("\(viewModel.textContent.length)").foregroundColor(TBColor.primary._70) +
                  Text("/10,000").foregroundColor(TBColor.grayscale._20))
                 .font(.suit(.medium, size: 10))
             }
@@ -226,7 +217,7 @@ struct TravelNewsPostView: View {
             }
             
             Button {
-                
+                context.fontSize = 20
             } label: {
                 Text("제목")
                     .font(TBFont.body_4)
@@ -234,7 +225,7 @@ struct TravelNewsPostView: View {
             }
             
             Button {
-                
+                context.fontSize = 16
             } label: {
                 Text("소제목")
                     .font(TBFont.body_4)
@@ -242,7 +233,7 @@ struct TravelNewsPostView: View {
             }
             
             Button {
-                
+                context.fontSize = 14
             } label: {
                 Text("본문")
                     .font(TBFont.body_4)
@@ -250,7 +241,7 @@ struct TravelNewsPostView: View {
             }
             
             Button {
-                
+                context.isBold.toggle()
             } label: {
                 Text("B")
                     .font(TBFont.body_4)
@@ -260,6 +251,7 @@ struct TravelNewsPostView: View {
             Spacer()
         }
         .padding(.horizontal, 20)
+                                                
     }
 }
 

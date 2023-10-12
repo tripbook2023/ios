@@ -110,6 +110,7 @@
 		9B06961E2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06961D2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift */; };
 		9B0696202AD800F400006A84 /* KakaoAPIInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B06961F2AD800F400006A84 /* KakaoAPIInfo.plist */; };
 		9B0696232AD801C100006A84 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696222AD801C100006A84 /* Bundle+Extension.swift */; };
+		9B0696262AD81D1500006A84 /* LocationSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696252AD81D1500006A84 /* LocationSearchResponse.swift */; };
 		9B4F1F9B2AB184CB000747A9 /* TravelNewsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4F1F9A2AB184CB000747A9 /* TravelNewsListItemView.swift */; };
 		9B6C9FBB2AAEE11C00206AFC /* RequestEditorBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C9FB62AAEE11C00206AFC /* RequestEditorBannerView.swift */; };
 		9B6C9FBC2AAEE11C00206AFC /* RequestEditorGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C9FB72AAEE11C00206AFC /* RequestEditorGuideView.swift */; };
@@ -235,6 +236,7 @@
 		9B06961D2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLocationSearchAPI.swift; sourceTree = "<group>"; };
 		9B06961F2AD800F400006A84 /* KakaoAPIInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = KakaoAPIInfo.plist; sourceTree = "<group>"; };
 		9B0696222AD801C100006A84 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		9B0696252AD81D1500006A84 /* LocationSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResponse.swift; sourceTree = "<group>"; };
 		9B4F1F9A2AB184CB000747A9 /* TravelNewsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsListItemView.swift; sourceTree = "<group>"; };
 		9B6C9FB62AAEE11C00206AFC /* RequestEditorBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestEditorBannerView.swift; sourceTree = "<group>"; };
 		9B6C9FB72AAEE11C00206AFC /* RequestEditorGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestEditorGuideView.swift; sourceTree = "<group>"; };
@@ -661,6 +663,7 @@
 		9B06961C2AD7E47100006A84 /* LocationSearch */ = {
 			isa = PBXGroup;
 			children = (
+				9B0696242AD81CD700006A84 /* Model */,
 				9B06961D2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift */,
 			);
 			path = LocationSearch;
@@ -672,6 +675,14 @@
 				9B0696222AD801C100006A84 /* Bundle+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		9B0696242AD81CD700006A84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9B0696252AD81D1500006A84 /* LocationSearchResponse.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9B6C9FB52AAEE11C00206AFC /* RequestEditor */ = {
@@ -824,6 +835,7 @@
 				85A6B1352A58367A0050FF68 /* TBIcon.swift in Sources */,
 				85A6B13D2A58368C0050FF68 /* TBPrimaryButton.swift in Sources */,
 				858681C12A63038000072B52 /* TBPopup.swift in Sources */,
+				9B0696262AD81D1500006A84 /* LocationSearchResponse.swift in Sources */,
 				858681BF2A62F56F00072B52 /* NotificationView.swift in Sources */,
 				8585F4782A13EF2400C0A678 /* MyTravelNewsItemView.swift in Sources */,
 				85A6B1482A6038D60050FF68 /* TravelNewsEditorListView.swift in Sources */,

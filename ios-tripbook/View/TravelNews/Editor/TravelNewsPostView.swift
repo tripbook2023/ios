@@ -101,10 +101,7 @@ struct TravelNewsPostView: View {
                                 
                             }
                             .padding(.top, 32)
-                            .id(Field.content) // TextEditor
-                            
-                            
-                            
+                            .id(Field.content)
                             
                         }
                         .padding(.horizontal, 20)
@@ -125,18 +122,23 @@ struct TravelNewsPostView: View {
     
     var decorationView: some View {
         VStack(alignment: .center, spacing: 0) {
+            
             HStack(spacing: 1) {
                 Spacer()
-                (Text("\(viewModel.textContent.length)").foregroundColor(TBColor.primary._70) +
-                 Text("/10,000").foregroundColor(TBColor.grayscale._20))
-                .font(.suit(.medium, size: 10))
+                
+                Text("\(viewModel.textContent.length)")
+                    .foregroundColor(TBColor.primary._70)
+ 
+                Text("/10,000")
+                    .foregroundColor(TBColor.grayscale._20)
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 10)
+            .font(.suit(.medium, size: 10))
+            .frame(width: (deviceWidth-20), height: 32)
             
             Divider()
                 .frame(minHeight: 1)
                 .overlay(TBColor.grayscale._5)
+            
             HStack {
                 actionView
                     .frame(width: deviceWidth)

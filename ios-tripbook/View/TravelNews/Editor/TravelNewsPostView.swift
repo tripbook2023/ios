@@ -82,6 +82,9 @@ struct TravelNewsPostView: View {
                         }
                         
                         VStack(spacing: 0) {
+                            Button("html") {
+                                viewModel.extract()
+                            }
                             // add location
                             
                             // TextEditor

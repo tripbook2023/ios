@@ -9,9 +9,7 @@ import SwiftUI
 import RichTextKit
 
 struct TravelNewsPostView: View {
-    @ObservedObject var viewModel = TravelNewsPostViewModel(title: "", textContent: .init(string: "aa"))
-    
-    @StateObject var context = RichTextContext()
+    @ObservedObject var viewModel = TravelNewsPostViewModel(title: "", textContent: .init(string: ""))
     
     var deviceWidth: CGFloat {
         return UIScreen.main.bounds.width
@@ -70,9 +68,10 @@ struct TravelNewsPostView: View {
                                     (Text("\(viewModel.title.count)").foregroundColor(TBColor.primary._20) +
                                      Text("/30").foregroundColor(TBColor.grayscale._5))
                                     .font(.suit(.medium, size: 10))
-                                }.padding(.vertical, 10)
+                                }
+                                .padding(.vertical, 10)
                             }
-                            .padding(.horizontal, 20)
+                            .frame(width: (deviceWidth-20))
                             .id(Field.title)
                             .onChange(of: viewModel.title) { newTitle in
                                 if newTitle.count > 30 {
@@ -85,22 +84,27 @@ struct TravelNewsPostView: View {
                         VStack(spacing: 0) {
                             // add location
                             
+                            // TextEditor
                             ZStack(alignment: .topLeading) {
+                                
+                                RichTextEditor(text: $viewModel.textContent, context: viewModel.context)
+                                    .frame(width: (deviceWidth-20), height: 200)
+                                    .focused($focusedField, equals: .content)
                                 
                                 if viewModel.textContent.length == 0 {
                                     Text("최소 800자 이상의 글자수를 작성해주세요")
                                         .font(TBFont.body_4)
+                                        .foregroundColor(TBColor.grayscale._20)
                                         .padding(.top, 4)
                                         .padding(.leading, 4)
                                 }
                                 
-                                RichTextEditor(text: $viewModel.textContent, context: context)
-                                    .frame(width: 300, height: 200)
-                                    .focused($focusedField, equals: .content)
-                                
                             }
                             .padding(.top, 32)
-                            .id(Field.content)
+                            .id(Field.content) // TextEditor
+                            
+                            
+                            
                             
                         }
                         .padding(.horizontal, 20)

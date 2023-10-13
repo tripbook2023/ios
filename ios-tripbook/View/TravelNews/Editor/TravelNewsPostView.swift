@@ -221,7 +221,7 @@ struct TravelNewsPostView: View {
             }
             
             Button {
-                context.fontSize = 20
+                viewModel.context.fontSize = 20
             } label: {
                 Text("제목")
                     .font(TBFont.body_4)
@@ -229,7 +229,7 @@ struct TravelNewsPostView: View {
             }
             
             Button {
-                context.fontSize = 16
+                viewModel.context.fontSize = 16
             } label: {
                 Text("소제목")
                     .font(TBFont.body_4)
@@ -237,7 +237,7 @@ struct TravelNewsPostView: View {
             }
             
             Button {
-                context.fontSize = 14
+                viewModel.context.fontSize = 14
             } label: {
                 Text("본문")
                     .font(TBFont.body_4)
@@ -245,7 +245,7 @@ struct TravelNewsPostView: View {
             }
             
             Button {
-                context.isBold.toggle()
+                viewModel.context.isBold.toggle()
             } label: {
                 Text("B")
                     .font(TBFont.body_4)

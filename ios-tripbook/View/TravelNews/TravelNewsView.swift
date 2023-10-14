@@ -34,7 +34,7 @@ struct TravelNewsView: View {
                             TravelNewsEditorListView()
                                 .padding(.top, 48)
                             
-                            TravelNewsListView()
+                            TravelNewsListView(viewModel: viewModel)
                                 .padding(.top, 56)
                         }.padding(.bottom)
                     }

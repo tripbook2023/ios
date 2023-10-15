@@ -98,14 +98,15 @@ struct TravelNewsPostView: View {
                                     Text("최소 800자 이상의 글자수를 작성해주세요")
                                         .font(TBFont.body_4)
                                         .foregroundColor(TBColor.grayscale._20)
-                                        .padding(.top, 4)
+                                        .padding(.top, 8)
                                         .padding(.leading, 4)
+                                        .onTapGesture {
+                                            focusedField = .content
+                                        }
                                 }
-                                
                             }
                             .padding(.top, 32)
                             .id(Field.content)
-                            
                         }
                         .padding(.horizontal, 20)
                     }
@@ -116,7 +117,6 @@ struct TravelNewsPostView: View {
                     }
                 }
             }
-
             
             decorationView
                 .ignoresSafeArea(edges: .top)

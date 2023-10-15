@@ -12,11 +12,12 @@ import RichTextKit
 class TravelNewsPostViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var textContent: NSAttributedString = .init(string: "")
-    @Published var context = RichTextContext()
+    @Published var context: RichTextContext
     
     init(title: String, textContent: NSAttributedString) {
         self.title = title
         self.textContent = textContent
+        self.context = RichTextContext()
     }
     
     func extract() {

@@ -153,7 +153,7 @@ struct TBButtonStyle: PrimitiveButtonStyle {
     @Binding var isEnabled: Bool
     
     func makeBody(configuration: Configuration) -> some View {
-        print(self.type.backgroundColor, self.type.pressedBackgroundColor, self.type.pressedStrokeColor)
+//        print(self.type.backgroundColor, self.type.pressedBackgroundColor, self.type.pressedStrokeColor)
         
         let gesture = DragGesture(minimumDistance: 0)
             .onChanged { _ in self.isPressed = true }

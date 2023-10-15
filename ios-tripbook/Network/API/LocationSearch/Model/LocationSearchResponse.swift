@@ -13,6 +13,14 @@ struct LocationSearchResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case locationInfos = "documents"
     }
+    
+    var toDomain: [LocationInfo] {
+        return self.locationInfos.map {
+            LocationInfo(
+                placeName: $0.placeName
+            )
+        }
+    }
 }
 
 struct LocationInfoDTO: Decodable {

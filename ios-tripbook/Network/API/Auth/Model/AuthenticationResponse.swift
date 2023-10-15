@@ -20,6 +20,7 @@ extension AuthenticationResponse {
         return .init(
             email: self.email,
             accessToken: self.accessToken,
+            refreshToken: self.refreshToken,
             status: AuthenticationResult.AuthStatus(rawValue: self.status) ?? .normal
         )
     }

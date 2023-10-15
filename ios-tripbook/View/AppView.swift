@@ -6,11 +6,11 @@ struct ios_tripbookApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            if let _ = tokenStorage.accessToken {
+            if let _ = tokenStorage.accessToken {
                 RootView()
-//            } else {
-//                SignupSocialView()
-//            }
+            } else {
+                SignupSocialView()
+            }
         }
     }
 }

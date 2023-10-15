@@ -9,7 +9,7 @@ import SwiftUI
 import _AuthenticationServices_SwiftUI
 
 protocol SignupSocialViewDelegate {
-    func didTapKakaoLoginButton() async -> String 
+    func didTapKakaoLoginButton() async
     func didTapAppleLoginButton(_ credential: ASAuthorizationCredential) async
 }
 
@@ -33,9 +33,7 @@ struct SignupSocialView: View {
                 VStack(spacing: 8) {
                     Button(action: {
                         Task {
-                            let resultEmail = await self.viewModel.didTapKakaoLoginButton()
-                            
-                            self.signupViewModel.registerUserEmail(resultEmail)
+                            await self.viewModel.didTapKakaoLoginButton()
                         }
                     }) {
                         HStack {

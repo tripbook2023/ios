@@ -8,6 +8,12 @@
 import Foundation
 import SwiftUI
 
+enum Sort: String {
+    case createdDesc = "createdDesc"
+    case createdAsc = "createdAsc"
+    case popularity = "popularity"
+}
+
 /// 여행소식 화면 View Model
 class TravelNewsViewModel: ObservableObject {
     let dataStorage = DataStorage.shared
@@ -18,6 +24,8 @@ class TravelNewsViewModel: ObservableObject {
     @Published var travelNewsList: [TravelNewsModel] = []
     
     @Published var isShowEditorView: Bool = false
+    @Published var currentSort: Sort = .createdDesc    
+    @Published var isSortPopup = false
     
     /// 현재 여행소식 게시물 List Page Number
     var currentPage = 0
@@ -34,7 +42,7 @@ class TravelNewsViewModel: ObservableObject {
             SampleMyTravelNewsModel(.done),
             SampleMyTravelNewsModel(.done),
             SampleMyTravelNewsModel(.done),
-            SampleMyTravelNewsModel(.waiting),
+            SampleMyTravelNewsModel(.waiting)
         ]
     }
     

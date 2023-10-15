@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct LocationInfo {
+    let placeName: String
+}

@@ -21,6 +21,9 @@ struct TravelNewsSearchLocationView: View {
             .padding(.horizontal, 20)
             .padding(.vertical, 16)
             
+            Divider()
+                .background(TBColor.grayscale._5)
+                .padding(.bottom, 18)
             ZStack(alignment: .bottom) {
                 List(0..<viewModel.locationInfos.count, id: \.self, selection: $viewModel.selectionIndex) { i in
                     Text(viewModel.locationInfos[i].placeName)

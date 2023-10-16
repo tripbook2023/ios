@@ -22,14 +22,15 @@ struct TravelNewsSearchLocationView: View {
             .padding(.vertical, 16)
             
             ZStack(alignment: .bottom) {
-                ScrollView {
-                    LazyVStack(spacing: 0) {
-                        Text("제주도 제주시 한림읍")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 16)
-                    }.padding(.vertical, 16)
-                }
+                List(0..<viewModel.locationInfos.count, id: \.self, selection: $viewModel.selectionIndex) { i in
+                    Text(viewModel.locationInfos[i].placeName)
+                        .listRowBackground(viewModel.selectionIndex == i ? TBColor.primary._1 : Color.clear)
+                        .font(TBFont.body_4)
+                        .foregroundColor(TBColor.grayscale._80)
+                        .listRowSeparator(.hidden)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 10)
+                }.listStyle(.plain)
                 
                 Rectangle()
                     .foregroundColor(.clear)

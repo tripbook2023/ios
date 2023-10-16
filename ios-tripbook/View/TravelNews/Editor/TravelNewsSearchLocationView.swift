@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct TravelNewsSearchLocationView: View {
+    @ObservedObject var viewModel = TravelNewsSearchLocationViewModel()
+    
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 8) {
                 TBIcon.search.iconSize(size: .small)
                 
-                TextField("여행지를 검색해주세요", text: .constant(""))
+                TextField("여행지를 검색해주세요", text: $viewModel.searchKeyword)
                     .font(TBFont.body_4)
             }
             .padding(.horizontal, 20)

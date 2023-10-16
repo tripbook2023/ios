@@ -16,6 +16,7 @@ class TravelNewsSearchLocationViewModel: ObservableObject {
     
     @Published var searchKeyword: String = ""
     @Published var locationInfos: [LocationInfo] = []
+    @Published var selectionIndex: Int?
     
     init(apiManager: APIManagerable = TBAPIManager()) {
         self.apiManager = apiManager

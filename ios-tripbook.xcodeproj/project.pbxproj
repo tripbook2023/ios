@@ -106,9 +106,7 @@
 		9B0696122AC7E63B00006A84 /* TBTravelNewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696112AC7E63B00006A84 /* TBTravelNewsAPI.swift */; };
 		9B0696152AC7EBC000006A84 /* TBArticlesAPIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696142AC7EBC000006A84 /* TBArticlesAPIPath.swift */; };
 		9B0696192ACE7D0600006A84 /* TravelNewsSortPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696182ACE7D0600006A84 /* TravelNewsSortPopupView.swift */; };
-		9B06961E2AD7E4A100006A84 /* KaKaoLocationSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06961D2AD7E4A100006A84 /* KaKaoLocationSearchAPI.swift */; };
 		9B06961E2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06961D2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift */; };
-		9B0696202AD800F400006A84 /* KakaoAPIInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B06961F2AD800F400006A84 /* KakaoAPIInfo.plist */; };
 		9B0696232AD801C100006A84 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696222AD801C100006A84 /* Bundle+Extension.swift */; };
 		9B0696262AD81D1500006A84 /* LocationSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696252AD81D1500006A84 /* LocationSearchResponse.swift */; };
 		9B0696282ADBA6D000006A84 /* LocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696272ADBA6D000006A84 /* LocationInfo.swift */; };
@@ -234,9 +232,7 @@
 		9B0696112AC7E63B00006A84 /* TBTravelNewsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBTravelNewsAPI.swift; sourceTree = "<group>"; };
 		9B0696142AC7EBC000006A84 /* TBArticlesAPIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBArticlesAPIPath.swift; sourceTree = "<group>"; };
 		9B0696182ACE7D0600006A84 /* TravelNewsSortPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsSortPopupView.swift; sourceTree = "<group>"; };
-		9B06961D2AD7E4A100006A84 /* KaKaoLocationSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaKaoLocationSearchAPI.swift; sourceTree = "<group>"; };
 		9B06961D2AD7E4A100006A84 /* KakaoLocationSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLocationSearchAPI.swift; sourceTree = "<group>"; };
-		9B06961F2AD800F400006A84 /* KakaoAPIInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = KakaoAPIInfo.plist; sourceTree = "<group>"; };
 		9B0696222AD801C100006A84 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		9B0696252AD81D1500006A84 /* LocationSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResponse.swift; sourceTree = "<group>"; };
 		9B0696272ADBA6D000006A84 /* LocationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
@@ -474,7 +470,6 @@
 			children = (
 				8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */,
 				85A6B11E2A5836360050FF68 /* Font */,
-				9B06961F2AD800F400006A84 /* KakaoAPIInfo.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -809,7 +804,6 @@
 				85338E3929F8837C00E87792 /* .gitignore in Resources */,
 				85A6B12E2A58364D0050FF68 /* SUIT-Light.otf in Resources */,
 				85338E3729F8836F00E87792 /* .gitattributes in Resources */,
-				9B0696202AD800F400006A84 /* KakaoAPIInfo.plist in Resources */,
 				85A6B12B2A58364D0050FF68 /* SUIT-Medium.otf in Resources */,
 				8552BC3329DDCD8E00DC8D7E /* Preview Assets.xcassets in Resources */,
 				85A6B12F2A58364D0050FF68 /* SUIT-Regular.otf in Resources */,

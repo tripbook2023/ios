@@ -12,18 +12,8 @@ struct TravelNewsSearchLocationView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 8) {
-                TBIcon.search.iconSize(size: .small)
-                
-                TextField("여행지를 검색해주세요", text: $viewModel.searchKeyword)
-                    .font(TBFont.body_4)
-            }
-            .padding(.horizontal, 20)
+            TBSearchBar($viewModel.searchKeyword, placeholder: "여행지를 검색해주세요")
             .padding(.vertical, 16)
-            
-            Divider()
-                .background(TBColor.grayscale._5)
-                .padding(.bottom, 18)
             ZStack(alignment: .bottom) {
                 List(0..<viewModel.locationInfos.count, id: \.self, selection: $viewModel.selectionIndex) { i in
                     Text(viewModel.locationInfos[i].placeName)

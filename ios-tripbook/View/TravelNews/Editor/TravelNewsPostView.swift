@@ -81,6 +81,7 @@ struct TravelNewsPostView: View {
                             }
                         }
                         
+                        // content
                         VStack(spacing: 0) {
                             Button("html") {
                                 viewModel.extract()
@@ -90,9 +91,13 @@ struct TravelNewsPostView: View {
                             // TextEditor
                             ZStack(alignment: .topLeading) {
                                 
-                                RichTextEditor(text: $viewModel.textContent, context: viewModel.context)
-                                    .frame(width: (deviceWidth-20), height: 200)
-                                    .focused($focusedField, equals: .content)
+                                RichTextEditor(text: $viewModel.textContent, context: viewModel.context) { comp in
+                                    let textView = comp as! UITextView
+                                    textView.isScrollEnabled = false
+                                }
+                                .frame(minWidth: 300, maxWidth: .infinity)
+                                .frame(width: (deviceWidth-20))
+                                .focused($focusedField, equals: .content)
                                 
                                 if viewModel.textContent.length == 0 {
                                     Text("최소 800자 이상의 글자수를 작성해주세요")
@@ -117,6 +122,9 @@ struct TravelNewsPostView: View {
                     }
                 }
             }
+            .onTapGesture {
+                focusedField = .content
+            }
             
             decorationView
                 .ignoresSafeArea(edges: .top)
@@ -131,7 +139,7 @@ struct TravelNewsPostView: View {
                 
                 Text("\(viewModel.textContent.length)")
                     .foregroundColor(TBColor.primary._70)
- 
+                
                 Text("/10,000")
                     .foregroundColor(TBColor.grayscale._20)
             }
@@ -260,7 +268,7 @@ struct TravelNewsPostView: View {
             Spacer()
         }
         .padding(.horizontal, 20)
-                                                
+        
     }
 }
 

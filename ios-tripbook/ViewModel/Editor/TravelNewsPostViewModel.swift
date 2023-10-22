@@ -15,6 +15,7 @@ class TravelNewsPostViewModel: ObservableObject {
     @Published var context: RichTextContext
     
     init(title: String, textContent: NSAttributedString) {
+        CGFloat.standardRichTextFontSize = 14
         self.title = title
         self.textContent = textContent
         self.context = RichTextContext()

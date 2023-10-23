@@ -120,6 +120,7 @@
 		9B8964B32AAB02C100B6E3CA /* TBImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8964B22AAB02C100B6E3CA /* TBImagePicker */; };
 		9B9C74B62AE6899A005B69AE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9C74B52AE6899A005B69AE /* Lottie */; };
 		9B9C74BA2AE68AF0005B69AE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C74B92AE68AF0005B69AE /* OnboardingView.swift */; };
+		9B9C74BF2AE69131005B69AE /* 182.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B9C74BE2AE69131005B69AE /* 182.json */; };
 		9BF5F6BD2ABC244E007E2063 /* TBNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */; };
 		9D077C012AE655FA00FD37CA /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9D077C002AE655FA00FD37CA /* RichTextKit */; };
 		DAC0E1852ACC888200AE41B4 /* TravelNewsPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC0E1842ACC888200AE41B4 /* TravelNewsPostViewModel.swift */; };
@@ -248,6 +249,7 @@
 		9B6C9FB92AAEE11C00206AFC /* RequestEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestEditorView.swift; sourceTree = "<group>"; };
 		9B6C9FBA2AAEE11C00206AFC /* RequestEditorResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestEditorResultView.swift; sourceTree = "<group>"; };
 		9B9C74B92AE68AF0005B69AE /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		9B9C74BE2AE69131005B69AE /* 182.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 182.json; path = ../../../Downloads/First_Project/182.json; sourceTree = "<group>"; };
 		9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBNetworkError.swift; sourceTree = "<group>"; };
 		DAC0E1842ACC888200AE41B4 /* TravelNewsPostViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelNewsPostViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -476,6 +478,7 @@
 		85A6B11D2A58362F0050FF68 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				9B9C74BE2AE69131005B69AE /* 182.json */,
 				8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */,
 				85A6B11E2A5836360050FF68 /* Font */,
 			);
@@ -830,6 +833,7 @@
 				8552BC3329DDCD8E00DC8D7E /* Preview Assets.xcassets in Resources */,
 				85A6B12F2A58364D0050FF68 /* SUIT-Regular.otf in Resources */,
 				85A6B12A2A58364D0050FF68 /* SUIT-Heavy.otf in Resources */,
+				9B9C74BF2AE69131005B69AE /* 182.json in Resources */,
 				85A6B1282A58364D0050FF68 /* SUIT-Bold.otf in Resources */,
 				85A6B12C2A58364D0050FF68 /* SUIT-Thin.otf in Resources */,
 				85A6B1302A58364D0050FF68 /* SUIT-SemiBold.otf in Resources */,

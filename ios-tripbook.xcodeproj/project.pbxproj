@@ -118,6 +118,7 @@
 		9B6C9FBE2AAEE11C00206AFC /* RequestEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C9FB92AAEE11C00206AFC /* RequestEditorView.swift */; };
 		9B6C9FBF2AAEE11C00206AFC /* RequestEditorResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C9FBA2AAEE11C00206AFC /* RequestEditorResultView.swift */; };
 		9B8964B32AAB02C100B6E3CA /* TBImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8964B22AAB02C100B6E3CA /* TBImagePicker */; };
+		9B9C74B62AE6899A005B69AE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9C74B52AE6899A005B69AE /* Lottie */; };
 		9BF5F6BD2ABC244E007E2063 /* TBNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */; };
 		9D077C012AE655FA00FD37CA /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9D077C002AE655FA00FD37CA /* RichTextKit */; };
 		DAC0E1852ACC888200AE41B4 /* TravelNewsPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC0E1842ACC888200AE41B4 /* TravelNewsPostViewModel.swift */; };
@@ -259,6 +260,7 @@
 				9B8964B32AAB02C100B6E3CA /* TBImagePicker in Frameworks */,
 				9D077C012AE655FA00FD37CA /* RichTextKit in Frameworks */,
 				853EA91E2A46F363001890DE /* Auth0 in Frameworks */,
+				9B9C74B62AE6899A005B69AE /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +743,7 @@
 				9B8964B22AAB02C100B6E3CA /* TBImagePicker */,
 				85A6B14A2A6039A90050FF68 /* Kingfisher */,
 				9D077C002AE655FA00FD37CA /* RichTextKit */,
+				9B9C74B52AE6899A005B69AE /* Lottie */,
 			);
 			productName = "ios-tripbook";
 			productReference = 8552BC2829DDCD8D00DC8D7E /* ios-tripbook.app */;
@@ -798,6 +801,7 @@
 				9B8964B12AAB02C100B6E3CA /* XCRemoteSwiftPackageReference "iOS-TripBook-ImagePicker-Package" */,
 				85A6B1492A6039A90050FF68 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				9D077BFF2AE655FA00FD37CA /* XCRemoteSwiftPackageReference "RichTextKit" */,
+				9B9C74B42AE6899A005B69AE /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 8552BC2929DDCD8D00DC8D7E /* Products */;
 			projectDirPath = "";
@@ -1276,6 +1280,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		9B9C74B42AE6899A005B69AE /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		9D077BFF2AE655FA00FD37CA /* XCRemoteSwiftPackageReference "RichTextKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/RichTextKit";
@@ -1306,6 +1318,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9B8964B12AAB02C100B6E3CA /* XCRemoteSwiftPackageReference "iOS-TripBook-ImagePicker-Package" */;
 			productName = TBImagePicker;
+		};
+		9B9C74B52AE6899A005B69AE /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B9C74B42AE6899A005B69AE /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		9D077C002AE655FA00FD37CA /* RichTextKit */ = {
 			isa = XCSwiftPackageProductDependency;

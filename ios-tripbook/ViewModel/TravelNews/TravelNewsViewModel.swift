@@ -23,8 +23,8 @@ class TravelNewsViewModel: ObservableObject {
     /// 여행소식 게시물 LIst
     @Published var travelNewsList: [TravelNewsModel] = []
     
-    @Published var currentSort: Sort = .createdDesc
-    
+    @Published var isShowEditorView: Bool = false
+    @Published var currentSort: Sort = .createdDesc    
     @Published var isSortPopup = false
     
     /// 현재 여행소식 게시물 List Page Number

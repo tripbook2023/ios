@@ -53,7 +53,11 @@ struct TBIcon {
         let error = Image("State/Error")
     }
     
-    static let before = Image("Before")
+    static let before: [Image] = [
+        Image("Before/01"),
+        Image("Before/02")
+    ]
+    
     static let bell = Image("Bell")
     static let bookmark = Image("Bookmark")
     static let calendar = Image("Calendar")

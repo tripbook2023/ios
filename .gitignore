@@ -106,4 +106,3 @@ xcuserdata
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,swiftpackagemanager
 *.xcuserstate
-ios-tripbook/Resource/KakaoAPIInfo.plist

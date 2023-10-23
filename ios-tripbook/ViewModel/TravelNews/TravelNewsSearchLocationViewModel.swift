@@ -20,11 +20,13 @@ class TravelNewsSearchLocationViewModel: ObservableObject {
     
     init(apiManager: APIManagerable = TBAPIManager()) {
         self.apiManager = apiManager
-        $searchKeyword.sink { [weak self] keyword in
+        $searchKeyword
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .removeDuplicates()
+            .sink { [weak self] keyword in
             self?.selectionIndex = nil
             self?.task?.cancel()
             self?.task = Task {
-                try await Task.sleep(nanoseconds: keyword == "" ? 0 : 500_000_000)
                 await self?.searchLocation(keyword: keyword)
             }
         }.store(in: &anyCancellable)

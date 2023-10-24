@@ -64,6 +64,19 @@ struct TBMemberAPI: APIable {
         )
     }
     
+    static func tokenReissue(refreshToken: String) -> Self {
+        var headers = HTTPHeaders()
+        headers.add(.authorization(bearerToken: refreshToken))
+        headers.add(.userAgent("IOS_APP"))
+        return TBMemberAPI(
+            path: TBAPIPath.Member.tokenIssue,
+            method: .post,
+            parameters: [:],
+            headers: headers,
+            uploadImages: [:]
+        )
+    }
+    
     
 }
 

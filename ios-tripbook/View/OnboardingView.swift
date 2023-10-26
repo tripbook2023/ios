@@ -22,7 +22,7 @@ struct OnboardingView: View {
                 .ignoresSafeArea(edges: .all)
                 .overlay {
                     LottieView(
-                        animation: LottieAnimation.named("tripbook")
+                        animation: LottieAnimation.named("tripbookOnboardingLottie")
                     )
                     .playing()
                     .animationDidFinish { _ in
@@ -32,6 +32,7 @@ struct OnboardingView: View {
                             }
                         }
                     }
+                    .frame(width: 250, height: 73)
                 }
                 .opacity(viewModel.isHeddin ? 0 : 1)
         }

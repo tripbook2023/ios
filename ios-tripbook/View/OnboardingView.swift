@@ -7,9 +7,11 @@
 
 import SwiftUI
 import Lottie
+import Combine
 
 struct OnboardingView: View {
     @ObservedObject var viewModel = OnboardingViewModel()
+    @State private var anyCancellable = Set<AnyCancellable>()
     var body: some View {
         ZStack {
             if viewModel.presentView == .root {
@@ -26,11 +28,13 @@ struct OnboardingView: View {
                     )
                     .playing()
                     .animationDidFinish { _ in
-                        if viewModel.presentView != nil {
-                            withAnimation(Animation.spring().speed(1)) {
-                                viewModel.isHeddin.toggle()
+                        viewModel.$presentView.sink { value in
+                            if value != nil {
+                                withAnimation(Animation.spring().speed(1)) {
+                                    viewModel.isHeddin.toggle()
+                                }
                             }
-                        }
+                        }.store(in: &anyCancellable)
                     }
                     .frame(width: 250, height: 73)
                 }

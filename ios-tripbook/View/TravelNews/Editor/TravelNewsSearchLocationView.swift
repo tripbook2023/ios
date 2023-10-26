@@ -8,43 +8,49 @@
 import SwiftUI
 
 struct TravelNewsSearchLocationView: View {
+    @ObservedObject var viewModel = TravelNewsSearchLocationViewModel()
+    
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 8) {
-                TBIcon.search.iconSize(size: .small)
-                
-                TextField("여행지를 검색해주세요", text: .constant(""))
-                    .font(TBFont.body_4)
-            }
-            .padding(.horizontal, 20)
+            TBSearchBar($viewModel.searchKeyword, placeholder: "여행지를 검색해주세요")
             .padding(.vertical, 16)
-            
-            ZStack(alignment: .bottom) {
-                ScrollView {
-                    LazyVStack(spacing: 0) {
-                        Text("제주도 제주시 한림읍")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 16)
-                    }.padding(.vertical, 16)
-                }
-                
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(height: 56)
-                    .background(
-                        LinearGradient(
-                            stops: [
-                                Gradient.Stop(color: .white.opacity(0), location: 0.00),
-                                Gradient.Stop(color: .white, location: 1.00),
-                            ],
-                            startPoint: UnitPoint(x: 0.5, y: 0),
-                            endPoint: UnitPoint(x: 0.5, y: 1)
+
+            GeometryReader { geometry in
+                ZStack(alignment: .bottom) {
+                    List(0..<viewModel.locationInfos.count, id: \.self, selection: $viewModel.selectionIndex) { i in
+                        Text(viewModel.locationInfos[i].placeName)
+                            .listRowBackground(viewModel.selectionIndex == i ? TBColor.primary._1 : Color.clear)
+                            .font(TBFont.body_4)
+                            .foregroundColor(TBColor.grayscale._80)
+                            .listRowSeparator(.hidden)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 10)
+                    }
+                    .listStyle(.plain)
+                    .opacity(viewModel.locationInfos.isEmpty ? 0 : 1)
+                    
+                    Text("원하시는 검색 결과를 찾을 수 없습니다.")
+                        .font(TBFont.body_4)
+                        .padding(.bottom, geometry.size.height * 0.8)
+                        .opacity(viewModel.locationInfos.isEmpty ? 1 : 0)
+                    
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(height: 56)
+                        .background(
+                            LinearGradient(
+                                stops: [
+                                    Gradient.Stop(color: .white.opacity(0), location: 0.00),
+                                    Gradient.Stop(color: .white, location: 1.00),
+                                ],
+                                startPoint: UnitPoint(x: 0.5, y: 0),
+                                endPoint: UnitPoint(x: 0.5, y: 1)
+                            )
                         )
-                    )
+                }
             }
             
-            TBPrimaryButton(title: "여행지 선택", isEnabled: .constant(false)) {
+            TBPrimaryButton(title: "여행지 선택", isEnabled: .constant(viewModel.selectionIndex != nil)) {
                 
             }
             .padding(.horizontal, 20)

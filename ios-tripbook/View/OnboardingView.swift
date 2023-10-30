@@ -31,14 +31,14 @@ struct OnboardingView: View {
                         viewModel.$presentView.sink { value in
                             if value != nil {
                                 withAnimation(Animation.spring().speed(1)) {
-                                    viewModel.isHeddin.toggle()
+                                    viewModel.isHidden.toggle()
                                 }
                             }
                         }.store(in: &anyCancellable)
                     }
                     .frame(width: 250, height: 73)
                 }
-                .opacity(viewModel.isHeddin ? 0 : 1)
+                .opacity(viewModel.isHidden ? 0 : 1)
         }
         
         

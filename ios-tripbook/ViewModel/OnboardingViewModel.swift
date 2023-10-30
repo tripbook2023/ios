@@ -14,7 +14,7 @@ class OnboardingViewModel: ObservableObject {
     }
     
     @Published var presentView: ViewState? = nil
-    @Published var isHeddin = false
+    @Published var isHidden = false
     
     private let apiManager: APIManagerable
     private let tokenStorage: TokenStorage

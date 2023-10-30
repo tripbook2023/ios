@@ -28,20 +28,27 @@ struct OnboardingView: View {
                     )
                     .playing()
                     .animationDidFinish { _ in
-                        viewModel.$presentView.sink { value in
-                            if value != nil {
-                                withAnimation(Animation.spring().speed(1)) {
-                                    viewModel.isHidden.toggle()
-                                }
-                            }
-                        }.store(in: &anyCancellable)
+                        viewModel.isAnimationFinish = true
                     }
                     .frame(width: 250, height: 73)
                 }
                 .opacity(viewModel.isHidden ? 0 : 1)
+        }.onAppear {
+            bind()
         }
-        
-        
+    }
+}
+
+extension OnboardingView {
+    private func bind() {
+        viewModel.$presentView
+            .combineLatest(viewModel.$isAnimationFinish)
+            .filter { $0 != nil && $1 }
+            .sink { _ in
+                withAnimation(Animation.spring().speed(1)) {
+                    viewModel.isHidden.toggle()
+                }
+            }.store(in: &anyCancellable)
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  MypageView.swift
 //  ios-tripbook
 //
 //  Created by DDang on 2023/04/24.
@@ -13,7 +13,7 @@ import SwiftUI
  View 구성 요소
  -
  */
-struct ProfileView: View {
+struct MypageView: View {
     var deviceWidth: CGFloat {
         return UIScreen.main.bounds.width
     }
@@ -112,6 +112,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        MypageView()
     }
 }

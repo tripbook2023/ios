@@ -97,7 +97,7 @@
 		85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4B29F68E7F008DABCE /* TravelReportView.swift */; };
 		85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */; };
 		85F02B5129F690F3008DABCE /* TravelNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B5029F690F3008DABCE /* TravelNewsView.swift */; };
-		85F02B5429F6913F008DABCE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B5329F6913F008DABCE /* ProfileView.swift */; };
+		85F02B5429F6913F008DABCE /* MypageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B5329F6913F008DABCE /* MypageView.swift */; };
 		85F03BE82A3EE4C900A0B931 /* SignupTermDetailModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F03BE72A3EE4C900A0B931 /* SignupTermDetailModal.swift */; };
 		85F03BEB2A3EF5A000A0B931 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 85F03BEA2A3EF5A000A0B931 /* Alamofire */; };
 		85F31B5B2A543A3500493B5F /* GetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F31B5A2A543A3500493B5F /* GetUserResponse.swift */; };
@@ -231,7 +231,7 @@
 		85F02B4B29F68E7F008DABCE /* TravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportView.swift; sourceTree = "<group>"; };
 		85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelReportView.swift; sourceTree = "<group>"; };
 		85F02B5029F690F3008DABCE /* TravelNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsView.swift; sourceTree = "<group>"; };
-		85F02B5329F6913F008DABCE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		85F02B5329F6913F008DABCE /* MypageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageView.swift; sourceTree = "<group>"; };
 		85F03BE72A3EE4C900A0B931 /* SignupTermDetailModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTermDetailModal.swift; sourceTree = "<group>"; };
 		85F31B5A2A543A3500493B5F /* GetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserResponse.swift; sourceTree = "<group>"; };
 		9B026BF12AB59FDC00F6C81C /* APIable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIable.swift; sourceTree = "<group>"; };
@@ -513,7 +513,7 @@
 				8552BC2D29DDCD8D00DC8D7E /* RootView.swift */,
 				85E8CA8E2A39A57A00EBDE7F /* Signup */,
 				85338E3029F8423200E87792 /* Component */,
-				85F02B5229F69132008DABCE /* Profile */,
+				85F02B5229F69132008DABCE /* Mypage */,
 				85F02B4F29F690DE008DABCE /* TravelNews */,
 				85F02B4A29F68E69008DABCE /* TravelReport */,
 				858681BE2A62F56F00072B52 /* NotificationView.swift */,
@@ -647,12 +647,12 @@
 			path = TravelNews;
 			sourceTree = "<group>";
 		};
-		85F02B5229F69132008DABCE /* Profile */ = {
+		85F02B5229F69132008DABCE /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
-				85F02B5329F6913F008DABCE /* ProfileView.swift */,
+				85F02B5329F6913F008DABCE /* MypageView.swift */,
 			);
-			path = Profile;
+			path = Mypage;
 			sourceTree = "<group>";
 		};
 		85F03BE62A3EE49E00A0B931 /* Terms */ = {
@@ -943,7 +943,7 @@
 				9B06962A2ADBAA4000006A84 /* TravelNewsSearchLocationViewModel.swift in Sources */,
 				85A6B1422A5C55E70050FF68 /* TBShadow.swift in Sources */,
 				853EA93F2A481489001890DE /* NicknameValidationResponse.swift in Sources */,
-				85F02B5429F6913F008DABCE /* ProfileView.swift in Sources */,
+				85F02B5429F6913F008DABCE /* MypageView.swift in Sources */,
 				85E8CA922A39A61D00EBDE7F /* SignupTermsView.swift in Sources */,
 				85A6B1362A58367A0050FF68 /* TBColorPalette.swift in Sources */,
 				DAC0E1852ACC888200AE41B4 /* TravelNewsPostViewModel.swift in Sources */,

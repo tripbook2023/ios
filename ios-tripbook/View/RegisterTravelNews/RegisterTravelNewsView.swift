@@ -23,17 +23,22 @@ struct RegisterTravelNewsView : UIViewControllerRepresentable {
 
 class RegisterTravelReportVC: UIViewController {
     
+    private var headerView: UIView!
     private var backButton: UIButton!
     private var registerButton: UIButton!
+    
+    private var scrollView: UIScrollView!
+    private var contentView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         makeHeaderView()
+        makeCover()
 
     }
     
     private func makeHeaderView() {
-        let headerView = UIView()
+        headerView = UIView()
         
         backButton = UIButton()
         backButton.setImage(UIImage(named: "Before/01"), for: .normal)
@@ -84,5 +89,35 @@ class RegisterTravelReportVC: UIViewController {
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(48)
         }
+    }
+    
+    private func makeCover() {
+        scrollView = UIScrollView()
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(headerView.snp.bottom)
+            make.bottom.leading.trailing.equalToSuperview()
+        }
+        
+        contentView = UIView()
+        scrollView.addSubview(contentView)
+        scrollView.backgroundColor = .green
+        contentView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.height.equalTo(1000)
+        }
+        
+        let coverContainerView = UIView()
+        coverContainerView.backgroundColor = .systemYellow
+        
+        contentView.addSubview(coverContainerView)
+        coverContainerView.snp.makeConstraints { make in
+            make.width.equalTo(scrollView.snp.width)
+            make.top.leading.equalToSuperview()
+            make.height.equalTo(354)
+        }
+        
+        // add more comp
     }
 }

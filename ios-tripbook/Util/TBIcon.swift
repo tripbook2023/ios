@@ -90,6 +90,7 @@ struct TBIcon {
     static let txt = Image("Txt")
     static let up = Image("Up")
     static let writing = Image("Writing")
+    static let setting = Image("Setting")
     
     static let state = TBStateIcons()
 }

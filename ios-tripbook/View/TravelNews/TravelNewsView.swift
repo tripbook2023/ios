@@ -53,7 +53,8 @@ struct TravelNewsView: View {
                 .padding(.trailing, 20)
                 .padding(.bottom, 28)
                 .sheet(isPresented: $viewModel.isShowEditorView) {
-                    TravelNewsPostView()
+                    RegisterTravelNewsView()
+//                    TravelNewsPostView()
                 }
             }
         }

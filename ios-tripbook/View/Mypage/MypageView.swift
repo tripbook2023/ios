@@ -52,8 +52,8 @@ struct MypageView: View {
                         .font(TBFont.caption_1)
                 }
                 Spacer()
-                Button {
-                    // 프로필 설정 로직
+                NavigationLink {
+                    EditProfileView()
                 } label: {
                     TBIcon.setting.iconSize(size: .medium)
                         .foregroundColor(.white)

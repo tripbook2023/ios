@@ -62,6 +62,7 @@ struct TBIcon {
     static let bookmark = Image("Bookmark")
     static let calendar = Image("Calendar")
     static let camera = Image("Camera")
+    static let cameraFull = Image("CameraFull")
     static let cancel = Image("Cancel")
     static let check = Image("Check")
     static let clear = Image("Clear")

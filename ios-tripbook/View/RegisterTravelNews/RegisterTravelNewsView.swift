@@ -23,6 +23,8 @@ struct RegisterTravelNewsView : UIViewControllerRepresentable {
 
 class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
+    private var isCoverImage: Bool = false
+    
     private var imagePicker: UIImagePickerController!
     private var selectedCoverImage: UIImage?
     
@@ -48,6 +50,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     private var footerScrollView: UIScrollView!
     private var contentCountLabel: UILabel!
     private var textButton: UIButton!
+    private var imageButton: UIButton!
     
     private var textBackButton: UIButton!
     private var titleButton: UIButton!
@@ -65,6 +68,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         textBackButton.addTarget(self, action: #selector(tapBackTextButton), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(tapRegisterButton), for: .touchUpInside)
         coverPhotoButton.addTarget(self, action: #selector(tapCoverImageButton), for: .touchUpInside)
+        
+        imageButton.addTarget(self, action: #selector(tapImageButton), for: .touchUpInside)
         
         titleButton.addTarget(self, action: #selector(tapTitleButton), for: .touchUpInside)
         subtitleButton.addTarget(self, action: #selector(tapSubtitleButton), for: .touchUpInside)
@@ -88,6 +93,11 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
       }
     
     @objc func tapCoverImageButton(_ sender: UIButton) {
+        self.isCoverImage = true
+        self.show(imagePicker, sender: nil)
+      }
+    
+    @objc func tapImageButton(_ sender: UIButton) {
         self.show(imagePicker, sender: nil)
       }
     
@@ -390,7 +400,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         textButton.setImage(UIImage(named: "Txt"), for: .normal)
         textButton.tintColor = UIColor(red: 0.5, green: 0.45, blue: 0.44, alpha: 1)
         
-        let imageButton = UIButton()
+        imageButton = UIButton()
         imageButton.setImage(UIImage(named: "Picture"), for: .normal)
         imageButton.tintColor = UIColor(red: 0.5, green: 0.45, blue: 0.44, alpha: 1)
         
@@ -569,16 +579,62 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         }
     }
     
+    func addImageInTextView(_ image: UIImage?) {
+        if let image = image {
+            let maxWidth: CGFloat = 200.0 // 이미지의 최대 가로 너비
+            let scaleFactor = maxWidth / image.size.width // 가로 너비에 대한 비율 계산
+            let newImageSize = CGSize(width: maxWidth, height: image.size.height * scaleFactor)
+            
+            // 이미지를 리사이즈
+            UIGraphicsBeginImageContextWithOptions(newImageSize, false, 0.0)
+            let context = UIGraphicsGetCurrentContext()!
+            image.draw(in: CGRect(x: 0, y: 0, width: newImageSize.width, height: newImageSize.height))
+            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            // 이미지의 코너를 잘라내기
+            let cornerRadius: CGFloat = 10.0 // 코너의 반지름
+            UIGraphicsBeginImageContextWithOptions(newImageSize, false, 0.0)
+            let clippingPath = UIBezierPath(roundedRect: CGRect(origin: .zero, size: newImageSize), cornerRadius: cornerRadius)
+            clippingPath.addClip()
+            resizedImage?.draw(in: CGRect(origin: .zero, size: newImageSize))
+            let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            let imageAttachment = NSTextAttachment()
+            imageAttachment.image = roundedImage
+            imageAttachment.bounds = CGRect(x: 0, y: 0, width: newImageSize.width, height: newImageSize.height)
+            
+            let imageString = NSAttributedString(attachment: imageAttachment)
+            
+            // 기존 NSAttributedString 끝에 이미지를 추가
+            let currentNSArr = contentTextView.attributedText ?? .init(string: "")
+            
+            var mutableAttributedString = NSMutableAttributedString(attributedString: currentNSArr)
+            mutableAttributedString.append(imageString)
+            
+            contentTextView.attributedText = NSAttributedString(attributedString: mutableAttributedString)
+        }
+    }
+    
 }
 
 extension RegisterTravelReportVC: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[.originalImage] as? UIImage {
-            selectedCoverImage = selectedImage
-            coverImageView.image = selectedImage
-            photoImageView.isHidden = true
-            photoLabel.isHidden = true
+        if isCoverImage {
+            if let selectedImage = info[.originalImage] as? UIImage {
+                selectedCoverImage = selectedImage
+                coverImageView.image = selectedImage
+                photoImageView.isHidden = true
+                photoLabel.isHidden = true
+            }
+            isCoverImage = false
+        } else {
+            if let selectedImage = info[.originalImage] as? UIImage {
+                addImageInTextView(selectedImage)
+            }
         }
+        
         dismiss(animated: true, completion: nil)
     }
 }

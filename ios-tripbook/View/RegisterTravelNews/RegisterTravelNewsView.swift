@@ -27,6 +27,9 @@ class RegisterTravelReportVC: UIViewController {
     private var backButton: UIButton!
     private var registerButton: UIButton!
     
+    private var coverPhotoButtonView: UIView!
+    private var titleTextField: UITextField!
+    
     private var scrollView: UIScrollView!
     private var contentView: UIView!
     
@@ -136,6 +139,48 @@ class RegisterTravelReportVC: UIViewController {
             make.width.equalTo(scrollView.snp.width)
             make.top.leading.equalToSuperview()
             make.height.equalTo(354)
+        }
+        
+        coverPhotoButtonView = UIView()
+        coverPhotoButtonView.backgroundColor = .systemRed
+        
+        coverContainerView.addSubview(coverPhotoButtonView)
+        coverPhotoButtonView.snp.makeConstraints { make in
+            make.height.equalTo(206)
+            make.width.equalToSuperview()
+            make.top.equalToSuperview()
+        }
+        
+        let photoImageView = UIImageView(image: UIImage(named: "Picture")?.withRenderingMode(.alwaysTemplate))
+        photoImageView.tintColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+        
+        coverPhotoButtonView.addSubview(photoImageView)
+        photoImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(36)
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(110)
+        }
+        
+        let photoLabel = UILabel()
+        photoLabel.text = "사진을 등록해 주세요."
+        photoLabel.font = UIFont(name: "SUIT-Medium", size: 10)
+        photoLabel.textColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+        
+        coverPhotoButtonView.addSubview(photoLabel)
+        photoLabel.snp.makeConstraints { make in
+            make.top.equalTo(photoImageView.snp.bottom).offset(8)
+            make.centerX.equalToSuperview()
+        }
+        
+        titleTextField = UITextField()
+        titleTextField.attributedPlaceholder = NSAttributedString(string: "제목을 입력해 주세요", attributes: [.foregroundColor: UIColor(red: 1, green: 1, blue: 1, alpha: 1), .font: UIFont(name: "SUIT-Bold", size: 24)!])
+        
+        coverContainerView.addSubview(titleTextField)
+        titleTextField.snp.makeConstraints { make in
+            make.top.equalTo(coverPhotoButtonView.snp.bottom)
+            make.height.equalTo(56)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
         // add more comp

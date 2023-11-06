@@ -21,14 +21,22 @@ struct RegisterTravelNewsView : UIViewControllerRepresentable {
     }
 }
 
-class RegisterTravelReportVC: UIViewController {
+class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
+    
+    private var imagePicker: UIImagePickerController!
+    private var selectedCoverImage: UIImage?
     
     private var headerView: UIView!
     private var backButton: UIButton!
     private var registerButton: UIButton!
     
-    private var coverPhotoButtonView: UIView!
-    private var titleTextField: UITextField!
+    private var coverImageView: UIImageView!
+    private var coverPhotoButton: UIButton!
+    private var photoImageView: UIImageView!
+    private var photoLabel: UILabel!
+    private var titleTextView: UITextView!
+    private var titlePlaceHolderLabel: UILabel!
+    private var titleTextCountLabel: UILabel!
     
     private var scrollView: UIScrollView!
     private var contentView: UIView!
@@ -43,9 +51,13 @@ class RegisterTravelReportVC: UIViewController {
         makeCover()
         makeFooter()
         
-        textButton.addTarget(self, action: #selector(tapTextButton), for: .touchUpInside)
+//        coverPhotoButtonView.isUserInteractionEnabled = true
+//        coverPhotoButtonView.addGestureRecognizer(.init(target: self, action: #selector(handleTap)))
         
+        textButton.addTarget(self, action: #selector(tapTextButton), for: .touchUpInside)
         textBackButton.addTarget(self, action: #selector(tapBackTextButton), for: .touchUpInside)
+        registerButton.addTarget(self, action: #selector(tapRegisterButton), for: .touchUpInside)
+        coverPhotoButton.addTarget(self, action: #selector(tapCoverImageButton), for: .touchUpInside)
     }
     
     @objc func tapTextButton(_ sender: UIButton) {
@@ -58,6 +70,14 @@ class RegisterTravelReportVC: UIViewController {
         UIView.animate(withDuration: 0.5) { [weak self] in
             self?.footerScrollView.contentOffset.x = 0
         }
+      }
+    
+    @objc func tapRegisterButton(_ sender: UIButton) {
+        print("등록 등록")
+      }
+    
+    @objc func tapCoverImageButton(_ sender: UIButton) {
+        self.show(imagePicker, sender: nil)
       }
     
     private func makeHeaderView() {
@@ -115,16 +135,22 @@ class RegisterTravelReportVC: UIViewController {
     }
     
     private func makeCover() {
+        
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
         scrollView = UIScrollView()
         view.addSubview(scrollView)
+        scrollView.isScrollEnabled = true
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom)
             make.bottom.leading.trailing.equalToSuperview()
         }
         
         contentView = UIView()
+        contentView.isUserInteractionEnabled = true
         scrollView.addSubview(contentView)
-        scrollView.backgroundColor = .green
+        scrollView.isScrollEnabled = true
         contentView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().offset(-80)
@@ -132,58 +158,122 @@ class RegisterTravelReportVC: UIViewController {
         }
         
         let coverContainerView = UIView()
-        coverContainerView.backgroundColor = .systemYellow
+        coverContainerView.backgroundColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 1).withAlphaComponent(0.3)
         
         contentView.addSubview(coverContainerView)
         coverContainerView.snp.makeConstraints { make in
             make.width.equalTo(scrollView.snp.width)
-            make.top.leading.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(354)
         }
         
-        coverPhotoButtonView = UIView()
-        coverPhotoButtonView.backgroundColor = .systemRed
+        coverImageView = UIImageView()
+        coverImageView.contentMode = .scaleAspectFill
         
-        coverContainerView.addSubview(coverPhotoButtonView)
-        coverPhotoButtonView.snp.makeConstraints { make in
+        coverContainerView.addSubview(coverImageView)
+        coverImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        coverPhotoButton = UIButton()
+        coverPhotoButton.backgroundColor = .clear
+        
+        coverContainerView.addSubview(coverPhotoButton)
+        coverPhotoButton.snp.makeConstraints { make in
             make.height.equalTo(206)
             make.width.equalToSuperview()
             make.top.equalToSuperview()
         }
         
-        let photoImageView = UIImageView(image: UIImage(named: "Picture")?.withRenderingMode(.alwaysTemplate))
+        photoImageView = UIImageView(image: UIImage(named: "Picture")?.withRenderingMode(.alwaysTemplate))
         photoImageView.tintColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
         
-        coverPhotoButtonView.addSubview(photoImageView)
+        coverPhotoButton.addSubview(photoImageView)
         photoImageView.snp.makeConstraints { make in
             make.width.height.equalTo(36)
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(110)
         }
         
-        let photoLabel = UILabel()
+        photoLabel = UILabel()
         photoLabel.text = "사진을 등록해 주세요."
         photoLabel.font = UIFont(name: "SUIT-Medium", size: 10)
         photoLabel.textColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
         
-        coverPhotoButtonView.addSubview(photoLabel)
+        coverPhotoButton.addSubview(photoLabel)
         photoLabel.snp.makeConstraints { make in
             make.top.equalTo(photoImageView.snp.bottom).offset(8)
             make.centerX.equalToSuperview()
         }
         
-        titleTextField = UITextField()
-        titleTextField.attributedPlaceholder = NSAttributedString(string: "제목을 입력해 주세요", attributes: [.foregroundColor: UIColor(red: 1, green: 1, blue: 1, alpha: 1), .font: UIFont(name: "SUIT-Bold", size: 24)!])
+        titlePlaceHolderLabel = UILabel()
+        titlePlaceHolderLabel.text = "제목을 입력해 주세요"
+        titlePlaceHolderLabel.font = UIFont(name: "SUIT-Bold", size: 24)
+        titlePlaceHolderLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        titlePlaceHolderLabel.layer.shadowColor = UIColor(red: 0.055, green: 0.047, blue: 0.047, alpha: 0.2).cgColor
+        titlePlaceHolderLabel.layer.shadowOpacity = 1
+        titlePlaceHolderLabel.layer.shadowRadius = 4
+        titlePlaceHolderLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
         
-        coverContainerView.addSubview(titleTextField)
-        titleTextField.snp.makeConstraints { make in
-            make.top.equalTo(coverPhotoButtonView.snp.bottom)
-            make.height.equalTo(56)
+        coverContainerView.addSubview(titlePlaceHolderLabel)
+        titlePlaceHolderLabel.snp.makeConstraints { make in
+            make.top.equalTo(coverPhotoButton.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(26)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+        
+        titleTextView = UITextView()
+        titleTextView.delegate = self
+        titleTextView.font = UIFont(name: "SUIT-Bold", size: 24)
+        titleTextView.backgroundColor = .clear
+        titleTextView.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        titleTextView.textContainer.maximumNumberOfLines = 2
+        titleTextView.layer.shadowColor = UIColor(red: 0.055, green: 0.047, blue: 0.047, alpha: 0.2).cgColor
+        titleTextView.layer.shadowOpacity = 1
+        titleTextView.layer.shadowRadius = 4
+        titleTextView.layer.shadowOffset = CGSize(width: 0, height: 0)
+
+        coverContainerView.addSubview(titleTextView)
+        titleTextView.snp.makeConstraints { make in
+            make.top.equalTo(coverPhotoButton.snp.bottom)
+            make.height.equalTo(70)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
         }
         
+        titleTextCountLabel = UILabel()
+        titleTextCountLabel.text = "0"
+        titleTextCountLabel.textColor = UIColor(red: 1, green: 0.76, blue: 0.58, alpha: 1)
+        titleTextCountLabel.font = UIFont(name: "SUIT-Medium", size: 10)
+        titleTextCountLabel.layer.shadowColor = UIColor(red: 0.055, green: 0.047, blue: 0.047, alpha: 0.2).cgColor
+        titleTextCountLabel.layer.shadowOpacity = 1
+        titleTextCountLabel.layer.shadowRadius = 4
+        titleTextCountLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
+        
+        let maxTitleCountLabel = UILabel()
+        maxTitleCountLabel.text = "/30"
+        maxTitleCountLabel.textColor = UIColor(red: 0.94, green: 0.93, blue: 0.92, alpha: 1)
+        maxTitleCountLabel.font = UIFont(name: "SUIT-Medium", size: 10)
+        maxTitleCountLabel.layer.shadowColor = UIColor(red: 0.055, green: 0.047, blue: 0.047, alpha: 0.2).cgColor
+        maxTitleCountLabel.layer.shadowOpacity = 1
+        maxTitleCountLabel.layer.shadowRadius = 4
+        maxTitleCountLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
+        
+        let titleCountStackView = UIStackView()
+        titleCountStackView.addArrangedSubview(titleTextCountLabel)
+        titleCountStackView.addArrangedSubview(maxTitleCountLabel)
+        
+        coverContainerView.addSubview(titleCountStackView)
+        titleCountStackView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(-10)
+        }
+    
+        
+        
         // add more comp
+        
+        
     }
     
     private func makeFooter() {
@@ -375,4 +465,36 @@ class RegisterTravelReportVC: UIViewController {
         }
     }
     
+}
+
+extension RegisterTravelReportVC: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[.originalImage] as? UIImage {
+            selectedCoverImage = selectedImage
+            coverImageView.image = selectedImage
+            photoImageView.isHidden = true
+            photoLabel.isHidden = true
+        }
+        dismiss(animated: true, completion: nil) // 이미지 선택 화면 닫기
+    }
+}
+
+extension RegisterTravelReportVC: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        
+        if titleTextView.text.count == 0 {
+            titlePlaceHolderLabel.isHidden = false
+        } else {
+            titlePlaceHolderLabel.isHidden = true
+        }
+        
+        if titleTextView.text.count <= 30 {
+            titleTextCountLabel.text = "\(titleTextView.text.count)"
+        } else {
+            let text = titleTextView.text ?? ""
+            let endIndex = text.index(text.startIndex, offsetBy: 29) // 30번째 글자 직전까지의 인덱스
+            let truncatedString = String(text[..<endIndex]) // 30번째 글자 직전까지의 문자열을 추출
+            titleTextView.text = truncatedString
+        }
+    }
 }

@@ -48,7 +48,11 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     private var footerScrollView: UIScrollView!
     private var contentCountLabel: UILabel!
     private var textButton: UIButton!
+    
     private var textBackButton: UIButton!
+    private var titleButton: UIButton!
+    private var subtitleButton: UIButton!
+    private var contentButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +65,10 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         textBackButton.addTarget(self, action: #selector(tapBackTextButton), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(tapRegisterButton), for: .touchUpInside)
         coverPhotoButton.addTarget(self, action: #selector(tapCoverImageButton), for: .touchUpInside)
+        
+        titleButton.addTarget(self, action: #selector(tapTitleButton), for: .touchUpInside)
+        subtitleButton.addTarget(self, action: #selector(tapSubtitleButton), for: .touchUpInside)
+        contentButton.addTarget(self, action: #selector(tapContentButton), for: .touchUpInside)
     }
     
     @objc func tapTextButton(_ sender: UIButton) {
@@ -81,6 +89,18 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     @objc func tapCoverImageButton(_ sender: UIButton) {
         self.show(imagePicker, sender: nil)
+      }
+    
+    @objc func tapTitleButton(_ sender: UIButton) {
+        changeTextSize(20)
+      }
+    
+    @objc func tapSubtitleButton(_ sender: UIButton) {
+        changeTextSize(16)
+      }
+    
+    @objc func tapContentButton(_ sender: UIButton) {
+        changeTextSize(14)
       }
     
     private func makeHeaderView() {
@@ -446,7 +466,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         textBackButton.setImage(UIImage(named: "Before/02"), for: .normal)
         textBackButton.tintColor = UIColor(red: 0.5, green: 0.45, blue: 0.44, alpha: 1)
         
-        let titleButton = UIButton()
+        titleButton = UIButton()
         let textAtts: [NSAttributedString.Key : Any] = [
             .font: customFont!,
             .foregroundColor: UIColor(red: 0.62, green: 0.59, blue: 0.58, alpha: 1)
@@ -454,11 +474,11 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         let titleAttString = NSAttributedString(string: "제목", attributes: textAtts)
         titleButton.setAttributedTitle(titleAttString, for: .normal)
         
-        let subtitleButton = UIButton()
+        subtitleButton = UIButton()
         let subtitleAttString = NSAttributedString(string: "소제목", attributes: textAtts)
         subtitleButton.setAttributedTitle(subtitleAttString, for: .normal)
         
-        let contentButton = UIButton()
+        contentButton = UIButton()
         let contentAttString = NSAttributedString(string: "본문", attributes: textAtts)
         contentButton.setAttributedTitle(contentAttString, for: .normal)
         
@@ -500,6 +520,52 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         boldButton.snp.makeConstraints { make in
             make.leading.equalTo(contentButton.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
+        }
+    }
+    
+    private func changeTextSize(_ size: CGFloat) {
+        
+        if let selectedRange = contentTextView.selectedTextRange {
+            // 텍스트 뷰 내에서 커서가 위치한 텍스트의 범위를 가져옵니다.
+            let start = contentTextView.offset(from: contentTextView.beginningOfDocument, to: selectedRange.start)
+            let end = contentTextView.offset(from: contentTextView.beginningOfDocument, to: selectedRange.end)
+            
+            // 커서가 위치한 텍스트의 범위를 식별합니다.
+            let selectedTextRange = NSRange(location: start, length: end - start)
+            
+            // 원하는 글자 크기를 설정합니다.
+            let fontSize: CGFloat = size
+            
+            // 글자 크기를 변경할 범위에 대해 적용합니다.
+            if selectedTextRange.location != NSNotFound && selectedTextRange.length > 0 {
+                let attributedText = NSMutableAttributedString(attributedString: contentTextView.attributedText)
+                attributedText.addAttribute(.font, value: UIFont.systemFont(ofSize: fontSize), range: selectedTextRange)
+                
+                // 변경된 속성을 텍스트 뷰에 설정합니다.
+                contentTextView.attributedText = attributedText
+            } else {
+                // 선택된 텍스트 범위가 없을 때
+                  if let currentPosition = contentTextView.selectedTextRange?.start {
+                      // 커서의 현재 위치를 식별하고 해당 위치의 행을 찾습니다.
+                      if let currentLineRange = contentTextView.tokenizer.rangeEnclosingPosition(currentPosition, with: .line, inDirection: UITextDirection(rawValue: 1)) {
+                          // 텍스트 뷰 내의 현재 행 범위를 가져옵니다.
+                          
+                          // 원하는 글자 크기를 설정합니다.
+                          let fontSize: CGFloat = size
+                          
+                          // 커서 위치에서 행 시작 위치와 끝 위치를 가져옵니다.
+                          let start = contentTextView.offset(from: contentTextView.beginningOfDocument, to: currentLineRange.start)
+                          let end = contentTextView.offset(from: contentTextView.beginningOfDocument, to: currentLineRange.end)
+                          
+                          // 글자 크기를 변경할 범위에 적용합니다.
+                          let attributedText = NSMutableAttributedString(attributedString: contentTextView.attributedText)
+                          attributedText.addAttribute(.font, value: UIFont.systemFont(ofSize: fontSize), range: NSRange(location: start, length: end - start))
+                          
+                          // 변경된 속성을 텍스트 뷰에 설정합니다.
+                          contentTextView.attributedText = attributedText
+                      }
+                  }
+            }
         }
     }
     

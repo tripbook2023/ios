@@ -30,6 +30,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     private var backButton: UIButton!
     private var registerButton: UIButton!
     
+    private var coverContainerView: UIView!
     private var coverImageView: UIImageView!
     private var coverPhotoButton: UIButton!
     private var photoImageView: UIImageView!
@@ -41,7 +42,11 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     private var scrollView: UIScrollView!
     private var contentView: UIView!
     
+    private var contentTextView: UITextView!
+    private var contentPlaceHolderLabel: UILabel!
+    
     private var footerScrollView: UIScrollView!
+    private var contentCountLabel: UILabel!
     private var textButton: UIButton!
     private var textBackButton: UIButton!
     
@@ -49,10 +54,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         super.viewDidLoad()
         makeHeaderView()
         makeCover()
+        makeContent()
         makeFooter()
-        
-//        coverPhotoButtonView.isUserInteractionEnabled = true
-//        coverPhotoButtonView.addGestureRecognizer(.init(target: self, action: #selector(handleTap)))
         
         textButton.addTarget(self, action: #selector(tapTextButton), for: .touchUpInside)
         textBackButton.addTarget(self, action: #selector(tapBackTextButton), for: .touchUpInside)
@@ -154,10 +157,10 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         contentView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().offset(-80)
-            make.height.equalTo(1000)
+            make.height.greaterThanOrEqualToSuperview()
         }
         
-        let coverContainerView = UIView()
+        coverContainerView = UIView()
         coverContainerView.backgroundColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 1).withAlphaComponent(0.3)
         
         contentView.addSubview(coverContainerView)
@@ -223,6 +226,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         }
         
         titleTextView = UITextView()
+        titleTextView.tag = 0
         titleTextView.delegate = self
         titleTextView.font = UIFont(name: "SUIT-Bold", size: 24)
         titleTextView.backgroundColor = .clear
@@ -268,17 +272,39 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalToSuperview().offset(-10)
         }
+    }
     
+    private func makeContent() {
+        contentPlaceHolderLabel = UILabel()
+        contentPlaceHolderLabel.text = "최소 800자 이상의 글자수를 작성해주세요"
+        contentPlaceHolderLabel.font = UIFont(name: "SUIT-Medium", size: 14)
+        contentPlaceHolderLabel.textColor = UIColor(red: 0.78, green: 0.75, blue: 0.74, alpha: 1)
         
+        contentView.addSubview(contentPlaceHolderLabel)
+        contentPlaceHolderLabel.snp.makeConstraints { make in
+            make.top.equalTo(coverContainerView.snp.bottom).offset(40)
+            make.leading.equalToSuperview().offset(26)
+            make.trailing.equalToSuperview().offset(-20)
+        }
         
-        // add more comp
+        contentTextView = UITextView()
+        contentTextView.font = UIFont(name: "SUIT-Medium", size: 14)
+        contentTextView.tag = 1
+        contentTextView.backgroundColor = .clear
+        contentTextView.delegate = self
+        contentView.addSubview(contentTextView)
         
-        
+        contentTextView.snp.makeConstraints { make in
+            make.top.equalTo(coverContainerView.snp.bottom).offset(32)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(-32)
+        }
+        contentTextView.isScrollEnabled = false
     }
     
     private func makeFooter() {
         let footerContainerView = UIView()
-        footerContainerView.backgroundColor = .cyan
         
         view.addSubview(footerContainerView)
         footerContainerView.snp.makeConstraints { make in
@@ -287,10 +313,22 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             make.height.equalTo(80)
         }
         
-        let contentCountLabel = UILabel()
-        contentCountLabel.text = "1000"
-        footerContainerView.addSubview(contentCountLabel)
-        contentCountLabel.snp.makeConstraints { make in
+        contentCountLabel = UILabel()
+        contentCountLabel.text = "0"
+        contentCountLabel.font = UIFont(name: "SUIT-Medium", size: 10)
+        contentCountLabel.textColor = UIColor(red: 0.78, green: 0.13, blue: 0, alpha: 1)
+        
+        let contentMaxCountLabel = UILabel()
+        contentMaxCountLabel.text = "/10,000"
+        contentMaxCountLabel.font = UIFont(name: "SUIT-Medium", size: 10)
+        contentMaxCountLabel.textColor = UIColor(red: 0.78, green: 0.75, blue: 0.74, alpha: 1)
+        
+        let contentStackView = UIStackView()
+        contentStackView.addArrangedSubview(contentCountLabel)
+        contentStackView.addArrangedSubview(contentMaxCountLabel)
+        
+        footerContainerView.addSubview(contentStackView)
+        contentStackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-20)
         }
@@ -475,26 +513,45 @@ extension RegisterTravelReportVC: UIImagePickerControllerDelegate {
             photoImageView.isHidden = true
             photoLabel.isHidden = true
         }
-        dismiss(animated: true, completion: nil) // 이미지 선택 화면 닫기
+        dismiss(animated: true, completion: nil)
     }
 }
 
 extension RegisterTravelReportVC: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        
-        if titleTextView.text.count == 0 {
-            titlePlaceHolderLabel.isHidden = false
-        } else {
-            titlePlaceHolderLabel.isHidden = true
+        // title
+        if textView.tag == 0 {
+            if titleTextView.text.count == 0 {
+                titlePlaceHolderLabel.isHidden = false
+            } else {
+                titlePlaceHolderLabel.isHidden = true
+            }
+            
+            if titleTextView.text.count <= 30 {
+                titleTextCountLabel.text = "\(titleTextView.text.count)"
+            } else {
+                let text = titleTextView.text ?? ""
+                let endIndex = text.index(text.startIndex, offsetBy: 29)
+                let truncatedString = String(text[..<endIndex])
+                titleTextView.text = truncatedString
+            }
         }
-        
-        if titleTextView.text.count <= 30 {
-            titleTextCountLabel.text = "\(titleTextView.text.count)"
-        } else {
-            let text = titleTextView.text ?? ""
-            let endIndex = text.index(text.startIndex, offsetBy: 29) // 30번째 글자 직전까지의 인덱스
-            let truncatedString = String(text[..<endIndex]) // 30번째 글자 직전까지의 문자열을 추출
-            titleTextView.text = truncatedString
+        // content
+        if textView.tag == 1 {
+            if contentTextView.text.count == 0 {
+                contentPlaceHolderLabel.isHidden = false
+            } else {
+                contentPlaceHolderLabel.isHidden = true
+            }
+            
+            if contentTextView.text.count <= 10000 {
+                contentCountLabel.text = "\(contentTextView.text.count)"
+            } else {
+                let text = contentTextView.text ?? ""
+                let endIndex = text.index(text.startIndex, offsetBy: 29)
+                let truncatedString = String(text[..<endIndex])
+                contentTextView.text = truncatedString
+            }
         }
     }
 }

@@ -31,14 +31,31 @@ class RegisterTravelReportVC: UIViewController {
     private var contentView: UIView!
     
     private var footerScrollView: UIScrollView!
+    private var textButton: UIButton!
+    private var textBackButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         makeHeaderView()
         makeCover()
-        
         makeFooter()
+        
+        textButton.addTarget(self, action: #selector(tapTextButton), for: .touchUpInside)
+        
+        textBackButton.addTarget(self, action: #selector(tapBackTextButton), for: .touchUpInside)
     }
+    
+    @objc func tapTextButton(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.footerScrollView.contentOffset.x = UIScreen.main.bounds.size.width
+        }
+      }
+    
+    @objc func tapBackTextButton(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.footerScrollView.contentOffset.x = 0
+        }
+      }
     
     private func makeHeaderView() {
         headerView = UIView()
@@ -124,7 +141,7 @@ class RegisterTravelReportVC: UIViewController {
         // add more comp
     }
     
-    func makeFooter() {
+    private func makeFooter() {
         let footerContainerView = UIView()
         footerContainerView.backgroundColor = .cyan
         
@@ -144,6 +161,7 @@ class RegisterTravelReportVC: UIViewController {
         }
         
         footerScrollView = UIScrollView()
+        footerScrollView.isScrollEnabled = false
         footerContainerView.addSubview(footerScrollView)
         footerScrollView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
@@ -175,7 +193,7 @@ class RegisterTravelReportVC: UIViewController {
         let horizontalDivider = UIView()
         horizontalDivider.backgroundColor = UIColor(red: 0.88, green: 0.86, blue: 0.86, alpha: 1)
         
-        let textButton = UIButton()
+        textButton = UIButton()
         textButton.setImage(UIImage(named: "Txt"), for: .normal)
         textButton.tintColor = UIColor(red: 0.5, green: 0.45, blue: 0.44, alpha: 1)
         
@@ -243,7 +261,6 @@ class RegisterTravelReportVC: UIViewController {
         }
 
         let secondView = UIView()
-        secondView.backgroundColor = .blue
         footerScrollView.addSubview(secondView)
         secondView.snp.makeConstraints { make in
             make.width.equalTo(footerContainerView.snp.width)
@@ -252,5 +269,65 @@ class RegisterTravelReportVC: UIViewController {
             make.trailing.equalToSuperview()
         }
         
+        textBackButton = UIButton()
+        textBackButton.setImage(UIImage(named: "Before/02"), for: .normal)
+        textBackButton.tintColor = UIColor(red: 0.5, green: 0.45, blue: 0.44, alpha: 1)
+        
+        let titleButton = UIButton()
+        let textAtts: [NSAttributedString.Key : Any] = [
+            .font: customFont!,
+            .foregroundColor: UIColor(red: 0.62, green: 0.59, blue: 0.58, alpha: 1)
+        ]
+        let titleAttString = NSAttributedString(string: "제목", attributes: textAtts)
+        titleButton.setAttributedTitle(titleAttString, for: .normal)
+        
+        let subtitleButton = UIButton()
+        let subtitleAttString = NSAttributedString(string: "소제목", attributes: textAtts)
+        subtitleButton.setAttributedTitle(subtitleAttString, for: .normal)
+        
+        let contentButton = UIButton()
+        let contentAttString = NSAttributedString(string: "본문", attributes: textAtts)
+        contentButton.setAttributedTitle(contentAttString, for: .normal)
+        
+        let boldButton = UIButton()
+        let boldFont = UIFont(name: "SUIT-Bold", size: 14)
+        let boldAtts: [NSAttributedString.Key : Any] = [
+            .font: boldFont!,
+            .foregroundColor: UIColor(red: 0.62, green: 0.59, blue: 0.58, alpha: 1)
+        ]
+        let boldAttString = NSAttributedString(string: "B", attributes: boldAtts)
+        boldButton.setAttributedTitle(boldAttString, for: .normal)
+        
+        secondView.addSubview(textBackButton)
+        textBackButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(20)
+            make.width.height.equalTo(24)
+            make.centerY.equalToSuperview()
+        }
+        
+        secondView.addSubview(titleButton)
+        titleButton.snp.makeConstraints { make in
+            make.leading.equalTo(textBackButton.snp.trailing).offset(20)
+            make.centerY.equalToSuperview()
+        }
+        
+        secondView.addSubview(subtitleButton)
+        subtitleButton.snp.makeConstraints { make in
+            make.leading.equalTo(titleButton.snp.trailing).offset(20)
+            make.centerY.equalToSuperview()
+        }
+        
+        secondView.addSubview(contentButton)
+        contentButton.snp.makeConstraints { make in
+            make.leading.equalTo(subtitleButton.snp.trailing).offset(20)
+            make.centerY.equalToSuperview()
+        }
+        
+        secondView.addSubview(boldButton)
+        boldButton.snp.makeConstraints { make in
+            make.leading.equalTo(contentButton.snp.trailing).offset(20)
+            make.centerY.equalToSuperview()
+        }
     }
+    
 }

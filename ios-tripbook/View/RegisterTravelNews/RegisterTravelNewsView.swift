@@ -49,6 +49,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     private var footerScrollView: UIScrollView!
     private var contentCountLabel: UILabel!
+    private var keyboardButton: UIButton!
     private var textButton: UIButton!
     private var imageButton: UIButton!
     
@@ -65,6 +66,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         makeContent()
         makeFooter()
         
+        keyboardButton.addTarget(self, action: #selector(tapKeyboardButton), for: .touchUpInside)
         textButton.addTarget(self, action: #selector(tapTextButton), for: .touchUpInside)
         textBackButton.addTarget(self, action: #selector(tapBackTextButton), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(tapRegisterButton), for: .touchUpInside)
@@ -97,6 +99,11 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     @objc func tapCoverImageButton(_ sender: UIButton) {
         self.isCoverImage = true
         self.show(imagePicker, sender: nil)
+      }
+    
+    @objc func tapKeyboardButton(_ sender: UIButton) {
+        self.contentTextView.resignFirstResponder()
+        self.titleTextView.resignFirstResponder()
       }
     
     @objc func tapImageButton(_ sender: UIButton) {
@@ -341,6 +348,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     private func makeFooter() {
         let footerContainerView = UIView()
+        footerContainerView.backgroundColor = .white
         
         view.addSubview(footerContainerView)
         footerContainerView.snp.makeConstraints { make in
@@ -395,7 +403,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             make.top.bottom.leading.equalToSuperview()
         }
         
-        let keyboardButton = UIButton()
+        keyboardButton = UIButton()
         keyboardButton.setImage(UIImage(named: "Keyboard"), for: .normal)
         keyboardButton.tintColor = UIColor(red: 0.5, green: 0.45, blue: 0.44, alpha: 1)
         

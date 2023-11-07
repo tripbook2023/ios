@@ -56,6 +56,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     private var titleButton: UIButton!
     private var subtitleButton: UIButton!
     private var contentButton: UIButton!
+    private var boldButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +75,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         titleButton.addTarget(self, action: #selector(tapTitleButton), for: .touchUpInside)
         subtitleButton.addTarget(self, action: #selector(tapSubtitleButton), for: .touchUpInside)
         contentButton.addTarget(self, action: #selector(tapContentButton), for: .touchUpInside)
+        boldButton.addTarget(self, action: #selector(tapBoldButton), for: .touchUpInside)
     }
     
     @objc func tapTextButton(_ sender: UIButton) {
@@ -111,6 +113,10 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     @objc func tapContentButton(_ sender: UIButton) {
         changeTextSize(14)
+      }
+    
+    @objc func tapBoldButton(_ sender: UIButton) {
+        toggleTextWeightBold()
       }
     
     private func makeHeaderView() {
@@ -492,7 +498,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         let contentAttString = NSAttributedString(string: "본문", attributes: textAtts)
         contentButton.setAttributedTitle(contentAttString, for: .normal)
         
-        let boldButton = UIButton()
+        boldButton = UIButton()
         let boldFont = UIFont(name: "SUIT-Bold", size: 14)
         let boldAtts: [NSAttributedString.Key : Any] = [
             .font: boldFont!,
@@ -579,6 +585,98 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         }
     }
     
+    private func toggleTextWeightBold() {
+        if let selectedRange = contentTextView.selectedTextRange {
+               // 텍스트 뷰 내에서 커서가 위치한 텍스트의 범위를 가져옵니다.
+               let start = contentTextView.offset(from: contentTextView.beginningOfDocument, to: selectedRange.start)
+               let end = contentTextView.offset(from: contentTextView.beginningOfDocument, to: selectedRange.end)
+
+               // 커서가 위치한 텍스트의 범위를 식별합니다.
+               let selectedTextRange = NSRange(location: start, length: end - start)
+
+               // 원하는 글꼴 두께를 설정합니다.
+               let fontWeight: UIFont.Weight = .bold
+               
+               // 글꼴 두께를 변경할 범위에 대해 적용합니다.
+               if selectedTextRange.location != NSNotFound && selectedTextRange.length > 0 {
+                   let attributedText = NSMutableAttributedString(attributedString: contentTextView.attributedText)
+                   
+                   // 범위에 있는 텍스트 중에 bold 속성을 가진 글자가 있는지 확인한다.
+                   var fonts: [String] = []
+                   attributedText.enumerateAttribute(.font, in: selectedTextRange, options: []) { (value, range, stop) in
+                       if let oldFont = value as? UIFont {
+                           fonts.append(oldFont.fontName)
+                       }
+                   }
+                   
+                   let contianBold = fonts.contains(".SFUI-Bold")
+                   
+                   attributedText.enumerateAttribute(.font, in: selectedTextRange, options: []) { (value, range, stop) in
+                       
+                       if let oldFont = value as? UIFont {
+                           if contianBold {
+                               // 기존 글자 중 하나라도 bold 속성을 가진 경우, medium로 변경합니다.
+                               let regularFont = UIFont.systemFont(ofSize: oldFont.pointSize, weight: .medium)
+                               attributedText.addAttribute(.font, value: regularFont, range: range)
+                           } else {
+                               // 기존 글자 중 bold 속성이 없으면, bold로 변경합니다.
+                               let boldFont = UIFont.systemFont(ofSize: oldFont.pointSize, weight: fontWeight)
+                               attributedText.addAttribute(.font, value: boldFont, range: range)
+                           }
+                       }
+                   }
+
+                   // 변경된 속성을 텍스트 뷰에 설정합니다.
+                   contentTextView.attributedText = attributedText
+               } else {
+                   // 선택된 텍스트 범위가 없을 때
+                   if let currentPosition = contentTextView.selectedTextRange?.start {
+                       // 커서의 현재 위치를 식별하고 해당 위치의 행을 찾습니다.
+                       if let currentLineRange = contentTextView.tokenizer.rangeEnclosingPosition(currentPosition, with: .line, inDirection: UITextDirection(rawValue: 1)) {
+                           // 텍스트 뷰 내의 현재 행 범위를 가져옵니다.
+
+                           // 원하는 글꼴 두껈를 설정합니다.
+                           let fontWeight: UIFont.Weight = .bold
+
+                           // 커서 위치에서 행 시작 위치와 끝 위치를 가져옵니다.
+                           let start = contentTextView.offset(from: contentTextView.beginningOfDocument, to: currentLineRange.start)
+                           let end = contentTextView.offset(from: contentTextView.beginningOfDocument, to: currentLineRange.end)
+
+                           // 글꼴 두께를 변경할 범위에 적용합니다.
+                           let attributedText = NSMutableAttributedString(attributedString: contentTextView.attributedText)
+
+                           var fonts: [String] = []
+                           attributedText.enumerateAttribute(.font, in: selectedTextRange, options: []) { (value, range, stop) in
+                               if let oldFont = value as? UIFont {
+                                   fonts.append(oldFont.fontName)
+                               }
+                           }
+                           
+                           let contianBold = fonts.contains(".SFUI-Bold")
+                           
+                           attributedText.enumerateAttribute(.font, in: selectedTextRange, options: []) { (value, range, stop) in
+                               
+                               if let oldFont = value as? UIFont {
+                                   if contianBold {
+                                       // 기존 글자 중 하나라도 bold 속성을 가진 경우, medium로 변경합니다.
+                                       let regularFont = UIFont.systemFont(ofSize: oldFont.pointSize, weight: .medium)
+                                       attributedText.addAttribute(.font, value: regularFont, range: range)
+                                   } else {
+                                       // 기존 글자 중 bold 속성이 없으면, bold로 변경합니다.
+                                       let boldFont = UIFont.systemFont(ofSize: oldFont.pointSize, weight: fontWeight)
+                                       attributedText.addAttribute(.font, value: boldFont, range: range)
+                                   }
+                               }
+                           }
+
+                           // 변경된 속성을 텍스트 뷰에 설정합니다.
+                           contentTextView.attributedText = attributedText
+                       }
+                   }
+               }
+           }
+    }
+    
     func addImageInTextView(_ image: UIImage?) {
         if let image = image {
             let maxWidth: CGFloat = 200.0 // 이미지의 최대 가로 너비
@@ -587,7 +685,6 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             
             // 이미지를 리사이즈
             UIGraphicsBeginImageContextWithOptions(newImageSize, false, 0.0)
-            let context = UIGraphicsGetCurrentContext()!
             image.draw(in: CGRect(x: 0, y: 0, width: newImageSize.width, height: newImageSize.height))
             let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
@@ -610,7 +707,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             // 기존 NSAttributedString 끝에 이미지를 추가
             let currentNSArr = contentTextView.attributedText ?? .init(string: "")
             
-            var mutableAttributedString = NSMutableAttributedString(attributedString: currentNSArr)
+            let mutableAttributedString = NSMutableAttributedString(attributedString: currentNSArr)
             mutableAttributedString.append(imageString)
             
             contentTextView.attributedText = NSAttributedString(attributedString: mutableAttributedString)

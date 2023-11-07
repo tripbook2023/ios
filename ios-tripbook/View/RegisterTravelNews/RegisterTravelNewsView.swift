@@ -94,6 +94,9 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     @objc func tapRegisterButton(_ sender: UIButton) {
         print("등록 등록")
+        if let html = contentTextView.attributedText.toHTML() {
+            print(html)
+        }
       }
     
     @objc func tapCoverImageButton(_ sender: UIButton) {

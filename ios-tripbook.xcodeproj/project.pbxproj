@@ -127,6 +127,7 @@
 		9D077C012AE655FA00FD37CA /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9D077C002AE655FA00FD37CA /* RichTextKit */; };
 		9D34D2372AF4EE3C006D60AC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9D34D2362AF4EE3C006D60AC /* SnapKit */; };
 		9D34D23A2AF4EF3A006D60AC /* RegisterTravelNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D34D2392AF4EF3A006D60AC /* RegisterTravelNewsView.swift */; };
+		DA7CF4CC2AFA9A7C00386B79 /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7CF4CB2AFA9A7C00386B79 /* NSAttributedString+Extension.swift */; };
 		DAC0E1852ACC888200AE41B4 /* TravelNewsPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC0E1842ACC888200AE41B4 /* TravelNewsPostViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -258,6 +259,7 @@
 		9BA39AE72AEA327200C5AEBC /* tripbookOnboardingLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tripbookOnboardingLottie.json; sourceTree = "<group>"; };
 		9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBNetworkError.swift; sourceTree = "<group>"; };
 		9D34D2392AF4EF3A006D60AC /* RegisterTravelNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelNewsView.swift; sourceTree = "<group>"; };
+		DA7CF4CB2AFA9A7C00386B79 /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		DAC0E1842ACC888200AE41B4 /* TravelNewsPostViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelNewsPostViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -698,6 +700,7 @@
 			isa = PBXGroup;
 			children = (
 				9B0696222AD801C100006A84 /* Bundle+Extension.swift */,
+				DA7CF4CB2AFA9A7C00386B79 /* NSAttributedString+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -967,6 +970,7 @@
 				85E8CA982A39A68900EBDE7F /* SignupProfileInfoView.swift in Sources */,
 				9B0696152AC7EBC000006A84 /* TBArticlesAPIPath.swift in Sources */,
 				9B9C74D12AE7A9AE005B69AE /* OnboardingViewModel.swift in Sources */,
+				DA7CF4CC2AFA9A7C00386B79 /* NSAttributedString+Extension.swift in Sources */,
 				9B026BF42AB85A9000F6C81C /* APIManagerable.swift in Sources */,
 				9B9C74BA2AE68AF0005B69AE /* OnboardingView.swift in Sources */,
 				85E8CA962A39A65400EBDE7F /* SignupProfileImageView.swift in Sources */,

@@ -88,21 +88,14 @@ struct SignupProfileImageView: View {
                     }
                     self.viewModel.didTapDoneButton()
                 }.padding(.bottom, 12)
-                
-                NavigationLink(
-                    isActive: self.$viewModel.navigationTrigger,
-                    destination: {
-                        SignupProfileInfoView(self.signupViewModel)
-                    },
-                    label: {
-                        EmptyView()
-                    }
-                )
             }.padding(.horizontal, 20)
             
             SignupProfileImageSelectOptionView(delgate: self.viewModel)
                 .opacity(self.viewModel.isShowOptionView ? 1 : 0)
         }
+        .navigationDestination(isPresented: $viewModel.navigationTrigger, destination: {
+            SignupProfileInfoView(self.signupViewModel)
+        })
         .fullScreenCover(isPresented: self.$viewModel.isNavigateImagePickerView) {
             TBImagePickerView(
                 .single,

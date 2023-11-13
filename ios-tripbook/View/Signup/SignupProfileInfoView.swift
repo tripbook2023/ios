@@ -134,16 +134,10 @@ struct SignupProfileInfoView: View {
                         self.viewModel.didTapDoneButton()
                     }.store(in: &anyCancellable)
             }
-            
-            NavigationLink(
-                isActive: self.$viewModel.navigationTrigger,
-                destination: {
-                    SignupCompletionView()
-                }, label: {
-                    EmptyView()
-                }
-            )
         }
+        .navigationDestination(isPresented: $viewModel.navigationTrigger, destination: {
+            SignupCompletionView()
+        })
         .padding(.horizontal, 20)
         .padding(.bottom, 12)
         .navigationBarHidden(true)

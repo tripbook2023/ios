@@ -22,17 +22,14 @@ struct SignupCompletionView: View {
             Text("나만의 소중한 여행기록을 작성해보세요.")
                 .font(TBFont.body_4)
                 .foregroundColor(TBColor.grayscale._60)
-            
-            NavigationLink(isActive: self.$navigationTrigger, destination: {
-                RootView()
-            }, label: {
-                EmptyView()
-            })
         }
+        .navigationDestination(isPresented: $navigationTrigger, destination: {
+            RootView()
+        })
         .navigationBarHidden(true)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.navigationTrigger = true
+                self.navigationTrigger.toggle()
             }
         }
     }

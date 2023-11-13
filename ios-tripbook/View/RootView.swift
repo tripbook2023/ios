@@ -16,7 +16,7 @@ import SwiftUI
     - TravelReportView
     - RegisterTravelReportView
     - TravelNewsView
-    - ProfileView
+    - MypageView
  */
 struct RootView: View {
     @ObservedObject var viewModel = RootViewModel()
@@ -49,7 +49,7 @@ struct RootView: View {
                     }
                     .tag(RootViewModel.TabType.registerTravelReport)
                 
-                ProfileView()
+                MypageView()
                     .tabItem {
                         if viewModel.selectedTab == .profile {
                             TBIcon.navigation.mypage.active

@@ -99,20 +99,19 @@ struct SignupTermsView: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.bottom, 12)
-                
-                NavigationLink(isActive: self.$viewModel.navigationTrigger, destination: {
-                    SignupProfileNameView(self.signupViewModel)
-                }, label: {
-                    EmptyView()
-                })
             }
+            
             
             SignupTermDetailModal(
                 self.viewModel.selectedModalType ?? SignupTermsViewModel.TermType.Service,
                 delegate: self.viewModel
             )
             .opacity(self.viewModel.isVisibleModal ? 1 : 0)
-        }.navigationBarHidden(true)
+        }
+        .navigationDestination(isPresented: $viewModel.navigationTrigger) {
+            SignupProfileNameView(signupViewModel)
+        }
+        .navigationBarHidden(true)
     }
 }
 

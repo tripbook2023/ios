@@ -21,7 +21,7 @@ extension AuthenticationResponse {
             email: self.email,
             accessToken: self.accessToken,
             refreshToken: self.refreshToken,
-            status: AuthenticationResult.AuthStatus(rawValue: self.status) ?? .normal
+            status: AuthenticationResult.AuthStatus(rawValue: self.status) ?? .requiredAuth
         )
     }
 }

@@ -15,10 +15,10 @@ protocol SignupSocialViewDelegate {
 
 struct SignupSocialView: View {
     @StateObject var signupViewModel = SignupViewModel()
-    @ObservedObject var viewModel =  SignupSocialViewModel()
+    @StateObject var viewModel =  SignupSocialViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 8) {
                 Image("TitleLogo")
                     .resizable()
@@ -90,17 +90,12 @@ struct SignupSocialView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 52)
                 }.padding(.horizontal, 20)
-                
-                NavigationLink(isActive: self.$viewModel.goToRootNavigationTrigger, destination: {
-                    RootView()
-                }, label: {
-                    EmptyView()
-                })
-                NavigationLink(isActive: self.$viewModel.continueNavigationTrigger, destination: {
-                    SignupTermsView(self.signupViewModel)
-                }, label: {
-                    EmptyView()
-                })
+            }
+            .navigationDestination(isPresented: $viewModel.goToRootNavigationTrigger) {
+                RootView()
+            }
+            .navigationDestination(isPresented: $viewModel.continueNavigationTrigger) {
+                SignupTermsView(self.signupViewModel)
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

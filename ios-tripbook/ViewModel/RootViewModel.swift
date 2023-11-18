@@ -29,9 +29,6 @@ class RootViewModel: ObservableObject {
         /// 내 정보 화면
         case profile
     }
-    
-    let dataStorage = DataStorage.shared
-    
     /// 활성화된 Tab
     @Published var selectedTab: TabType = .home
 }

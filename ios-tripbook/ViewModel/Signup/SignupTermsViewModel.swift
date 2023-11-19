@@ -93,7 +93,7 @@ extension SignupTermsViewModel: SignupTermsViewDelegate {
     }
     
     func didTapDoneButton() {
-        self.navigationTrigger.toggle()
+        self.navigationTrigger = true
     }
 }
 

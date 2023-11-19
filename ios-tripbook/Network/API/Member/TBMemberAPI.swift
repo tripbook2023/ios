@@ -42,8 +42,9 @@ struct TBMemberAPI: APIable {
         )
     }
     
-    static func select() -> Self {
-        let headers = HTTPHeaders()
+    static func select(token: String) -> Self {
+        var headers = HTTPHeaders()
+        headers.add(.authorization(bearerToken: token))
         return TBMemberAPI(
             path: TBAPIPath.Member.select,
             method: .get,

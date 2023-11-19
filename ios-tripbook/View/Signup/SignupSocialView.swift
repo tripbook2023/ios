@@ -92,12 +92,14 @@ struct SignupSocialView: View {
                 }.padding(.horizontal, 20)
             }
             .navigationDestination(isPresented: $viewModel.goToRootNavigationTrigger) {
-                RootView()
+                RootView(isPresented: $viewModel.goToRootNavigationTrigger)
             }
             .navigationDestination(isPresented: $viewModel.continueNavigationTrigger) {
                 SignupTermsView(self.signupViewModel)
             }
+            
         }
+        .environment(\.rootPresentationMode, $viewModel.continueNavigationTrigger)
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             self.viewModel.delegate = self.signupViewModel

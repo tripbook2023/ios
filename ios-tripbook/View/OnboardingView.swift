@@ -10,12 +10,12 @@ import Lottie
 import Combine
 
 struct OnboardingView: View {
-    @ObservedObject var viewModel = OnboardingViewModel()
+    @StateObject var viewModel = OnboardingViewModel()
     @State private var anyCancellable = Set<AnyCancellable>()
     var body: some View {
         ZStack {
-            if viewModel.presentView == .root {
-                RootView()
+            if viewModel.isPresentRoot {
+                RootView(isPresented: $viewModel.isPresentRoot)
             } else {
                 SignupSocialView()
             }
@@ -41,12 +41,13 @@ struct OnboardingView: View {
 
 extension OnboardingView {
     private func bind() {
-        viewModel.$presentView
+        viewModel.$isPresentRoot
+            .receive(on: DispatchQueue.main)
             .combineLatest(viewModel.$isAnimationFinish)
-            .filter { $0 != nil && $1 }
+            .filter { $1 && !self.viewModel.isHidden }
             .sink { _ in
                 withAnimation(Animation.spring().speed(1)) {
-                    viewModel.isHidden.toggle()
+                    viewModel.isHidden = true
                 }
             }.store(in: &anyCancellable)
     }

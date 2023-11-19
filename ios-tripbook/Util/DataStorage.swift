@@ -12,13 +12,15 @@ import Combine
 /// - Author: 김민규
 /// - Date: 2023/05/20
 class DataStorage: ObservableObject {
-    static let shared = DataStorage()
+    static var shared = DataStorage()
     
     private let apiManager: APIManagerable
+    private let tokenStorage: TokenStorage
     
-    init(apiManager: APIManagerable = TBAPIManager()) {
+    init(apiManager: APIManagerable = TBAPIManager(), tokenStorage: TokenStorage = .shared) {
         self.apiManager = apiManager
-        self.getUser()
+        self.tokenStorage = tokenStorage
+        getUser()
     }
     /// User Data
     @Published var user: MyProfile?
@@ -26,7 +28,7 @@ class DataStorage: ObservableObject {
     func getUser() {
         Task {
             guard let profile = try? await apiManager.request(
-                TBMemberAPI.select(),
+                TBMemberAPI.select(token: tokenStorage.accessToken ?? ""),
                 type: GetUserResponse.self
             ).toDomain else { return }
             user = profile

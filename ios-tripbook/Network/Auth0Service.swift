@@ -88,7 +88,9 @@ class Auth0Service: NSObject {
     static func webAuthLogout(collBack: () -> Void) async -> Bool {
         do {
             try await Auth0.webAuth().clearSession()
-            collBack()
+            await MainActor.run {
+                collBack()
+            }
             print("로그아웃 성공")
             
             return true

@@ -33,6 +33,12 @@ class TokenStorage {
             "refreshToken": refreshToken
         ], forKey: "UserTokens")
     }
+    
+    func deleteTokens() {
+        UserDefaults.standard.removeObject(forKey: "UserTokens")
+        accessToken = nil
+        refreshToken = nil
+    }
 }
 
 class TBAuthInterceptor: RequestInterceptor {

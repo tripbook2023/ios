@@ -12,6 +12,7 @@ import SwiftUI
 /// - Author: 김민규
 /// - Date: 2023/05/15
 class RootViewModel: ObservableObject {
+    @Published var isShowLogoutMessage = false
     /// TabView에 포함된 화면 Views
     enum TabType {
         /// 홈 화면

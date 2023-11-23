@@ -16,14 +16,14 @@ struct TBMemberAPI: APIable {
     var headers: HTTPHeaders
     var uploadImages: [String : [Data?]]
     
-    static func update(request: Requestable, images: [String : [Data?]]) -> Self {
+    static func update(accessToken: String, name: String?, images: [String : [Data?]]) -> Self {
         var headers = HTTPHeaders()
-        headers.add(.userAgent("IOS_APP"))
+        headers.add(.authorization(bearerToken: accessToken))
         headers.add(.contentType("multipart/form-data"))
         return TBMemberAPI(
             path: TBAPIPath.Member.update,
             method: .post,
-            parameters: request.parameter,
+            parameters: ["name": name as Any],
             headers: headers,
             uploadImages: images
         )

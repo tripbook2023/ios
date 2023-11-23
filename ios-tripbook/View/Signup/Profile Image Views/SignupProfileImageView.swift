@@ -110,8 +110,12 @@ struct SignupProfileImageView: View {
             )
         }
         .sheet(isPresented: self.$viewModel.isNavigateCameraView) {
-            SignupProfileImagePickerView(sourceType: .camera, image: self.$viewModel.profileImage, isPresented: self.$viewModel.isNavigateCameraView)
-                .navigationBarHidden(true)
+            ProfileImageCameraView(
+                isPresented: $viewModel.isNavigateCameraView
+            ) { image in
+                self.viewModel.profileImage = image
+            }
+            .navigationBarHidden(true)
         }
         .navigationBarHidden(true)
     }

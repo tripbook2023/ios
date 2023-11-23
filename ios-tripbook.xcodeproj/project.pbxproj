@@ -126,6 +126,9 @@
 		9BA39AEB2AF50AE600C5AEBC /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA39AEA2AF50AE600C5AEBC /* EditProfileView.swift */; };
 		9BF5F6BD2ABC244E007E2063 /* TBNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */; };
 		9D077C012AE655FA00FD37CA /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9D077C002AE655FA00FD37CA /* RichTextKit */; };
+		9D34D2372AF4EE3C006D60AC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9D34D2362AF4EE3C006D60AC /* SnapKit */; };
+		9D34D23A2AF4EF3A006D60AC /* RegisterTravelNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D34D2392AF4EF3A006D60AC /* RegisterTravelNewsView.swift */; };
+		DA7CF4CC2AFA9A7C00386B79 /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7CF4CB2AFA9A7C00386B79 /* NSAttributedString+Extension.swift */; };
 		DAC0E1852ACC888200AE41B4 /* TravelNewsPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC0E1842ACC888200AE41B4 /* TravelNewsPostViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -257,6 +260,8 @@
 		9BA39AE72AEA327200C5AEBC /* tripbookOnboardingLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tripbookOnboardingLottie.json; sourceTree = "<group>"; };
 		9BA39AEA2AF50AE600C5AEBC /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBNetworkError.swift; sourceTree = "<group>"; };
+		9D34D2392AF4EF3A006D60AC /* RegisterTravelNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelNewsView.swift; sourceTree = "<group>"; };
+		DA7CF4CB2AFA9A7C00386B79 /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		DAC0E1842ACC888200AE41B4 /* TravelNewsPostViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelNewsPostViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -268,6 +273,7 @@
 				85A6B14B2A6039A90050FF68 /* Kingfisher in Frameworks */,
 				85F03BEB2A3EF5A000A0B931 /* Alamofire in Frameworks */,
 				9B8964B32AAB02C100B6E3CA /* TBImagePicker in Frameworks */,
+				9D34D2372AF4EE3C006D60AC /* SnapKit in Frameworks */,
 				9D077C012AE655FA00FD37CA /* RichTextKit in Frameworks */,
 				853EA91E2A46F363001890DE /* Auth0 in Frameworks */,
 				9B9C74B62AE6899A005B69AE /* Lottie in Frameworks */,
@@ -517,6 +523,7 @@
 				85338E3029F8423200E87792 /* Component */,
 				85F02B5229F69132008DABCE /* Mypage */,
 				85F02B4F29F690DE008DABCE /* TravelNews */,
+				9D34D2382AF4EF0A006D60AC /* RegisterTravelNews */,
 				85F02B4A29F68E69008DABCE /* TravelReport */,
 				858681BE2A62F56F00072B52 /* NotificationView.swift */,
 				9B9C74B92AE68AF0005B69AE /* OnboardingView.swift */,
@@ -696,6 +703,7 @@
 			isa = PBXGroup;
 			children = (
 				9B0696222AD801C100006A84 /* Bundle+Extension.swift */,
+				DA7CF4CB2AFA9A7C00386B79 /* NSAttributedString+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -726,6 +734,14 @@
 				9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		9D34D2382AF4EF0A006D60AC /* RegisterTravelNews */ = {
+			isa = PBXGroup;
+			children = (
+				9D34D2392AF4EF3A006D60AC /* RegisterTravelNewsView.swift */,
+			);
+			path = RegisterTravelNews;
 			sourceTree = "<group>";
 		};
 		DAC0E1832ACC888200AE41B4 /* Editor */ = {
@@ -759,6 +775,7 @@
 				85A6B14A2A6039A90050FF68 /* Kingfisher */,
 				9D077C002AE655FA00FD37CA /* RichTextKit */,
 				9B9C74B52AE6899A005B69AE /* Lottie */,
+				9D34D2362AF4EE3C006D60AC /* SnapKit */,
 			);
 			productName = "ios-tripbook";
 			productReference = 8552BC2829DDCD8D00DC8D7E /* ios-tripbook.app */;
@@ -817,6 +834,7 @@
 				85A6B1492A6039A90050FF68 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				9D077BFF2AE655FA00FD37CA /* XCRemoteSwiftPackageReference "RichTextKit" */,
 				9B9C74B42AE6899A005B69AE /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				9D34D2352AF4EE3C006D60AC /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 8552BC2929DDCD8D00DC8D7E /* Products */;
 			projectDirPath = "";
@@ -920,6 +938,7 @@
 				85569CB22A5071B400515DE3 /* SignupCompletionView.swift in Sources */,
 				9B026BF22AB59FDC00F6C81C /* APIable.swift in Sources */,
 				8552BC2E29DDCD8D00DC8D7E /* RootView.swift in Sources */,
+				9D34D23A2AF4EF3A006D60AC /* RegisterTravelNewsView.swift in Sources */,
 				85361DBE2A0FFC1C00B48B55 /* TravelNewsModel.swift in Sources */,
 				85E8CAB82A3E0B3700EBDE7F /* SignupProfileImagePickerView.swift in Sources */,
 				8585F4732A12A14800C0A678 /* TravelNewsItemView.swift in Sources */,
@@ -955,6 +974,7 @@
 				85E8CA982A39A68900EBDE7F /* SignupProfileInfoView.swift in Sources */,
 				9B0696152AC7EBC000006A84 /* TBArticlesAPIPath.swift in Sources */,
 				9B9C74D12AE7A9AE005B69AE /* OnboardingViewModel.swift in Sources */,
+				DA7CF4CC2AFA9A7C00386B79 /* NSAttributedString+Extension.swift in Sources */,
 				9B026BF42AB85A9000F6C81C /* APIManagerable.swift in Sources */,
 				9B9C74BA2AE68AF0005B69AE /* OnboardingView.swift in Sources */,
 				85E8CA962A39A65400EBDE7F /* SignupProfileImageView.swift in Sources */,
@@ -1316,6 +1336,14 @@
 				minimumVersion = 0.9.0;
 			};
 		};
+		9D34D2352AF4EE3C006D60AC /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1348,6 +1376,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9D077BFF2AE655FA00FD37CA /* XCRemoteSwiftPackageReference "RichTextKit" */;
 			productName = RichTextKit;
+		};
+		9D34D2362AF4EE3C006D60AC /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D34D2352AF4EE3C006D60AC /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

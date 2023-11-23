@@ -1,5 +1,5 @@
 //
-//  SignupProfileImagePickerView.swift
+//  ProfileImageCameraView.swift
 //  ios-tripbook
 //
 //  Created by DDang on 2023/06/18.
@@ -8,21 +8,20 @@
 import SwiftUI
 import UIKit
 
-struct SignupProfileImagePickerView: UIViewControllerRepresentable {
-    var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    
-    @Binding var image: UIImage?
+struct ProfileImageCameraView: UIViewControllerRepresentable {
     @Binding var isPresented: Bool
+    var onFinish: (UIImage) -> Void
     
-    func makeCoordinator() -> SignupProfileImagePickerViewCoodinator {
-        return SignupProfileImagePickerViewCoodinator(image: $image, isPresented: $isPresented)
+    
+    func makeCoordinator() -> ProfileImageCameraViewCoodinator {
+        return ProfileImageCameraViewCoodinator(isPresented: $isPresented, onFinish: onFinish)
     }
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let pickerController = UIImagePickerController()
         
         pickerController.modalPresentationStyle = .fullScreen
-        pickerController.sourceType = sourceType
+        pickerController.sourceType = .camera
         pickerController.allowsEditing = true
         pickerController.delegate = context.coordinator
         
@@ -36,18 +35,18 @@ struct SignupProfileImagePickerView: UIViewControllerRepresentable {
     }
 }
 
-class SignupProfileImagePickerViewCoodinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    @Binding var image: UIImage?
+class ProfileImageCameraViewCoodinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    private var onFinish: (UIImage) -> Void
     @Binding var isPresented: Bool
     
-    init(image: Binding<UIImage?>, isPresented: Binding<Bool>) {
-        self._image = image
+    init(isPresented: Binding<Bool>, onFinish: @escaping (UIImage) -> Void) {
+        self.onFinish = onFinish
         self._isPresented = isPresented
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            self.image = image
+            self.onFinish(image)
         }
         self.isPresented = false
     }

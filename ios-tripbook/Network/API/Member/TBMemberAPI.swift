@@ -20,10 +20,14 @@ struct TBMemberAPI: APIable {
         var headers = HTTPHeaders()
         headers.add(.authorization(bearerToken: accessToken))
         headers.add(.contentType("multipart/form-data"))
+        var parameters: Parameters = [:]
+        if let name = name {
+            parameters = ["name": name as Any]
+        }
         return TBMemberAPI(
             path: TBAPIPath.Member.update,
             method: .post,
-            parameters: ["name": name as Any],
+            parameters: parameters,
             headers: headers,
             uploadImages: images
         )

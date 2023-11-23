@@ -1,5 +1,5 @@
 //
-//  SignupProfileImageSelectOptionView.swift
+//  ProfileImageSelectOptionView.swift
 //  ios-tripbook
 //
 //  Created by DDang on 2023/06/17.
@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-protocol SignupProfileImageSelectOptionViewDelegate {
+protocol SignupProfileImageSelectOptionViewDelegate: AnyObject {
     func didTapCancelButton()
     func didTapSelectPhotoButton()
     func didTapCameraButton()
     func didTapUseDefaultImageButton()
 }
 
-struct SignupProfileImageSelectOptionView: View {
-    var delgate: SignupProfileImageSelectOptionViewDelegate
+struct ProfileImageSelectOptionView: View {
+    weak var delgate: SignupProfileImageSelectOptionViewDelegate?
     
     var body: some View {
         ZStack {
@@ -28,7 +28,7 @@ struct SignupProfileImageSelectOptionView: View {
                 
                 VStack(spacing: 0) {
                     Button(action: {
-                        self.delgate.didTapSelectPhotoButton()
+                        self.delgate?.didTapSelectPhotoButton()
                     }) {
                         ZStack {
                             Rectangle()
@@ -46,7 +46,7 @@ struct SignupProfileImageSelectOptionView: View {
                         .overlay(TBColor.grayscale._20)
                     
                     Button(action: {
-                        self.delgate.didTapCameraButton()
+                        self.delgate?.didTapCameraButton()
                     }) {
                         ZStack {
                             Rectangle()
@@ -64,7 +64,7 @@ struct SignupProfileImageSelectOptionView: View {
                         .overlay(TBColor.grayscale._20)
                     
                     Button(action: {
-                        self.delgate.didTapUseDefaultImageButton()
+                        self.delgate?.didTapUseDefaultImageButton()
                     }) {
                         ZStack {
                             Rectangle()
@@ -79,7 +79,7 @@ struct SignupProfileImageSelectOptionView: View {
                 }.clipShape(RoundedRectangle(cornerRadius: 8))
                 
                 Button(action: {
-                    self.delgate.didTapCancelButton()
+                    self.delgate?.didTapCancelButton()
                 }) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 19)
@@ -98,8 +98,8 @@ struct SignupProfileImageSelectOptionView: View {
     }
 }
 
-struct SignupProfileImageSelectOptionView_Previews: PreviewProvider {
+struct ProfileImageSelectOptionView_Previews: PreviewProvider {
     static var previews: some View {
-        SignupProfileImageSelectOptionView(delgate: SignupProfileImageViewModel())
+        ProfileImageSelectOptionView(delgate: nil)
     }
 }

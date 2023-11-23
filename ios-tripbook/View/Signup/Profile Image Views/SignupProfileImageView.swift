@@ -90,7 +90,7 @@ struct SignupProfileImageView: View {
                 }.padding(.bottom, 12)
             }.padding(.horizontal, 20)
             
-            SignupProfileImageSelectOptionView(delgate: self.viewModel)
+            ProfileImageSelectOptionView(delgate: self.viewModel)
                 .opacity(self.viewModel.isShowOptionView ? 1 : 0)
         }
         .navigationDestination(isPresented: $viewModel.navigationTrigger, destination: {

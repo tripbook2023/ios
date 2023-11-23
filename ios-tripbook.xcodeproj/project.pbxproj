@@ -92,7 +92,7 @@
 		85E8CAAB2A3B108600EBDE7F /* SignupProfileNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAAA2A3B108600EBDE7F /* SignupProfileNameViewModel.swift */; };
 		85E8CAAD2A3DEB7700EBDE7F /* SignupProfileImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAAC2A3DEB7700EBDE7F /* SignupProfileImageViewModel.swift */; };
 		85E8CAB02A3DEF2800EBDE7F /* RegisterationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAAF2A3DEF2800EBDE7F /* RegisterationUser.swift */; };
-		85E8CAB32A3DF64C00EBDE7F /* SignupProfileImageSelectOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAB22A3DF64C00EBDE7F /* SignupProfileImageSelectOptionView.swift */; };
+		85E8CAB32A3DF64C00EBDE7F /* ProfileImageSelectOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAB22A3DF64C00EBDE7F /* ProfileImageSelectOptionView.swift */; };
 		85E8CAB82A3E0B3700EBDE7F /* ProfileImageCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CAB72A3E0B3700EBDE7F /* ProfileImageCameraView.swift */; };
 		85F02B4C29F68E7F008DABCE /* TravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4B29F68E7F008DABCE /* TravelReportView.swift */; };
 		85F02B4E29F6906C008DABCE /* RegisterTravelReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */; };
@@ -231,7 +231,7 @@
 		85E8CAAA2A3B108600EBDE7F /* SignupProfileNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileNameViewModel.swift; sourceTree = "<group>"; };
 		85E8CAAC2A3DEB7700EBDE7F /* SignupProfileImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileImageViewModel.swift; sourceTree = "<group>"; };
 		85E8CAAF2A3DEF2800EBDE7F /* RegisterationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterationUser.swift; sourceTree = "<group>"; };
-		85E8CAB22A3DF64C00EBDE7F /* SignupProfileImageSelectOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileImageSelectOptionView.swift; sourceTree = "<group>"; };
+		85E8CAB22A3DF64C00EBDE7F /* ProfileImageSelectOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageSelectOptionView.swift; sourceTree = "<group>"; };
 		85E8CAB72A3E0B3700EBDE7F /* ProfileImageCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCameraView.swift; sourceTree = "<group>"; };
 		85F02B4B29F68E7F008DABCE /* TravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelReportView.swift; sourceTree = "<group>"; };
 		85F02B4D29F6906C008DABCE /* RegisterTravelReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelReportView.swift; sourceTree = "<group>"; };
@@ -309,6 +309,7 @@
 		85338E3029F8423200E87792 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				85E8CAB22A3DF64C00EBDE7F /* ProfileImageSelectOptionView.swift */,
 				85E8CAB72A3E0B3700EBDE7F /* ProfileImageCameraView.swift */,
 				85361DC02A0FFE1800B48B55 /* ToggleButton.swift */,
 				85338E3129F8426800E87792 /* TravelReportItemView.swift */,
@@ -620,7 +621,6 @@
 			isa = PBXGroup;
 			children = (
 				85E8CA952A39A65400EBDE7F /* SignupProfileImageView.swift */,
-				85E8CAB22A3DF64C00EBDE7F /* SignupProfileImageSelectOptionView.swift */,
 			);
 			path = "Profile Image Views";
 			sourceTree = "<group>";
@@ -994,7 +994,7 @@
 				9B6C9FBB2AAEE11C00206AFC /* RequestEditorBannerView.swift in Sources */,
 				8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */,
 				8585F4762A13E91C00C0A678 /* TravelNewsViewModel.swift in Sources */,
-				85E8CAB32A3DF64C00EBDE7F /* SignupProfileImageSelectOptionView.swift in Sources */,
+				85E8CAB32A3DF64C00EBDE7F /* ProfileImageSelectOptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

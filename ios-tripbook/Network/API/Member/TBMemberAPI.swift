@@ -16,14 +16,18 @@ struct TBMemberAPI: APIable {
     var headers: HTTPHeaders
     var uploadImages: [String : [Data?]]
     
-    static func update(accessToken: String, name: String?, images: [String : [Data?]]) -> Self {
+    static func update(accessToken: String, name: String?, isDefaultProfile: Bool, images: [String : [Data?]]) -> Self {
         var headers = HTTPHeaders()
         headers.add(.authorization(bearerToken: accessToken))
         headers.add(.contentType("multipart/form-data"))
         var parameters: Parameters = [:]
         if let name = name {
-            parameters = ["name": name as Any]
+            parameters["name"] = name as Any
         }
+        if isDefaultProfile {
+            parameters["profile"] = ""
+        }
+        
         return TBMemberAPI(
             path: TBAPIPath.Member.update,
             method: .post,
@@ -63,7 +67,7 @@ struct TBMemberAPI: APIable {
         return TBMemberAPI(
             path: TBAPIPath.Member.nicknameValidate,
             method: .get,
-            parameters: ["name": name.addingPercentEncodingForRFC3986() as Any],
+            parameters: ["name": name as Any],
             headers: headers,
             uploadImages: [:]
         )

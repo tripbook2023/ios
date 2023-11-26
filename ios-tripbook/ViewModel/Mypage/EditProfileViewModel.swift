@@ -29,15 +29,16 @@ final class EditProfileViewModel: ObservableObject {
         KingfisherManager.shared.retrieveImage(with: url) { [weak self] in
             self?.newProfileImageData = try? $0.get().data()
         }
-        
     }
     @Published var newName: String
-    @Published var newProfileImageData: Data?
+    @Published var newProfileImageData: Data? 
     @Published var warningMessage: String?
     @Published var isDismiss: Bool = false
     @Published var isShowImagePicker: Bool = false
     @Published var isShowOptionView: Bool = false
     @Published var isShowCameraView: Bool = false
+    var isUseDefaultProfile: Bool = false
+    var isChangedProfile: Bool = false
     
     func checkValidationNickname() {
         let regex = "[가-힣a-zA-Z0-9]"
@@ -87,7 +88,8 @@ final class EditProfileViewModel: ObservableObject {
                 let api = TBMemberAPI.update(
                     accessToken: tokenStorage.accessToken ?? "",
                     name: newName == dataStorage.user?.info?.name ? nil : newName,
-                    images: ["imageFile": [newProfileImageData]]
+                    isDefaultProfile: isUseDefaultProfile,
+                    images: ["imageFile": [isChangedProfile ? newProfileImageData : nil]]
                 )
                 try await apiManager.upload(api)
                 DispatchQueue.main.async {

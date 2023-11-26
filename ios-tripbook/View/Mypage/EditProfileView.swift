@@ -103,6 +103,7 @@ struct EditProfileView: View {
                         size: .init(width: 140, height: 140),
                         completion: { image, _ in
                             viewModel.newProfileImageData = image?.jpegData(compressionQuality: 0.5)
+                            viewModel.isChangedProfile = true
                         }
                     )
                 }
@@ -113,6 +114,7 @@ struct EditProfileView: View {
                 isPresented: $viewModel.isShowCameraView
             ) { image in
                 self.viewModel.newProfileImageData = image.jpegData(compressionQuality: 0.5)
+                viewModel.isChangedProfile = true
             }
             .navigationBarHidden(true)
         }
@@ -137,6 +139,11 @@ extension EditProfileView {
                 self.viewModel.checkValidationNickname()
             }
             .store(in: &anyCancellable)
+        
+        viewModel.$newProfileImageData
+            .sink {
+                viewModel.isUseDefaultProfile = $0 == nil
+            }.store(in: &anyCancellable)
     }
 }
 

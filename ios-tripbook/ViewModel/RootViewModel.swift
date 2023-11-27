@@ -13,6 +13,12 @@ import SwiftUI
 /// - Date: 2023/05/15
 class RootViewModel: ObservableObject {
     @Published var isShowLogoutMessage = false
+    let dataStorage: DataStorage
+    
+    init(dataStorage: DataStorage = .shared) {
+        self.dataStorage = dataStorage
+    }
+    
     /// TabView에 포함된 화면 Views
     enum TabType {
         /// 홈 화면

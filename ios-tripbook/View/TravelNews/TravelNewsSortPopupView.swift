@@ -60,9 +60,9 @@ struct TravelNewsSortPopupView: View {
         
     }
 }
-
-struct TravelNewsSortPopupView_Previews: PreviewProvider {
-    static var previews: some View {
-        TravelNewsSortPopupView(viewModel: .init())
-    }
-}
+//
+//struct TravelNewsSortPopupView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TravelNewsSortPopupView(viewModel: .init(apiManager: 메ㅑ, tokenStorage: <#TokenStorage#>))
+//    }
+//}ㅑ

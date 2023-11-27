@@ -17,6 +17,8 @@ enum Sort: String {
 /// 여행소식 화면 View Model
 class TravelNewsViewModel: ObservableObject {
     let dataStorage = DataStorage.shared
+    private let apiManager: APIManagerable
+    private let tokenStorage: TokenStorage
     
     /// 에디터/관리자 본인 여행소식 게시물 List
     @Published var myTravelNewsList: [MyTravelNewsModel] = []
@@ -30,7 +32,9 @@ class TravelNewsViewModel: ObservableObject {
     /// 현재 여행소식 게시물 List Page Number
     var currentPage = 0
     
-    init() {
+    init(apiManager: APIManagerable, tokenStorage: TokenStorage) {
+        self.apiManager = apiManager
+        self.tokenStorage = tokenStorage
         self.myTravelNewsList = self.fetchMyTravelNewsList()
         self.travelNewsList = self.fetchTravelNewsList()
     }
@@ -50,5 +54,9 @@ class TravelNewsViewModel: ObservableObject {
     func fetchTravelNewsList() -> [TravelNewsModel] {
         // TODO: API Service 연동
         return Array(repeating: SampleTravelNewsModel(), count: 5)
+    }
+    
+    func makeDetailVM() -> TravelNewsDetailViewModel {
+        return TravelNewsDetailViewModel(apiManager: apiManager, tokenStorage: tokenStorage)
     }
 }

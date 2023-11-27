@@ -11,7 +11,7 @@ import SwiftUI
 /// - Author: 김민규
 /// - Date: 2023/05/20
 struct TravelNewsView: View {
-    @ObservedObject var viewModel = TravelNewsViewModel()
+    @ObservedObject var viewModel = TravelNewsViewModel(apiManager: TBAPIManager(), tokenStorage: .shared)
     
     var body: some View {
         NavigationView {

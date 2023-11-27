@@ -28,8 +28,8 @@ struct TravelNewsListView: View {
                 ZStack(alignment: .top) {
                     VStack(spacing: 20) {
                         ForEach(0..<viewModel.travelNewsList.count, id: \.self) { i in
-                            NavigationLink {
-                                TravelNewsDetailView()
+                            NavigationLink<TravelNewsListItemView, TravelNewsDetailView> {
+                                TravelNewsDetailView(viewModel: viewModel.makeDetailVM())
                             } label: {
                                 TravelNewsListItemView(item: viewModel.travelNewsList[i])
                             }
@@ -46,8 +46,8 @@ struct TravelNewsListView: View {
     }
 }
 
-struct TravelNewsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        TravelNewsListView(viewModel: .init())
-    }
-}
+//struct TravelNewsListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TravelNewsListView(viewModel: .init(apiManager: <#APIManagerable#>, tokenStorage: <#TokenStorage#>))
+//    }
+//}

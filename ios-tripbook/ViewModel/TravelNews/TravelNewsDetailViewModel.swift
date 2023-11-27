@@ -10,4 +10,12 @@ import Foundation
 class TravelNewsDetailViewModel: ObservableObject {
     let dataStorage = DataStorage.shared
     
+    let apiManager: APIManagerable
+    let tokenStorage: TokenStorage
+    
+    init(apiManager: APIManagerable, tokenStorage: TokenStorage) {
+        self.apiManager = apiManager
+        self.tokenStorage = tokenStorage
+    }
+    
 }

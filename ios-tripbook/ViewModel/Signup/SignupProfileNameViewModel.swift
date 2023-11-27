@@ -11,7 +11,7 @@ class SignupProfileNameViewModel: ObservableObject {
     private let apiManager: APIManagerable
     
     @Published var nicknameText: String = ""
-    @Published var nicknameTextState: NicknameTextState = .None
+    @Published var nicknameTextState: NicknameTextState = .none
     
     @Published var navigationTrigger: Bool = false
     
@@ -23,9 +23,9 @@ class SignupProfileNameViewModel: ObservableObject {
         let regex = "[가-힣a-zA-Z0-9]"
         
         if self.nicknameText.count > 10 {
-            self.nicknameTextState = .Invalid
+            self.nicknameTextState = .invalid
         } else if !((self.nicknameText.range(of: regex, options: .regularExpression)) != nil) {
-            self.nicknameTextState = .Invalid
+            self.nicknameTextState = .invalid
         } else {
             checkNicknameUseSpecialCharacters()
         }
@@ -35,9 +35,9 @@ class SignupProfileNameViewModel: ObservableObject {
         let regex = #"[`~!@#$%^&*|\\\'\";:\/?]"#
         
         if (self.nicknameText.range(of: regex, options: .regularExpression)) != nil {
-            self.nicknameTextState = .UseSpecialCharacters
+            self.nicknameTextState = .useSpecialCharacters
         } else {
-            self.nicknameTextState = .None
+            self.nicknameTextState = .none
         }
     }
 }
@@ -48,7 +48,7 @@ extension SignupProfileNameViewModel: SignupProfileNameViewDelegate {
     }
     
     func onSubmittedNicknameTextField() {
-        if self.nicknameTextState == .None {
+        if self.nicknameTextState == .none {
             Task {
                 do {
                     let isValid = try await apiManager.request(
@@ -57,9 +57,9 @@ extension SignupProfileNameViewModel: SignupProfileNameViewDelegate {
                     ).toDomain
                     
                     if !isValid {
-                        nicknameTextState = .Duplicate
+                        nicknameTextState = .duplicate
                     } else {
-                        nicknameTextState = .None
+                        nicknameTextState = .none
                     }
                 } catch {
                     

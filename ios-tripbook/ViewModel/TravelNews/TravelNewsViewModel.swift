@@ -8,12 +8,6 @@
 import Foundation
 import SwiftUI
 
-enum Sort: String {
-    case createdDesc = "createdDesc"
-    case createdAsc = "createdAsc"
-    case popularity = "popularity"
-}
-
 /// 여행소식 화면 View Model
 class TravelNewsViewModel: ObservableObject {
     let dataStorage = DataStorage.shared

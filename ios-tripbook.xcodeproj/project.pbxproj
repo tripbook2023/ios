@@ -129,6 +129,8 @@
 		9D34D2372AF4EE3C006D60AC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9D34D2362AF4EE3C006D60AC /* SnapKit */; };
 		9D34D23A2AF4EF3A006D60AC /* RegisterTravelNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D34D2392AF4EF3A006D60AC /* RegisterTravelNewsView.swift */; };
 		DA7CF4CC2AFA9A7C00386B79 /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7CF4CB2AFA9A7C00386B79 /* NSAttributedString+Extension.swift */; };
+		DA7CF4CE2B14E21400386B79 /* TravelNewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7CF4CD2B14E21400386B79 /* TravelNewsDetailView.swift */; };
+		DA7CF4D02B14E24A00386B79 /* TravelNewsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7CF4CF2B14E24A00386B79 /* TravelNewsDetailViewModel.swift */; };
 		DAC0E1852ACC888200AE41B4 /* TravelNewsPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC0E1842ACC888200AE41B4 /* TravelNewsPostViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -262,6 +264,8 @@
 		9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBNetworkError.swift; sourceTree = "<group>"; };
 		9D34D2392AF4EF3A006D60AC /* RegisterTravelNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelNewsView.swift; sourceTree = "<group>"; };
 		DA7CF4CB2AFA9A7C00386B79 /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		DA7CF4CD2B14E21400386B79 /* TravelNewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsDetailView.swift; sourceTree = "<group>"; };
+		DA7CF4CF2B14E24A00386B79 /* TravelNewsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsDetailViewModel.swift; sourceTree = "<group>"; };
 		DAC0E1842ACC888200AE41B4 /* TravelNewsPostViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelNewsPostViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -466,6 +470,7 @@
 			children = (
 				85C6F8372A1A012C00722ED1 /*  RequestEditor */,
 				8585F4752A13E91C00C0A678 /* TravelNewsViewModel.swift */,
+				DA7CF4CF2B14E24A00386B79 /* TravelNewsDetailViewModel.swift */,
 				8585F4792A15E89F00C0A678 /* TravelNewsItemViewModel.swift */,
 				8585F47B2A15ECBB00C0A678 /* MyTravelNewsItemViewModel.swift */,
 				9B0696292ADBAA4000006A84 /* TravelNewsSearchLocationViewModel.swift */,
@@ -645,6 +650,7 @@
 				9B6C9FB52AAEE11C00206AFC /* RequestEditor */,
 				85C35B7A2A1683A300DB8E46 /* Editor */,
 				85F02B5029F690F3008DABCE /* TravelNewsView.swift */,
+				DA7CF4CD2B14E21400386B79 /* TravelNewsDetailView.swift */,
 				9B0696182ACE7D0600006A84 /* TravelNewsSortPopupView.swift */,
 				8585F46E2A12990A00C0A678 /* TravelNewsHeaderView.swift */,
 				8585F4722A12A14800C0A678 /* TravelNewsItemView.swift */,
@@ -918,6 +924,7 @@
 				85569CB42A50780400515DE3 /* SignupRequest.swift in Sources */,
 				85338E3429F8524000E87792 /* EventBannerView.swift in Sources */,
 				85E8CA902A39A5F600EBDE7F /* SignupSocialView.swift in Sources */,
+				DA7CF4CE2B14E21400386B79 /* TravelNewsDetailView.swift in Sources */,
 				85569CAB2A4FFD5700515DE3 /* AuthenticationResponse.swift in Sources */,
 				9B0696232AD801C100006A84 /* Bundle+Extension.swift in Sources */,
 				85361DB92A0FCC2700B48B55 /* TooltipView.swift in Sources */,
@@ -938,6 +945,7 @@
 				85569CB22A5071B400515DE3 /* SignupCompletionView.swift in Sources */,
 				9B026BF22AB59FDC00F6C81C /* APIable.swift in Sources */,
 				8552BC2E29DDCD8D00DC8D7E /* RootView.swift in Sources */,
+				DA7CF4D02B14E24A00386B79 /* TravelNewsDetailViewModel.swift in Sources */,
 				9D34D23A2AF4EF3A006D60AC /* RegisterTravelNewsView.swift in Sources */,
 				85361DBE2A0FFC1C00B48B55 /* TravelNewsModel.swift in Sources */,
 				85E8CAB82A3E0B3700EBDE7F /* SignupProfileImagePickerView.swift in Sources */,

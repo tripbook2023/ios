@@ -13,9 +13,24 @@ class TravelNewsDetailViewModel: ObservableObject {
     let apiManager: APIManagerable
     let tokenStorage: TokenStorage
     
+    @Published var travelNews: TravelNews?
+    
     init(apiManager: APIManagerable, tokenStorage: TokenStorage) {
         self.apiManager = apiManager
         self.tokenStorage = tokenStorage
+    }
+    
+    func loadData() async {
+        let api = TBTravelNewsAPI.search(accessToken: tokenStorage.accessToken ?? "", id: "47")
+        
+        do {
+            let data = try await apiManager.request(api)
+            let travel = try JSONDecoder().decode(TBTravelNewsResponse.self, from: data).toDomain
+            
+            travelNews = travel
+        } catch {
+            print("ERROR: \(error)")
+        }
     }
     
 }

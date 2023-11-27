@@ -17,20 +17,42 @@ struct TravelNewsDetailView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("DetailView")
-        }
-        .task {
-            
-            let api = TBTravelNewsAPI.search(accessToken: viewModel.tokenStorage.accessToken ?? "", id: "47")
-            
-            do {
-                let data = try await viewModel.apiManager.request(api)
-                let travel = try JSONDecoder().decode(TBTravelNewsResponse.self, from: data).toDomain
+        ScrollView {
+            VStack(alignment: .leading) {
+                ZStack(alignment: .top) {
+                    if let urlString = viewModel.travelNews?.thumbnailURL {
+                        AsyncImage(url: URL(string: urlString))
+                    }
+                    
+                    Text(viewModel.travelNews?.title ?? "aa")
+                        .font(.suit(.bold, size: 24))
+                        .foregroundColor(.white)
+                        .offset(.init(width: 0, height: 210))
+
+                }
                 
-                print("data: \(travel)")
-            } catch {
-                print("ERROR: \(error)")
+                HStack(alignment: .center) {
+                    if let urlString = viewModel.travelNews?.author.profileURL {
+                        AsyncImage(url: URL(string: urlString))
+                            .frame(width: 14, height: 14)
+                    }
+                    Text(viewModel.travelNews?.author.name ?? "name")
+                }
+                
+                VStack {
+                    Text("content")
+                    //content
+                }
+                
+                Spacer()
+                
+            }
+        }
+        .ignoresSafeArea()
+        .toolbarBackground(.hidden, for: .navigationBar)
+        .onAppear {
+            Task {
+                await viewModel.loadData()
             }
         }
     }

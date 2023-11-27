@@ -20,7 +20,6 @@ class DataStorage: ObservableObject {
     init(apiManager: APIManagerable = TBAPIManager(), tokenStorage: TokenStorage = .shared) {
         self.apiManager = apiManager
         self.tokenStorage = tokenStorage
-        getUser()
     }
     /// User Data
     @Published var user: MyProfile?

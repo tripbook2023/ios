@@ -97,6 +97,7 @@ struct RootView: View {
             .opacity(viewModel.isShowLogoutMessage ? 1 : 0)
         }.onAppear {
             bind()
+            viewModel.dataStorage.getUser()
         }
     }
 }

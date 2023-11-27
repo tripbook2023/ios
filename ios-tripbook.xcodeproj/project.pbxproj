@@ -74,7 +74,6 @@
 		85A6B14B2A6039A90050FF68 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 85A6B14A2A6039A90050FF68 /* Kingfisher */; };
 		85A7371A2A7F3FC400DA0DDB /* TravelNewsTemporaryStorageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A737192A7F3FC400DA0DDB /* TravelNewsTemporaryStorageListView.swift */; };
 		85C05C902A3E246F006758EF /* SignupProfileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C05C8F2A3E246F006758EF /* SignupProfileInfoViewModel.swift */; };
-		85C35B752A16594500DB8E46 /* DocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C35B742A16594500DB8E46 /* DocumentModel.swift */; };
 		85C35B772A1659AE00DB8E46 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C35B762A1659AE00DB8E46 /* User.swift */; };
 		85C35B792A165CB000DB8E46 /* DocumentActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C35B782A165CB000DB8E46 /* DocumentActionBar.swift */; };
 		85C6F8342A18D44B00722ED1 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6F8332A18D44B00722ED1 /* DataStorage.swift */; };
@@ -219,7 +218,6 @@
 		85A6B1472A6038D60050FF68 /* TravelNewsEditorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsEditorListView.swift; sourceTree = "<group>"; };
 		85A737192A7F3FC400DA0DDB /* TravelNewsTemporaryStorageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsTemporaryStorageListView.swift; sourceTree = "<group>"; };
 		85C05C8F2A3E246F006758EF /* SignupProfileInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileInfoViewModel.swift; sourceTree = "<group>"; };
-		85C35B742A16594500DB8E46 /* DocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentModel.swift; sourceTree = "<group>"; };
 		85C35B762A1659AE00DB8E46 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85C35B782A165CB000DB8E46 /* DocumentActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionBar.swift; sourceTree = "<group>"; };
 		85C6F8332A18D44B00722ED1 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
@@ -569,7 +567,6 @@
 				85E8CAAE2A3DEEEC00EBDE7F /* Signup */,
 				8527A5762A0366B6003819B1 /* TravelReportModel.swift */,
 				85361DBD2A0FFC1C00B48B55 /* TravelNewsModel.swift */,
-				85C35B742A16594500DB8E46 /* DocumentModel.swift */,
 				85C35B762A1659AE00DB8E46 /* User.swift */,
 				9B0696272ADBA6D000006A84 /* LocationInfo.swift */,
 				9BE1FFFB2B0F43CE00DD69F9 /* NicknameTextState.swift */,
@@ -950,7 +947,6 @@
 				85C35B792A165CB000DB8E46 /* DocumentActionBar.swift in Sources */,
 				9BF5F6BD2ABC244E007E2063 /* TBNetworkError.swift in Sources */,
 				85569CB02A50084000515DE3 /* AuthenticationResult.swift in Sources */,
-				85C35B752A16594500DB8E46 /* DocumentModel.swift in Sources */,
 				9BA39AEB2AF50AE600C5AEBC /* EditProfileView.swift in Sources */,
 				85A6B13E2A58368C0050FF68 /* TBAppBar.swift in Sources */,
 				85A6B1402A5C53E00050FF68 /* TBAvatar.swift in Sources */,

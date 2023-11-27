@@ -23,8 +23,8 @@ struct ContentResponse: Decodable {
     let title : String
     let content: String
     let author: AuthorResponse
-    let imageList: [Image]
-    let thumbnail: Image
+    let imageList: [ImageURLResponse]
+    let thumbnail: ImageURLResponse
     let tagList: [String]?
     let heartNum : Int
     let bookmarkNum: Int
@@ -42,7 +42,7 @@ struct AuthorResponse: Decodable {
     let role: String
 }
 
-struct Image: Decodable {
+struct ImageURLResponse: Decodable {
     let id: Int
     let url: String
 }

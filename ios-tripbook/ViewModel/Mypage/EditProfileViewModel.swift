@@ -44,9 +44,9 @@ final class EditProfileViewModel: ObservableObject {
         let regex = "[가-힣a-zA-Z0-9]"
         
         if self.newName.count > 10 {
-            self.warningMessage = NicknameTextState.Invalid.getWarningMessage()
+            self.warningMessage = NicknameTextState.invalid.getWarningMessage()
         } else if !((self.newName.range(of: regex, options: .regularExpression)) != nil) {
-            self.warningMessage = NicknameTextState.Invalid.getWarningMessage()
+            self.warningMessage = NicknameTextState.invalid.getWarningMessage()
         } else {
             checkNicknameUseSpecialCharacters()
         }
@@ -56,7 +56,7 @@ final class EditProfileViewModel: ObservableObject {
         let regex = #"[`~!@#$%^&*|\\\'\";:\/?]"#
         
         if (self.newName.range(of: regex, options: .regularExpression)) != nil {
-            self.warningMessage = NicknameTextState.UseSpecialCharacters.getWarningMessage()
+            self.warningMessage = NicknameTextState.useSpecialCharacters.getWarningMessage()
         } else {
             self.warningMessage = nil
         }
@@ -76,7 +76,7 @@ final class EditProfileViewModel: ObservableObject {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    self.warningMessage = NicknameTextState.Duplicate.getWarningMessage()
+                    self.warningMessage = NicknameTextState.duplicate.getWarningMessage()
                 }
             }
         }

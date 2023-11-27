@@ -38,7 +38,7 @@ struct SignupProfileNameView: View {
                 title: "10자 이내 한글, 영문, 숫자 입력",
                 text: self.$viewModel.nicknameText,
                 isValid: Binding(get: {
-                    return self.viewModel.nicknameTextState == .None
+                    return self.viewModel.nicknameTextState == .none
                 }, set: {_ in}),
                 warningMessage: Binding(get: {
                     return self.viewModel.nicknameTextState.getWarningMessage()
@@ -57,7 +57,7 @@ struct SignupProfileNameView: View {
             TBPrimaryButton(
                 title: "닉네임 만들었어요",
                 isEnabled: Binding(get: {
-                    return !self.viewModel.nicknameText.isEmpty && self.viewModel.nicknameTextState == .None
+                    return !self.viewModel.nicknameText.isEmpty && self.viewModel.nicknameTextState == .none
                 }, set: {_ in})
             ) {
                 self.signupViewModel.registerUserName(self.viewModel.nicknameText)

@@ -8,26 +8,10 @@
 import Foundation
 
 class SignupProfileNameViewModel: ObservableObject {
-    enum NicknameTextState {
-        case None
-        case Duplicate
-        case Invalid
-        case UseSpecialCharacters
-        
-        func getWarningMessage() -> String {
-            switch self {
-            case .None: return ""
-            case .Duplicate: return "다른 분이 사용 중인 닉네임입니다"
-            case .Invalid: return "10자 이내의 한글, 영어, 숫자를 입력해주세요"
-            case .UseSpecialCharacters: return "한글, 영어, 숫자를 입력해주세요"
-            }
-        }
-    }
-    
     private let apiManager: APIManagerable
     
     @Published var nicknameText: String = ""
-    @Published var nicknameTextState: NicknameTextState = .None
+    @Published var nicknameTextState: NicknameTextState = .none
     
     @Published var navigationTrigger: Bool = false
     
@@ -36,24 +20,14 @@ class SignupProfileNameViewModel: ObservableObject {
     }
     
     func checkValidationNickname() {
-        let regex = "[가-힣a-zA-Z0-9]"
+        let regex = "^[가-힣a-zA-Z0-9]*$"
         
         if self.nicknameText.count > 10 {
-            self.nicknameTextState = .Invalid
-        } else if !((self.nicknameText.range(of: regex, options: .regularExpression)) != nil) {
-            self.nicknameTextState = .Invalid
+            self.nicknameTextState = .invalid
+        } else if self.nicknameText.range(of: regex, options: .regularExpression) == nil {
+            self.nicknameTextState = .useSpecialCharacters
         } else {
-            checkNicknameUseSpecialCharacters()
-        }
-    }
-    
-    func checkNicknameUseSpecialCharacters() {
-        let regex = #"[`~!@#$%^&*|\\\'\";:\/?]"#
-        
-        if (self.nicknameText.range(of: regex, options: .regularExpression)) != nil {
-            self.nicknameTextState = .UseSpecialCharacters
-        } else {
-            self.nicknameTextState = .None
+            self.nicknameTextState = .none
         }
     }
 }
@@ -64,7 +38,7 @@ extension SignupProfileNameViewModel: SignupProfileNameViewDelegate {
     }
     
     func onSubmittedNicknameTextField() {
-        if self.nicknameTextState == .None {
+        if self.nicknameTextState == .none {
             Task {
                 do {
                     let isValid = try await apiManager.request(
@@ -73,9 +47,9 @@ extension SignupProfileNameViewModel: SignupProfileNameViewDelegate {
                     ).toDomain
                     
                     if !isValid {
-                        nicknameTextState = .Duplicate
+                        nicknameTextState = .duplicate
                     } else {
-                        nicknameTextState = .None
+                        nicknameTextState = .none
                     }
                 } catch {
                     

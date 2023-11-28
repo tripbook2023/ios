@@ -85,10 +85,12 @@ class Auth0Service: NSObject {
      - Returns
      - Boolean: Auth0 Logout API 호출 및 응답이 정상적으로 이루어졌는지
      */
-    func webAuthLogout() async -> Bool {
+    static func webAuthLogout(callback: () -> Void) async -> Bool {
         do {
             try await Auth0.webAuth().clearSession()
-            
+            await MainActor.run {
+                callback()
+            }
             print("로그아웃 성공")
             
             return true

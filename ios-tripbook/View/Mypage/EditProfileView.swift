@@ -26,8 +26,9 @@ struct EditProfileView: View {
                     dismiss()
                 }
                 ZStack(alignment: .bottom) {
-                    if let imagedata = viewModel.newProfileImageData {
-                        Image(uiImage: UIImage(data: imagedata)!)
+                    if let imagedata = viewModel.newProfileImageData,
+                    let uiImage = UIImage(data: imagedata) {
+                        Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFill()
                             .frame(width: 80, height: 80)

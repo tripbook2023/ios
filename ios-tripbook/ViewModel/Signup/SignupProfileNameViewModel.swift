@@ -20,21 +20,11 @@ class SignupProfileNameViewModel: ObservableObject {
     }
     
     func checkValidationNickname() {
-        let regex = "[가-힣a-zA-Z0-9]"
+        let regex = "^[가-힣a-zA-Z0-9]*$"
         
         if self.nicknameText.count > 10 {
             self.nicknameTextState = .invalid
-        } else if !((self.nicknameText.range(of: regex, options: .regularExpression)) != nil) {
-            self.nicknameTextState = .invalid
-        } else {
-            checkNicknameUseSpecialCharacters()
-        }
-    }
-    
-    func checkNicknameUseSpecialCharacters() {
-        let regex = #"[`~!@#$%^&*|\\\'\";:\/?]"#
-        
-        if (self.nicknameText.range(of: regex, options: .regularExpression)) != nil {
+        } else if self.nicknameText.range(of: regex, options: .regularExpression) == nil {
             self.nicknameTextState = .useSpecialCharacters
         } else {
             self.nicknameTextState = .none

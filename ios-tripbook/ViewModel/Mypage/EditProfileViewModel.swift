@@ -41,21 +41,11 @@ final class EditProfileViewModel: ObservableObject {
     var isChangedProfile: Bool = false
     
     func checkValidationNickname() {
-        let regex = "[가-힣a-zA-Z0-9]"
+        let regex = "^[가-힣a-zA-Z0-9]*$"
         
         if self.newName.count > 10 {
             self.warningMessage = NicknameTextState.invalid.getWarningMessage()
-        } else if !((self.newName.range(of: regex, options: .regularExpression)) != nil) {
-            self.warningMessage = NicknameTextState.invalid.getWarningMessage()
-        } else {
-            checkNicknameUseSpecialCharacters()
-        }
-    }
-    
-    private func checkNicknameUseSpecialCharacters() {
-        let regex = #"[`~!@#$%^&*|\\\'\";:\/?]"#
-        
-        if (self.newName.range(of: regex, options: .regularExpression)) != nil {
+        } else if self.newName.range(of: regex, options: .regularExpression) == nil {
             self.warningMessage = NicknameTextState.useSpecialCharacters.getWarningMessage()
         } else {
             self.warningMessage = nil
@@ -71,11 +61,11 @@ final class EditProfileViewModel: ObservableObject {
             do {
                 let api = TBMemberAPI.nicknameValidate(name: newName)
                 try await apiManager.request(api)
-                DispatchQueue.main.async {
+                await MainActor.run {
                     self.warningMessage = nil
                 }
             } catch {
-                DispatchQueue.main.async {
+                await MainActor.run {
                     self.warningMessage = NicknameTextState.duplicate.getWarningMessage()
                 }
             }
@@ -92,12 +82,12 @@ final class EditProfileViewModel: ObservableObject {
                     images: ["imageFile": [isChangedProfile ? newProfileImageData : nil]]
                 )
                 try await apiManager.upload(api)
-                DispatchQueue.main.async {
+                await MainActor.run {
                     self.dataStorage.getUser()
                     self.isDismiss = true
                 }
             } catch {
-                DispatchQueue.main.async {
+                await MainActor.run {
                     self.isDismiss = false
                 }
             }

@@ -279,7 +279,6 @@
 				85A6B1312A58367A0050FF68 /* TBFont.swift */,
 				85A6B1322A58367A0050FF68 /* TBIcon.swift */,
 				85A6B1412A5C55E70050FF68 /* TBShadow.swift */,
-				85C6F8332A18D44B00722ED1 /* DataStorage.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -389,6 +388,7 @@
 				85B6EE5629DDD29700898B48 /* View */,
 				85B6EE5729DDD2A300898B48 /* ViewModel */,
 				85B6EE5829DDD2B800898B48 /* Model */,
+				9BC432DF2B1DFE1D00D03E6D /* Storage */,
 				853EA9222A46F976001890DE /* Network */,
 				85A6B11B2A5836060050FF68 /* Component */,
 				85338E1B29F81DB300E87792 /* Util */,
@@ -680,6 +680,14 @@
 				9BB592E02B0856B600A6B80E /* EnvironmentValues+.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		9BC432DF2B1DFE1D00D03E6D /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				85C6F8332A18D44B00722ED1 /* DataStorage.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		9BF5F6BB2ABC2436007E2063 /* Error */ = {

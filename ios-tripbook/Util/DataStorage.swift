@@ -30,7 +30,9 @@ class DataStorage: ObservableObject {
                 TBMemberAPI.select(token: tokenStorage.accessToken ?? ""),
                 type: GetUserResponse.self
             ).toDomain else { return }
-            user = profile
+            await MainActor.run {
+                user = profile
+            }
         }
     }
 }

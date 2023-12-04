@@ -16,6 +16,10 @@ struct SearchResponse: Decodable {
     let first: Bool
     let last: Bool
     let empty: Bool
+    
+    var toDomain: [TravelNewsModel] {
+        return content.map { $0.toDomain }
+    }
 }
 
 struct ContentResponse: Decodable {
@@ -33,6 +37,18 @@ struct ContentResponse: Decodable {
     let updatedAt: String
     let heart : Bool
     let bookmark: Bool
+    
+    var toDomain: TravelNewsModel {
+        return TravelNewsModel(
+            id: id,
+            author: author.toDomain,
+            title: title,
+            thumbnailURL: thumbnail.url,
+            likeCount: heartNum,
+            isLiked: heart,
+            createdAt: createdAt
+        )
+    }
 }
 
 struct AuthorResponse: Decodable {
@@ -40,6 +56,13 @@ struct AuthorResponse: Decodable {
     let name: String
     let profileUrl: String
     let role: String
+    
+    var toDomain: Author {
+        return Author(
+            name: name,
+            profileUrl: profileUrl,
+            role: role)
+    }
 }
 
 struct ImageURLResponse: Decodable {

@@ -28,7 +28,9 @@ struct TravelNewsListView: View {
                 ZStack(alignment: .top) {
                     VStack(spacing: 20) {
                         ForEach(0..<viewModel.travelNewsList.count, id: \.self) { i in
-                            TravelNewsListItemView(item: viewModel.travelNewsList[i])
+                            TravelNewsListItemView(item: viewModel.travelNewsList[i]) {
+                                viewModel.selectTravelNewsItem = viewModel.travelNewsList[i]
+                            }
                         }
                     }.padding(.top, 24)
                     HStack {

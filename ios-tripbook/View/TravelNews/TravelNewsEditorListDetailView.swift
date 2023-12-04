@@ -19,7 +19,7 @@ struct TravelNewsEditorListDetailView: View {
                         GridItem(.flexible(), spacing: 11, alignment: .leading)
                     ], spacing: 11, content: {
                         ForEach(0..<16, id: \.self) { _ in
-                            TravelNewsEditorListItemView()
+                            TravelNewsEditorListItemView(item: TravelNewsModel.dummy)
                         }
                     }).padding(.vertical, 25)
                 }

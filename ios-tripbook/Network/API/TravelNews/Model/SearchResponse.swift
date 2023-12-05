@@ -10,7 +10,8 @@ import Foundation
 struct SearchResponse: Decodable {
     let content: [ContentResponse]
     let pageable: PageableResponse
-    let size, number: Int
+    let size: Int
+    let number: Int
     let sort: SortResponse
     let numberOfElements: Int
     let first: Bool
@@ -24,18 +25,17 @@ struct SearchResponse: Decodable {
 
 struct ContentResponse: Decodable {
     let id: Int
-    let title : String
+    let title: String
     let content: String
     let author: AuthorResponse
-    let imageList: [ImageURLResponse]
-    let thumbnail: ImageURLResponse
-    let tagList: [String]?
-    let heartNum : Int
+    let thumbnailUrl: String?
+    let tagList: [String]
+    let heartNum: Int
     let bookmarkNum: Int
     let commentList: [CommentResponse]
-    let createdAt : String
+    let createdAt: String
     let updatedAt: String
-    let heart : Bool
+    let heart: Bool
     let bookmark: Bool
     
     var toDomain: TravelNewsModel {
@@ -43,7 +43,7 @@ struct ContentResponse: Decodable {
             id: id,
             author: author.toDomain,
             title: title,
-            thumbnailURL: thumbnail.url,
+            thumbnailURL: thumbnailUrl,
             likeCount: heartNum,
             isLiked: heart,
             createdAt: createdAt
@@ -54,7 +54,7 @@ struct ContentResponse: Decodable {
 struct AuthorResponse: Decodable {
     let id: Int
     let name: String
-    let profileUrl: String
+    let profileUrl: String?
     let role: String
     
     var toDomain: Author {
@@ -63,11 +63,6 @@ struct AuthorResponse: Decodable {
             profileUrl: profileUrl,
             role: role)
     }
-}
-
-struct ImageURLResponse: Decodable {
-    let id: Int
-    let url: String
 }
 
 struct PageableResponse: Decodable {

@@ -9,6 +9,6 @@ import Foundation
 
 struct Author {
     let name: String
-    let profileUrl: String
+    let profileUrl: String?
     let role: String
 }

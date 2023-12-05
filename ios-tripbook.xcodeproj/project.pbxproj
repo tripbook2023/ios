@@ -113,6 +113,7 @@
 		9BC432E82B1E01A100D03E6D /* SearchKeywordStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC432E72B1E01A100D03E6D /* SearchKeywordStorage.swift */; };
 		9BC432EB2B1EECB800D03E6D /* SearchKeywordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC432EA2B1EECB800D03E6D /* SearchKeywordEntity.swift */; };
 		9BC432EF2B1F02F700D03E6D /* TravelNewsSearchKeywordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC432EE2B1F02F700D03E6D /* TravelNewsSearchKeywordListView.swift */; };
+		9BC432F22B1F0A7000D03E6D /* RefreshTokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC432F12B1F0A7000D03E6D /* RefreshTokenAPI.swift */; };
 		9BE1FFFC2B0F43CE00DD69F9 /* NicknameTextState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE1FFFB2B0F43CE00DD69F9 /* NicknameTextState.swift */; };
 		9BEAC9142B149A3E00B2B4B6 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEAC9132B149A3E00B2B4B6 /* Sort.swift */; };
 		9BEAC9162B149CF500B2B4B6 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEAC9152B149CF500B2B4B6 /* SearchResponse.swift */; };
@@ -241,6 +242,7 @@
 		9BC432E72B1E01A100D03E6D /* SearchKeywordStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordStorage.swift; sourceTree = "<group>"; };
 		9BC432EA2B1EECB800D03E6D /* SearchKeywordEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordEntity.swift; sourceTree = "<group>"; };
 		9BC432EE2B1F02F700D03E6D /* TravelNewsSearchKeywordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsSearchKeywordListView.swift; sourceTree = "<group>"; };
+		9BC432F12B1F0A7000D03E6D /* RefreshTokenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenAPI.swift; sourceTree = "<group>"; };
 		9BE1FFFB2B0F43CE00DD69F9 /* NicknameTextState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameTextState.swift; sourceTree = "<group>"; };
 		9BEAC9132B149A3E00B2B4B6 /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		9BEAC9152B149CF500B2B4B6 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
@@ -337,11 +339,12 @@
 		853EA9352A480FA8001890DE /* API */ = {
 			isa = PBXGroup;
 			children = (
+				9BC432F02B1F0A1600D03E6D /* RefreshToken */,
 				9B06961C2AD7E47100006A84 /* LocationSearch */,
 				9B0696102AC7E60F00006A84 /* TravelNews */,
-				9B026BF12AB59FDC00F6C81C /* APIable.swift */,
 				85569CA42A4F8EAA00515DE3 /* Auth */,
 				853EA9362A480FB4001890DE /* Member */,
+				9B026BF12AB59FDC00F6C81C /* APIable.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -709,6 +712,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		9BC432F02B1F0A1600D03E6D /* RefreshToken */ = {
+			isa = PBXGroup;
+			children = (
+				9BC432F12B1F0A7000D03E6D /* RefreshTokenAPI.swift */,
+			);
+			path = RefreshToken;
+			sourceTree = "<group>";
+		};
 		9BF5F6BB2ABC2436007E2063 /* Error */ = {
 			isa = PBXGroup;
 			children = (
@@ -942,6 +953,7 @@
 				9B06962A2ADBAA4000006A84 /* TravelNewsSearchLocationViewModel.swift in Sources */,
 				85A6B1422A5C55E70050FF68 /* TBShadow.swift in Sources */,
 				9BB592DE2B045D8F00A6B80E /* MypageViewModel.swift in Sources */,
+				9BC432F22B1F0A7000D03E6D /* RefreshTokenAPI.swift in Sources */,
 				853EA93F2A481489001890DE /* NicknameValidationResponse.swift in Sources */,
 				85F02B5429F6913F008DABCE /* MypageView.swift in Sources */,
 				9BEAC91C2B18B24E00B2B4B6 /* TravelNewsEditorListItemView.swift in Sources */,

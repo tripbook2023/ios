@@ -16,9 +16,8 @@ struct TBMemberAPI: APIable {
     var headers: HTTPHeaders
     var uploadImages: [String : [Data?]]
     
-    static func update(accessToken: String, name: String?, isDefaultProfile: Bool, images: [String : [Data?]]) -> Self {
+    static func update(name: String?, isDefaultProfile: Bool, images: [String : [Data?]]) -> Self {
         var headers = HTTPHeaders()
-        headers.add(.authorization(bearerToken: accessToken))
         headers.add(.contentType("multipart/form-data"))
         var parameters: Parameters = [:]
         if let name = name {
@@ -50,9 +49,8 @@ struct TBMemberAPI: APIable {
         )
     }
     
-    static func select(token: String) -> Self {
+    static func select() -> Self {
         var headers = HTTPHeaders()
-        headers.add(.authorization(bearerToken: token))
         return TBMemberAPI(
             path: TBAPIPath.Member.select,
             method: .get,
@@ -72,21 +70,6 @@ struct TBMemberAPI: APIable {
             uploadImages: [:]
         )
     }
-    
-    static func tokenReissue(refreshToken: String) -> Self {
-        var headers = HTTPHeaders()
-        headers.add(.authorization(bearerToken: refreshToken))
-        headers.add(.userAgent("IOS_APP"))
-        return TBMemberAPI(
-            path: TBAPIPath.Member.tokenIssue,
-            method: .post,
-            parameters: [:],
-            headers: headers,
-            uploadImages: [:]
-        )
-    }
-    
-    
 }
 
 private extension String {

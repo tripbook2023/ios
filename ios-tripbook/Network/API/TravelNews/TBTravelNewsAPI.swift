@@ -16,9 +16,8 @@ struct TBTravelNewsAPI: APIable {
     var headers: HTTPHeaders
     var uploadImages: [String : [Data?]]
     
-    static func search(accessToken: String, word: String, page: Int, size: Int, sort: Sort) -> Self {
+    static func search(word: String, page: Int, size: Int, sort: Sort) -> Self {
         var headers = HTTPHeaders()
-        headers.add(.authorization(bearerToken: accessToken))
         return TBTravelNewsAPI(
             path: TBAPIPath.Articles.search,
             method: .get,

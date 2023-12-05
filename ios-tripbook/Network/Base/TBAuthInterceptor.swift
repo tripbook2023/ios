@@ -58,5 +58,18 @@ class TBAuthInterceptor: RequestInterceptor {
         guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 else {
             return completion(.doNotRetryWithError(error))
         }
+        Task {
+            guard let refreshToken = TokenStorage.shared.refreshToken else {
+                return completion(.doNotRetryWithError(error))
+            }
+            do {
+                let token = try await RefreshTokenAPI.refreshToken(refreshToken)
+                TokenStorage.shared.setTokens(accessToken: token.accessToken, refreshToken: token.refreshToken)
+                return completion(.retry)
+            } catch {
+                return completion(.doNotRetryWithError(error))
+            }
+            
+        }
     }
 }

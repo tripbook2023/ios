@@ -55,7 +55,6 @@ class TravelNewsViewModel: ObservableObject {
         Task {
             do {
                 let api = TBTravelNewsAPI.search(
-                    accessToken: tokenStorage.accessToken ?? "",
                     word: "",
                     page: 0,
                     size: 10,

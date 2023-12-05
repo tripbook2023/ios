@@ -76,7 +76,6 @@ final class EditProfileViewModel: ObservableObject {
         Task {
             do {
                 let api = TBMemberAPI.update(
-                    accessToken: tokenStorage.accessToken ?? "",
                     name: newName == dataStorage.user?.info?.name ? nil : newName,
                     isDefaultProfile: isUseDefaultProfile,
                     images: ["imageFile": [isChangedProfile ? newProfileImageData : nil]]

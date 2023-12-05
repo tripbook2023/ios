@@ -19,27 +19,39 @@ struct TravelNewsView: View {
         NavigationView {
             ZStack(alignment: .bottomTrailing) {
                 VStack {
-                    TravelNewsHeaderView()
-                    ScrollView {
-                        LazyVStack(alignment: .leading, spacing: 0) {
-                            NavigationLink(destination: EmptyView()) {
-                                EventBannerView(text: "여행소식 에디터 신청하고 포폴 만들자!").padding(.horizontal)
-                            }
-                            .frame(height: 110)
-                            if !viewModel.myTravelNewsList.isEmpty {
-                                TravelNewsEditorListView(viewModel: viewModel)
-                                    .padding(.top, 48)
-                            }
-                            TravelNewsListView(viewModel: viewModel)
-                                .padding(.top, 56)
-                        }.padding(.bottom)
+                    TravelNewsHeaderView(
+                        isSearch: $viewModel.isSearch,
+                        searchText: $viewModel.searchKeyword
+                    ) {
+                        viewModel.addSearchKeyword()
+                        withAnimation(Animation.spring().speed(2)) {
+                            viewModel.isSearch = false
+                        }
+                    }
+                    ZStack {
+                        ScrollView {
+                            LazyVStack(alignment: .leading, spacing: 0) {
+                                NavigationLink(destination: EmptyView()) {
+                                    EventBannerView(text: "여행소식 에디터 신청하고 포폴 만들자!").padding(.horizontal)
+                                }
+                                .frame(height: 110)
+                                if !viewModel.myTravelNewsList.isEmpty {
+                                    TravelNewsEditorListView(viewModel: viewModel)
+                                        .padding(.top, 48)
+                                }
+                                TravelNewsListView(viewModel: viewModel)
+                                    .padding(.top, 56)
+                            }.padding(.bottom)
+                        }
+                        .opacity(viewModel.isSearch ? 0 : 1)
+                        
+                        TravelNewsSearchKeywordListView(viewModel: viewModel)
+                        .opacity(viewModel.isSearch ? 1 : 0)
                     }
                 }
             }
         }
         .onAppear {
-            viewModel.fetchMyTravelNewsList()
-            viewModel.fetchTravelNewsList()
             bind()
         }
     }
@@ -47,9 +59,22 @@ struct TravelNewsView: View {
 
 extension TravelNewsView {
     private func bind() {
-        viewModel.$currentSort.sink { _ in
-            viewModel.fetchTravelNewsList()
-        }.store(in: &anyCancellable)
+        if viewModel.keywordList.isEmpty {
+            viewModel.readSearchKeywords()
+        }
+        viewModel.fetchMyTravelNewsList()
+        viewModel.$currentSort
+            .removeDuplicates()
+            .sink { _ in
+                viewModel.fetchTravelNewsList()
+            }
+            .store(in: &anyCancellable)
+        viewModel.$isSearch
+            .filter { !$0 }
+            .sink { _ in
+                viewModel.searchKeyword = ""
+            }
+            .store(in: &anyCancellable)
     }
 }
 

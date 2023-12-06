@@ -11,8 +11,7 @@ struct TBTravelNewsResponse: Decodable {
     let id: Int
     let title, content: String
     let author: Author
-    let imageList: [Media]
-    let thumbnail: Media
+    let thumbnailUrl: String
     let tagList: [String]
     let heartNum: Int
     let bookmarkNum: Int
@@ -25,7 +24,7 @@ struct TBTravelNewsResponse: Decodable {
     var toDomain: TravelNews {
         let author = AuthorRepresentable(id: author.id, name: author.name, profileURL: author.profileURL, role: author.role)
         
-        return TravelNews(author: author, title: title, thumbnailURL: thumbnail.url, likeCount: heartNum, commentCount: commentList.count, isLiked: heart, isSaved: false, createdAt: createdAt)
+        return TravelNews(author: author, title: title, thumbnailURL: thumbnailUrl, likeCount: heartNum, commentCount: commentList.count, isLiked: heart, isSaved: false, createdAt: createdAt)
     }
 }
 

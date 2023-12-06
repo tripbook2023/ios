@@ -21,7 +21,7 @@ class TravelNewsDetailViewModel: ObservableObject {
     }
     
     func loadData() async {
-        let api = TBTravelNewsAPI.search(accessToken: tokenStorage.accessToken ?? "", id: "47")
+        let api = TBTravelNewsAPI.search(accessToken: tokenStorage.accessToken ?? "", id: "74")
         
         do {
             let data = try await apiManager.request(api)

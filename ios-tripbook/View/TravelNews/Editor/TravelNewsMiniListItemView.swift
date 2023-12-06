@@ -1,5 +1,5 @@
 //
-//  TravelNewsEditorListItemView.swift
+//  TravelNewsMiniListItemView.swift
 //  ios-tripbook
 //
 //  Created by 이시원 on 11/30/23.
@@ -9,7 +9,7 @@ import SwiftUI
 
 import Kingfisher
 
-struct TravelNewsEditorListItemView: View {
+struct TravelNewsMiniListItemView: View {
     private let processor = ResizingImageProcessor(referenceSize: .init(width: 154, height: 154), mode: .aspectFill)
     private let item: TravelNewsModel
     
@@ -50,5 +50,5 @@ struct TravelNewsEditorListItemView: View {
 }
 
 #Preview {
-    TravelNewsEditorListItemView(item: TravelNewsModel.dummy)
+    TravelNewsMiniListItemView(item: TravelNewsModel.dummy)
 }

@@ -12,31 +12,8 @@ struct TravelNewsEditorListDetailView: View {
         ZStack(alignment: .bottomTrailing) {
             VStack(spacing: 0) {
                 TravelNewsEditorListDetailHeaderView()
-                
-                ScrollView {
-                    LazyVGrid(columns: [
-                        GridItem(.flexible(), spacing: 11, alignment: .trailing),
-                        GridItem(.flexible(), spacing: 11, alignment: .leading)
-                    ], spacing: 11, content: {
-                        ForEach(0..<16, id: \.self) { _ in
-                            TravelNewsEditorListItemView(item: TravelNewsModel.dummy)
-                        }
-                    }).padding(.vertical, 25)
-                }
+                TravelNewsMiniListView()
             }
-            
-            Button(action: {
-                
-            }) {
-                Circle().foregroundColor(TBColor.primary._50)
-                    .frame(width: 60, height: 60)
-                    .shadow(TBShadow._2)
-                    .overlay(
-                        TBIcon.writing.iconSize(size: .big).foregroundColor(.white)
-                    )
-            }
-            .padding(.trailing, 20)
-            .padding(.bottom, 28)
         }.navigationBarHidden(true)
     }
 }

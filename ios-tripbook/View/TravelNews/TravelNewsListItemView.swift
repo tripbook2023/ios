@@ -11,23 +11,23 @@ import Kingfisher
 
 struct TravelNewsListItemView: View {
     private let item: TravelNewsModel
-    private var action: () -> Void
     
-    init(item: TravelNewsModel, action: @escaping () -> Void) {
+    init(item: TravelNewsModel) {
         self.item = item
-        self.action = action
     }
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            Button {
-                 action()
+            
+            NavigationLink {
+                Text("\(item.title)디테일 화면")
             } label: {
                 KFImage(.init(string: item.thumbnailURL ?? ""))
                     .resizable()
                     .frame(height: 335)
                     .overlay(TBColor.grayscale._90.opacity(0.4))
             }
+
             
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 4) {
@@ -61,12 +61,13 @@ struct TravelNewsListItemView: View {
             .padding(.horizontal, 24)
             .padding(.bottom, 24)
         }
+        .frame(width: 335, height: 335)
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
 struct TravelNewsListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TravelNewsListItemView(item: TravelNewsModel.dummy, action: {})
+        TravelNewsListItemView(item: TravelNewsModel.dummy)
     }
 }

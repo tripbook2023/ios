@@ -11,17 +11,20 @@ import SwiftUI
 /// - Author: 김민규
 /// - Date: 2023/05/16
 struct TravelNewsHeaderView: View {
-    @Binding private var isSearch: Bool
+    @Binding private var isSearching: Bool
+    @Binding private var isSearched: Bool
     @Binding private var text: String
     @FocusState private var isFocused: Bool
     private var onSubmitEvent: () -> Void
     
     init(
-        isSearch: Binding<Bool>,
+        isSearching: Binding<Bool>,
+        isSearched: Binding<Bool>,
         searchText: Binding<String>,
         onSubmitEvent: @escaping () -> Void = {}
     ) {
-        self._isSearch = isSearch
+        self._isSearching = isSearching
+        self._isSearched = isSearched
         self._text = searchText
         self.onSubmitEvent = onSubmitEvent
     }
@@ -36,35 +39,57 @@ struct TravelNewsHeaderView: View {
                         .frame(width: 100)
                     Spacer()
                 }
-                .opacity(isSearch ? 0 : 1)
+                .opacity(isSearching ? 0 : 1)
                 HStack {
                     Button(action: {
                         isFocused = false
                         withAnimation(Animation.spring().speed(2)) {
-                            isSearch = false
+                            isSearching = false
+                            isSearched = false
                         }
                     }, label: {
                         TBIcon.before[0].iconSize(size: .medium)
                             .foregroundStyle(TBColor.grayscale._90)
                     })
-                    .opacity(isSearch ? 1 : 0)
+                    .opacity(isSearching ? 1 : 0)
                     
                     TextField(
-                        isSearch ? "검색어를 입력하세요." : "",
+                        isSearching ? "검색어를 입력하세요." : "",
                         text: $text
                     )
                     .focused($isFocused)
+                    .onTapGesture {
+                        isSearched = false
+                    }
                     .onSubmit(self.onSubmitEvent)
                 }
                 .frame(
-                    width: isSearch ? nil : 0
+                    width: isSearching ? nil : 0
                 )
                 .background(.white)
             }
             Spacer()
+            if !text.isEmpty {
+                Button(action: {
+                    text = ""
+                    isSearched = false
+                    isFocused = true
+                }, label: {
+                    ZStack {
+                        Circle()
+                            .foregroundColor(TBColor.grayscale._20)
+                            
+                        TBIcon.cancel.iconSize(size: .tiny)
+                            .foregroundColor(.white)
+                    }
+                    .frame(width: 20, height: 20)
+                })
+            }
+            
+            
             Button(action: {
                 withAnimation(Animation.spring().speed(2)) {
-                    isSearch = true
+                    isSearching = true
                 }
                 isFocused = true
                 
@@ -72,7 +97,7 @@ struct TravelNewsHeaderView: View {
                 TBIcon.search.iconSize(size: .medium)
                     .foregroundColor(TBColor.grayscale._90)
             })
-            if !isSearch {
+            if !isSearching {
                 NavigationLink(destination: NotificationView()) {
                     TBIcon.bell.iconSize(size: .medium)
                         .foregroundColor(TBColor.grayscale._90)
@@ -87,9 +112,19 @@ struct TravelNewsHeaderView: View {
 
 struct TravelNewsHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        TravelNewsHeaderView(
-            isSearch: .constant(false),
-            searchText: .constant("")
-        )
+        Group {
+            TravelNewsHeaderView(
+                isSearching: .constant(false),
+                isSearched: .constant(false),
+                searchText: .constant("")
+            )
+            
+            TravelNewsHeaderView(
+                isSearching: .constant(true),
+                isSearched: .constant(false),
+                searchText: .constant("sss")
+            )
+        }
+        
     }
 }

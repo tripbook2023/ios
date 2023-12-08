@@ -26,18 +26,26 @@ struct TravelNewsListView: View {
                     }
                 }
                 ZStack(alignment: .top) {
-                    VStack(spacing: 20) {
+                    LazyVStack(spacing: 20) {
                         ForEach(0..<viewModel.travelNewsList.count, id: \.self) { i in
-                            TravelNewsListItemView(item: viewModel.travelNewsList[i]) {
-                                viewModel.selectTravelNewsItem = viewModel.travelNewsList[i]
-                            }
+                            let item = viewModel.travelNewsList[i]
+                            TravelNewsListItemView(item: item)
+                                .onAppear {
+                                    if i > viewModel.travelNewsList.count - 3 {
+                                        viewModel.fetchTravelNewsList(type: .next)
+                                    }
+                                }
                         }
+                        
+                        
                     }.padding(.top, 24)
+                    
                     HStack {
                         Spacer()
                         TravelNewsSortPopupView(viewModel: viewModel)
                             .opacity(viewModel.isSortPopup ? 1 : 0)
                     }
+                    
                 }
             }
         }.padding(.horizontal, 20)

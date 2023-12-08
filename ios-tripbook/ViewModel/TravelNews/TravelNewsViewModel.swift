@@ -9,6 +9,11 @@ import Foundation
 
 /// 여행소식 화면 View Model
 class TravelNewsViewModel: ObservableObject {
+    enum FetchType {
+        case first
+        case next
+    }
+
     private let apiManager: APIManagerable
     private let tokenStorage: TokenStorage
     private let searchKeywordStorage: Storageable
@@ -27,18 +32,19 @@ class TravelNewsViewModel: ObservableObject {
     @Published var myTravelNewsList: [TravelNewsModel] = []
     /// 여행소식 게시물 LIst
     @Published var travelNewsList: [TravelNewsModel] = []
-    @Published var selectTravelNewsItem: TravelNewsModel?
-    @Published var isSearch = false
+    @Published var currentSort: Sort = .createdDesc
+    @Published var isSortPopup = false
+    @Published var isLastPage = false
+    
+    @Published var isSearching = false
+    @Published var isSearched = false
     @Published var searchKeyword = ""
     @Published var keywordList: [String] = []
-    @Published var isShowEditorView: Bool = false
-    @Published var currentSort: Sort = .createdDesc    
-    @Published var isSortPopup = false
+    @Published var searchResult: [TravelNewsModel] = []
+
+    private var currentPage = 0
+    private var isLoding = false
     
-    /// 현재 여행소식 게시물 List Page Number
-    var currentPage = 0
-    
-    /// Load 에디터/관리자 본인 여행소식 게시물 LIst
     func fetchMyTravelNewsList() {
         // TODO: API Service 연동
         myTravelNewsList = [
@@ -50,12 +56,39 @@ class TravelNewsViewModel: ObservableObject {
     }
     
     /// Load 여행소식 게시물 List
-    func fetchTravelNewsList() {
-        // TODO: API Service 연동
+    func fetchTravelNewsList(type: FetchType) {
+        guard !isLoding else { return }
+        isLoding = true
+        Task {
+            do {
+                currentPage = type == .first ? 0 : currentPage + 1
+                let api = TBTravelNewsAPI.search(
+                    word: "",
+                    page: currentPage,
+                    size: 10,
+                    sort: currentSort
+                )
+                let items = try await apiManager.request(
+                    api,
+                    type: SearchResponse.self
+                ).toDomain
+                await MainActor.run {
+                    isLastPage = items.isEmpty
+                    travelNewsList = type == .first ? items : travelNewsList + items
+                }
+            } catch {
+                /// 에러 핸들링
+                print(error)
+            }
+            isLoding = false
+        }
+    }
+    
+    func searchTravelNewsList() {
         Task {
             do {
                 let api = TBTravelNewsAPI.search(
-                    word: "",
+                    word: searchKeyword,
                     page: 0,
                     size: 10,
                     sort: currentSort
@@ -65,12 +98,12 @@ class TravelNewsViewModel: ObservableObject {
                     type: SearchResponse.self
                 ).toDomain
                 await MainActor.run {
-                    travelNewsList = items
+                    searchResult = items
                 }
             } catch {
-                
+                /// 에러 핸들링
+                print(error)
             }
-            
         }
     }
     

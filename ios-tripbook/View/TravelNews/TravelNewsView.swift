@@ -14,19 +14,20 @@ import Combine
 struct TravelNewsView: View {
     @StateObject private var viewModel = TravelNewsViewModel()
     @State private var anyCancellable = Set<AnyCancellable>()
+    @State private var isAppear = false
     
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottomTrailing) {
                 VStack {
                     TravelNewsHeaderView(
-                        isSearch: $viewModel.isSearch,
+                        isSearching: $viewModel.isSearching,
+                        isSearched: $viewModel.isSearched,
                         searchText: $viewModel.searchKeyword
                     ) {
                         viewModel.addSearchKeyword()
-                        withAnimation(Animation.spring().speed(2)) {
-                            viewModel.isSearch = false
-                        }
+                        viewModel.searchTravelNewsList()
+                        viewModel.isSearched = true
                     }
                     ZStack {
                         ScrollView {
@@ -43,15 +44,26 @@ struct TravelNewsView: View {
                                     .padding(.top, 56)
                             }.padding(.bottom)
                         }
-                        .opacity(viewModel.isSearch ? 0 : 1)
+                        .opacity(viewModel.isSearching ? 0 : 1)
                         
                         TravelNewsSearchKeywordListView(viewModel: viewModel)
-                        .opacity(viewModel.isSearch ? 1 : 0)
+                        .opacity(
+                            viewModel.isSearching
+                            && !viewModel.isSearched ? 1 : 0
+                        )
+                        
+                        VStack {
+                            Divider()
+                            TravelNewsMiniListView(items: $viewModel.searchResult)
+                        }
+                        .opacity(viewModel.isSearched ? 1 : 0)
                     }
                 }
             }
         }
         .onAppear {
+            guard !isAppear else { return }
+            isAppear = true
             bind()
         }
     }
@@ -66,10 +78,10 @@ extension TravelNewsView {
         viewModel.$currentSort
             .removeDuplicates()
             .sink { _ in
-                viewModel.fetchTravelNewsList()
+                viewModel.fetchTravelNewsList(type: .first)
             }
             .store(in: &anyCancellable)
-        viewModel.$isSearch
+        viewModel.$isSearching
             .filter { !$0 }
             .sink { _ in
                 viewModel.searchKeyword = ""

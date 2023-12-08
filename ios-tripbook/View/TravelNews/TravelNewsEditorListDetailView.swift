@@ -12,7 +12,12 @@ struct TravelNewsEditorListDetailView: View {
         ZStack(alignment: .bottomTrailing) {
             VStack(spacing: 0) {
                 TravelNewsEditorListDetailHeaderView()
-                TravelNewsMiniListView()
+                TravelNewsMiniListView(items: .constant([
+                    TravelNewsModel.dummy,
+                    TravelNewsModel.dummy,
+                    TravelNewsModel.dummy,
+                    TravelNewsModel.dummy
+                ]))
             }
         }.navigationBarHidden(true)
     }

@@ -33,7 +33,7 @@ struct TravelNewsEditorListView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     ForEach(0..<viewModel.myTravelNewsList.count, id: \.self) { i in
-                        TravelNewsEditorListItemView(item: viewModel.myTravelNewsList[i])
+                        TravelNewsMiniListItemView(item: viewModel.myTravelNewsList[i])
                     }
                 }.padding(.horizontal, 20)
             }

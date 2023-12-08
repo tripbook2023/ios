@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TravelNewsModel {
+struct TravelNewsModel: Identifiable {
     /// 고유 ID
     let id: Int
     /// Document 작성자

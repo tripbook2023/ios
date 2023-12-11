@@ -25,11 +25,13 @@ struct MyTravelNewsItemView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .overlay(
-                    Image(uiImage: self.viewModel.data.image)
-                        .resizable()
-                        .scaledToFill()
-                )
+//                .overlay(
+//
+//                    AsyncImage(url: viewModel.data.author.profileURL)
+//                    Image(uiImage: self.viewModel.data.)
+//                        .resizable()
+//                        .scaledToFill()
+//                )
             
             Color(red: 120 / 255, green: 120 / 255, blue: 120 / 255)
                 .opacity(0.4)
@@ -37,7 +39,7 @@ struct MyTravelNewsItemView: View {
             VStack {
                 HStack(alignment: .top, spacing: 10) {
                     VStack(alignment: .leading) {
-                        Text(self.viewModel.data.title)
+                        Text("타이틀???")
                             .font(.suit(.bold, size: 20))
                             .foregroundColor(.white)
                         Text("\(self.viewModel.data.createdAt, formatter: self.viewModel.dateFormatter)")

@@ -9,8 +9,9 @@ import Foundation
 // MARK: - TBNews
 struct TBTravelNewsResponse: Decodable {
     let id: Int
-    let title, content: String
+    let title: String
     let author: Author
+    let content: String
     let thumbnailUrl: String
     let tagList: [String]
     let heartNum: Int
@@ -24,7 +25,7 @@ struct TBTravelNewsResponse: Decodable {
     var toDomain: TravelNews {
         let author = AuthorRepresentable(id: author.id, name: author.name, profileURL: author.profileURL, role: author.role)
         
-        return TravelNews(author: author, title: title, thumbnailURL: thumbnailUrl, likeCount: heartNum, commentCount: commentList.count, isLiked: heart, isSaved: false, createdAt: createdAt)
+        return TravelNews(author: author, title: title, content: content, thumbnailURL: thumbnailUrl, likeCount: heartNum, commentCount: commentList.count, isLiked: heart, isSaved: false, createdAt: createdAt)
     }
 }
 

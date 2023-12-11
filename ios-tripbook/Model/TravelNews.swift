@@ -11,6 +11,7 @@ struct TravelNews {
     let id: Int = 0
     let author: AuthorRepresentable
     let title: String
+    let content: String
     let thumbnailURL: String
     var likeCount: Int
     var commentCount: Int
@@ -20,6 +21,7 @@ struct TravelNews {
     
     init(author: AuthorRepresentable,
          title: String,
+         content: String,
          thumbnailURL: String,
          likeCount: Int,
          commentCount: Int,
@@ -29,6 +31,7 @@ struct TravelNews {
     ) {
         self.author = author
         self.title = title
+        self.content = content
         self.thumbnailURL = thumbnailURL
         self.likeCount = likeCount
         self.commentCount = commentCount

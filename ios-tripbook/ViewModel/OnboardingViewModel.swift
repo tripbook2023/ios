@@ -34,6 +34,7 @@ class OnboardingViewModel: ObservableObject {
             do {
                 let result = try await apiManager.request(TBMemberAPI.tokenReissue(refreshToken: refreshToken), type: TokenReissueResponse.self)
                 tokenStorage.setTokens(accessToken: result.accessToken, refreshToken: result.refreshToken)
+                print("accessToken: \(result)")
                 presentView = .root
             } catch {
                 presentView = .login

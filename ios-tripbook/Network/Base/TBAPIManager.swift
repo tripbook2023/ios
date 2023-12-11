@@ -45,7 +45,7 @@ extension TBAPIManager {
             method: api.method,
             parameters: api.parameters,
             headers: api.headers,
-            interceptor: TBAuthInterceptor()
+            interceptor: TBAuthInterceptor(apiManager: self)
         )
         .validate(statusCode: 200..<300)
     }
@@ -92,7 +92,7 @@ extension TBAPIManager {
             to: url,
             usingThreshold: .init(),
             headers: api.headers,
-            interceptor: TBAuthInterceptor()
+            interceptor: TBAuthInterceptor(apiManager: self)
         )
         .validate(statusCode: 200..<300)
     }

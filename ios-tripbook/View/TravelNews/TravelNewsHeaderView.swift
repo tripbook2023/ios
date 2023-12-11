@@ -97,12 +97,6 @@ struct TravelNewsHeaderView: View {
                 TBIcon.search.iconSize(size: .medium)
                     .foregroundColor(TBColor.grayscale._90)
             })
-            if !isSearching {
-                NavigationLink(destination: NotificationView()) {
-                    TBIcon.bell.iconSize(size: .medium)
-                        .foregroundColor(TBColor.grayscale._90)
-                }
-            }
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 10)

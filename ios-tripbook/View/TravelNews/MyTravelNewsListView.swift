@@ -1,5 +1,5 @@
 //
-//  TravelNewsEditorListDetailView.swift
+//  MyTravelNewsListView.swift
 //  ios-tripbook
 //
 //  Created by DDang on 7/16/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TravelNewsEditorListDetailView: View {
+struct MyTravelNewsListView: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             VStack(spacing: 0) {
@@ -55,6 +55,6 @@ struct TravelNewsEditorListDetailHeaderView: View {
 
 struct TravelNewsEditorListDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TravelNewsEditorListDetailView()
+        MyTravelNewsListView()
     }
 }

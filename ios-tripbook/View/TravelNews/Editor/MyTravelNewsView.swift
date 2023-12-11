@@ -1,5 +1,5 @@
 //
-//  TravelNewsEditorListView.swift
+//  MyTravelNewsView.swift
 //  ios-tripbook
 //
 //  Created by DDang on 7/13/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TravelNewsEditorListView: View {
+struct MyTravelNewsView: View {
     @ObservedObject private var viewModel: TravelNewsViewModel
     @StateObject private var dataStorage: DataStorage = .shared
     
@@ -24,7 +24,7 @@ struct TravelNewsEditorListView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: TravelNewsEditorListDetailView()) {
+                NavigationLink(destination: MyTravelNewsListView()) {
                     TBIcon.next.iconSize(size: .medium)
                         .foregroundColor(TBColor.grayscale._70)
                 }
@@ -43,6 +43,6 @@ struct TravelNewsEditorListView: View {
 
 struct TravelNewsEditorListView_Previews: PreviewProvider {
     static var previews: some View {
-        TravelNewsEditorListView(viewModel: TravelNewsViewModel())
+        MyTravelNewsView(viewModel: TravelNewsViewModel())
     }
 }

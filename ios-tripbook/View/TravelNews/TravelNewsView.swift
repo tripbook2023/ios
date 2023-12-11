@@ -38,7 +38,7 @@ struct TravelNewsView: View {
                                 }
                                 .frame(height: 110)
                                 if !viewModel.myTravelNewsList.isEmpty {
-                                    TravelNewsEditorListView(viewModel: viewModel)
+                                    MyTravelNewsView(viewModel: viewModel)
                                         .padding(.top, 48)
                                 }
                                 TravelNewsListView(viewModel: viewModel)

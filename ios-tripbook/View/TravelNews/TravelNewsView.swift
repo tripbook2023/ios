@@ -26,7 +26,8 @@ struct TravelNewsView: View {
                         searchText: $viewModel.searchKeyword
                     ) {
                         viewModel.addSearchKeyword()
-                        viewModel.searchTravelNewsList()
+                        viewModel.searchResult = []
+                        viewModel.searchTravelNewsList(type: .first)
                         viewModel.isSearched = true
                     }
                     ZStack {
@@ -54,7 +55,19 @@ struct TravelNewsView: View {
                         
                         VStack {
                             Divider()
-                            TravelNewsMiniListView(items: $viewModel.searchResult)
+                            TravelNewsMiniListView(items: $viewModel.searchResult) { index in
+                                if index > viewModel.searchResult.count - 6 {
+                                    viewModel.searchTravelNewsList(type: .next)
+                                }
+                            }
+                            .overlay {
+                                if viewModel.isSearchResultEmpty {
+                                    Text("원하시는 검색 결과를 찾을 수 없습니다")
+                                        .font(TBFont.body_4)
+                                        .foregroundStyle(TBColor.grayscale._90)
+                                }
+                                
+                            }
                         }
                         .opacity(viewModel.isSearched ? 1 : 0)
                     }

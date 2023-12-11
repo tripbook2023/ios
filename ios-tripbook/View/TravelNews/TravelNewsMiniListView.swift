@@ -9,9 +9,14 @@ import SwiftUI
 
 struct TravelNewsMiniListView: View {
     @Binding private var items: [TravelNewsModel]
+    private var paginationEvent: ((_ index: Int) -> Void)?
     
-    init(items: Binding<[TravelNewsModel]>) {
+    init(
+        items: Binding<[TravelNewsModel]>,
+        paginationEvent: ((_ index: Int) -> Void)? = nil
+    ) {
         self._items = items
+        self.paginationEvent = paginationEvent
     }
     
     var body: some View {
@@ -25,6 +30,9 @@ struct TravelNewsMiniListView: View {
                     TravelNewsMiniListItemView(
                         item: item
                     )
+                    .onAppear {
+                        paginationEvent?(i)
+                    }
                 }
             }).padding(.vertical, 25)
         }

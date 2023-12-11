@@ -13,6 +13,12 @@ class TravelNewsViewModel: ObservableObject {
         case first
         case next
     }
+    
+    struct PageValue {
+        var isLastPage = false
+        var currentPage = 0
+        var isLoding = false
+    }
 
     private let apiManager: APIManagerable
     private let tokenStorage: TokenStorage
@@ -34,17 +40,17 @@ class TravelNewsViewModel: ObservableObject {
     @Published var travelNewsList: [TravelNewsModel] = []
     @Published var currentSort: Sort = .createdDesc
     @Published var isSortPopup = false
-    @Published var isLastPage = false
     
     @Published var isSearching = false
     @Published var isSearched = false
     @Published var searchKeyword = ""
     @Published var keywordList: [String] = []
     @Published var searchResult: [TravelNewsModel] = []
-
-    private var currentPage = 0
-    private var isLoding = false
+    @Published var isSearchResultEmpty = false
     
+    private var mainPage: PageValue = .init()
+    private var searchPage: PageValue = .init()
+
     func fetchMyTravelNewsList() {
         // TODO: API Service 연동
         myTravelNewsList = [
@@ -57,14 +63,15 @@ class TravelNewsViewModel: ObservableObject {
     
     /// Load 여행소식 게시물 List
     func fetchTravelNewsList(type: FetchType) {
-        guard !isLoding else { return }
-        isLoding = true
+        if mainPage.isLastPage && type == .next { return }
+        guard !mainPage.isLoding else { return }
+        mainPage.isLoding = true
         Task {
             do {
-                currentPage = type == .first ? 0 : currentPage + 1
+                mainPage.currentPage = type == .first ? 0 : mainPage.currentPage + 1
                 let api = TBTravelNewsAPI.search(
                     word: "",
-                    page: currentPage,
+                    page: mainPage.currentPage,
                     size: 10,
                     sort: currentSort
                 )
@@ -73,24 +80,29 @@ class TravelNewsViewModel: ObservableObject {
                     type: SearchResponse.self
                 ).toDomain
                 await MainActor.run {
-                    isLastPage = items.isEmpty
+                    mainPage.isLastPage = items.isEmpty
                     travelNewsList = type == .first ? items : travelNewsList + items
                 }
             } catch {
                 /// 에러 핸들링
                 print(error)
             }
-            isLoding = false
+            mainPage.isLoding = false
         }
     }
     
-    func searchTravelNewsList() {
+    func searchTravelNewsList(type: FetchType) {
+        if searchPage.isLastPage && type == .next { return }
+        guard !searchPage.isLoding else { return }
+        searchPage.isLoding = true
+        isSearchResultEmpty = false
         Task {
             do {
+                searchPage.currentPage = type == .first ? 0 : searchPage.currentPage + 1
                 let api = TBTravelNewsAPI.search(
                     word: searchKeyword,
-                    page: 0,
-                    size: 10,
+                    page: searchPage.currentPage,
+                    size: 20,
                     sort: currentSort
                 )
                 let items = try await apiManager.request(
@@ -98,12 +110,15 @@ class TravelNewsViewModel: ObservableObject {
                     type: SearchResponse.self
                 ).toDomain
                 await MainActor.run {
-                    searchResult = items
+                    searchPage.isLastPage = items.isEmpty
+                    isSearchResultEmpty = items.isEmpty && searchResult.isEmpty
+                    searchResult = type == .first ? items : searchResult + items
                 }
             } catch {
                 /// 에러 핸들링
                 print(error)
             }
+            searchPage.isLoding = false
         }
     }
     

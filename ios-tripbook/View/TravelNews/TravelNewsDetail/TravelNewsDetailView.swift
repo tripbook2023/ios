@@ -27,20 +27,30 @@ struct TravelNewsDetailView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .center, spacing: 0) {
-                coverView()
-                authorView()
-                if let content = viewModel.travelNews?.content {
-                    htmlView(content: content)
+        VStack {
+            
+            ScrollView {
+                VStack(alignment: .center, spacing: 0) {
+                    coverView()
+                    authorView()
+                    if let content = viewModel.travelNews?.content {
+                        htmlView(content: content)
+                    }
+                }
+                
+            }
+            .ignoresSafeArea()
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .onAppear {
+                Task {
+                    await viewModel.loadData()
                 }
             }
-        }
-        .ignoresSafeArea()
-        .toolbarBackground(.hidden, for: .navigationBar)
-        .onAppear {
-            Task {
-                await viewModel.loadData()
+            .overlay {
+                VStack {
+                    Spacer()
+                    bottomView()
+                }
             }
         }
     }
@@ -120,7 +130,7 @@ struct TravelNewsDetailView: View {
     }
     
     func bottomView() -> some View {
-        VStack {
+        VStack(spacing: 0) {
             Rectangle()
                 .fill(TBColor.grayscale._50)
                 .frame(width: deviceWidth, height: 1)
@@ -130,15 +140,19 @@ struct TravelNewsDetailView: View {
                     //
                 } label: {
                     Image("Like")
+                        .foregroundColor(TBColor.grayscale._50)
                 }
                 .frame(width: 24, height: 24)
                 
-                Text("100")
+                Text("\(viewModel.travelNews?.likeCount ?? 0)")
                     .font(.suit(.medium, size: 10))
                     .foregroundColor(TBColor.grayscale._50)
+                
+                Spacer()
             }
             .frame(height: 56)
             .padding(.horizontal, 20)
         }
+        .background(.white)
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchResponse: Decodable {
+class SearchResponse: Decodable {
     let content: [ContentResponse]
     let pageable: PageableResponse
     let size: Int

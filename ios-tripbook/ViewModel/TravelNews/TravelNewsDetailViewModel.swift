@@ -27,7 +27,9 @@ class TravelNewsDetailViewModel: ObservableObject {
             let data = try await apiManager.request(api)
             let travel = try JSONDecoder().decode(TBTravelNewsResponse.self, from: data).toDomain
             
-            travelNews = travel
+            DispatchQueue.main.async {
+                self.travelNews = travel
+            }
         } catch {
             print("ERROR: \(error)")
         }

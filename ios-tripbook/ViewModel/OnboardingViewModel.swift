@@ -8,12 +8,7 @@
 import Foundation
 @MainActor
 class OnboardingViewModel: ObservableObject {
-    enum ViewState {
-        case root
-        case login
-    }
-    
-    @Published var presentView: ViewState? = nil
+    @Published var isPresentRoot: Bool = false
     @Published var isHidden = false
     @Published var isAnimationFinish = false
     
@@ -36,8 +31,9 @@ class OnboardingViewModel: ObservableObject {
                 tokenStorage.setTokens(accessToken: result.accessToken, refreshToken: result.refreshToken)
                 print("accessToken: \(result)")
                 presentView = .root
+                isPresentRoot = true
             } catch {
-                presentView = .login
+                isPresentRoot = false
             }
             
         }

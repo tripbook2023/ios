@@ -9,8 +9,10 @@ import Foundation
 
 protocol APIManagerable {
     func request<T: Decodable>(_ api: APIable, type: T.Type) async throws -> T
+    @discardableResult
     func request(_ api: APIable) async throws -> Data
     
     func upload<T: Decodable>(_ api: APIable, type: T.Type) async throws -> T
+    @discardableResult
     func upload(_ api: APIable) async throws -> Data
 }

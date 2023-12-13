@@ -83,6 +83,19 @@ struct TBMemberAPI: APIable {
             uploadImages: [:]
         )
     }
+    
+    static func selectMyArticles(page: Int, size: Int) -> Self {
+        return TBMemberAPI(
+            path: TBAPIPath.Member.selectMyArticles,
+            method: .get,
+            parameters: [
+                "page": page,
+                "size": size
+            ],
+            headers: .init(),
+            uploadImages: [:]
+        )
+    }
 }
 
 private extension String {

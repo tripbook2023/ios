@@ -24,7 +24,7 @@ struct MyTravelNewsView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: MyTravelNewsListView()) {
+                NavigationLink(destination: MyTravelNewsListView(viewModel: viewModel)) {
                     TBIcon.next.iconSize(size: .medium)
                         .foregroundColor(TBColor.grayscale._70)
                 }
@@ -32,8 +32,8 @@ struct MyTravelNewsView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    ForEach(0..<viewModel.myTravelNewsList.count, id: \.self) { i in
-                        TravelNewsMiniListItemView(item: viewModel.myTravelNewsList[i])
+                    ForEach(viewModel.myTravelNewsList) { item in
+                        TravelNewsMiniListItemView(item: item)
                     }
                 }.padding(.horizontal, 20)
             }

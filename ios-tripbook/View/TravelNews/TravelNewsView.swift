@@ -43,7 +43,8 @@ struct TravelNewsView: View {
                                 }
                                 TravelNewsListView(viewModel: viewModel)
                                     .padding(.top, 56)
-                            }.padding(.bottom)
+                            }
+                            .padding(.bottom)
                         }
                         .opacity(viewModel.isSearching ? 0 : 1)
                         
@@ -73,11 +74,11 @@ struct TravelNewsView: View {
                     }
                 }
             }
-        }
-        .onAppear {
-            guard !isAppear else { return }
-            isAppear = true
-            bind()
+            .onAppear {
+                guard !isAppear else { return }
+                isAppear = true
+                bind()
+            }
         }
     }
 }
@@ -87,7 +88,7 @@ extension TravelNewsView {
         if viewModel.keywordList.isEmpty {
             viewModel.readSearchKeywords()
         }
-        viewModel.fetchMyTravelNewsList()
+        viewModel.fetchMyTravelNewsList(count: 5, type: .first)
         viewModel.$currentSort
             .removeDuplicates()
             .sink { _ in

@@ -8,18 +8,26 @@
 import SwiftUI
 
 struct MyTravelNewsListView: View {
+    @ObservedObject var viewModel: TravelNewsViewModel
+    @State private var isAppear = false
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             VStack(spacing: 0) {
                 TravelNewsEditorListDetailHeaderView()
-                TravelNewsMiniListView(items: .constant([
-                    TravelNewsModel.dummy,
-                    TravelNewsModel.dummy,
-                    TravelNewsModel.dummy,
-                    TravelNewsModel.dummy
-                ]))
+                TravelNewsMiniListView(items: $viewModel.myTravelNewsList) { index in
+                    if index > viewModel.myTravelNewsList.count - 6 {
+                        viewModel.fetchMyTravelNewsList(count: 20, type: .next)
+                    }
+                }
             }
-        }.navigationBarHidden(true)
+        }
+        .onAppear {
+            guard !isAppear else { return }
+            isAppear = true
+            viewModel.fetchMyTravelNewsList(count: 20, type: .first)
+        }
+        .navigationBarHidden(true)
     }
 }
 
@@ -55,6 +63,6 @@ struct TravelNewsEditorListDetailHeaderView: View {
 
 struct TravelNewsEditorListDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MyTravelNewsListView()
+        MyTravelNewsListView(viewModel: .init())
     }
 }

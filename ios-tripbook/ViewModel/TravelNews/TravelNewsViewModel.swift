@@ -48,17 +48,39 @@ class TravelNewsViewModel: ObservableObject {
     @Published var searchResult: [TravelNewsModel] = []
     @Published var isSearchResultEmpty = false
     
+    @Published var myTravelNewsCount = 0
+    
     private var mainPage: PageValue = .init()
     private var searchPage: PageValue = .init()
+    private var myPage: PageValue = .init()
 
-    func fetchMyTravelNewsList() {
-        // TODO: API Service 연동
-        myTravelNewsList = [
-            TravelNewsModel.dummy,
-            TravelNewsModel.dummy,
-            TravelNewsModel.dummy,
-            TravelNewsModel.dummy
-        ]
+    func fetchMyTravelNewsList(count: Int, type: FetchType) {
+        if myPage.isLastPage && type == .next { return }
+        guard !myPage.isLoding else { return }
+        myPage.isLoding = true
+        Task {
+            do {
+                myPage.currentPage = type == .first ? 0 : myPage.currentPage + 1
+                let api = TBMemberAPI.selectMyArticles(
+                    page: myPage.currentPage,
+                    size: count
+                )
+                let response = try await apiManager.request(
+                    api,
+                    type: SelectMyArticlesResponse.self
+                )
+                let items = response.toDomain
+                await MainActor.run {
+                    myPage.isLastPage = items.isEmpty
+                    myTravelNewsCount = response.totalElements
+                    myTravelNewsList = type == .first ? items : myTravelNewsList + items
+                }
+            } catch {
+                /// 에러 핸들링
+                print(error)
+            }
+            myPage.isLoding = false
+        }
     }
     
     /// Load 여행소식 게시물 List

@@ -14,6 +14,7 @@ struct TravelNewsSortPopupView: View {
         VStack(alignment: .leading, spacing: 16) {
             Button {
                 viewModel.currentSort = .createdDesc
+                viewModel.isSortPopup = false
             } label: {
                 let text = Text("최신순")
                     .font(TBFont.body_4)
@@ -27,6 +28,7 @@ struct TravelNewsSortPopupView: View {
 
             Button {
                 viewModel.currentSort = .popularity
+                viewModel.isSortPopup = false
             } label: {
                 let text = Text("인기순")
                     .font(TBFont.body_4)
@@ -41,6 +43,7 @@ struct TravelNewsSortPopupView: View {
 
             Button {
                 viewModel.currentSort = .createdAsc
+                viewModel.isSortPopup = false
             } label: {
                 let text = Text("오래된순")
                     .font(TBFont.body_4)

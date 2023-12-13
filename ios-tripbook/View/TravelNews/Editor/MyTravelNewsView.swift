@@ -18,7 +18,7 @@ struct MyTravelNewsView: View {
     var body: some View {
         VStack(spacing: 24) {
             HStack(alignment: .bottom) {
-                (Text("\(dataStorage.user?.info?.name ?? "") 님은 여행소식을\n") + Text("\(viewModel.myTravelNewsList.count)편 ").foregroundColor(TBColor.primary._50) + Text("작성하셨네요!"))
+                (Text("\(dataStorage.user?.info?.name ?? "") 님은 여행기록을\n") + Text("\(viewModel.myTravelNewsCount)편 ").foregroundColor(TBColor.primary._50) + Text("작성하셨네요!"))
                     .font(TBFont.heading_2)
                     .foregroundColor(TBColor.grayscale._80)
                 

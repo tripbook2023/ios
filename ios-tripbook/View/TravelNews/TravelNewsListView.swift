@@ -14,7 +14,7 @@ struct TravelNewsListView: View {
         VStack(spacing: 24) {
             VStack(spacing: 0) {
                 HStack {
-                    Text("여행소식")
+                    Text("여행기록")
                         .font(.suit(.bold, size: 20))
                         .foregroundColor(TBColor.grayscale._80)
                     Spacer()

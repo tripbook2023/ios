@@ -22,7 +22,7 @@ struct TravelNewsListItemView: View {
             NavigationLink {
                 Text("\(item.title)디테일 화면")
             } label: {
-                KFImage(.init(string: item.thumbnailURL ?? ""))
+                KFImage(item.thumbnailURL)
                     .resizable()
                     .frame(height: 335)
                     .overlay(TBColor.grayscale._90.opacity(0.4))
@@ -31,7 +31,7 @@ struct TravelNewsListItemView: View {
             
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 4) {
-                    TBAvatar(type: .editor)
+                    TBAvatar(type: .basic, profileImageURL: item.author.profileUrl)
                     Text(item.author.name)
                         .font(.suit(.medium, size: 12))
                         .foregroundColor(TBColor.grayscale._1)

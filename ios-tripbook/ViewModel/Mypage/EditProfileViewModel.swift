@@ -25,7 +25,7 @@ final class EditProfileViewModel: ObservableObject {
         self.dataStorage = dataStorage
         
         self.newName = dataStorage.user?.info?.name ?? ""
-        guard let url = URL(string: dataStorage.user?.profileImageURL ?? "") else { return }
+        guard let url = dataStorage.user?.profileImageURL else { return }
         KingfisherManager.shared.retrieveImage(with: url) { [weak self] in
             self?.newProfileImageData = try? $0.get().data()
         }

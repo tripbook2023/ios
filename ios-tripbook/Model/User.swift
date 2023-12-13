@@ -55,7 +55,7 @@ class MyProfile {
     
     let birth: Date
     
-    var profileImageURL: String?
+    var profileImageURL: URL?
     
     var terms: [Term:Bool]
     
@@ -69,7 +69,12 @@ class MyProfile {
         self.role = role
         self.gender = gender
         self.birth = birth
-        self.profileImageURL = profileImageURL
+        if let profileImageURL = profileImageURL {
+            self.profileImageURL = URL(string: profileImageURL)
+        } else {
+            self.profileImageURL = nil
+        }
+        
         self.terms = terms
         self.point = point
         self.status = status

@@ -16,7 +16,7 @@ struct TravelNewsModel: Identifiable {
     /// 제목
     let title: String
     /// 썸네일 이미지
-    let thumbnailURL: String?
+    let thumbnailURL: URL?
     
     /// 좋아요 수
     var likeCount: Int
@@ -39,17 +39,21 @@ struct TravelNewsModel: Identifiable {
         self.id = id
         self.author = author
         self.title = title
-        self.thumbnailURL = thumbnailURL
+        if let thumbnailURL = thumbnailURL {
+            self.thumbnailURL = URL(string: thumbnailURL)
+        } else {
+            self.thumbnailURL = nil
+        }
         self.likeCount = likeCount
         self.isLiked = isLiked
-        self.createdAt = createdAt
+        self.createdAt = createdAt.prefix(10).replacingOccurrences(of: "-", with: ".")
     }
     
     #if DEBUG
     static var dummy: Self {
         return TravelNewsModel (
             id: UUID().hashValue,
-            author: .init(name: "서지혜", profileUrl: "", role: ""),
+            author: .init(name: "서지혜", profileUrl: nil, role: ""),
             title: "뚜벅이가 여행하기 좋은 장소 Top 5",
             thumbnailURL: Bundle.main.path(forResource: "SampleFeedThumbnail", ofType: "jpg", inDirectory: "Assets.xcassets"),
             likeCount: 1,

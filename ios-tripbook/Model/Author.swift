@@ -9,6 +9,16 @@ import Foundation
 
 struct Author {
     let name: String
-    let profileUrl: String?
+    let profileUrl: URL?
     let role: String
+    
+    init(name: String, profileUrl: String?, role: String) {
+        self.name = name
+        if let profileUrl = profileUrl {
+            self.profileUrl = URL(string: profileUrl)
+        } else {
+            self.profileUrl = nil
+        }
+        self.role = role
+    }
 }

@@ -18,8 +18,8 @@ struct TravelNewsMiniListItemView: View {
     }
     
     var body: some View {
-        ZStack {
-            KFImage.url(.init(string: item.thumbnailURL ?? ""))
+        ZStack(alignment: .leading) {
+            KFImage.url(item.thumbnailURL)
                 .setProcessor(self.processor)
                 .loadDiskFileSynchronously()
                 .cacheMemoryOnly()

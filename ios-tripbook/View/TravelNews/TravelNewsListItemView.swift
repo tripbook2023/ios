@@ -53,10 +53,10 @@ struct TravelNewsListItemView: View {
                             likeButtonAction()
                         }) {
                             if item.isLiked {
-                                TBIcon.like.iconSize(size: .medium)
-                                    .foregroundColor(.red)
+                                TBIcon.like.active.iconSize(size: .medium)
+                                    .foregroundColor(.white)
                             } else {
-                                TBIcon.like.iconSize(size: .medium)
+                                TBIcon.like.normal.iconSize(size: .medium)
                                     .foregroundColor(.white)
                             }
                         }

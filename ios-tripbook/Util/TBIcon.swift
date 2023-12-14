@@ -75,7 +75,7 @@ struct TBIcon {
     static let edit = Image("Edit")
     static let filter = Image("Filter")
     static let keyboard = Image("Keyboard")
-    static let like = Image("Like")
+    static let like = TBIconState("Like")
     static let location: [Image] = [
         Image("Location/01"),
         Image("Location/02")

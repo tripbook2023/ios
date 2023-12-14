@@ -31,4 +31,14 @@ struct TBTravelNewsAPI: APIable {
             uploadImages: [:]
         )
     }
+    
+    static func like(id: Int) -> Self {
+        return TBTravelNewsAPI(
+            path: TBAPIPath.Articles.like(id: id),
+            method: .post,
+            parameters: [:],
+            headers: .init(),
+            uploadImages: [:]
+        )
+    }
 }

@@ -144,6 +144,22 @@ class TravelNewsViewModel: ObservableObject {
         }
     }
     
+    func likeButtonDidTap(index: Int) {
+        Task {
+            do {
+                let item = travelNewsList[index]
+                let api = TBTravelNewsAPI.like(id: item.id)
+                let result = try await apiManager.request(api, type: LikeResponse.self)
+                await MainActor.run {
+                    travelNewsList[index].isLiked = result.heart
+                    travelNewsList[index].likeCount = result.heartNum
+                }
+            } catch {
+                
+            }
+        }
+    }
+    
     func readSearchKeywords() {
         keywordList = searchKeywordStorage.read().reversed()
     }

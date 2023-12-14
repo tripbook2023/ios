@@ -10,10 +10,15 @@ import SwiftUI
 import Kingfisher
 
 struct TravelNewsListItemView: View {
-    private let item: TravelNewsModel
+    @Binding private var item: TravelNewsModel
+    private var likeButtonAction: () -> Void
     
-    init(item: TravelNewsModel) {
-        self.item = item
+    init(
+        item: Binding<TravelNewsModel>,
+        likeButtonAction: @escaping () -> Void = {}
+    ) {
+        self._item = item
+        self.likeButtonAction = likeButtonAction
     }
     
     var body: some View {
@@ -45,10 +50,15 @@ struct TravelNewsListItemView: View {
                 HStack(spacing: 16) {
                     HStack(spacing: 2) {
                         Button(action: {
-
+                            likeButtonAction()
                         }) {
-                            TBIcon.like.iconSize(size: .medium)
-                                .foregroundColor(.white)
+                            if item.isLiked {
+                                TBIcon.like.iconSize(size: .medium)
+                                    .foregroundColor(.red)
+                            } else {
+                                TBIcon.like.iconSize(size: .medium)
+                                    .foregroundColor(.white)
+                            }
                         }
 
                         Text("\(item.likeCount)")
@@ -68,6 +78,6 @@ struct TravelNewsListItemView: View {
 
 struct TravelNewsListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TravelNewsListItemView(item: TravelNewsModel.dummy)
+        TravelNewsListItemView(item: .constant(TravelNewsModel.dummy))
     }
 }

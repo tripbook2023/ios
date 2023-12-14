@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		850E29B62A7F3A85000EB5B2 /* TravelNewsSearchLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E29B52A7F3A85000EB5B2 /* TravelNewsSearchLocationView.swift */; };
-		85338E3429F8524000E87792 /* EventBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85338E3329F8524000E87792 /* EventBannerView.swift */; };
 		85338E3729F8836F00E87792 /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 85338E3629F8836F00E87792 /* .gitattributes */; };
 		85338E3929F8837C00E87792 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 85338E3829F8837C00E87792 /* .gitignore */; };
 		85361DBE2A0FFC1C00B48B55 /* TravelNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85361DBD2A0FFC1C00B48B55 /* TravelNewsModel.swift */; };
@@ -143,7 +142,6 @@
 /* Begin PBXFileReference section */
 		850E29B52A7F3A85000EB5B2 /* TravelNewsSearchLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsSearchLocationView.swift; sourceTree = "<group>"; };
 		85338E2B29F828EC00E87792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		85338E3329F8524000E87792 /* EventBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBannerView.swift; sourceTree = "<group>"; };
 		85338E3629F8836F00E87792 /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 		85338E3829F8837C00E87792 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		85361DBD2A0FFC1C00B48B55 /* TravelNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsModel.swift; sourceTree = "<group>"; };
@@ -304,7 +302,6 @@
 			children = (
 				85E8CAB22A3DF64C00EBDE7F /* ProfileImageSelectOptionView.swift */,
 				85E8CAB72A3E0B3700EBDE7F /* ProfileImageCameraView.swift */,
-				85338E3329F8524000E87792 /* EventBannerView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -909,7 +906,6 @@
 				85C35B772A1659AE00DB8E46 /* User.swift in Sources */,
 				85569CB42A50780400515DE3 /* SignupRequest.swift in Sources */,
 				9B7055832B29A30C0084631F /* LikeResponse.swift in Sources */,
-				85338E3429F8524000E87792 /* EventBannerView.swift in Sources */,
 				85E8CA902A39A5F600EBDE7F /* SignupSocialView.swift in Sources */,
 				85569CAB2A4FFD5700515DE3 /* AuthenticationResponse.swift in Sources */,
 				9B0696232AD801C100006A84 /* Bundle+Extension.swift in Sources */,

@@ -32,11 +32,9 @@ struct TravelNewsView: View {
                     }
                     ZStack {
                         ScrollView {
-                            LazyVStack(alignment: .leading, spacing: 0) {
-                                NavigationLink(destination: EmptyView()) {
-                                    EventBannerView(text: "여행소식 에디터 신청하고 포폴 만들자!").padding(.horizontal)
-                                }
-                                .frame(height: 110)
+                            LazyVStack(spacing: 0) {
+                                MainBannerView()
+                                    .padding(.vertical, 20)
                                 if !viewModel.myTravelNewsList.isEmpty {
                                     MyTravelNewsView(viewModel: viewModel)
                                         .padding(.top, 48)

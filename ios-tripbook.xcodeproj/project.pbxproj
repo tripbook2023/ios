@@ -101,6 +101,7 @@
 		9B5FD9AD2B0D987700E4354B /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FD9AC2B0D987700E4354B /* EditProfileViewModel.swift */; };
 		9B7055812B2848200084631F /* SelectMyArticlesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7055802B2848200084631F /* SelectMyArticlesResponse.swift */; };
 		9B7055832B29A30C0084631F /* LikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7055822B29A30C0084631F /* LikeResponse.swift */; };
+		9B7055852B2AE8E10084631F /* MainBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7055842B2AE8E10084631F /* MainBannerView.swift */; };
 		9B8964B32AAB02C100B6E3CA /* TBImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8964B22AAB02C100B6E3CA /* TBImagePicker */; };
 		9B9C74B62AE6899A005B69AE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9C74B52AE6899A005B69AE /* Lottie */; };
 		9B9C74BA2AE68AF0005B69AE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C74B92AE68AF0005B69AE /* OnboardingView.swift */; };
@@ -235,6 +236,7 @@
 		9B5FD9AC2B0D987700E4354B /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		9B7055802B2848200084631F /* SelectMyArticlesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMyArticlesResponse.swift; sourceTree = "<group>"; };
 		9B7055822B29A30C0084631F /* LikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeResponse.swift; sourceTree = "<group>"; };
+		9B7055842B2AE8E10084631F /* MainBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBannerView.swift; sourceTree = "<group>"; };
 		9B9C74B92AE68AF0005B69AE /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		9B9C74CE2AE7A93C005B69AE /* TokenReissueResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenReissueResponse.swift; sourceTree = "<group>"; };
 		9B9C74D02AE7A9AE005B69AE /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			children = (
 				85E8CAB22A3DF64C00EBDE7F /* ProfileImageSelectOptionView.swift */,
 				85E8CAB72A3E0B3700EBDE7F /* ProfileImageCameraView.swift */,
+				9B7055842B2AE8E10084631F /* MainBannerView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -952,6 +955,7 @@
 				85F03BE82A3EE4C900A0B931 /* SignupTermDetailModal.swift in Sources */,
 				9B06962A2ADBAA4000006A84 /* TravelNewsSearchLocationViewModel.swift in Sources */,
 				85A6B1422A5C55E70050FF68 /* TBShadow.swift in Sources */,
+				9B7055852B2AE8E10084631F /* MainBannerView.swift in Sources */,
 				9BB592DE2B045D8F00A6B80E /* MypageViewModel.swift in Sources */,
 				853EA93F2A481489001890DE /* NicknameValidationResponse.swift in Sources */,
 				85F02B5429F6913F008DABCE /* MypageView.swift in Sources */,

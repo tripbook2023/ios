@@ -101,6 +101,7 @@
 		9B5FD9AB2B0B898700E4354B /* InquiryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FD9AA2B0B898700E4354B /* InquiryView.swift */; };
 		9B5FD9AD2B0D987700E4354B /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FD9AC2B0D987700E4354B /* EditProfileViewModel.swift */; };
 		9B7055812B2848200084631F /* SelectMyArticlesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7055802B2848200084631F /* SelectMyArticlesResponse.swift */; };
+		9B7055832B29A30C0084631F /* LikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7055822B29A30C0084631F /* LikeResponse.swift */; };
 		9B8964B32AAB02C100B6E3CA /* TBImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8964B22AAB02C100B6E3CA /* TBImagePicker */; };
 		9B9C74B62AE6899A005B69AE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9C74B52AE6899A005B69AE /* Lottie */; };
 		9B9C74BA2AE68AF0005B69AE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C74B92AE68AF0005B69AE /* OnboardingView.swift */; };
@@ -235,6 +236,7 @@
 		9B5FD9AA2B0B898700E4354B /* InquiryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryView.swift; sourceTree = "<group>"; };
 		9B5FD9AC2B0D987700E4354B /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		9B7055802B2848200084631F /* SelectMyArticlesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMyArticlesResponse.swift; sourceTree = "<group>"; };
+		9B7055822B29A30C0084631F /* LikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeResponse.swift; sourceTree = "<group>"; };
 		9B9C74B92AE68AF0005B69AE /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		9B9C74CE2AE7A93C005B69AE /* TokenReissueResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenReissueResponse.swift; sourceTree = "<group>"; };
 		9B9C74D02AE7A9AE005B69AE /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 			isa = PBXGroup;
 			children = (
 				9BEAC9152B149CF500B2B4B6 /* SearchResponse.swift */,
+				9B7055822B29A30C0084631F /* LikeResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -905,6 +908,7 @@
 				85A6B1402A5C53E00050FF68 /* TBAvatar.swift in Sources */,
 				85C35B772A1659AE00DB8E46 /* User.swift in Sources */,
 				85569CB42A50780400515DE3 /* SignupRequest.swift in Sources */,
+				9B7055832B29A30C0084631F /* LikeResponse.swift in Sources */,
 				85338E3429F8524000E87792 /* EventBannerView.swift in Sources */,
 				85E8CA902A39A5F600EBDE7F /* SignupSocialView.swift in Sources */,
 				85569CAB2A4FFD5700515DE3 /* AuthenticationResponse.swift in Sources */,

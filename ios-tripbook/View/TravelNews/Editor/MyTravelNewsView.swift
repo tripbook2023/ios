@@ -32,7 +32,9 @@ struct MyTravelNewsView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    ForEach(viewModel.myTravelNewsList) { item in
+                    let lastIndex = min(5, viewModel.myTravelNewsList.count)
+                    ForEach(0..<lastIndex, id: \.self) { i in
+                        let item = viewModel.myTravelNewsList[i]
                         TravelNewsMiniListItemView(item: item)
                     }
                 }.padding(.horizontal, 20)

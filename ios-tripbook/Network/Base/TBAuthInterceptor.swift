@@ -8,47 +8,21 @@
 import Foundation
 import Alamofire
 
-class TokenStorage {
-    static let shared = TokenStorage()
-    
-    var accessToken: String?
-    var refreshToken: String?
-    
-    init(accessToken: String? = nil, refreshToken: String? = nil) {
-        self.accessToken = accessToken
-        self.refreshToken = refreshToken
-        
-        if let tokens = UserDefaults.standard.dictionary(forKey: "UserTokens") {
-            self.accessToken = tokens["accessToken"] as? String
-            self.refreshToken = tokens["refreshToken"] as? String
-        }
-    }
-    
-    func setTokens(accessToken: String, refreshToken: String) {
-        self.accessToken = accessToken
-        self.refreshToken = refreshToken
-        
-        UserDefaults.standard.set([
-            "accessToken": accessToken,
-            "refreshToken": refreshToken
-        ], forKey: "UserTokens")
-    }
-    
-    func deleteTokens() {
-        UserDefaults.standard.removeObject(forKey: "UserTokens")
-        accessToken = nil
-        refreshToken = nil
-    }
-}
-
 class TBAuthInterceptor: RequestInterceptor {
-    let retryLimit = 0
-    let retryDelay: TimeInterval = 0
+    private let retryLimit = 2
+    private let retryDelay: TimeInterval = 0
+    private var apiManager: APIManagerable
+    
+    init(apiManager: APIManagerable) {
+        self.apiManager = apiManager
+    }
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var urlRequest = urlRequest
         if let token = TokenStorage.shared.accessToken {
-            urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            if urlRequest.headers.dictionary["Authorization"] == nil {
+                urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
         }
         
         completion(.success(urlRequest))
@@ -57,6 +31,21 @@ class TBAuthInterceptor: RequestInterceptor {
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 else {
             return completion(.doNotRetryWithError(error))
+        }
+        guard request.retryCount < retryLimit else { return completion(.doNotRetryWithError(error)) }
+        Task {
+            guard let refreshToken = TokenStorage.shared.refreshToken else {
+                return completion(.doNotRetryWithError(error))
+            }
+            do {
+                let api = TBMemberAPI.refreshToken(refreshToken)
+                let token = try await apiManager.request(api, type: TokenReissueResponse.self)
+                TokenStorage.shared.setTokens(accessToken: token.accessToken, refreshToken: token.refreshToken)
+                return completion(.retry)
+            } catch {
+                return completion(.doNotRetryWithError(error))
+            }
+            
         }
     }
 }

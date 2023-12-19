@@ -13,4 +13,5 @@ struct TBMemberAPIPath {
     let nicknameValidate = "/member/nickname/validate"
     let select = "/member/select"
     let tokenIssue = "/token/issue"
+    let selectMyArticles = "/member/select/articles/recent"
 }

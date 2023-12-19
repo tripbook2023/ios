@@ -6,58 +6,99 @@
 //
 
 import SwiftUI
+import Combine
 
 /// 여행 소식 화면
 /// - Author: 김민규
 /// - Date: 2023/05/20
 struct TravelNewsView: View {
-    @ObservedObject var viewModel = TravelNewsViewModel()
+    @StateObject private var viewModel = TravelNewsViewModel()
+    @State private var anyCancellable = Set<AnyCancellable>()
+    @State private var isAppear = false
     
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottomTrailing) {
                 VStack {
-                    TravelNewsHeaderView()
-                    
-                    ScrollView {
-                        LazyVStack(alignment: .leading, spacing: 0) {
-                            TabView {
-                                ForEach(0..<3, id: \.self) { _ in
-                                    NavigationLink(destination: RequestEditorView()) {
-                                        EventBannerView(text: "여행소식 에디터 신청하고 포폴 만들자!").padding(.horizontal)
-                                    }
+                    TravelNewsHeaderView(
+                        isSearching: $viewModel.isSearching,
+                        isSearched: $viewModel.isSearched,
+                        searchText: $viewModel.searchKeyword
+                    ) {
+                        viewModel.addSearchKeyword()
+                        viewModel.searchResult = []
+                        viewModel.searchTravelNewsList(type: .first)
+                        viewModel.isSearched = true
+                    }
+                    ZStack {
+                        ScrollView {
+                            LazyVStack(spacing: 0) {
+                                MainBannerView()
+                                    .padding(.vertical, 20)
+                                if !viewModel.myTravelNewsList.isEmpty {
+                                    MyTravelNewsView(viewModel: viewModel)
+                                        .padding(.top, 48)
+                                }
+                                TravelNewsListView(viewModel: viewModel)
+                                    .padding(.top, 56)
+                            }
+                            .padding(.bottom)
+                        }
+                        .opacity(viewModel.isSearching ? 0 : 1)
+                        
+                        TravelNewsSearchKeywordListView(viewModel: viewModel)
+                        .opacity(
+                            viewModel.isSearching
+                            && !viewModel.isSearched ? 1 : 0
+                        )
+                        
+                        VStack {
+                            Divider()
+                            TravelNewsMiniListView(items: $viewModel.searchResult) { index in
+                                if index > viewModel.searchResult.count - 6 {
+                                    viewModel.searchTravelNewsList(type: .next)
                                 }
                             }
-                            .frame(height: 110)
-                            .tabViewStyle(.page)
-                            
-                            TravelNewsEditorListView()
-                                .padding(.top, 48)
-                            
-                            TravelNewsListView(viewModel: viewModel)
-                                .padding(.top, 56)
-                        }.padding(.bottom)
+                            .overlay {
+                                if viewModel.isSearchResultEmpty {
+                                    Text("원하시는 검색 결과를 찾을 수 없습니다")
+                                        .font(TBFont.body_4)
+                                        .foregroundStyle(TBColor.grayscale._90)
+                                }
+                                
+                            }
+                        }
+                        .opacity(viewModel.isSearched ? 1 : 0)
                     }
                 }
-                
-                Button(action: {
-                    viewModel.isShowEditorView = true
-                }) {
-                    Circle().foregroundColor(TBColor.primary._50)
-                        .frame(width: 60, height: 60)
-                        .shadow(TBShadow._2)
-                        .overlay(
-                            TBIcon.writing.iconSize(size: .big).foregroundColor(.white)
-                        )
-                }
-                .padding(.trailing, 20)
-                .padding(.bottom, 28)
-                .sheet(isPresented: $viewModel.isShowEditorView) {
-                    RegisterTravelNewsView()
-//                    TravelNewsPostView()
-                }
+            }
+            .onAppear {
+                guard !isAppear else { return }
+                isAppear = true
+                bind()
             }
         }
+    }
+}
+
+extension TravelNewsView {
+    private func bind() {
+        if viewModel.keywordList.isEmpty {
+            viewModel.readSearchKeywords()
+        }
+        viewModel.fetchMyTravelNewsList(count: 5, type: .first)
+        viewModel.$currentSort
+            .removeDuplicates()
+            .sink { _ in
+                viewModel.fetchTravelNewsList(type: .first)
+            }
+            .store(in: &anyCancellable)
+        viewModel.$isSearching
+            .filter { !$0 }
+            .sink { _ in
+                viewModel.searchKeyword = ""
+            }
+            .store(in: &anyCancellable)
     }
 }
 

@@ -48,7 +48,7 @@ struct RootView: View {
                     }
                     .tag(RootViewModel.TabType.home)
                 
-                RegisterTravelReportView()
+                RegisterTravelNewsView()
                     .tabItem {
                         if viewModel.selectedTab == .registerTravelReport {
                             TBIcon.navigation.plus.active

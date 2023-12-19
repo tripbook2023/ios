@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+import Kingfisher
+
 struct TBAvatar: View {
     enum ViewType {
         case basic
@@ -47,11 +49,11 @@ struct TBAvatar: View {
     }
     
     let type: ViewType
-    let profileImage: UIImage?
+    let profileImageURL: URL?
     
-    init(type: ViewType, profileImage: UIImage? = nil) {
+    init(type: ViewType, profileImageURL: URL? = nil) {
         self.type = type
-        self.profileImage = profileImage
+        self.profileImageURL = profileImageURL
     }
     
     var body: some View {
@@ -60,12 +62,13 @@ struct TBAvatar: View {
                 .frame(width: 18, height: 18)
                 .foregroundColor(TBColor.grayscale._5)
             
-            Image("AvatarDefault")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 8)
-            
-            Image(uiImage: self.profileImage ?? UIImage())
+            KFImage(profileImageURL)
+                .placeholder({
+                    Image("AvatarDefault")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 8)
+                })
                 .resizable()
                 .scaledToFill()
                 .frame(width: 18, height: 18)
@@ -85,17 +88,17 @@ struct TBAvatar_Previews: PreviewProvider {
         VStack {
             HStack {
                 TBAvatar(type: .basic)
-                TBAvatar(type: .basic, profileImage: .init(named: "SampleProfileImage"))
+                TBAvatar(type: .basic, profileImageURL: .init(string: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg"))
             }
             
             HStack {
                 TBAvatar(type: .editor)
-                TBAvatar(type: .editor, profileImage: .init(named: "SampleProfileImage"))
+                TBAvatar(type: .editor, profileImageURL: .init(string: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg"))
             }
             
             HStack {
                 TBAvatar(type: .bestEditor)
-                TBAvatar(type: .bestEditor, profileImage: .init(named: "SampleProfileImage"))
+                TBAvatar(type: .bestEditor, profileImageURL: .init(string: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg"))
             }
         }
     }

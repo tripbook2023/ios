@@ -12,7 +12,7 @@ struct TBAuthAPI: APIable {
     var baseURL: String = TBAPIPath.base
     var path: String
     var method: HTTPMethod
-    var parameters: Parameters
+    var parameters: Parameters = [:]
     var headers: HTTPHeaders
     var uploadImages: [String : [Data?]] = [:]
     
@@ -23,7 +23,6 @@ struct TBAuthAPI: APIable {
         return TBAuthAPI(
             path: TBAPIPath.Auth.authentication,
             method: .get,
-            parameters: [:],
             headers: headers
         )
     }

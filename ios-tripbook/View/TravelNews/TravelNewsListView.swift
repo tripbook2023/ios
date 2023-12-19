@@ -14,7 +14,7 @@ struct TravelNewsListView: View {
         VStack(spacing: 24) {
             VStack(spacing: 0) {
                 HStack {
-                    Text("여행소식")
+                    Text("여행기록")
                         .font(.suit(.bold, size: 20))
                         .foregroundColor(TBColor.grayscale._80)
                     Spacer()
@@ -26,16 +26,33 @@ struct TravelNewsListView: View {
                     }
                 }
                 ZStack(alignment: .top) {
-                    VStack(spacing: 20) {
+                    LazyVStack(spacing: 20) {
                         ForEach(0..<viewModel.travelNewsList.count, id: \.self) { i in
-                            TravelNewsListItemView(item: viewModel.travelNewsList[i])
+                            let item = viewModel.travelNewsList[i]
+                            TravelNewsListItemView(
+                                item: Binding(
+                                    get: { item },
+                                    set: {_ in }
+                                )
+                            ) {
+                                viewModel.likeButtonDidTap(index: i)
+                            }
+                            .onAppear {
+                                if i > viewModel.travelNewsList.count - 3 {
+                                    viewModel.fetchTravelNewsList(type: .next)
+                                }
+                            }
                         }
+                        
+                        
                     }.padding(.top, 24)
+                    
                     HStack {
                         Spacer()
                         TravelNewsSortPopupView(viewModel: viewModel)
                             .opacity(viewModel.isSortPopup ? 1 : 0)
                     }
+                    
                 }
             }
         }.padding(.horizontal, 20)

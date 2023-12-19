@@ -7,28 +7,36 @@
 
 import SwiftUI
 
+import Kingfisher
+
 struct TravelNewsListItemView: View {
-    private let item: TravelNewsModel
+    @Binding private var item: TravelNewsModel
+    private var likeButtonAction: () -> Void
     
-    init(item: TravelNewsModel) {
-        self.item = item
+    init(
+        item: Binding<TravelNewsModel>,
+        likeButtonAction: @escaping () -> Void = {}
+    ) {
+        self._item = item
+        self.likeButtonAction = likeButtonAction
     }
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            Image(uiImage: item.image)
-                .resizable()
-                .frame(height: 335)
-                .overlay(TBColor.grayscale._90.opacity(0.4))
-                .overlay(alignment: .top) {
-                    HStack(spacing: 0) {
-                    }.padding(.top, 12)
-                    .padding(.horizontal, 12)
-                }
+            
+            NavigationLink {
+                Text("\(item.title)디테일 화면")
+            } label: {
+                KFImage(item.thumbnailURL)
+                    .resizable()
+                    .frame(height: 335)
+                    .overlay(TBColor.grayscale._90.opacity(0.4))
+            }
+
             
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 4) {
-                    TBAvatar(type: .editor)
+                    TBAvatar(type: .basic, profileImageURL: item.author.profileUrl)
                     Text(item.author.name)
                         .font(.suit(.medium, size: 12))
                         .foregroundColor(TBColor.grayscale._1)
@@ -42,26 +50,18 @@ struct TravelNewsListItemView: View {
                 HStack(spacing: 16) {
                     HStack(spacing: 2) {
                         Button(action: {
-
+                            likeButtonAction()
                         }) {
-                            TBIcon.like.iconSize(size: .medium)
-                                .foregroundColor(.white)
+                            if item.isLiked {
+                                TBIcon.like.active.iconSize(size: .medium)
+                                    .foregroundColor(.white)
+                            } else {
+                                TBIcon.like.normal.iconSize(size: .medium)
+                                    .foregroundColor(.white)
+                            }
                         }
 
                         Text("\(item.likeCount)")
-                            .font(TBFont.caption_1)
-                            .foregroundColor(TBColor.grayscale._1)
-                    }
-
-                    HStack(spacing: 2) {
-                        Button(action: {
-
-                        }) {
-                            TBIcon.comment.iconSize(size: .medium)
-                                .foregroundColor(.white)
-                        }
-
-                        Text("\(item.commentCount)")
                             .font(TBFont.caption_1)
                             .foregroundColor(TBColor.grayscale._1)
                     }
@@ -70,12 +70,14 @@ struct TravelNewsListItemView: View {
             }
             .padding(.horizontal, 24)
             .padding(.bottom, 24)
-        }.clipShape(RoundedRectangle(cornerRadius: 12))
+        }
+        .frame(width: 335, height: 335)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
 struct TravelNewsListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TravelNewsListItemView(item: SampleTravelNewsModel())
+        TravelNewsListItemView(item: .constant(TravelNewsModel.dummy))
     }
 }

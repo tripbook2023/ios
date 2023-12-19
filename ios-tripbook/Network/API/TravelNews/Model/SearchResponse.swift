@@ -29,10 +29,11 @@ struct ContentResponse: Decodable {
     let content: String
     let author: AuthorResponse
     let thumbnailUrl: String?
-    let tagList: [String]
+    let tagList: [String]?
     let heartNum: Int
     let bookmarkNum: Int
     let commentList: [CommentResponse]
+    let location: [LocationResponse]
     let createdAt: String
     let updatedAt: String
     let heart: Bool
@@ -87,4 +88,11 @@ struct CommentResponse: Decodable {
     let childList: [String]
     let createdAt: String
     let updateAt: String
+}
+
+struct LocationResponse: Decodable {
+    let id: Int
+    let locationX: String
+    let locationY: String
+    let name: String
 }

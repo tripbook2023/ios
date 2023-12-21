@@ -27,8 +27,8 @@ class OnboardingViewModel: ObservableObject {
     private func requestTokenReissue(refreshToken: String) {
         Task {
             do {
-                let result = try await apiManager.request(TBMemberAPI.tokenReissue(refreshToken: refreshToken), type: TokenReissueResponse.self)
-                tokenStorage.setTokens(accessToken: result.accessToken, refreshToken: result.refreshToken)
+                let api = TBMemberAPI.refreshToken(refreshToken)
+                _ = try await apiManager.request(api)
                 isPresentRoot = true
             } catch {
                 isPresentRoot = false

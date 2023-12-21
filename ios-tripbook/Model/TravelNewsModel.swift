@@ -6,105 +6,60 @@
 //
 
 import Foundation
-import UIKit
 
-/// 여행 소식 Data Model
-/// - Author: 김민규
-/// - Date: 2023/05/15
-class TravelNewsModel: Document {}
-
-/// 본인 여행 소식 Data Model
-/// - Author: 김민규
-/// - Date: 2023/05/20
-class MyTravelNewsModel: TravelNewsModel {
-    /// Data 상태
-    enum Status {
-        /// 승인
-        case done
-        
-        /// 승인대기
-        case waiting
-    }
+struct TravelNewsModel: Identifiable {
+    /// 고유 ID
+    let id: Int
+    /// Document 작성자
+    let author: Author
     
-    /// Data 상태
-    var status: Status
-    /// 승인 날짜
-    let approvedDate: Date?
+    /// 제목
+    let title: String
+    /// 썸네일 이미지
+    let thumbnailURL: URL?
+    
+    /// 좋아요 수
+    var likeCount: Int
+    
+    /// 좋아요 여부
+    var isLiked: Bool
+    
+    /// 생성 날짜
+    let createdAt: String
     
     init(
-        author: User,
+        id: Int,
+        author: Author,
         title: String,
-        image: UIImage,
+        thumbnailURL: String?,
         likeCount: Int,
-        commentCount: Int,
         isLiked: Bool,
-        isSaved: Bool,
-        createdAt: Date,
-        status: Status,
-        approvedDate: Date? = nil
+        createdAt: String
     ) {
-        self.status = status
-        self.approvedDate = approvedDate
-        
-        super.init(
-            author: author,
-            title: title,
-            image: image,
-            likeCount: likeCount,
-            commentCount: commentCount,
-            isLiked: isLiked,
-            isSaved: isSaved,
-            createdAt: createdAt
-        )
+        self.id = id
+        self.author = author
+        self.title = title
+        if let thumbnailURL = thumbnailURL {
+            self.thumbnailURL = URL(string: thumbnailURL)
+        } else {
+            self.thumbnailURL = nil
+        }
+        self.likeCount = likeCount
+        self.isLiked = isLiked
+        self.createdAt = createdAt.prefix(10).replacingOccurrences(of: "-", with: ".")
     }
     
-    /// 승인된 날짜가 현재 날짜로부터 N일이 지났는지 체킹
-    /// - Parameters:
-    ///     - days: N일
-    /// - Returns: 승인된 날짜가 현재 날짜로부터 N일이 지나면 `true`, 그렇지 않다면 `false`
-    func isApprovedDateOver(days: Int) -> Bool {
-        print(Calendar.current.dateComponents([.day], from: approvedDate!, to: .init()).day!)
-        return Calendar.current.dateComponents([.day], from: approvedDate!, to: .init()).day! > days
-    }
-}
-
-/// 여행 소식 Dummy Data Model
-/// - Author: 김민규
-/// - Date: 2023/05/15
-class SampleTravelNewsModel: TravelNewsModel {
-    /// 여행 소식 Dummy Data Model Initializer
-    init() {
-        super.init(
-            author: .init(name: "서지혜", email: ""),
+    #if DEBUG
+    static var dummy: Self {
+        return TravelNewsModel (
+            id: UUID().hashValue,
+            author: .init(name: "서지혜", profileUrl: nil, role: ""),
             title: "뚜벅이가 여행하기 좋은 장소 Top 5",
-            image: UIImage(named: "SampleFeedThumbnail")!,
+            thumbnailURL: Bundle.main.path(forResource: "SampleFeedThumbnail", ofType: "jpg", inDirectory: "Assets.xcassets"),
             likeCount: 1,
-            commentCount: 2,
             isLiked: false,
-            isSaved: false,
-            createdAt: .init()
+            createdAt: "2023.06.30"
         )
     }
-}
-/// 본인 여행 소식 Dummy Data Model
-/// - Author: 김민규
-/// - Date: 2023/05/20
-class SampleMyTravelNewsModel: MyTravelNewsModel {
-    /// 본인 여행 소식 Dummy Data Model Initializer
-    /// - Parameters:
-    ///     - status: 상태
-    init(_ status: Status) {
-        super.init(
-            author: .init(name: "서지혜", email: ""),
-            title: "업무가 하기 싫을 때 기분 전환할 수 있는 바다 여행지 BEST3",
-            image: UIImage(named: "SampleFeedThumbnail")!,
-            likeCount: 1,
-            commentCount: 2,
-            isLiked: false,
-            isSaved: false,
-            createdAt: .init(),
-            status: status,
-            approvedDate: Calendar.current.date(byAdding: .day, value: -4, to: .init())!
-        )
-    }
+    #endif
 }

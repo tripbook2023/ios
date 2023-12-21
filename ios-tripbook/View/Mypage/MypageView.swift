@@ -43,7 +43,7 @@ struct MypageView: View {
                     )
                     .padding(.horizontal, 20)
                     HStack {
-                        KFImage(URL(string: viewModel.userInfo?.profileImageURL ?? ""))
+                        KFImage(viewModel.userInfo?.profileImageURL)
                             .placeholder {
                                 Image("DefaultProfileImage")
                             }

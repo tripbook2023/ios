@@ -126,6 +126,7 @@
 		9BEAC91C2B18B24E00B2B4B6 /* TravelNewsMiniListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEAC91B2B18B24E00B2B4B6 /* TravelNewsMiniListItemView.swift */; };
 		9BF5F6BD2ABC244E007E2063 /* TBNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */; };
 		9D077C012AE655FA00FD37CA /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9D077C002AE655FA00FD37CA /* RichTextKit */; };
+		9D2448782B2846550043FB75 /* HTMLEditorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2448772B2846550043FB75 /* HTMLEditorService.swift */; };
 		9D34D2372AF4EE3C006D60AC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9D34D2362AF4EE3C006D60AC /* SnapKit */; };
 		9D34D23A2AF4EF3A006D60AC /* RegisterTravelNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D34D2392AF4EF3A006D60AC /* RegisterTravelNewsView.swift */; };
 		DA7CF4CC2AFA9A7C00386B79 /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7CF4CB2AFA9A7C00386B79 /* NSAttributedString+Extension.swift */; };
@@ -262,6 +263,7 @@
 		9BEAC9172B18650C00B2B4B6 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		9BEAC91B2B18B24E00B2B4B6 /* TravelNewsMiniListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsMiniListItemView.swift; sourceTree = "<group>"; };
 		9BF5F6BC2ABC244E007E2063 /* TBNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBNetworkError.swift; sourceTree = "<group>"; };
+		9D2448772B2846550043FB75 /* HTMLEditorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLEditorService.swift; sourceTree = "<group>"; };
 		9D34D2392AF4EF3A006D60AC /* RegisterTravelNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelNewsView.swift; sourceTree = "<group>"; };
 		DA7CF4CB2AFA9A7C00386B79 /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		DA7CF4CD2B14E21400386B79 /* TravelNewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsDetailView.swift; sourceTree = "<group>"; };
@@ -746,6 +748,7 @@
 			isa = PBXGroup;
 			children = (
 				9D34D2392AF4EF3A006D60AC /* RegisterTravelNewsView.swift */,
+				9D2448772B2846550043FB75 /* HTMLEditorService.swift */,
 			);
 			path = RegisterTravelNews;
 			sourceTree = "<group>";
@@ -909,6 +912,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B6C9FBC2AAEE11C00206AFC /* RequestEditorGuideView.swift in Sources */,
+				9D2448782B2846550043FB75 /* HTMLEditorService.swift in Sources */,
 				85E8CA942A39A63F00EBDE7F /* SignupProfileNameView.swift in Sources */,
 				85A6B1352A58367A0050FF68 /* TBIcon.swift in Sources */,
 				85A6B13D2A58368C0050FF68 /* TBPrimaryButton.swift in Sources */,
@@ -1160,7 +1165,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"ios-tripbook/Preview Content\"";
-				DEVELOPMENT_TEAM = XU228RZRM5;
+				DEVELOPMENT_TEAM = LZZV4V63N5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ios-tripbook/Info.plist";
@@ -1204,7 +1209,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"ios-tripbook/Preview Content\"";
-				DEVELOPMENT_TEAM = XU228RZRM5;
+				DEVELOPMENT_TEAM = LZZV4V63N5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ios-tripbook/Info.plist";
@@ -1244,7 +1249,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 2QA54Q67C3;
+				DEVELOPMENT_TEAM = LZZV4V63N5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -1267,7 +1272,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 2QA54Q67C3;
+				DEVELOPMENT_TEAM = LZZV4V63N5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MACOSX_DEPLOYMENT_TARGET = 13.3;

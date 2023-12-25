@@ -186,8 +186,4 @@ class TravelNewsViewModel: ObservableObject {
         try? searchKeywordStorage.deleteAll()
         keywordList = []
     }
-    
-    func makeDetailVM() -> TravelNewsDetailViewModel {
-        return TravelNewsDetailViewModel(apiManager: apiManager, tokenStorage: tokenStorage)
-    }
 }

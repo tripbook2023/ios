@@ -13,7 +13,7 @@ class TravelNewsDetailViewModel: ObservableObject {
     let apiManager: APIManagerable
     let tokenStorage: TokenStorage
     
-    @Published var travelNews: TravelNews?
+    @Published var travelNews: TravelNewsModel?
     
     init(apiManager: APIManagerable, tokenStorage: TokenStorage) {
         self.apiManager = apiManager

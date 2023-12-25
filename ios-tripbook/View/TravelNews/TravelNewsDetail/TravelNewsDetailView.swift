@@ -158,3 +158,7 @@ struct TravelNewsDetailView: View {
         .background(.white)
     }
 }
+
+#Preview {
+    TravelNewsDetailView(id: "74")
+}

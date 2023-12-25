@@ -25,7 +25,7 @@ struct TravelNewsListItemView: View {
         ZStack(alignment: .bottom) {
             
             NavigationLink {
-                Text("\(item.title)디테일 화면")
+                TravelNewsDetailView(id: "\(item.id)")
             } label: {
                 KFImage(item.thumbnailURL)
                     .resizable()

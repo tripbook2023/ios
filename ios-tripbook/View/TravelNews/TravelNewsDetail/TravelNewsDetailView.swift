@@ -11,11 +11,11 @@ import Combine
 
 struct TravelNewsDetailView: View {
     @ObservedObject var viewModel: TravelNewsDetailViewModel
-    
     @State private var webViewHeight: CGFloat = .zero
+    @State private var isAppear = false
     
-    init(viewModel: TravelNewsDetailViewModel) {
-        self.viewModel = viewModel
+    init(id: String) {
+        self.viewModel = TravelNewsDetailViewModel(id: id)
     }
     
     var deviceWidth: CGFloat {
@@ -42,6 +42,8 @@ struct TravelNewsDetailView: View {
             .ignoresSafeArea()
             .toolbarBackground(.hidden, for: .navigationBar)
             .onAppear {
+                guard !isAppear else { return }
+                isAppear = true
                 Task {
                     await viewModel.loadData()
                 }
@@ -55,8 +57,8 @@ struct TravelNewsDetailView: View {
         }
     }
     
-    func profileView(urlString: String) -> some View {
-            AsyncImage(url: URL(string: urlString))
+    func profileView(url: URL) -> some View {
+            AsyncImage(url: url)
             .frame(width: 14, height: 14)
             .clipShape(Circle())
             .overlay {
@@ -70,8 +72,8 @@ struct TravelNewsDetailView: View {
         HStack(alignment: .center) {
             Spacer()
             
-            if let urlString = viewModel.travelNews?.author.profileURL {
-                profileView(urlString: urlString)
+            if let url = viewModel.travelNews?.author.profileUrl {
+                profileView(url: url)
             }
             
             Text(viewModel.travelNews?.author.name ?? "name")
@@ -87,8 +89,8 @@ struct TravelNewsDetailView: View {
     
     func coverView() -> some View {
         ZStack(alignment: .topLeading) {
-            if let urlString = viewModel.travelNews?.thumbnailURL {
-                AsyncImage(url: URL(string: urlString)) { phase in
+            if let url = viewModel.travelNews?.thumbnailURL {
+                AsyncImage(url: url) { phase in
                     switch phase {
                         case .empty:
                             ProgressView()
@@ -106,8 +108,8 @@ struct TravelNewsDetailView: View {
             
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 6) {
-                    if let urlString = viewModel.travelNews?.author.profileURL {
-                        profileView(urlString: urlString)
+                    if let url = viewModel.travelNews?.author.profileUrl {
+                        profileView(url: url)
                     }
                     
                     Text(viewModel.travelNews?.author.name ?? "name")
@@ -155,4 +157,8 @@ struct TravelNewsDetailView: View {
         }
         .background(.white)
     }
+}
+
+#Preview {
+    TravelNewsDetailView(id: "74")
 }

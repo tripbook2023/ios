@@ -21,6 +21,10 @@ struct RegisterTravelNewsView : UIViewControllerRepresentable {
     }
 }
 
+#Preview(body: {
+    RegisterTravelNewsView()
+})
+
 class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     private var isCoverImage: Bool = false

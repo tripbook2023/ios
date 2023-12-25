@@ -13,6 +13,8 @@ struct TravelNewsModel: Identifiable {
     /// Document 작성자
     let author: Author
     
+    let content: String
+    
     /// 제목
     let title: String
     /// 썸네일 이미지
@@ -30,6 +32,7 @@ struct TravelNewsModel: Identifiable {
     init(
         id: Int,
         author: Author,
+        content: String,
         title: String,
         thumbnailURL: String?,
         likeCount: Int,
@@ -38,6 +41,7 @@ struct TravelNewsModel: Identifiable {
     ) {
         self.id = id
         self.author = author
+        self.content = content
         self.title = title
         if let thumbnailURL = thumbnailURL {
             self.thumbnailURL = URL(string: thumbnailURL)
@@ -53,10 +57,15 @@ struct TravelNewsModel: Identifiable {
     static var dummy: Self {
         return TravelNewsModel (
             id: UUID().hashValue,
-            author: .init(name: "서지혜", profileUrl: nil, role: ""),
+            author: .init(
+                name: "서지혜",
+                profileUrl: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg",
+                role: ""
+            ),
+            content: "xxxx",
             title: "뚜벅이가 여행하기 좋은 장소 Top 5",
-            thumbnailURL: Bundle.main.path(forResource: "SampleFeedThumbnail", ofType: "jpg", inDirectory: "Assets.xcassets"),
-            likeCount: 1,
+            thumbnailURL: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg",
+            likeCount: 3,
             isLiked: false,
             createdAt: "2023.06.30"
         )

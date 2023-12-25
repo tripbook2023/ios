@@ -43,6 +43,7 @@ struct ContentResponse: Decodable {
         return TravelNewsModel(
             id: id,
             author: author.toDomain,
+            content: content,
             title: title,
             thumbnailURL: thumbnailUrl,
             likeCount: heartNum,

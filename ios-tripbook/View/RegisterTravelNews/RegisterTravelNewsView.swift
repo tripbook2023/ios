@@ -13,8 +13,18 @@ struct RegisterTravelNewsView : UIViewControllerRepresentable {
     
     typealias UIViewControllerType = RegisterTravelReportVC
     
+    private var backButtonAction: () -> Void
+    
+    init(
+        backButtonAction: @escaping () -> Void = {}
+    ) {
+        self.backButtonAction = backButtonAction
+    }
+    
     func makeUIViewController(context: Context) -> UIViewControllerType {
-        return RegisterTravelReportVC()
+        return RegisterTravelReportVC(
+            backButtonAction: backButtonAction
+        )
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
@@ -63,6 +73,19 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     private var contentButton: UIButton!
     private var boldButton: UIButton!
     
+    private var backButtonAction: () -> Void
+    
+    init(
+        backButtonAction: @escaping () -> Void = {}
+    ) {
+        self.backButtonAction = backButtonAction
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         makeHeaderView()
@@ -70,6 +93,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         makeContent()
         makeFooter()
         
+        backButton.addTarget(self, action: #selector(tapBackButton), for: .touchUpInside)
         keyboardButton.addTarget(self, action: #selector(tapKeyboardButton), for: .touchUpInside)
         textButton.addTarget(self, action: #selector(tapTextButton), for: .touchUpInside)
         textBackButton.addTarget(self, action: #selector(tapBackTextButton), for: .touchUpInside)
@@ -82,6 +106,11 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         subtitleButton.addTarget(self, action: #selector(tapSubtitleButton), for: .touchUpInside)
         contentButton.addTarget(self, action: #selector(tapContentButton), for: .touchUpInside)
         boldButton.addTarget(self, action: #selector(tapBoldButton), for: .touchUpInside)
+    }
+    
+    @objc
+    func tapBackButton(_ sender: UIButton) {
+        backButtonAction()
     }
     
     @objc func tapTextButton(_ sender: UIButton) {

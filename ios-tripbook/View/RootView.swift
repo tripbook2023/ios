@@ -34,7 +34,7 @@ struct RootView: View {
     }
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             TabView(selection: self.$viewModel.selectedTab) {
                 TravelNewsView()
                     .tabItem {
@@ -47,18 +47,7 @@ struct RootView: View {
                         Text("홈")
                     }
                     .tag(RootViewModel.TabType.home)
-                
-                RegisterTravelNewsView()
-                    .tabItem {
-                        if viewModel.selectedTab == .registerTravelReport {
-                            TBIcon.navigation.plus.active
-                        } else {
-                            TBIcon.navigation.plus.normal
-                        }
-                        
-                        Text("등록")
-                    }
-                    .tag(RootViewModel.TabType.registerTravelReport)
+                Spacer()
                 
                 MypageView(logoutAction: {
                     viewModel.isShowLogoutMessage = true
@@ -73,11 +62,24 @@ struct RootView: View {
                     Text("내 정보")
                 }
                 .tag(RootViewModel.TabType.profile)
-            }.onAppear() {
+            }
+            .onAppear() {
                 UITabBar.appearance().barTintColor = .white
             }
             .accentColor(TBColor.primary._50)
             .navigationBarHidden(true)
+            
+            Button(action: {
+                viewModel.isPresentRegisterView = true
+            }, label: {
+                VStack {
+                    TBIcon.navigation.plus.normal
+                    Text("등록")
+                        .font(TBFont.caption_2)
+                        .foregroundStyle(TBColor.grayscale._40)
+                }
+            })
+            
             
             VStack(spacing: 6) {
                 Spacer()
@@ -95,10 +97,18 @@ struct RootView: View {
             .frame(width: deviceWidth)
             .background(.white)
             .opacity(viewModel.isShowLogoutMessage ? 1 : 0)
-        }.onAppear {
+        }
+        .onAppear {
             bind()
             viewModel.dataStorage.getUser()
         }
+        .fullScreenCover(
+            isPresented: $viewModel.isPresentRegisterView,
+            content: {
+                RegisterTravelNewsView {
+                    viewModel.isPresentRegisterView = false
+                }
+        })
     }
 }
 

@@ -233,7 +233,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         scrollView.isScrollEnabled = true
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom)
-            make.bottom.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-80)
         }
         
         contentView = UIView()
@@ -242,7 +243,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         scrollView.isScrollEnabled = true
         contentView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-80)
+            make.bottom.equalToSuperview()
             make.height.greaterThanOrEqualToSuperview()
         }
         

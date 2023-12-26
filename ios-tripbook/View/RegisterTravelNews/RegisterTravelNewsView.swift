@@ -693,12 +693,14 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                            // 커서 위치에서 행 시작 위치와 끝 위치를 가져옵니다.
                            let start = contentTextView.offset(from: contentTextView.beginningOfDocument, to: currentLineRange.start)
                            let end = contentTextView.offset(from: contentTextView.beginningOfDocument, to: currentLineRange.end)
+                           
+                           let range = NSRange(location: start, length: end - start)
 
                            // 글꼴 두께를 변경할 범위에 적용합니다.
                            let attributedText = NSMutableAttributedString(attributedString: contentTextView.attributedText)
 
                            var fonts: [String] = []
-                           attributedText.enumerateAttribute(.font, in: selectedTextRange, options: []) { (value, range, stop) in
+                           attributedText.enumerateAttribute(.font, in: range, options: []) { (value, range, stop) in
                                if let oldFont = value as? UIFont {
                                    fonts.append(oldFont.fontName)
                                }
@@ -706,7 +708,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                            
                            let contianBold = fonts.contains(".SFUI-Bold")
                            
-                           attributedText.enumerateAttribute(.font, in: selectedTextRange, options: []) { (value, range, stop) in
+                           attributedText.enumerateAttribute(.font, in: range, options: []) { (value, range, stop) in
                                
                                if let oldFont = value as? UIFont {
                                    if contianBold {

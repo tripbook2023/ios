@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import SnapKit
+import TBImagePicker
 
 struct RegisterTravelNewsView : UIViewControllerRepresentable {
     
@@ -36,10 +37,6 @@ struct RegisterTravelNewsView : UIViewControllerRepresentable {
 })
 
 class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
-    
-    private var isCoverImage: Bool = false
-    
-    private var imagePicker: UIImagePickerController!
     private var selectedCoverImage: UIImage?
     
     private var headerView: UIView!
@@ -140,8 +137,25 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
       }
     
     @objc func tapCoverImageButton(_ sender: UIButton) {
-        self.isCoverImage = true
-        self.show(imagePicker, sender: nil)
+        let singleImagePicker = TBImagePicker(
+            .single,
+            onSelection: nil,
+            onDeSelction: nil,
+            onFinish: { imageManagers in
+                imageManagers.first!.request(size: .init(width: 375, height: 320)) { [weak self] image, _ in
+                    guard let self = self else { return }
+                    if let selectedImage = image {
+                        self.selectedCoverImage = selectedImage
+                        self.coverImageView.image = selectedImage
+                        self.photoImageView.isHidden = true
+                        self.photoLabel.isHidden = true
+                    }
+                    
+                }
+            },
+            onCancel: nil
+        )
+        self.show(singleImagePicker, sender: nil)
       }
     
     @objc func tapKeyboardButton(_ sender: UIButton) {
@@ -150,7 +164,25 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
       }
     
     @objc func tapImageButton(_ sender: UIButton) {
-        self.show(imagePicker, sender: nil)
+        let multiImagePicker = TBImagePicker(
+            .multiple(max: nil, min: 1),
+            onSelection: nil,
+            onDeSelction: nil,
+            onFinish: { imageManagers in
+                imageManagers.forEach { imageManager in
+                    imageManager.request(
+                        size: .init(width: 335, height: 335)) { [weak self] image, _ in
+                            guard let self = self else { return }
+                            if let image = image {
+                                self.addImageInTextView(image)
+                            }
+                        }
+                }
+            },
+            onCancel: nil
+        )
+        multiImagePicker.setting.fetchOptions.isSynchronous = true
+        self.show(multiImagePicker, sender: nil)
       }
     
     @objc func tapTitleButton(_ sender: UIButton) {
@@ -225,8 +257,6 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     private func makeCover() {
         
-        imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
         
         scrollView = UIScrollView()
         view.addSubview(scrollView)
@@ -362,6 +392,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     }
     
     private func makeContent() {
+        
+        
         contentPlaceHolderLabel = UILabel()
         contentPlaceHolderLabel.text = "최소 800자 이상의 글자수를 작성해주세요"
         contentPlaceHolderLabel.font = UIFont(name: "SUIT-Medium", size: 14)
@@ -733,9 +765,9 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     func addImageInTextView(_ image: UIImage?) {
         if let image = image {
-            let maxWidth: CGFloat = 200.0 // 이미지의 최대 가로 너비
-            let scaleFactor = maxWidth / image.size.width // 가로 너비에 대한 비율 계산
-            let newImageSize = CGSize(width: maxWidth, height: image.size.height * scaleFactor)
+//            let maxWidth: CGFloat = 335.0 // 이미지의 최대 가로 너비
+//            let scaleFactor = maxWidth / image.size.width // 가로 너비에 대한 비율 계산
+            let newImageSize = CGSize(width: 335.0, height: 335.0)
             
             // 이미지를 리사이즈
             UIGraphicsBeginImageContextWithOptions(newImageSize, false, 0.0)
@@ -768,26 +800,6 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         }
     }
     
-}
-
-extension RegisterTravelReportVC: UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if isCoverImage {
-            if let selectedImage = info[.originalImage] as? UIImage {
-                selectedCoverImage = selectedImage
-                coverImageView.image = selectedImage
-                photoImageView.isHidden = true
-                photoLabel.isHidden = true
-            }
-            isCoverImage = false
-        } else {
-            if let selectedImage = info[.originalImage] as? UIImage {
-                addImageInTextView(selectedImage)
-            }
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
 }
 
 extension RegisterTravelReportVC: UITextViewDelegate {

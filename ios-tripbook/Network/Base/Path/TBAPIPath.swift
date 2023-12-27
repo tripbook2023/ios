@@ -13,4 +13,5 @@ struct TBAPIPath {
     static let Member = TBMemberAPIPath()
     static let Auth = TBAuthAPIPath()
     static let Articles = TBArticlesAPIPath()
+    static let Common = TBCommonAPIPath()
 }

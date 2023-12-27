@@ -2,7 +2,11 @@
 //  TBCommonAPIPath.swift
 //  ios-tripbook
 //
-//  Created by 박세리 on 2023/12/27.
+//  Created by RED on 2023/12/27.
 //
 
 import Foundation
+
+struct TBCommonAPIPath {
+    let imageUpload = "/common/image/upload"
+}

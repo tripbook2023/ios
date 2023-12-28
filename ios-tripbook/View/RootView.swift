@@ -105,9 +105,7 @@ struct RootView: View {
         .fullScreenCover(
             isPresented: $viewModel.isPresentRegisterView,
             content: {
-                RegisterTravelNewsView {
-                    viewModel.isPresentRegisterView = false
-                }
+                RegisterTravelNewsView()
         })
     }
 }

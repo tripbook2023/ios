@@ -8,8 +8,31 @@
 import SwiftUI
 
 struct RegisterTravelNewsView: View {
+    @State private var isShowTemporaryStorageListView = false
+    @State private var isShowSearchLocationView = false
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        RegisterTravelNewsEditerView(
+            backButtonAction: {
+                dismiss()
+            },
+            locationButtonAction: {
+                isShowSearchLocationView = true
+            },
+            tempButtonButtonAction: {
+                isShowTemporaryStorageListView = true
+            }
+        )
+        .sheet(
+            isPresented: $isShowSearchLocationView,
+            content: {
+                TravelNewsSearchLocationView()
+            })
+        .fullScreenCover(
+            isPresented: $isShowTemporaryStorageListView,
+            content: {
+                TravelNewsTemporaryStorageListView()
+            })
     }
 }
 

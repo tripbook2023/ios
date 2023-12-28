@@ -15,16 +15,24 @@ struct RegisterTravelNewsEditerView : UIViewControllerRepresentable {
     typealias UIViewControllerType = RegisterTravelReportVC
     
     private var backButtonAction: () -> Void
+    private var locationButtonAction: () -> Void
+    private var tempButtonButtonAction: () -> Void
     
     init(
-        backButtonAction: @escaping () -> Void = {}
+        backButtonAction: @escaping () -> Void = {},
+        locationButtonAction: @escaping () -> Void = {},
+        tempButtonButtonAction: @escaping () -> Void = {}
     ) {
         self.backButtonAction = backButtonAction
+        self.locationButtonAction = locationButtonAction
+        self.tempButtonButtonAction = tempButtonButtonAction
     }
     
     func makeUIViewController(context: Context) -> UIViewControllerType {
         return RegisterTravelReportVC(
-            backButtonAction: backButtonAction
+            backButtonAction: backButtonAction,
+            locationButtonAction: locationButtonAction,
+            tempButtonButtonAction: tempButtonButtonAction
         )
     }
     
@@ -63,6 +71,9 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     private var keyboardButton: UIButton!
     private var textButton: UIButton!
     private var imageButton: UIButton!
+    private var locationButton: UIButton!
+    private var draftButton: UIButton!
+    private var tempButton: UIButton!
     
     private var textBackButton: UIButton!
     private var titleButton: UIButton!
@@ -71,11 +82,17 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     private var boldButton: UIButton!
     
     private var backButtonAction: () -> Void
+    private var locationButtonAction: () -> Void
+    private var tempButtonButtonAction: () -> Void
     
     init(
-        backButtonAction: @escaping () -> Void = {}
+        backButtonAction: @escaping () -> Void = {},
+        locationButtonAction: @escaping () -> Void = {},
+        tempButtonButtonAction: @escaping () -> Void = {}
     ) {
         self.backButtonAction = backButtonAction
+        self.locationButtonAction = locationButtonAction
+        self.tempButtonButtonAction = tempButtonButtonAction
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -98,7 +115,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         coverPhotoButton.addTarget(self, action: #selector(tapCoverImageButton), for: .touchUpInside)
         
         imageButton.addTarget(self, action: #selector(tapImageButton), for: .touchUpInside)
-        
+        locationButton.addTarget(self, action: #selector(tapLocationButton), for: .touchUpInside)
+        tempButton.addTarget(self, action: #selector(tapTempButton), for: .touchUpInside)
         titleButton.addTarget(self, action: #selector(tapTitleButton), for: .touchUpInside)
         subtitleButton.addTarget(self, action: #selector(tapSubtitleButton), for: .touchUpInside)
         contentButton.addTarget(self, action: #selector(tapContentButton), for: .touchUpInside)
@@ -184,6 +202,15 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         multiImagePicker.setting.fetchOptions.isSynchronous = true
         self.show(multiImagePicker, sender: nil)
       }
+    @objc
+    func tapLocationButton(_ sender: UIButton) {
+        locationButtonAction()
+    }
+    
+    @objc
+    func tapTempButton(_ sender: UIButton) {
+        tempButtonButtonAction()
+    }
     
     @objc func tapTitleButton(_ sender: UIButton) {
         changeTextSize(20)
@@ -494,20 +521,30 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         imageButton.setImage(UIImage(named: "Picture"), for: .normal)
         imageButton.tintColor = UIColor(red: 0.5, green: 0.45, blue: 0.44, alpha: 1)
         
-        let locationButton = UIButton()
+        locationButton = UIButton()
         locationButton.setImage(UIImage(named: "Location/01"), for: .normal)
         locationButton.tintColor = UIColor(red: 0.5, green: 0.45, blue: 0.44, alpha: 1)
         
-        let draftButton = UIButton()
+        draftButton = UIButton()
         let customFont = UIFont(name: "SUIT-Medium", size: 14)
         let draftAtts: [NSAttributedString.Key : Any] = [
             .font: customFont!,
             .foregroundColor: UIColor(red: 0.62, green: 0.59, blue: 0.58, alpha: 1)
         ]
 
-        let draftAttString = NSAttributedString(string: "임시저장⛄️", attributes: draftAtts)
+        let draftAttString = NSAttributedString(string: "임시저장", attributes: draftAtts)
 
         draftButton.setAttributedTitle(draftAttString, for: .normal)
+        
+        tempButton = UIButton()
+        let tempAtts: [NSAttributedString.Key : Any] = [
+            .font: customFont!,
+            .foregroundColor: UIColor(red: 0.62, green: 0.59, blue: 0.58, alpha: 1)
+        ]
+
+        let tempAttString = NSAttributedString(string: "임시", attributes: tempAtts)
+
+        tempButton.setAttributedTitle(tempAttString, for: .normal)
         
         
         actionView.addSubview(keyboardButton)
@@ -552,7 +589,14 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             make.height.equalTo(20)
             make.centerY.equalToSuperview()
         }
-
+        
+        actionView.addSubview(tempButton)
+        tempButton.snp.makeConstraints { make in
+            make.trailing.equalTo(draftButton.snp.leading).offset(-10)
+            make.height.equalTo(20)
+            make.centerY.equalToSuperview()
+        }
+    
         let secondView = UIView()
         footerScrollView.addSubview(secondView)
         secondView.snp.makeConstraints { make in

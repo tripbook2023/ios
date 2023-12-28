@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct TravelNewsTemporaryStorageListView: View {
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
                 HStack {
                     Spacer()
                     Button(action: {
-                        
+                        dismiss()
                     }) {
                         TBIcon.cancel.iconSize(size: .medium)
                     }.foregroundColor(TBColor.grayscale._90)

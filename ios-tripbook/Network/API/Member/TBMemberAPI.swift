@@ -96,6 +96,16 @@ struct TBMemberAPI: APIable {
             uploadImages: [:]
         )
     }
+    
+    static func selectTemp() -> Self {
+        return TBMemberAPI(
+            path: TBAPIPath.Member.selectTemp,
+            method: .get,
+            parameters: [:],
+            headers: .init(),
+            uploadImages: [:]
+        )
+    }
 }
 
 private extension String {

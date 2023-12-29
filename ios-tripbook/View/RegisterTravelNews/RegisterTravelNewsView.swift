@@ -10,6 +10,7 @@ import SwiftUI
 struct RegisterTravelNewsView: View {
     @State private var isShowTemporaryStorageListView = false
     @State private var isShowSearchLocationView = false
+    @StateObject private var viewModel = RegisterTravelNewsViewModel()
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         RegisterTravelNewsEditerView(
@@ -31,7 +32,7 @@ struct RegisterTravelNewsView: View {
         .fullScreenCover(
             isPresented: $isShowTemporaryStorageListView,
             content: {
-                TravelNewsTemporaryStorageListView()
+                TravelNewsTemporaryStorageListView(viewModel: viewModel)
             })
     }
 }

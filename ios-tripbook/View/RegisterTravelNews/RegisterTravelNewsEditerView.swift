@@ -193,7 +193,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             onCancel: nil
         )
         multiImagePicker.setting.fetchOptions.isSynchronous = true
-        self.show(multiImagePicker, sender: nil)
+        multiImagePicker.modalPresentationStyle = .fullScreen
+        present(multiImagePicker, animated: true)
       }
     @objc
     func tapLocationButton(_ sender: UIButton) {

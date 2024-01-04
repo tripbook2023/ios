@@ -525,7 +525,6 @@
 				85338E3029F8423200E87792 /* Component */,
 				85F02B5229F69132008DABCE /* Mypage */,
 				85F02B4F29F690DE008DABCE /* TravelNews */,
-				9D34D2382AF4EF0A006D60AC /* RegisterTravelNews */,
 				858681BE2A62F56F00072B52 /* NotificationView.swift */,
 				9B9C74B92AE68AF0005B69AE /* OnboardingView.swift */,
 			);
@@ -557,17 +556,6 @@
 				9BEAC9172B18650C00B2B4B6 /* Author.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		85C35B7A2A1683A300DB8E46 /* Editor */ = {
-			isa = PBXGroup;
-			children = (
-				85A6B1472A6038D60050FF68 /* MyTravelNewsView.swift */,
-				9BEAC91B2B18B24E00B2B4B6 /* TravelNewsMiniListItemView.swift */,
-				850E29B52A7F3A85000EB5B2 /* TravelNewsSearchLocationView.swift */,
-				85A737192A7F3FC400DA0DDB /* TravelNewsTemporaryStorageListView.swift */,
-			);
-			path = Editor;
 			sourceTree = "<group>";
 		};
 		85E8CA8E2A39A57A00EBDE7F /* Signup */ = {
@@ -625,7 +613,9 @@
 			isa = PBXGroup;
 			children = (
 				DA7CF4D82B20CE0A00386B79 /* TravelNewsDetail */,
-				85C35B7A2A1683A300DB8E46 /* Editor */,
+				9D34D2382AF4EF0A006D60AC /* Register */,
+				85A6B1472A6038D60050FF68 /* MyTravelNewsView.swift */,
+				9BEAC91B2B18B24E00B2B4B6 /* TravelNewsMiniListItemView.swift */,
 				85F02B5029F690F3008DABCE /* TravelNewsView.swift */,
 				9B0696182ACE7D0600006A84 /* TravelNewsSortPopupView.swift */,
 				8585F46E2A12990A00C0A678 /* TravelNewsHeaderView.swift */,
@@ -745,14 +735,16 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
-		9D34D2382AF4EF0A006D60AC /* RegisterTravelNews */ = {
+		9D34D2382AF4EF0A006D60AC /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				850E29B52A7F3A85000EB5B2 /* TravelNewsSearchLocationView.swift */,
+				85A737192A7F3FC400DA0DDB /* TravelNewsTemporaryStorageListView.swift */,
 				9B3C13FE2B4595940097AE7F /* RegisterTravelNewsEditerView.swift */,
 				9D2448772B2846550043FB75 /* HTMLEditorService.swift */,
 				9B95E90F2B3C45AA00CFC82C /* RegisterTravelNewsView.swift */,
 			);
-			path = RegisterTravelNews;
+			path = Register;
 			sourceTree = "<group>";
 		};
 		9D94B65C2B3C369B004200F9 /* Common */ = {

@@ -11,6 +11,8 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     private var apiManager: APIManagerable
     
     @Published var tempItems: [TravelNewsModel] = []
+    @Published var isShowTemporaryStorageListView = false
+    @Published var isShowSearchLocationView = false
     
     init(apiManager: APIManagerable = TBAPIManager()) {
         self.apiManager = apiManager

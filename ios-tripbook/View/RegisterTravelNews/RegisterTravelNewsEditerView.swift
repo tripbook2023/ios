@@ -11,28 +11,23 @@ import SnapKit
 import TBImagePicker
 
 struct RegisterTravelNewsEditerView : UIViewControllerRepresentable {
-    
+    @ObservedObject private var viewModel: RegisterTravelNewsViewModel
     typealias UIViewControllerType = RegisterTravelReportVC
     
     private var backButtonAction: () -> Void
-    private var locationButtonAction: () -> Void
-    private var tempButtonButtonAction: () -> Void
     
     init(
-        backButtonAction: @escaping () -> Void = {},
-        locationButtonAction: @escaping () -> Void = {},
-        tempButtonButtonAction: @escaping () -> Void = {}
+        viewModel: RegisterTravelNewsViewModel,
+        backButtonAction: @escaping () -> Void = {}
     ) {
+        self.viewModel = viewModel
         self.backButtonAction = backButtonAction
-        self.locationButtonAction = locationButtonAction
-        self.tempButtonButtonAction = tempButtonButtonAction
     }
     
     func makeUIViewController(context: Context) -> UIViewControllerType {
         return RegisterTravelReportVC(
-            backButtonAction: backButtonAction,
-            locationButtonAction: locationButtonAction,
-            tempButtonButtonAction: tempButtonButtonAction
+            viewModel: viewModel,
+            backButtonAction: backButtonAction
         )
     }
     
@@ -41,7 +36,7 @@ struct RegisterTravelNewsEditerView : UIViewControllerRepresentable {
 }
 
 #Preview(body: {
-    RegisterTravelNewsEditerView()
+    RegisterTravelNewsEditerView(viewModel: .init())
 })
 
 class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
@@ -82,17 +77,15 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     private var boldButton: UIButton!
     
     private var backButtonAction: () -> Void
-    private var locationButtonAction: () -> Void
-    private var tempButtonButtonAction: () -> Void
+    
+    @ObservedObject private var viewModel: RegisterTravelNewsViewModel
     
     init(
-        backButtonAction: @escaping () -> Void = {},
-        locationButtonAction: @escaping () -> Void = {},
-        tempButtonButtonAction: @escaping () -> Void = {}
+        viewModel: RegisterTravelNewsViewModel,
+        backButtonAction: @escaping () -> Void = {}
     ) {
+        self.viewModel = viewModel
         self.backButtonAction = backButtonAction
-        self.locationButtonAction = locationButtonAction
-        self.tempButtonButtonAction = tempButtonButtonAction
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -204,12 +197,12 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
       }
     @objc
     func tapLocationButton(_ sender: UIButton) {
-        locationButtonAction()
+        viewModel.isShowSearchLocationView = true
     }
     
     @objc
     func tapTempButton(_ sender: UIButton) {
-        tempButtonButtonAction()
+        viewModel.isShowTemporaryStorageListView = true
     }
     
     @objc func tapTitleButton(_ sender: UIButton) {

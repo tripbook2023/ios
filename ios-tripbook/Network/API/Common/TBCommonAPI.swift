@@ -21,7 +21,7 @@ struct TBCommonAPI: APIable {
         return TBCommonAPI(
             path: TBAPIPath.Common.imageUpload,
             method: .post,
-            parameters: [:],
+            parameters: ["category": "BOARD_A"],
             headers: headers,
             uploadImages: ["image": [image]]
         )

@@ -17,7 +17,9 @@ struct LocationSearchResponse: Decodable {
     var toDomain: [LocationInfo] {
         return self.locationInfos.map {
             LocationInfo(
-                placeName: $0.placeName
+                placeName: $0.placeName,
+                x: $0.x,
+                y: $0.y
             )
         }
     }

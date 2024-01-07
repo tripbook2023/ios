@@ -19,4 +19,8 @@ struct ImageUploadResponse: Decodable {
         case refID = "refId"
         case refType
     }
+    
+    var toDomain: ImageInfo {
+        return .init(id: id, url: url)
+    }
 }

@@ -148,9 +148,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             let style = htmlService.extractStyleContent(from: html)
             let dic = htmlService.convertStyleToDic(form: style)
             let result = htmlService.apply(style: dic, body: body)
-//            viewModel.content = result ?? ""
-//            viewModel.requestRegister()
-            print(result!)
+            viewModel.content = result ?? ""
+            viewModel.requestRegister()
         }
       }
     

@@ -13,6 +13,12 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     @Published var tempItems: [TravelNewsModel] = []
     @Published var isShowTemporaryStorageListView = false
     @Published var isShowSearchLocationView = false
+    @Published var location: LocationInfo?
+    
+    var title: String = ""
+    var content: String = ""
+    var thumbnail: String?
+    var fileIds = [Int]()
     
     init(apiManager: APIManagerable = TBAPIManager()) {
         self.apiManager = apiManager
@@ -33,5 +39,34 @@ final class RegisterTravelNewsViewModel: ObservableObject {
         }
     }
     
+    func requestRegister() {
+        Task {
+            do {
+                let api = TBTravelNewsAPI.register(
+                    id: nil,
+                    title: title,
+                    content: content,
+                    fileIds: fileIds,
+                    thumbnail: thumbnail,
+                    locationList: location
+                )
+                _ = try await apiManager.request(api)
+            } catch {
+                
+            }
+        }
+    }
     
+    func setImage(_ imageData: Data) async -> String? {
+        do {
+            let api = TBCommonAPI.upload(image: imageData)
+            let result = try await apiManager.upload(api, type: ImageUploadResponse.self).toDomain
+            await MainActor.run {
+                fileIds.append(result.id)
+            }
+            return result.url
+        } catch {
+            return nil
+        }
+    }
 }

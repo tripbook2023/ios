@@ -58,23 +58,27 @@ struct TBTravelNewsAPI: APIable {
         content: String,
         fileIds: [Int],
         thumbnail: String?,
-        locationList: LocationInfo
+        locationList: LocationInfo?
     ) -> Self {
         var parameters: [String: Any] = [
             "title": title,
             "content": content,
-            "fileIds": fileIds,
-            "locationList" : [[
-                "name": locationList.placeName,
-                "locationX": locationList.x,
-                "locationY": locationList.y
-            ]]
+            "fileIds": fileIds
         ]
         if let id = id {
             parameters["articleId"] = id
         }
         if let thumbnail = thumbnail {
             parameters["thumbnail"] = thumbnail
+        }
+        if let locationList = locationList {
+            parameters["locationList"] = [
+                [
+                    "name": locationList.placeName,
+                    "locationX": locationList.x,
+                    "locationY": locationList.y
+                ]
+            ]
         }
         
         return TBTravelNewsAPI(

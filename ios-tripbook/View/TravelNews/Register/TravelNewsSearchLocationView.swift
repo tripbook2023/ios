@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct TravelNewsSearchLocationView: View {
-    @ObservedObject var viewModel = TravelNewsSearchLocationViewModel()
+    @StateObject private var viewModel = TravelNewsSearchLocationViewModel()
+    @ObservedObject private var registerViewModel: RegisterTravelNewsViewModel
+    @Environment(\.dismiss) private var dismiss
+    init(registerViewModel: RegisterTravelNewsViewModel) {
+        self.registerViewModel = registerViewModel
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -51,7 +56,10 @@ struct TravelNewsSearchLocationView: View {
             }
             
             TBPrimaryButton(title: "여행지 선택", isEnabled: .constant(viewModel.selectionIndex != nil)) {
-                
+                if let selectedIndex = viewModel.selectionIndex {
+                    registerViewModel.location = viewModel.locationInfos[selectedIndex]
+                }
+                dismiss()
             }
             .padding(.horizontal, 20)
             .padding(.top, 12)
@@ -62,6 +70,6 @@ struct TravelNewsSearchLocationView: View {
 
 struct TravelNewsSearchLocationView_Previews: PreviewProvider {
     static var previews: some View {
-        TravelNewsSearchLocationView()
+        TravelNewsSearchLocationView(registerViewModel: .init())
     }
 }

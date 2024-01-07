@@ -20,7 +20,7 @@ struct RegisterTravelNewsView: View {
         .sheet(
             isPresented: $viewModel.isShowSearchLocationView,
             content: {
-                TravelNewsSearchLocationView()
+                TravelNewsSearchLocationView(registerViewModel: viewModel)
             })
         .fullScreenCover(
             isPresented: $viewModel.isShowTemporaryStorageListView,

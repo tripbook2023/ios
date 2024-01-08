@@ -33,7 +33,7 @@ struct ContentResponse: Decodable {
     let heartNum: Int
     let bookmarkNum: Int
     let commentList: [CommentResponse]
-    let location: [LocationResponse]
+    let location: [LocationResponse]?
     let createdAt: String
     let updatedAt: String
     let heart: Bool
@@ -46,6 +46,7 @@ struct ContentResponse: Decodable {
             content: content,
             title: title,
             thumbnailURL: thumbnailUrl,
+            location: self.location?.first?.toDomain,
             likeCount: heartNum,
             isLiked: heart,
             createdAt: createdAt
@@ -96,4 +97,8 @@ struct LocationResponse: Decodable {
     let locationX: String
     let locationY: String
     let name: String
+    
+    var toDomain: LocationInfo {
+        return LocationInfo(placeName: name, x: locationX, y: locationY)
+    }
 }

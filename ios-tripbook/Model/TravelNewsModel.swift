@@ -19,7 +19,7 @@ struct TravelNewsModel: Identifiable {
     let title: String
     /// 썸네일 이미지
     let thumbnailURL: URL?
-    
+    let location: LocationInfo?
     /// 좋아요 수
     var likeCount: Int
     
@@ -35,6 +35,7 @@ struct TravelNewsModel: Identifiable {
         content: String,
         title: String,
         thumbnailURL: String?,
+        location: LocationInfo?,
         likeCount: Int,
         isLiked: Bool,
         createdAt: String
@@ -48,6 +49,7 @@ struct TravelNewsModel: Identifiable {
         } else {
             self.thumbnailURL = nil
         }
+        self.location = location
         self.likeCount = likeCount
         self.isLiked = isLiked
         self.createdAt = createdAt.prefix(10).replacingOccurrences(of: "-", with: ".")
@@ -65,6 +67,7 @@ struct TravelNewsModel: Identifiable {
             content: "xxxx",
             title: "뚜벅이가 여행하기 좋은 장소 Top 5",
             thumbnailURL: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg",
+            location: nil,
             likeCount: 3,
             isLiked: false,
             createdAt: "2023.06.30"

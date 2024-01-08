@@ -20,6 +20,9 @@ struct MyTravelNewsListView: View {
                         viewModel.fetchMyTravelNewsList(count: 20, type: .next)
                     }
                 }
+                .refreshable {
+                    viewModel.fetchMyTravelNewsList(count: 20, type: .first)
+                }
             }
         }
         .onAppear {

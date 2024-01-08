@@ -14,7 +14,6 @@ import Combine
 struct TravelNewsView: View {
     @StateObject private var viewModel = TravelNewsViewModel()
     @State private var anyCancellable = Set<AnyCancellable>()
-    @State private var isAppear = false
     
     var body: some View {
         NavigationView {
@@ -45,6 +44,10 @@ struct TravelNewsView: View {
                             .padding(.bottom)
                         }
                         .opacity(viewModel.isSearching ? 0 : 1)
+                        .refreshable {
+                            viewModel.fetchTravelNewsList(type: .first)
+                            viewModel.fetchMyTravelNewsList(count: 5, type: .first)
+                        }
                         
                         TravelNewsSearchKeywordListView(viewModel: viewModel)
                         .opacity(
@@ -67,14 +70,15 @@ struct TravelNewsView: View {
                                 }
                                 
                             }
+                            .refreshable {
+                                viewModel.searchTravelNewsList(type: .first)
+                            }
                         }
                         .opacity(viewModel.isSearched ? 1 : 0)
                     }
                 }
             }
             .onAppear {
-                guard !isAppear else { return }
-                isAppear = true
                 bind()
             }
         }

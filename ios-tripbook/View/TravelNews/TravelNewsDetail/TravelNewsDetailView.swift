@@ -139,10 +139,17 @@ struct TravelNewsDetailView: View {
                 
             HStack {
                 Button {
-                    //
+                    viewModel.likeButtonDidTap()
                 } label: {
-                    Image("Like")
-                        .foregroundColor(TBColor.grayscale._50)
+                    if let travelNews = viewModel.travelNews {
+                        if travelNews.isLiked {
+                            TBIcon.like.active.iconSize(size: .medium)
+                                .foregroundColor(TBColor.primary._50)
+                        } else {
+                            TBIcon.like.normal
+                                .foregroundStyle(TBColor.grayscale._50)
+                        }
+                    }
                 }
                 .frame(width: 24, height: 24)
                 

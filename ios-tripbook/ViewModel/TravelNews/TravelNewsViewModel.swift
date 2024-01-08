@@ -148,7 +148,7 @@ class TravelNewsViewModel: ObservableObject {
         Task {
             do {
                 let item = travelNewsList[index]
-                let api = TBTravelNewsAPI.like(id: item.id)
+                let api = TBTravelNewsAPI.like(id: "\(item.id)")
                 let result = try await apiManager.request(api, type: LikeResponse.self)
                 await MainActor.run {
                     travelNewsList[index].isLiked = result.heart

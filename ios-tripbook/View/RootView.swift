@@ -68,19 +68,24 @@ struct RootView: View {
             }
             .accentColor(TBColor.primary._50)
             .navigationBarHidden(true)
-            
-            Button(action: {
-                viewModel.isPresentRegisterView = true
-            }, label: {
+            .overlay {
                 VStack {
-                    TBIcon.navigation.plus.normal
-                    Text("등록")
-                        .font(TBFont.caption_2)
-                        .foregroundStyle(TBColor.grayscale._40)
+                    Spacer()
+                    Button(action: {
+                        viewModel.isPresentRegisterView = true
+                    }, label: {
+                        VStack {
+                            TBIcon.navigation.plus.normal
+                            Text("등록")
+                                .font(TBFont.caption_2)
+                                .foregroundStyle(TBColor.grayscale._40)
+                        }
+                    })
+                    
                 }
-            })
-            
-            
+                .ignoresSafeArea(.keyboard)
+            }
+
             VStack(spacing: 6) {
                 Spacer()
                 Image("Logout")

@@ -32,7 +32,7 @@ struct TBTravelNewsAPI: APIable {
         )
     }
     
-    static func like(id: Int) -> Self {
+    static func like(id: String) -> Self {
         return TBTravelNewsAPI(
             path: TBAPIPath.Articles.like(id: id),
             method: .post,

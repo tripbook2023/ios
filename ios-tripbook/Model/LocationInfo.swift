@@ -9,4 +9,6 @@ import Foundation
 
 struct LocationInfo {
     let placeName: String
+    let x: String
+    let y: String
 }

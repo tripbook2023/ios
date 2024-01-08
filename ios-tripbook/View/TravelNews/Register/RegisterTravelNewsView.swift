@@ -8,29 +8,22 @@
 import SwiftUI
 
 struct RegisterTravelNewsView: View {
-    @State private var isShowTemporaryStorageListView = false
-    @State private var isShowSearchLocationView = false
     @StateObject private var viewModel = RegisterTravelNewsViewModel()
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         RegisterTravelNewsEditerView(
+            viewModel: viewModel,
             backButtonAction: {
                 dismiss()
-            },
-            locationButtonAction: {
-                isShowSearchLocationView = true
-            },
-            tempButtonButtonAction: {
-                isShowTemporaryStorageListView = true
             }
         )
         .sheet(
-            isPresented: $isShowSearchLocationView,
+            isPresented: $viewModel.isShowSearchLocationView,
             content: {
-                TravelNewsSearchLocationView()
+                TravelNewsSearchLocationView(registerViewModel: viewModel)
             })
         .fullScreenCover(
-            isPresented: $isShowTemporaryStorageListView,
+            isPresented: $viewModel.isShowTemporaryStorageListView,
             content: {
                 TravelNewsTemporaryStorageListView(viewModel: viewModel)
             })

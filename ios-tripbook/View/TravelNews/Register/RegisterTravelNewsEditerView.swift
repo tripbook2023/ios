@@ -9,30 +9,26 @@ import UIKit
 import SwiftUI
 import SnapKit
 import TBImagePicker
+import Combine
 
 struct RegisterTravelNewsEditerView : UIViewControllerRepresentable {
-    
+    @ObservedObject private var viewModel: RegisterTravelNewsViewModel
     typealias UIViewControllerType = RegisterTravelReportVC
     
     private var backButtonAction: () -> Void
-    private var locationButtonAction: () -> Void
-    private var tempButtonButtonAction: () -> Void
     
     init(
-        backButtonAction: @escaping () -> Void = {},
-        locationButtonAction: @escaping () -> Void = {},
-        tempButtonButtonAction: @escaping () -> Void = {}
+        viewModel: RegisterTravelNewsViewModel,
+        backButtonAction: @escaping () -> Void = {}
     ) {
+        self.viewModel = viewModel
         self.backButtonAction = backButtonAction
-        self.locationButtonAction = locationButtonAction
-        self.tempButtonButtonAction = tempButtonButtonAction
     }
     
     func makeUIViewController(context: Context) -> UIViewControllerType {
         return RegisterTravelReportVC(
-            backButtonAction: backButtonAction,
-            locationButtonAction: locationButtonAction,
-            tempButtonButtonAction: tempButtonButtonAction
+            viewModel: viewModel,
+            backButtonAction: backButtonAction
         )
     }
     
@@ -41,7 +37,7 @@ struct RegisterTravelNewsEditerView : UIViewControllerRepresentable {
 }
 
 #Preview(body: {
-    RegisterTravelNewsEditerView()
+    RegisterTravelNewsEditerView(viewModel: .init())
 })
 
 class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
@@ -62,7 +58,9 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     private var scrollView: UIScrollView!
     private var contentView: UIView!
-    
+    private var contentLocationLabel: UILabel!
+    private var contentLocationClearButton: UIButton!
+    private var contentLocationStackView: UIStackView!
     private var contentTextView: UITextView!
     private var contentPlaceHolderLabel: UILabel!
     
@@ -82,17 +80,17 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     private var boldButton: UIButton!
     
     private var backButtonAction: () -> Void
-    private var locationButtonAction: () -> Void
-    private var tempButtonButtonAction: () -> Void
+    
+    private var anyCancellable = Set<AnyCancellable>()
+    
+    @ObservedObject private var viewModel: RegisterTravelNewsViewModel
     
     init(
-        backButtonAction: @escaping () -> Void = {},
-        locationButtonAction: @escaping () -> Void = {},
-        tempButtonButtonAction: @escaping () -> Void = {}
+        viewModel: RegisterTravelNewsViewModel,
+        backButtonAction: @escaping () -> Void = {}
     ) {
+        self.viewModel = viewModel
         self.backButtonAction = backButtonAction
-        self.locationButtonAction = locationButtonAction
-        self.tempButtonButtonAction = tempButtonButtonAction
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -106,6 +104,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         makeCover()
         makeContent()
         makeFooter()
+        bind()
         
         backButton.addTarget(self, action: #selector(tapBackButton), for: .touchUpInside)
         keyboardButton.addTarget(self, action: #selector(tapKeyboardButton), for: .touchUpInside)
@@ -113,7 +112,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         textBackButton.addTarget(self, action: #selector(tapBackTextButton), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(tapRegisterButton), for: .touchUpInside)
         coverPhotoButton.addTarget(self, action: #selector(tapCoverImageButton), for: .touchUpInside)
-        
+        contentLocationClearButton.addTarget(self, action: #selector(tapLocationClearButton), for: .touchUpInside)
         imageButton.addTarget(self, action: #selector(tapImageButton), for: .touchUpInside)
         locationButton.addTarget(self, action: #selector(tapLocationButton), for: .touchUpInside)
         tempButton.addTarget(self, action: #selector(tapTempButton), for: .touchUpInside)
@@ -149,8 +148,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             let style = htmlService.extractStyleContent(from: html)
             let dic = htmlService.convertStyleToDic(form: style)
             let result = htmlService.apply(style: dic, body: body)
-            
-            print(result!)
+            viewModel.content = result ?? ""
+            viewModel.requestRegister()
         }
       }
     
@@ -167,8 +166,12 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                         self.coverImageView.image = selectedImage
                         self.photoImageView.isHidden = true
                         self.photoLabel.isHidden = true
+                        Task {
+                            let imageData = selectedImage.jpegData(compressionQuality: 1.0)
+                            let imageURL = await self.viewModel.setImage(imageData!)
+                            self.viewModel.thumbnail = imageURL
+                        }
                     }
-                    
                 }
             },
             onCancel: nil
@@ -200,16 +203,17 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             onCancel: nil
         )
         multiImagePicker.setting.fetchOptions.isSynchronous = true
-        self.show(multiImagePicker, sender: nil)
+        multiImagePicker.modalPresentationStyle = .fullScreen
+        present(multiImagePicker, animated: true)
       }
     @objc
     func tapLocationButton(_ sender: UIButton) {
-        locationButtonAction()
+        viewModel.isShowSearchLocationView = true
     }
     
     @objc
     func tapTempButton(_ sender: UIButton) {
-        tempButtonButtonAction()
+        viewModel.isShowTemporaryStorageListView = true
     }
     
     @objc func tapTitleButton(_ sender: UIButton) {
@@ -228,6 +232,11 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         toggleTextWeightBold()
       }
     
+    @objc
+    func tapLocationClearButton(_ sender: UIButton) {
+        viewModel.location = nil
+    }
+    
     private func makeHeaderView() {
         headerView = UIView()
         
@@ -236,7 +245,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         backButton.tintColor = .black
         
         let headerTitleLabel = UILabel()
-        headerTitleLabel.text = "여행 소식 등록"
+        headerTitleLabel.text = "여행기록 작서"
         headerTitleLabel.font = .init(name: "SUIT-Medium", size: 16)
         
         headerView.addSubview(backButton)
@@ -283,8 +292,6 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     }
     
     private func makeCover() {
-        
-        
         scrollView = UIScrollView()
         view.addSubview(scrollView)
         scrollView.isScrollEnabled = true
@@ -419,7 +426,35 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     }
     
     private func makeContent() {
+        let locaionIcon = UIImageView(image: .init(named: "Location/02"))
         
+        contentLocationLabel = UILabel()
+        contentLocationLabel.font = UIFont(name: "SUIT-Medium", size: 12)
+        contentLocationLabel.backgroundColor = .clear
+        contentLocationLabel.textColor = UIColor(.init(rgb: .init(red: 127, green: 116, blue: 113)))
+        contentLocationLabel.text = "위치명"
+        
+        contentLocationClearButton = UIButton()
+        contentLocationClearButton.setImage(.init(named: "Clear"), for: .normal)
+        contentLocationClearButton.snp.makeConstraints { make in
+            make.width.height.equalTo(12)
+        }
+        
+        contentLocationStackView = UIStackView(
+            arrangedSubviews: [
+                locaionIcon,
+                contentLocationLabel,
+                contentLocationClearButton
+            ]
+        )
+        contentLocationStackView.spacing = 4
+        contentLocationStackView.alignment = .center
+        contentView.addSubview(contentLocationStackView)
+        contentLocationStackView.snp.makeConstraints { make in
+            make.top.equalTo(coverContainerView.snp.bottom).offset(32)
+            make.leading.equalToSuperview().offset(20)
+            make.height.equalTo(18)
+        }
         
         contentPlaceHolderLabel = UILabel()
         contentPlaceHolderLabel.text = "최소 800자 이상의 글자수를 작성해주세요"
@@ -428,20 +463,20 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         
         contentView.addSubview(contentPlaceHolderLabel)
         contentPlaceHolderLabel.snp.makeConstraints { make in
-            make.top.equalTo(coverContainerView.snp.bottom).offset(40)
+            make.top.equalTo(contentLocationStackView.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(26)
             make.trailing.equalToSuperview().offset(-20)
         }
         
         contentTextView = UITextView()
-        contentTextView.font = UIFont(name: "SUIT-Medium", size: 14)
+        contentTextView.font = UIFont(name: "SUIT-Regular", size: 14)
         contentTextView.tag = 1
         contentTextView.backgroundColor = .clear
         contentTextView.delegate = self
         contentView.addSubview(contentTextView)
         
         contentTextView.snp.makeConstraints { make in
-            make.top.equalTo(coverContainerView.snp.bottom).offset(32)
+            make.top.equalTo(contentLocationStackView.snp.bottom)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalToSuperview().offset(-32)
@@ -526,7 +561,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         locationButton.tintColor = UIColor(red: 0.5, green: 0.45, blue: 0.44, alpha: 1)
         
         draftButton = UIButton()
-        let customFont = UIFont(name: "SUIT-Medium", size: 14)
+        let customFont = UIFont(name: "SUIT-Regular", size: 14)
         let draftAtts: [NSAttributedString.Key : Any] = [
             .font: customFont!,
             .foregroundColor: UIColor(red: 0.62, green: 0.59, blue: 0.58, alpha: 1)
@@ -809,9 +844,9 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     func addImageInTextView(_ image: UIImage?) {
         if let image = image {
-//            let maxWidth: CGFloat = 335.0 // 이미지의 최대 가로 너비
-//            let scaleFactor = maxWidth / image.size.width // 가로 너비에 대한 비율 계산
-            let newImageSize = CGSize(width: 335.0, height: 335.0)
+            let maxWidth: CGFloat = 335.0 // 이미지의 최대 가로 너비
+            let scaleFactor = maxWidth / image.size.width // 가로 너비에 대한 비율 계산
+            let newImageSize = CGSize(width: maxWidth, height: image.size.height * scaleFactor)
             
             // 이미지를 리사이즈
             UIGraphicsBeginImageContextWithOptions(newImageSize, false, 0.0)
@@ -864,6 +899,7 @@ extension RegisterTravelReportVC: UITextViewDelegate {
                 let truncatedString = String(text[..<endIndex])
                 titleTextView.text = truncatedString
             }
+            viewModel.title = titleTextView.text
         }
         // content
         if textView.tag == 1 {
@@ -882,5 +918,24 @@ extension RegisterTravelReportVC: UITextViewDelegate {
                 contentTextView.text = truncatedString
             }
         }
+    }
+}
+
+extension RegisterTravelReportVC {
+    private func bind() {
+        viewModel.$location
+            .sink { [weak self] locationInfo in
+                guard let self = self else { return }
+                if let locationInfo = locationInfo {
+                    self.contentLocationStackView.isHidden = false
+                    
+                    self.contentLocationLabel.text = locationInfo.placeName
+                } else {
+                    
+                    
+                    self.contentLocationStackView.isHidden = true
+                }
+                self.view.layoutIfNeeded()
+            }.store(in: &anyCancellable)
     }
 }

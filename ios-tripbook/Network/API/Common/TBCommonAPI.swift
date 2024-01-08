@@ -17,12 +17,11 @@ struct TBCommonAPI: APIable {
     var uploadImages: [String : [Data?]]
     
     static func upload(image: Data) -> Self {
-        var headers = HTTPHeaders()
         return TBCommonAPI(
             path: TBAPIPath.Common.imageUpload,
             method: .post,
-            parameters: [:],
-            headers: headers,
+            parameters: ["category": "BOARD_A"],
+            headers: .init(),
             uploadImages: ["image": [image]]
         )
     }

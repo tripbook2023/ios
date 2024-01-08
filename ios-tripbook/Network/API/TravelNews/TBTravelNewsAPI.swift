@@ -41,6 +41,7 @@ struct TBTravelNewsAPI: APIable {
             uploadImages: [:]
         )
     }
+    
     static func search(id: String) -> Self {
         var headers = HTTPHeaders()
         return TBTravelNewsAPI(
@@ -49,5 +50,43 @@ struct TBTravelNewsAPI: APIable {
                     parameters: [:],
                     headers: headers,
                     uploadImages: [:])
+    }
+    
+    static func register(
+        id: Int?,
+        title: String,
+        content: String,
+        fileIds: [Int],
+        thumbnail: String?,
+        locationList: LocationInfo?
+    ) -> Self {
+        var parameters: [String: Any] = [
+            "title": title,
+            "content": content,
+            "fileIds": fileIds
+        ]
+        if let id = id {
+            parameters["articleId"] = id
+        }
+        if let thumbnail = thumbnail {
+            parameters["thumbnail"] = thumbnail
+        }
+        if let locationList = locationList {
+            parameters["locationList"] = [
+                [
+                    "name": locationList.placeName,
+                    "locationX": locationList.x,
+                    "locationY": locationList.y
+                ]
+            ]
+        }
+        
+        return TBTravelNewsAPI(
+            path: TBAPIPath.Articles.save,
+            method: .post,
+            parameters: parameters,
+            headers: .init(),
+            uploadImages: [:]
+        )
     }
 }

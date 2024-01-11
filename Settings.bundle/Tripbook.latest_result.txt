@@ -1,0 +1,23 @@
+name: Alamofire, nameSpecified: Alamofire, owner: Alamofire, version: 5.8.1, source: https://github.com/Alamofire/Alamofire
+
+name: Auth0.swift, nameSpecified: Auth0, owner: auth0, version: 2.5.0, source: https://github.com/auth0/Auth0.swift
+
+name: iOS-TripBook-ImagePicker-Package, nameSpecified: TBImagePicker, owner: tripbook2023, version: 1.0.6, source: https://github.com/tripbook2023/iOS-TripBook-ImagePicker-Package
+
+name: JWTDecode.swift, nameSpecified: JWTDecode, owner: auth0, version: 3.1.0, source: https://github.com/auth0/JWTDecode.swift
+
+name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 7.10.1, source: https://github.com/onevcat/Kingfisher
+
+name: lottie-ios, nameSpecified: Lottie, owner: airbnb, version: 4.3.4, source: https://github.com/airbnb/lottie-ios
+
+name: realm-core, nameSpecified: realm-core, owner: realm, version: 13.25.1, source: https://github.com/realm/realm-core
+
+name: realm-swift, nameSpecified: realm-swift, owner: realm, version: , source: https://github.com/realm/realm-swift
+
+name: SimpleKeychain, nameSpecified: SimpleKeychain, owner: auth0, version: 1.1.0, source: https://github.com/auth0/SimpleKeychain
+
+name: SnapKit, nameSpecified: SnapKit, owner: SnapKit, version: 5.6.0, source: https://github.com/SnapKit/SnapKit
+
+add-version-numbers: true
+
+LicensePlist Version: 3.25.1

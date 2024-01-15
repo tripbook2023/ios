@@ -17,7 +17,6 @@ struct TBTravelNewsAPI: APIable {
     var uploadImages: [String : [Data?]]
     
     static func search(word: String, page: Int, size: Int, sort: Sort) -> Self {
-        var headers = HTTPHeaders()
         return TBTravelNewsAPI(
             path: TBAPIPath.Articles.search,
             method: .get,
@@ -27,7 +26,7 @@ struct TBTravelNewsAPI: APIable {
                 "size": size,
                 "sort": sort.rawValue
             ],
-            headers: headers,
+            headers: .init(),
             uploadImages: [:]
         )
     }
@@ -43,13 +42,12 @@ struct TBTravelNewsAPI: APIable {
     }
     
     static func search(id: String) -> Self {
-        var headers = HTTPHeaders()
         return TBTravelNewsAPI(
-                    path: "\(TBAPIPath.Articles.search)/\(id)",
-                    method: .get,
-                    parameters: [:],
-                    headers: headers,
-                    uploadImages: [:])
+            path: "\(TBAPIPath.Articles.search)/\(id)",
+            method: .get,
+            parameters: [:],
+            headers: .init(),
+            uploadImages: [:])
     }
     
     static func register(

@@ -38,7 +38,7 @@ struct TravelNewsMiniListView: View {
         }
     }
 }
-
+#if DEBUG
 #Preview {
     TravelNewsMiniListView(items: .constant([
         TravelNewsModel.dummy,
@@ -47,3 +47,4 @@ struct TravelNewsMiniListView: View {
         TravelNewsModel.dummy
     ]))
 }
+#endif

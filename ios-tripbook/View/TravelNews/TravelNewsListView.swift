@@ -59,8 +59,8 @@ struct TravelNewsListView: View {
     }
 }
 
-//struct TravelNewsListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TravelNewsListView(viewModel: .init(apiManager: <#APIManagerable#>, tokenStorage: <#TokenStorage#>))
-//    }
-//}
+struct TravelNewsListView_Previews: PreviewProvider {
+    static var previews: some View {
+        TravelNewsListView(viewModel: .init())
+    }
+}

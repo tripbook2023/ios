@@ -39,6 +39,6 @@ struct InquiryView: View {
     }
 }
 
-//#Preview {
-//    InquiryView()
-//}
+#Preview {
+    InquiryView()
+}

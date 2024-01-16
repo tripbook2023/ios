@@ -49,6 +49,8 @@ struct TravelNewsMiniListItemView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     TravelNewsMiniListItemView(item: TravelNewsModel.dummy)
 }
+#endif

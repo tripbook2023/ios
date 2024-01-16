@@ -75,9 +75,10 @@ struct TravelNewsListItemView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
-
+#if DEBUG
 struct TravelNewsListItemView_Previews: PreviewProvider {
     static var previews: some View {
         TravelNewsListItemView(item: .constant(TravelNewsModel.dummy))
     }
 }
+#endif

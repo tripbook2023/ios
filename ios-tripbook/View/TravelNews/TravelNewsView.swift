@@ -7,10 +7,8 @@
 
 import SwiftUI
 import Combine
+import CoreData
 
-/// 여행 소식 화면
-/// - Author: 김민규
-/// - Date: 2023/05/20
 struct TravelNewsView: View {
     @StateObject private var viewModel = TravelNewsViewModel()
     @State private var anyCancellable = Set<AnyCancellable>()
@@ -88,7 +86,7 @@ struct TravelNewsView: View {
 extension TravelNewsView {
     private func bind() {
         if viewModel.keywordList.isEmpty {
-            viewModel.readSearchKeywords()
+            viewModel.setSearchKeywords()
         }
         viewModel.fetchMyTravelNewsList(count: 5, type: .first)
         viewModel.$currentSort

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct TravelNewsSearchKeywordListView: View {
     @ObservedObject private var viewModel: TravelNewsViewModel
@@ -43,7 +44,7 @@ struct TravelNewsSearchKeywordListView: View {
                                 .foregroundStyle(TBColor.grayscale._80)
                             Spacer()
                             Button(action: {
-                                viewModel.deleteSearchKeyword(index: i)
+                                viewModel.deleteSearchKeyword(i)
                             }, label: {
                                 TBIcon.cancel
                                     .iconSize(size: .tiny)

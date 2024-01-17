@@ -16,7 +16,8 @@ final class MypageViewModel: ObservableObject {
     
     @Published var isPresentInquiryView = false
     @Published var userInfo: MyProfile?
-    @Published var isShowPopup: Bool = false
+    @Published var isShowLogOutPopup: Bool = false
+    @Published var isShowMemberDeletePopup: Bool = false
     
     init(
         dataStorage: DataStorage = .shared,

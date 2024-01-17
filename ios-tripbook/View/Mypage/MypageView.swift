@@ -157,6 +157,10 @@ struct MypageView: View {
                             confirmButtonText: "회원탈퇴",
                             dismissButtonText: "취소",
                             didTapConfirmButton: {
+                                Task {
+                                    await self.viewModel.deleteMember()
+                                    (self.logoutAction ?? {})()
+                                }
                                 
                             },
                             didTapDismissButton: {

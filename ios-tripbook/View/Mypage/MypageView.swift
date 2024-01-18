@@ -158,8 +158,8 @@ struct MypageView: View {
                             dismissButtonText: "취소",
                             didTapConfirmButton: {
                                 Task {
-                                    await self.viewModel.deleteMember()
-                                    (self.logoutAction ?? {})()
+                                    await self.viewModel.deleteMember(completion: self.logoutAction ?? {})
+                                    
                                 }
                                 
                             },

@@ -39,10 +39,16 @@ final class MypageViewModel: ObservableObject {
         tokenStorage.deleteTokens()
     }
     
-    func deleteMember() async {
-        guard let email = dataStorage.user?.info?.email else { return }
-        let api = TBMemberAPI.delete(email: email)
-        _ = try? await apiManager.request(api)
-        deleteToken()
+    func deleteMember(completion: () -> Void) async {
+        do {
+            guard let email = dataStorage.user?.info?.email else { return }
+            let api = TBMemberAPI.delete(email: email)
+            _ = try await apiManager.request(api)
+            deleteToken()
+            completion()
+        } catch {
+            print("deleteMember error: " + error.localizedDescription)
+        }
+        
     }
 }

@@ -39,10 +39,11 @@ final class RegisterTravelNewsViewModel: ObservableObject {
         }
     }
     
-    func requestRegister() {
+    func save(_ type: PostSaveType) {
         Task {
             do {
-                let api = TBTravelNewsAPI.register(
+                let api = TBTravelNewsAPI.save(
+                    saveType: type,
                     id: nil,
                     title: title,
                     content: content,

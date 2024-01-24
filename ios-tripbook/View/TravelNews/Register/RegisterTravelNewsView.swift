@@ -17,6 +17,9 @@ struct RegisterTravelNewsView: View {
                 dismiss()
             }
         )
+        .onAppear {
+            viewModel.fatchTempList()
+        }
         .sheet(
             isPresented: $viewModel.isShowSearchLocationView,
             content: {

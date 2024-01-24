@@ -98,6 +98,7 @@
 		9B1A2A612B4FE16F007569DB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B1A2A602B4FE16F007569DB /* Settings.bundle */; };
 		9B3C13F92B3EE08D0097AE7F /* RegisterTravelNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13F82B3EE08D0097AE7F /* RegisterTravelNewsViewModel.swift */; };
 		9B3C13FF2B4595940097AE7F /* RegisterTravelNewsEditerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13FE2B4595940097AE7F /* RegisterTravelNewsEditerView.swift */; };
+		9B4E23662B611FD400878885 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E23652B611FD400878885 /* String+Extension.swift */; };
 		9B4F1F9B2AB184CB000747A9 /* TravelNewsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4F1F9A2AB184CB000747A9 /* TravelNewsListItemView.swift */; };
 		9B5BA3252B569E01003EE736 /* SearchKeywordModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BA3232B569E01003EE736 /* SearchKeywordModel.xcdatamodeld */; };
 		9B5BA3272B56A038003EE736 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BA3262B56A038003EE736 /* CoreDataController.swift */; };
@@ -240,6 +241,7 @@
 		9B1A2A602B4FE16F007569DB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9B3C13F82B3EE08D0097AE7F /* RegisterTravelNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelNewsViewModel.swift; sourceTree = "<group>"; };
 		9B3C13FE2B4595940097AE7F /* RegisterTravelNewsEditerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTravelNewsEditerView.swift; sourceTree = "<group>"; };
+		9B4E23652B611FD400878885 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		9B4F1F9A2AB184CB000747A9 /* TravelNewsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsListItemView.swift; sourceTree = "<group>"; };
 		9B5BA3242B569E01003EE736 /* SearchKeywordModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SearchKeywordModel.xcdatamodel; sourceTree = "<group>"; };
 		9B5BA3262B56A038003EE736 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
@@ -676,6 +678,7 @@
 			children = (
 				9B0696222AD801C100006A84 /* Bundle+Extension.swift */,
 				DA7CF4CB2AFA9A7C00386B79 /* NSAttributedString+Extension.swift */,
+				9B4E23652B611FD400878885 /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -994,6 +997,7 @@
 				85E8CAAB2A3B108600EBDE7F /* SignupProfileNameViewModel.swift in Sources */,
 				853EA92F2A480D05001890DE /* TBAPIPath.swift in Sources */,
 				85E8CAB02A3DEF2800EBDE7F /* RegisterationUser.swift in Sources */,
+				9B4E23662B611FD400878885 /* String+Extension.swift in Sources */,
 				8585F4302A10FE0200C0A678 /* RootViewModel.swift in Sources */,
 				9B9C74CF2AE7A93C005B69AE /* TokenReissueResponse.swift in Sources */,
 				85E8CAA22A3ACB2300EBDE7F /* SignupSocialViewModel.swift in Sources */,

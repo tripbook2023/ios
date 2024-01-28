@@ -15,4 +15,5 @@ struct TBMemberAPIPath {
     let tokenIssue = "/token/issue"
     let selectMyArticles = "/member/select/articles/recent"
     let selectTemp = "/member/select/articles/temp"
+    let delete = "/member/delete"
 }

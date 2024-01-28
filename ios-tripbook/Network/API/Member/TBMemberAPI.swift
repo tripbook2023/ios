@@ -104,6 +104,16 @@ struct TBMemberAPI: APIable {
             uploadImages: [:]
         )
     }
+    
+    static func delete(email: String) -> Self {
+        return TBMemberAPI(
+            path: TBAPIPath.Member.delete,
+            method: .post,
+            parameters: ["email" : email],
+            headers: .init(),
+            uploadImages: [:]
+        )
+    }
 }
 
 private extension String {

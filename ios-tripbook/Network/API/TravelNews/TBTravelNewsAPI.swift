@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 struct TBTravelNewsAPI: APIable {
+    
     var baseURL: String = TBAPIPath.base
     var path: String
     var method: HTTPMethod
@@ -50,7 +51,18 @@ struct TBTravelNewsAPI: APIable {
             uploadImages: [:])
     }
     
-    static func register(
+    static func delete(id: Int) -> Self {
+        return TBTravelNewsAPI(
+            path: TBAPIPath.Articles.delete(id: id),
+            method: .delete,
+            parameters: [:],
+            headers: .init(),
+            uploadImages: [:]
+        )
+    }
+    
+    static func save(
+        saveType: PostSaveType,
         id: Int?,
         title: String,
         content: String,
@@ -78,12 +90,14 @@ struct TBTravelNewsAPI: APIable {
                 ]
             ]
         }
-        
+        var headers = HTTPHeaders()
+        headers.add(.accept("application/json"))
+        headers.add(.contentType("application/json"))
         return TBTravelNewsAPI(
-            path: TBAPIPath.Articles.save,
+            path: saveType == .register ? TBAPIPath.Articles.save : TBAPIPath.Articles.temp,
             method: .post,
             parameters: parameters,
-            headers: .init(),
+            headers: headers,
             uploadImages: [:]
         )
     }

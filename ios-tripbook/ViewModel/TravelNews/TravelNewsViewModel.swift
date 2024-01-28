@@ -68,7 +68,8 @@ class TravelNewsViewModel: ObservableObject {
                 )
                 let response = try await apiManager.request(
                     api,
-                    type: SelectMyArticlesResponse.self
+                    type: SelectMyArticlesResponse.self,
+                    encodingType: .url
                 )
                 let items = response.toDomain
                 await MainActor.run {
@@ -100,7 +101,8 @@ class TravelNewsViewModel: ObservableObject {
                 )
                 let items = try await apiManager.request(
                     api,
-                    type: SearchResponse.self
+                    type: SearchResponse.self,
+                    encodingType: .url
                 ).toDomain
                 await MainActor.run {
                     mainPage.isLastPage = items.isEmpty
@@ -130,7 +132,8 @@ class TravelNewsViewModel: ObservableObject {
                 )
                 let items = try await apiManager.request(
                     api,
-                    type: SearchResponse.self
+                    type: SearchResponse.self,
+                    encodingType: .url
                 ).toDomain
                 await MainActor.run {
                     searchPage.isLastPage = items.isEmpty
@@ -150,7 +153,7 @@ class TravelNewsViewModel: ObservableObject {
             do {
                 let item = travelNewsList[index]
                 let api = TBTravelNewsAPI.like(id: "\(item.id)")
-                let result = try await apiManager.request(api, type: LikeResponse.self)
+                let result = try await apiManager.request(api, type: LikeResponse.self, encodingType: .url)
                 await MainActor.run {
                     travelNewsList[index].isLiked = result.heart
                     travelNewsList[index].likeCount = result.heartNum

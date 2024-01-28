@@ -60,7 +60,7 @@ final class EditProfileViewModel: ObservableObject {
         Task {
             do {
                 let api = TBMemberAPI.nicknameValidate(name: newName)
-                try await apiManager.request(api)
+                try await apiManager.request(api, encodingType: .url)
                 await MainActor.run {
                     self.warningMessage = nil
                 }

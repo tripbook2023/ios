@@ -39,7 +39,7 @@ class TBAuthInterceptor: RequestInterceptor {
             }
             do {
                 let api = TBMemberAPI.refreshToken(refreshToken)
-                let token = try await apiManager.request(api, type: TokenReissueResponse.self)
+                let token = try await apiManager.request(api, type: TokenReissueResponse.self, encodingType: .url)
                 TokenStorage.shared.setTokens(accessToken: token.accessToken, refreshToken: token.refreshToken)
                 return completion(.retry)
             } catch {

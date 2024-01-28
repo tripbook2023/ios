@@ -27,7 +27,8 @@ class DataStorage: ObservableObject {
         Task {
             guard let profile = try? await apiManager.request(
                 TBMemberAPI.select(),
-                type: GetUserResponse.self
+                type: GetUserResponse.self,
+                encodingType: .url
             ).toDomain else { return }
             await MainActor.run {
                 user = profile

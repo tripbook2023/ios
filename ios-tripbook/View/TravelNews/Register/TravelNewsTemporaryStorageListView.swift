@@ -42,11 +42,11 @@ struct TravelNewsTemporaryStorageListView: View {
                         } label: {
                             HStack {
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text("제목입니다")
+                                    Text(viewModel.tempItems[index].title != "" ? viewModel.tempItems[index].title : "제목없음")
                                         .font(TBFont.body_4)
                                         .foregroundColor(.black)
                                     
-                                    Text("23.10.10")
+                                    Text(viewModel.tempItems[index].createdAt)
                                         .font(TBFont.caption_2)
                                         .foregroundColor(TBColor.grayscale._30)
                                 }
@@ -54,7 +54,7 @@ struct TravelNewsTemporaryStorageListView: View {
                                 Spacer()
                                 
                                 Button(action: {
-                                    print("\(index) 삭제")
+                                    viewModel.deleteTemp(index: index)
                                 }) {
                                     TBIcon.cancel.iconSize(size: .small)
                                 }.foregroundColor(TBColor.grayscale._70)
@@ -82,14 +82,16 @@ struct TravelNewsTemporaryStorageListView: View {
                 .padding(.vertical, 32)
             }
             
-            TBPrimaryButton(title: "선택 완료", isEnabled: .constant(false)) {
-                
+            TBPrimaryButton(title: "선택 완료", isEnabled: Binding(
+                get: {selectedIndex != nil},
+                set: {_ in })
+            ) {
+                guard let index = selectedIndex else { return }
+                viewModel.tempItem = viewModel.tempItems[index]
+                dismiss()
             }
             .padding(.vertical, 12)
             .padding(.horizontal, 20)
-        }
-        .onAppear {
-            viewModel.fatchTempList()
         }
     }
 }

@@ -51,6 +51,16 @@ struct TBTravelNewsAPI: APIable {
             uploadImages: [:])
     }
     
+    static func delete(id: Int) -> Self {
+        return TBTravelNewsAPI(
+            path: TBAPIPath.Articles.delete(id: id),
+            method: .delete,
+            parameters: [:],
+            headers: .init(),
+            uploadImages: [:]
+        )
+    }
+    
     static func save(
         saveType: PostSaveType,
         id: Int?,

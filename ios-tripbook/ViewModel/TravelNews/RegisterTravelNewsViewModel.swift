@@ -70,4 +70,17 @@ final class RegisterTravelNewsViewModel: ObservableObject {
             return nil
         }
     }
+    
+    func deleteTemp(index: Int) {
+        Task {
+            do {
+                let id = tempItems[index].id
+                let api = TBTravelNewsAPI.delete(id: id)
+                _ = try await apiManager.request(api, encodingType: .url)
+                fatchTempList()
+            } catch {
+                
+            }
+        }
+    }
 }

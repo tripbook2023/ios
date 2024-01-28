@@ -54,7 +54,7 @@ struct TravelNewsTemporaryStorageListView: View {
                                 Spacer()
                                 
                                 Button(action: {
-                                    print("\(index) 삭제")
+                                    viewModel.deleteTemp(index: index)
                                 }) {
                                     TBIcon.cancel.iconSize(size: .small)
                                 }.foregroundColor(TBColor.grayscale._70)

@@ -43,7 +43,7 @@ final class MypageViewModel: ObservableObject {
         do {
             guard let email = dataStorage.user?.info?.email else { return }
             let api = TBMemberAPI.delete(email: email)
-            _ = try await apiManager.request(api)
+            _ = try await apiManager.request(api, encodingType: .url)
             deleteToken()
             completion()
         } catch {

@@ -20,22 +20,22 @@ struct TBAPIManager: APIManagerable {
 // MARK: - Request
 
 extension TBAPIManager {
-    func request<T: Decodable>(_ api: APIable, type: T.Type) async throws -> T {
-        let data = try await request(api)
+    func request<T: Decodable>(_ api: APIable, type: T.Type, encodingType: EncodingType) async throws -> T {
+        let data = try await request(api, encodingType: encodingType)
         let result = try JSONDecoder().decode(type, from: data)
         
         return result
     }
     
-    func request(_ api: APIable) async throws -> Data {
-        let dataRequest = try dataRequest(api)
+    func request(_ api: APIable, encodingType: EncodingType) async throws -> Data {
+        let dataRequest = try dataRequest(api, encodingType: encodingType)
         let result = dataRequest
             .serializingResponse(using: .data)
         
         return try await result.value
     }
     
-    private func dataRequest(_ api: APIable) throws -> DataRequest {
+    private func dataRequest(_ api: APIable, encodingType: EncodingType) throws -> DataRequest {
         guard let url = URL(string: "\(api.baseURL)\(api.path)") else {
             throw TBNetworkError.createURLError
         }
@@ -44,6 +44,7 @@ extension TBAPIManager {
             url,
             method: api.method,
             parameters: api.parameters,
+            encoding: encodingType == .url ? URLEncoding.default : JSONEncoding.default,
             headers: api.headers,
             interceptor: TBAuthInterceptor(apiManager: self)
         )

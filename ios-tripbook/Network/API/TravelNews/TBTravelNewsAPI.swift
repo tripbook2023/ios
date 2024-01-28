@@ -80,12 +80,14 @@ struct TBTravelNewsAPI: APIable {
                 ]
             ]
         }
-        
+        var headers = HTTPHeaders()
+        headers.add(.accept("application/json"))
+        headers.add(.contentType("application/json"))
         return TBTravelNewsAPI(
             path: saveType == .register ? TBAPIPath.Articles.save : TBAPIPath.Articles.temp,
             method: .post,
             parameters: parameters,
-            headers: .init(),
+            headers: headers,
             uploadImages: [:]
         )
     }

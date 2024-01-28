@@ -43,7 +43,8 @@ extension SignupProfileNameViewModel: SignupProfileNameViewDelegate {
                 do {
                     let isValid = try await apiManager.request(
                         TBMemberAPI.nicknameValidate(name: nicknameText),
-                        type: NicknameValidationResponse.self
+                        type: NicknameValidationResponse.self,
+                        encodingType: .url
                     ).toDomain
                     
                     if !isValid {

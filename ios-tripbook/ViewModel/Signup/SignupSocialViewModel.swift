@@ -59,7 +59,8 @@ extension SignupSocialViewModel: SignupSocialViewDelegate {
             guard let accessToken = loginResult.accessToken else { return }
             guard let authResult = try? await apiManager.request(
                 TBAuthAPI.authentication(accessToken: accessToken),
-                type: AuthenticationResponse.self
+                type: AuthenticationResponse.self,
+                encodingType: .url
             ).toDomain else { return }
             
             DispatchQueue.main.async {

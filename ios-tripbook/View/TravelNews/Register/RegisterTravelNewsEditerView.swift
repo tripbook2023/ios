@@ -10,6 +10,7 @@ import SwiftUI
 import SnapKit
 import TBImagePicker
 import Combine
+import Kingfisher
 
 struct RegisterTravelNewsEditerView : UIViewControllerRepresentable {
     @ObservedObject private var viewModel: RegisterTravelNewsViewModel
@@ -168,6 +169,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             },
             onCancel: nil
         )
+        singleImagePicker.setting.fetchOptions.isSynchronous = true
         self.show(singleImagePicker, sender: nil)
       }
     
@@ -957,6 +959,35 @@ extension RegisterTravelReportVC {
                     self.tempButton.setAttributedTitle(tempAttString, for: .normal)
                     self.tempButton.setTitle("sss", for: .normal)
                 }
+            }.store(in: &anyCancellable)
+        
+        viewModel.$tempItem
+            .filter { $0 != nil }
+            .sink { [weak self] temp in
+                guard let self = self else { return }
+                guard let temp = temp else { return }
+                self.coverImageView.kf.setImage(with: temp.thumbnailURL)
+                if temp.thumbnailURL != nil {
+                    self.photoImageView.isHidden = true
+                    self.photoLabel.isHidden = true
+                } else {
+                    self.photoImageView.isHidden = false
+                    self.photoLabel.isHidden = false
+                }
+                self.titleTextView.text = temp.title
+                if !temp.title.isEmpty {
+                    self.titlePlaceHolderLabel.isHidden = true
+                } else {
+                    self.titlePlaceHolderLabel.isHidden = false
+                }
+                self.contentTextView.attributedText = temp.content.toAttributedString()
+                if !temp.content.isEmpty {
+                    self.contentPlaceHolderLabel.isHidden = true
+                } else {
+                    self.contentPlaceHolderLabel.isHidden = false
+                }
+                self.viewModel.location = temp.location
+                
             }.store(in: &anyCancellable)
     }
 }

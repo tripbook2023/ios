@@ -11,6 +11,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     private var apiManager: APIManagerable
     
     @Published var tempItems: [TravelNewsModel] = []
+    @Published var tempItem: TravelNewsModel?
     @Published var isShowTemporaryStorageListView = false
     @Published var isShowSearchLocationView = false
     @Published var location: LocationInfo?
@@ -28,7 +29,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
         Task {
             do {
                 let api = TBMemberAPI.selectTemp()
-                let result = try await apiManager.request(api, type: [ContentResponse].self).map { $0.toDomain }
+                let result = try await apiManager.request(api, type: [ContentResponse].self, encodingType: .url).map { $0.toDomain }
                 await MainActor.run {
                     tempItems = result
                 }
@@ -51,7 +52,10 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                     thumbnail: thumbnail,
                     locationList: location
                 )
-                _ = try await apiManager.request(api)
+                _ = try await apiManager.request(api, encodingType: .json)
+                if type == .temp {
+                    fatchTempList()
+                }
             } catch {
                 
             }

@@ -64,4 +64,21 @@ class HTMLEditorService {
         }
         return htmlBody
     }
+    
+    func replaceImageTags(from htmlString: String, to replacements: [String]) -> String {
+        var modifiedString = htmlString
+        let regexPattern = "<img src=\"file[^>]*>"
+        let regex = try! NSRegularExpression(pattern: regexPattern, options: [])
+
+        var currentIndex = 0
+        while let match = regex.firstMatch(in: modifiedString, options: [], range: NSRange(modifiedString.startIndex..., in: modifiedString)), currentIndex < replacements.count {
+            let replacementString = replacements[currentIndex]
+            currentIndex += 1
+
+            let replacementRange = match.range
+            modifiedString = (modifiedString as NSString).replacingCharacters(in: replacementRange, with: replacementString) as String
+        }
+
+        return modifiedString
+    }
 }

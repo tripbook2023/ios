@@ -19,7 +19,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     var title: String = ""
     var content: String = ""
     var thumbnail: String?
-    var fileIds = [Int]()
+    var fileIds = [Int: String]()
     
     init(apiManager: APIManagerable = TBAPIManager()) {
         self.apiManager = apiManager
@@ -48,7 +48,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                     id: nil,
                     title: title,
                     content: content,
-                    fileIds: fileIds,
+                    fileIds: fileIds.keys.map { $0 },
                     thumbnail: thumbnail,
                     locationList: location
                 )
@@ -62,16 +62,16 @@ final class RegisterTravelNewsViewModel: ObservableObject {
         }
     }
     
-    func setImage(_ imageData: Data) async -> String? {
+    func setImage(_ imageData: Data) async -> (String?, Int?) {
         do {
             let api = TBCommonAPI.upload(image: imageData)
             let result = try await apiManager.upload(api, type: ImageUploadResponse.self).toDomain
             await MainActor.run {
-                fileIds.append(result.id)
+                fileIds[result.id] = result.url
             }
-            return result.url
+            return (result.url, result.id)
         } catch {
-            return nil
+            return (nil, nil)
         }
     }
     

@@ -14,7 +14,7 @@ struct TravelNewsView: View {
     @State private var anyCancellable = Set<AnyCancellable>()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack(alignment: .bottomTrailing) {
                 VStack {
                     TravelNewsHeaderView(

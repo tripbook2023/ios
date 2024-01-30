@@ -58,8 +58,7 @@ class HTMLEditorService {
         for (key, value) in style {
             let ranges = htmlBody.ranges(of: "\"\(key)\"")
             if let lastRange = ranges.last?.upperBound {
-                let style = value.replacingOccurrences(of: "\'", with: "")
-                htmlBody.insert(contentsOf: " style=\"\(style)\"", at: lastRange)
+                htmlBody.insert(contentsOf: " style=\"\(value)\"", at: lastRange)
             }
         }
         return htmlBody

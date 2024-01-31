@@ -8,10 +8,10 @@
 import Foundation
 
 class TravelNewsDetailViewModel: ObservableObject {
-    let dataStorage = DataStorage.shared
+    private let dataStorage = DataStorage.shared
     
-    let apiManager: APIManagerable
-    let tokenStorage: TokenStorage
+    private let apiManager: APIManagerable
+    private let tokenStorage: TokenStorage
     let id: String
     
     @Published var travelNews: TravelNewsModel?

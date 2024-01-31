@@ -13,6 +13,8 @@ struct TravelNewsDetailView: View {
     @ObservedObject var viewModel: TravelNewsDetailViewModel
     @State private var webViewHeight: CGFloat = .zero
     @State private var isAppear = false
+    @State private var isPopupReportView: Bool = false
+    @Environment(\.dismiss) private var dismiss
     
     init(id: String) {
         self.viewModel = TravelNewsDetailViewModel(id: id)
@@ -28,13 +30,34 @@ struct TravelNewsDetailView: View {
     
     var body: some View {
         VStack {
-            
             ScrollView {
                 VStack(alignment: .center, spacing: 0) {
                     coverView()
                     authorView()
                     if let content = viewModel.travelNews?.content {
                         htmlView(content: content)
+                    }
+                }
+                .overlay {
+                    VStack {
+                        TBAppBar(
+                            title: nil,
+                            onClickedBackButton: {
+                                dismiss()
+                            },
+                            rightItem: {
+                                Button(action: {
+                                    isPopupReportView = true
+                                }, label: {
+                                    TBIcon.report.iconSize(size: .medium)
+                                })
+                                .foregroundStyle(.white)
+                            },
+                            iconColor: .white
+                        )
+                        .padding(.top, 40)
+                        .padding(.horizontal, 20)
+                        Spacer()
                     }
                 }
                 
@@ -55,6 +78,14 @@ struct TravelNewsDetailView: View {
                 }
             }
         }
+        .overlay(content: {
+            Color.black
+                .ignoresSafeArea()
+                .opacity(isPopupReportView ? 0.6 : 0)
+            ReportPopupView(postId: Int(viewModel.id)!, isPresented: $isPopupReportView)
+                .opacity(isPopupReportView ? 1 : 0)
+        })
+        .navigationBarBackButtonHidden()
     }
     
     func profileView(url: URL) -> some View {

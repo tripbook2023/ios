@@ -10,6 +10,7 @@ import SwiftUI
 struct ReportPopupView: View {
     @StateObject private var viewModel = ReportViewModel()
     @Binding private var isPresented: Bool
+    @FocusState private var isFocus: Bool
     private var postId: Int
     
     init(postId: Int, isPresented: Binding<Bool>) {
@@ -22,6 +23,8 @@ struct ReportPopupView: View {
             HStack {
                 Spacer()
                 Button(action: {
+                    viewModel.content = ""
+                    isFocus = false
                     isPresented = false
                 }, label: {
                     TBIcon.cancel.iconSize(size: .small)
@@ -34,6 +37,7 @@ struct ReportPopupView: View {
                 .font(TBFont.title_3)
             
             TextEditor(text: $viewModel.content)
+                .focused($isFocus)
                 .font(TBFont.body_4)
                 .scrollContentBackground(.hidden)
                 .frame(width: 260, height: 132)
@@ -67,6 +71,8 @@ struct ReportPopupView: View {
                     titleTextColor: TBColor.grayscale._50,
                     isEnabled: .constant(true)
                 ) {
+                    viewModel.content = ""
+                    isFocus = false
                     isPresented = false
                 }
                 

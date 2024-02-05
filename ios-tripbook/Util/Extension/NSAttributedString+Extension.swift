@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 extension NSAttributedString {
     func toImageTag(dic: [Int: String]) -> [String] {

@@ -209,10 +209,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     func callImageAPI(data: Data, uiImage: UIImage) async {
     let (imageString, id) = await viewModel.setImage(data)
-        if let imageString = imageString,
-           let id = id,
-           let imageURL = URL(string: imageString) {
-                addImageInTextView(uiImage, id: id)
+        if let id = id {
+            addImageInTextView(uiImage, id: id)
         }
     }
     

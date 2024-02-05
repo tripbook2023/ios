@@ -142,8 +142,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
       }
     
     @objc func tapRegisterButton(_ sender: UIButton) {
-        print("등록 등록")
         postSave(.register)
+        backButtonAction()
       }
     
     @objc func tapCoverImageButton(_ sender: UIButton) {
@@ -208,7 +208,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
       }
     
     func callImageAPI(data: Data, uiImage: UIImage) async {
-    let (imageString, id) = await viewModel.setImage(data)
+        let (_, id) = await viewModel.setImage(data)
         if let id = id {
             addImageInTextView(uiImage, id: id)
         }
@@ -942,6 +942,7 @@ extension RegisterTravelReportVC {
             
             viewModel.content = modified 
             viewModel.save(type)
+            
         }
     }
     

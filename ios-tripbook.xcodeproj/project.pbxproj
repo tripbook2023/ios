@@ -556,6 +556,7 @@
 		85B6EE5829DDD2B800898B48 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9D2448772B2846550043FB75 /* HTMLEditorService.swift */,
 				85E8CAAE2A3DEEEC00EBDE7F /* Signup */,
 				85361DBD2A0FFC1C00B48B55 /* TravelNewsModel.swift */,
 				85C35B762A1659AE00DB8E46 /* User.swift */,
@@ -761,7 +762,6 @@
 				850E29B52A7F3A85000EB5B2 /* TravelNewsSearchLocationView.swift */,
 				85A737192A7F3FC400DA0DDB /* TravelNewsTemporaryStorageListView.swift */,
 				9B3C13FE2B4595940097AE7F /* RegisterTravelNewsEditerView.swift */,
-				9D2448772B2846550043FB75 /* HTMLEditorService.swift */,
 				9B95E90F2B3C45AA00CFC82C /* RegisterTravelNewsView.swift */,
 			);
 			path = Register;

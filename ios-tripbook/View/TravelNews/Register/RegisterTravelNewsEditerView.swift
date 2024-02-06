@@ -142,8 +142,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
       }
     
     @objc func tapRegisterButton(_ sender: UIButton) {
-        print("등록 등록")
         postSave(.register)
+        backButtonAction()
       }
     
     @objc func tapCoverImageButton(_ sender: UIButton) {
@@ -162,7 +162,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                         Task {
                             let imageData = selectedImage.jpegData(compressionQuality: 1.0)
                             let imageURL = await self.viewModel.setImage(imageData!)
-                            self.viewModel.thumbnail = imageURL
+                            self.viewModel.thumbnail = imageURL.0
                         }
                     }
                 }
@@ -188,18 +188,32 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                     imageManager.request(
                         size: .init(width: 335, height: 335)) { [weak self] image, _ in
                             guard let self = self else { return }
-                            if let image = image {
-                                self.addImageInTextView(image)
+                            if let image = image,
+                            let imagedata = image.jpegData(compressionQuality: 0.8) {
+                                Task {
+                                    await self.callImageAPI(data: imagedata, uiImage: image)
+                                }
                             }
                         }
                 }
             },
             onCancel: nil
         )
+        
         multiImagePicker.setting.fetchOptions.isSynchronous = true
         multiImagePicker.modalPresentationStyle = .fullScreen
+        
+        
         present(multiImagePicker, animated: true)
       }
+    
+    func callImageAPI(data: Data, uiImage: UIImage) async {
+        let (_, id) = await viewModel.setImage(data)
+        if let id = id {
+            addImageInTextView(uiImage, id: id)
+        }
+    }
+    
     @objc
     func tapLocationButton(_ sender: UIButton) {
         viewModel.isShowSearchLocationView = true
@@ -832,7 +846,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
            }
     }
     
-    func addImageInTextView(_ image: UIImage?) {
+    func addImageInTextView(_ image: UIImage?, id: Int) {
         if let image = image {
             let maxWidth: CGFloat = 335.0 // 이미지의 최대 가로 너비
             let scaleFactor = maxWidth / image.size.width // 가로 너비에 대한 비율 계산
@@ -856,8 +870,9 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             let imageAttachment = NSTextAttachment()
             imageAttachment.image = roundedImage
             imageAttachment.bounds = CGRect(x: 0, y: 0, width: newImageSize.width, height: newImageSize.height)
-            
-            let imageString = NSAttributedString(attachment: imageAttachment)
+            let imageString = NSMutableAttributedString(attachment: imageAttachment)
+            // image를 찾을 수 있도록 ID 를 추가
+            imageString.addAttribute(.init("ID"), value: id, range: NSRange(location: 0, length: imageString.length))
             
             // 기존 NSAttributedString 끝에 이미지를 추가
             let currentNSArr = contentTextView.attributedText ?? .init(string: "")
@@ -917,11 +932,17 @@ extension RegisterTravelReportVC {
         
         if let html = contentTextView.attributedText.toHTML(),
         let body = htmlService.extractBodyContent(from: html) {
+            
             let style = htmlService.extractStyleContent(from: html)
             let dic = htmlService.convertStyleToDic(form: style)
             let result = htmlService.apply(style: dic, body: body)
-            viewModel.content = result ?? ""
+
+            let imagsTag = contentTextView.attributedText.toImageTag(dic: viewModel.fileIds)
+            let modified = htmlService.replaceImageTags(from: result ?? "", to: imagsTag)
+            
+            viewModel.content = modified 
             viewModel.save(type)
+            
         }
     }
     

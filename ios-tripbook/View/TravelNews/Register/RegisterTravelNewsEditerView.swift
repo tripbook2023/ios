@@ -1001,7 +1001,8 @@ extension RegisterTravelReportVC {
                 } else {
                     self.titlePlaceHolderLabel.isHidden = false
                 }
-                self.contentTextView.attributedText = temp.content.toAttributedString()
+                self.contentTextView.attributedText = self.viewModel.readHTML(htmlContent: temp.content)
+                
                 if !temp.content.isEmpty {
                     self.contentPlaceHolderLabel.isHidden = true
                 } else {

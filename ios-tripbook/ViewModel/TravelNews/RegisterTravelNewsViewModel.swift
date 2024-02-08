@@ -87,4 +87,40 @@ final class RegisterTravelNewsViewModel: ObservableObject {
             }
         }
     }
+    
+    func readHTML(htmlContent: String) -> NSAttributedString? {
+        let regex = try? NSRegularExpression(pattern: "<img id=[^>]*>", options: [])
+        
+        guard let matches = regex?.matches(in: htmlContent, options: [], range: .init(location: 0, length: htmlContent.count)) else { return nil }
+        let stringRanges = matches.compactMap { r in
+            Range(r.range, in: htmlContent)
+        }
+        
+        guard var attributedString = htmlContent.toAttributedString() else { return nil }
+        var index = 0
+        
+        attributedString.enumerateAttribute(
+            .init("NSAttachment"),
+            in: NSRange(location: 0, length: attributedString.length), options: []
+        ) { value, range, _ in
+            if value == nil { return }
+            let stringRange = stringRanges[index]
+            
+            if let urlRange = htmlContent[stringRange].range(of: "http(s)://[a-zA-Z0-9@:%._+~#=/-]{1,}", options: .regularExpression),
+               let idRange = htmlContent[stringRange].range(of: "id=[0-9]{1,}", options: .regularExpression),
+               let id = htmlContent[stringRange][idRange].split(separator: "=").last 
+            {
+                let imageUrl = htmlContent[stringRange][urlRange]
+                
+                let mutable = NSMutableAttributedString(attributedString: attributedString)
+                mutable.addAttribute(.init("ID"), value: Int(id)!, range: range)
+                attributedString = NSAttributedString(attributedString: mutable)
+                
+                fileIds[Int(id)!] = String(imageUrl)
+                index += 1
+            }
+        }
+        
+        return attributedString
+    }
 }

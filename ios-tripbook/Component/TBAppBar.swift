@@ -11,18 +11,25 @@ import SwiftUI
 /// - Author: 김민규
 /// - Date: 2023/06/14
 public struct TBAppBar<Content> : View where Content : View {
-    var title: String
-    var onClickedBackButton: (() -> Void)?
-    @ViewBuilder var content: () -> Content
+    private var title: String
+    private var onClickedBackButton: (() -> Void)?
+    @ViewBuilder private var rightItem: () -> Content
+    private var iconColor: Color
     
-    public init(title: String? = nil, onClickedBackButton: (() -> Void)? = nil, @ViewBuilder rightItem: @escaping () -> Content = { EmptyView() }) {
+    public init(
+        title: String? = nil,
+        onClickedBackButton: (() -> Void)? = nil,
+        @ViewBuilder rightItem: @escaping () -> Content = { EmptyView() },
+        iconColor: Color? = nil
+    ) {
         if let title {
             self.title = title
         } else {
             self.title = ""
         }
         self.onClickedBackButton = onClickedBackButton
-        self.content = rightItem
+        self.rightItem = rightItem
+        self.iconColor = iconColor ?? TBColor.grayscale._90
     }
     
     public var body: some View {
@@ -34,12 +41,13 @@ public struct TBAppBar<Content> : View where Content : View {
                     }) {
                         TBIcon.before[0]
                             .iconSize(size: .medium)
-                    }.foregroundColor(TBColor.grayscale._90)
+                    }
+                    .foregroundColor(iconColor)
                 }
                 
                 Spacer()
                 
-                content()
+                rightItem()
             }
             
             Text(self.title)

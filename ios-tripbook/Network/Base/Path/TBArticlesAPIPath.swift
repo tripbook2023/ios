@@ -11,6 +11,7 @@ struct TBArticlesAPIPath {
     let search = "/articles"
     let save = "/articles"
     let temp = "/articles/temp"
+    let report = "/articles/report"
     func like(id: String) -> String { "/articles/\(id)/like" }
     func comments(id: Int) -> String { "/articles/\(id)/comments" }
     func bookmark(id: Int) -> String { "/articles/\(id)/bookmark" }

@@ -46,23 +46,28 @@ enum TBButtonSize {
 
 enum TBButtonType {
     case filled, outline
+    case customOutline(
+        strokeColor: Color,
+        pressedBackgroundColor: Color
+    )
     
     var backgroundColor: Color {
         switch self {
         case .filled: return TBColor.primary._50
-        case .outline: return .clear
+        case .outline, .customOutline: return .clear
         }
     }
     var pressedBackgroundColor: Color {
         switch self {
         case .filled: return TBColor.primary._60
         case .outline: return TBColor.primary._5
+        case .customOutline(_, let color): return color
         }
     }
     var disabledBackgroundColor: Color {
         switch self {
         case .filled: return TBColor.grayscale._10
-        case .outline: return TBColor.grayscale._1
+        case .outline, .customOutline: return TBColor.grayscale._1
         }
     }
     
@@ -70,37 +75,39 @@ enum TBButtonType {
         switch self {
         case .filled: return .clear
         case .outline: return TBColor.primary._50
+        case .customOutline(let color, _): return color
         }
     }
     var pressedStrokeColor: Color {
         switch self {
         case .filled: return .clear
         case .outline: return TBColor.primary._60
+        case .customOutline(let color, _): return color
         }
     }
     var disabledStrokeColor: Color {
         switch self {
         case .filled: return .clear
-        case .outline: return TBColor.grayscale._20
+        case .outline, .customOutline: return TBColor.grayscale._20
         }
     }
     
     var fontColor: Color {
         switch self {
         case .filled: return .white
-        case .outline: return TBColor.primary._50
+        case .outline, .customOutline: return TBColor.primary._50
         }
     }
     var pressedFontColor: Color {
         switch self {
         case .filled: return .white
-        case .outline: return TBColor.primary._60
+        case .outline, .customOutline: return TBColor.primary._60
         }
     }
     var disabledFontColor: Color {
         switch self {
         case .filled: return TBColor.grayscale._60
-        case .outline: return TBColor.grayscale._20
+        case .outline, .customOutline: return TBColor.grayscale._20
         }
     }
 }
@@ -153,8 +160,6 @@ struct TBButtonStyle: PrimitiveButtonStyle {
     @Binding var isEnabled: Bool
     
     func makeBody(configuration: Configuration) -> some View {
-//        print(self.type.backgroundColor, self.type.pressedBackgroundColor, self.type.pressedStrokeColor)
-        
         let gesture = DragGesture(minimumDistance: 0)
             .onChanged { _ in self.isPressed = true }
             .onEnded { _ in

@@ -107,6 +107,8 @@
 		9B5FD9AD2B0D987700E4354B /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FD9AC2B0D987700E4354B /* EditProfileViewModel.swift */; };
 		9B7055812B2848200084631F /* SelectMyArticlesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7055802B2848200084631F /* SelectMyArticlesResponse.swift */; };
 		9B7055852B2AE8E10084631F /* MainBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7055842B2AE8E10084631F /* MainBannerView.swift */; };
+		9B8731F22B691C2F0062C3B6 /* ReportPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8731F12B691C2F0062C3B6 /* ReportPopupView.swift */; };
+		9B8731F42B6930320062C3B6 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8731F32B6930320062C3B6 /* ReportViewModel.swift */; };
 		9B8856872B48357D006282D5 /* ImageUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8856862B48357D006282D5 /* ImageUploadResponse.swift */; };
 		9B88568B2B4A7AA4006282D5 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88568A2B4A7AA4006282D5 /* ImageInfo.swift */; };
 		9B8964B32AAB02C100B6E3CA /* TBImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8964B22AAB02C100B6E3CA /* TBImagePicker */; };
@@ -252,6 +254,8 @@
 		9B7055802B2848200084631F /* SelectMyArticlesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMyArticlesResponse.swift; sourceTree = "<group>"; };
 		9B7055822B29A30C0084631F /* LikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeResponse.swift; sourceTree = "<group>"; };
 		9B7055842B2AE8E10084631F /* MainBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBannerView.swift; sourceTree = "<group>"; };
+		9B8731F12B691C2F0062C3B6 /* ReportPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPopupView.swift; sourceTree = "<group>"; };
+		9B8731F32B6930320062C3B6 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		9B8856862B48357D006282D5 /* ImageUploadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadResponse.swift; sourceTree = "<group>"; };
 		9B88568A2B4A7AA4006282D5 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
 		9B95E9062B32D5FD00CFC82C /* LikeResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeResponse.swift; sourceTree = "<group>"; };
@@ -536,6 +540,7 @@
 				85F02B4F29F690DE008DABCE /* TravelNews */,
 				858681BE2A62F56F00072B52 /* NotificationView.swift */,
 				9B9C74B92AE68AF0005B69AE /* OnboardingView.swift */,
+				9B8731F12B691C2F0062C3B6 /* ReportPopupView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				8585F4742A13E90500C0A678 /* TravelNews */,
 				85CF962E2A63E70A000725DD /* NotificationViewModel.swift */,
 				9B9C74D02AE7A9AE005B69AE /* OnboardingViewModel.swift */,
+				9B8731F32B6930320062C3B6 /* ReportViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -974,6 +980,7 @@
 				858681BD2A62EFE700072B52 /* MyTravelNewsListView.swift in Sources */,
 				9B0696282ADBA6D000006A84 /* LocationInfo.swift in Sources */,
 				85A6B1462A5C61590050FF68 /* TBTag.swift in Sources */,
+				9B8731F22B691C2F0062C3B6 /* ReportPopupView.swift in Sources */,
 				9BC432EF2B1F02F700D03E6D /* TravelNewsSearchKeywordListView.swift in Sources */,
 				85569CB22A5071B400515DE3 /* SignupCompletionView.swift in Sources */,
 				9BEAC9182B18650C00B2B4B6 /* Author.swift in Sources */,
@@ -1022,6 +1029,7 @@
 				9B0696152AC7EBC000006A84 /* TBArticlesAPIPath.swift in Sources */,
 				9B9C74D12AE7A9AE005B69AE /* OnboardingViewModel.swift in Sources */,
 				DA7CF4CC2AFA9A7C00386B79 /* NSAttributedString+Extension.swift in Sources */,
+				9B8731F42B6930320062C3B6 /* ReportViewModel.swift in Sources */,
 				9B026BF42AB85A9000F6C81C /* APIManagerable.swift in Sources */,
 				9B95E9082B32D5FD00CFC82C /* LikeResponse.swift in Sources */,
 				9B9C74BA2AE68AF0005B69AE /* OnboardingView.swift in Sources */,

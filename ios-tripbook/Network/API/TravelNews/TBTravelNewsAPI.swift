@@ -61,6 +61,21 @@ struct TBTravelNewsAPI: APIable {
         )
     }
     
+    static func report(id: Int, content: String) -> Self {
+        var headers = HTTPHeaders()
+        headers.add(.contentType("application/json"))
+        return TBTravelNewsAPI(
+            path: TBAPIPath.Articles.report,
+            method: .post,
+            parameters: [
+                "articleId": id,
+                "content": content
+            ],
+            headers: headers,
+            uploadImages: [:]
+        )
+    }
+    
     static func save(
         saveType: PostSaveType,
         id: Int?,
@@ -91,7 +106,6 @@ struct TBTravelNewsAPI: APIable {
             ]
         }
         var headers = HTTPHeaders()
-        headers.add(.accept("application/json"))
         headers.add(.contentType("application/json"))
         return TBTravelNewsAPI(
             path: saveType == .register ? TBAPIPath.Articles.save : TBAPIPath.Articles.temp,

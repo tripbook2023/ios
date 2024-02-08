@@ -859,7 +859,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             UIGraphicsEndImageContext()
             
             // 이미지의 코너를 잘라내기
-            let cornerRadius: CGFloat = 10.0 // 코너의 반지름
+            let cornerRadius: CGFloat = 12.56 // 코너의 반지름
             UIGraphicsBeginImageContextWithOptions(newImageSize, false, 0.0)
             let clippingPath = UIBezierPath(roundedRect: CGRect(origin: .zero, size: newImageSize), cornerRadius: cornerRadius)
             clippingPath.addClip()
@@ -978,7 +978,6 @@ extension RegisterTravelReportVC {
                     let tempAttString = NSAttributedString(string: "임시 \(temps.count)", attributes: tempAtts)
 
                     self.tempButton.setAttributedTitle(tempAttString, for: .normal)
-                    self.tempButton.setTitle("sss", for: .normal)
                 }
             }.store(in: &anyCancellable)
         

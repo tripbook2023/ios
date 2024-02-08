@@ -11,6 +11,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     private var apiManager: APIManagerable
     
     @Published var tempItems: [TravelNewsModel] = []
+    @Published var tempItem: TravelNewsModel?
     @Published var isShowTemporaryStorageListView = false
     @Published var isShowSearchLocationView = false
     @Published var location: LocationInfo?
@@ -18,7 +19,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     var title: String = ""
     var content: String = ""
     var thumbnail: String?
-    var fileIds = [Int]()
+    var fileIds = [Int: String]()
     
     init(apiManager: APIManagerable = TBAPIManager()) {
         self.apiManager = apiManager
@@ -28,7 +29,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
         Task {
             do {
                 let api = TBMemberAPI.selectTemp()
-                let result = try await apiManager.request(api, type: [ContentResponse].self).map { $0.toDomain }
+                let result = try await apiManager.request(api, type: [ContentResponse].self, encodingType: .url).map { $0.toDomain }
                 await MainActor.run {
                     tempItems = result
                 }
@@ -39,34 +40,51 @@ final class RegisterTravelNewsViewModel: ObservableObject {
         }
     }
     
-    func requestRegister() {
+    func save(_ type: PostSaveType) {
         Task {
             do {
-                let api = TBTravelNewsAPI.register(
+                let api = TBTravelNewsAPI.save(
+                    saveType: type,
                     id: nil,
                     title: title,
                     content: content,
-                    fileIds: fileIds,
+                    fileIds: fileIds.keys.map { $0 },
                     thumbnail: thumbnail,
                     locationList: location
                 )
-                _ = try await apiManager.request(api)
+                _ = try await apiManager.request(api, encodingType: .json)
+                if type == .temp {
+                    fatchTempList()
+                }
             } catch {
                 
             }
         }
     }
     
-    func setImage(_ imageData: Data) async -> String? {
+    func setImage(_ imageData: Data) async -> (String?, Int?) {
         do {
             let api = TBCommonAPI.upload(image: imageData)
             let result = try await apiManager.upload(api, type: ImageUploadResponse.self).toDomain
             await MainActor.run {
-                fileIds.append(result.id)
+                fileIds[result.id] = result.url
             }
-            return result.url
+            return (result.url, result.id)
         } catch {
-            return nil
+            return (nil, nil)
+        }
+    }
+    
+    func deleteTemp(index: Int) {
+        Task {
+            do {
+                let id = tempItems[index].id
+                let api = TBTravelNewsAPI.delete(id: id)
+                _ = try await apiManager.request(api, encodingType: .url)
+                fatchTempList()
+            } catch {
+                
+            }
         }
     }
 }

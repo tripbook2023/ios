@@ -8,10 +8,10 @@
 import Foundation
 
 class TravelNewsDetailViewModel: ObservableObject {
-    let dataStorage = DataStorage.shared
+    private let dataStorage = DataStorage.shared
     
-    let apiManager: APIManagerable
-    let tokenStorage: TokenStorage
+    private let apiManager: APIManagerable
+    private let tokenStorage: TokenStorage
     let id: String
     
     @Published var travelNews: TravelNewsModel?
@@ -30,7 +30,7 @@ class TravelNewsDetailViewModel: ObservableObject {
         let api = TBTravelNewsAPI.search(id: id)
         
         do {
-            let travel = try await apiManager.request(api, type: ContentResponse.self).toDomain
+            let travel = try await apiManager.request(api, type: ContentResponse.self, encodingType: .url).toDomain
             
             await MainActor.run {
                 self.travelNews = travel
@@ -44,7 +44,7 @@ class TravelNewsDetailViewModel: ObservableObject {
         Task {
             do {
                 let api = TBTravelNewsAPI.like(id: self.id)
-                let result = try await apiManager.request(api, type: LikeResponse.self)
+                let result = try await apiManager.request(api, type: LikeResponse.self, encodingType: .url)
                 await MainActor.run {
                     travelNews?.isLiked = result.heart
                     travelNews?.likeCount = result.heartNum

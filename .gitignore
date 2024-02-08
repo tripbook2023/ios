@@ -88,7 +88,6 @@ iOSInjectionProject/
 ### SwiftPackageManager ###
 Packages
 xcuserdata
-*.xcodeproj
 
 
 ### Xcode ###
@@ -108,3 +107,4 @@ xcuserdata
 *.xcuserstate
 *.DS_Store
 ios-tripbook/View/.DS_Store
+*.xcscheme

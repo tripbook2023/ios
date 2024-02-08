@@ -94,7 +94,7 @@ struct MypageView: View {
                     VStack {
                         Button {
                             //로그아웃 로직
-                            viewModel.isShowPopup.toggle()
+                            viewModel.isShowLogOutPopup.toggle()
                         } label: {
                             RoundedRectangle(cornerRadius: 6)
                                 .strokeBorder(TBColor.grayscale._50, lineWidth: 1)
@@ -111,9 +111,21 @@ struct MypageView: View {
                         .padding(.top, 24)
                         .padding(.bottom, 12)
                         
-                        Text("버전정보 v1.0.0")
-                            .font(TBFont.caption_1)
-                            .foregroundColor(TBColor.grayscale._40)
+                        HStack {
+                            Text("회원탈퇴")
+                                .font(TBFont.caption_1)
+                                .foregroundColor(TBColor.grayscale._40)
+                                .underline()
+                                .onTapGesture {
+                                    viewModel.isShowMemberDeletePopup = true
+                                }
+                            Spacer()
+                            Text("버전정보 v1.0.0")
+                                .font(TBFont.caption_1)
+                                .foregroundColor(TBColor.grayscale._40)
+                        }
+                        .padding(.horizontal, 24)
+                        
                         Spacer()
                     }
                     .frame(width: deviceWidth)
@@ -121,27 +133,47 @@ struct MypageView: View {
                 }
                 VStack {
                     Spacer()
-                    TBPopup(
-                        title: "로그아웃하시겠습니까?",
-                        confirmButtonText: "로그아웃",
-                        dismissButtonText: "취소",
-                        didTapConfirmButton: {
-                            Task {
-                                await Auth0Service.webAuthLogout {
-                                    self.viewModel.deleteToken()
-                                    (self.logoutAction ?? {})()
+                    ZStack {
+                        TBPopup(
+                            title: "로그아웃하시겠습니까?",
+                            confirmButtonText: "로그아웃",
+                            dismissButtonText: "취소",
+                            didTapConfirmButton: {
+                                Task {
+                                    await Auth0Service.webAuthLogout {
+                                        self.viewModel.deleteToken()
+                                        (self.logoutAction ?? {})()
+                                    }
                                 }
+                            },
+                            didTapDismissButton: {
+                                viewModel.isShowLogOutPopup.toggle()
                             }
-                        },
-                        didTapDismissButton: {
-                            viewModel.isShowPopup.toggle()
-                        }
-                    )
+                        )
+                        .opacity(viewModel.isShowLogOutPopup ? 1 : 0)
+                        
+                        TBPopup(
+                            title: "회원탈퇴하시겠습니까?",
+                            confirmButtonText: "회원탈퇴",
+                            dismissButtonText: "취소",
+                            didTapConfirmButton: {
+                                Task {
+                                    await self.viewModel.deleteMember(completion: self.logoutAction ?? {})
+                                    
+                                }
+                                
+                            },
+                            didTapDismissButton: {
+                                viewModel.isShowMemberDeletePopup.toggle()
+                            }
+                        )
+                        .opacity(viewModel.isShowMemberDeletePopup ? 1 : 0)
+                    }
                     Spacer()
                 }
                 .frame(width: deviceWidth)
                 .background(.black.opacity(0.6))
-                .opacity(viewModel.isShowPopup ? 1 : 0)
+                .opacity(viewModel.isShowLogOutPopup || viewModel.isShowMemberDeletePopup ? 1 : 0)
             }
             .fullScreenCover(isPresented: $viewModel.isPresentInquiryView, content: {
                 InquiryView()

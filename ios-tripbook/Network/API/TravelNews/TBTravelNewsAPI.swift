@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 struct TBTravelNewsAPI: APIable {
+    
     var baseURL: String = TBAPIPath.base
     var path: String
     var method: HTTPMethod
@@ -17,7 +18,6 @@ struct TBTravelNewsAPI: APIable {
     var uploadImages: [String : [Data?]]
     
     static func search(word: String, page: Int, size: Int, sort: Sort) -> Self {
-        var headers = HTTPHeaders()
         return TBTravelNewsAPI(
             path: TBAPIPath.Articles.search,
             method: .get,
@@ -27,7 +27,7 @@ struct TBTravelNewsAPI: APIable {
                 "size": size,
                 "sort": sort.rawValue
             ],
-            headers: headers,
+            headers: .init(),
             uploadImages: [:]
         )
     }
@@ -43,16 +43,41 @@ struct TBTravelNewsAPI: APIable {
     }
     
     static func search(id: String) -> Self {
-        var headers = HTTPHeaders()
         return TBTravelNewsAPI(
-                    path: "\(TBAPIPath.Articles.search)/\(id)",
-                    method: .get,
-                    parameters: [:],
-                    headers: headers,
-                    uploadImages: [:])
+            path: "\(TBAPIPath.Articles.search)/\(id)",
+            method: .get,
+            parameters: [:],
+            headers: .init(),
+            uploadImages: [:])
     }
     
-    static func register(
+    static func delete(id: Int) -> Self {
+        return TBTravelNewsAPI(
+            path: TBAPIPath.Articles.delete(id: id),
+            method: .delete,
+            parameters: [:],
+            headers: .init(),
+            uploadImages: [:]
+        )
+    }
+    
+    static func report(id: Int, content: String) -> Self {
+        var headers = HTTPHeaders()
+        headers.add(.contentType("application/json"))
+        return TBTravelNewsAPI(
+            path: TBAPIPath.Articles.report,
+            method: .post,
+            parameters: [
+                "articleId": id,
+                "content": content
+            ],
+            headers: headers,
+            uploadImages: [:]
+        )
+    }
+    
+    static func save(
+        saveType: PostSaveType,
         id: Int?,
         title: String,
         content: String,
@@ -80,12 +105,13 @@ struct TBTravelNewsAPI: APIable {
                 ]
             ]
         }
-        
+        var headers = HTTPHeaders()
+        headers.add(.contentType("application/json"))
         return TBTravelNewsAPI(
-            path: TBAPIPath.Articles.save,
+            path: saveType == .register ? TBAPIPath.Articles.save : TBAPIPath.Articles.temp,
             method: .post,
             parameters: parameters,
-            headers: .init(),
+            headers: headers,
             uploadImages: [:]
         )
     }

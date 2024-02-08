@@ -12,6 +12,7 @@ import Kingfisher
 struct TravelNewsMiniListItemView: View {
     private let processor = ResizingImageProcessor(referenceSize: .init(width: 154, height: 154), mode: .aspectFill)
     private let item: TravelNewsModel
+    @State private var isPresentedDetailView: Bool = false
     
     init(item: TravelNewsModel) {
         self.item = item
@@ -46,9 +47,17 @@ struct TravelNewsMiniListItemView: View {
             .padding(.leading, 16)
         }
         .frame(width: 154, height: 154)
+        .onTapGesture {
+            self.isPresentedDetailView.toggle()
+        }
+        .navigationDestination(isPresented: $isPresentedDetailView) {
+            TravelNewsDetailView(id: "\(item.id)")
+        }
     }
 }
 
+#if DEBUG
 #Preview {
     TravelNewsMiniListItemView(item: TravelNewsModel.dummy)
 }
+#endif

@@ -10,6 +10,7 @@ import SwiftUI
 import SnapKit
 import TBImagePicker
 import Combine
+import Kingfisher
 
 struct RegisterTravelNewsEditerView : UIViewControllerRepresentable {
     @ObservedObject private var viewModel: RegisterTravelNewsViewModel
@@ -120,6 +121,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         subtitleButton.addTarget(self, action: #selector(tapSubtitleButton), for: .touchUpInside)
         contentButton.addTarget(self, action: #selector(tapContentButton), for: .touchUpInside)
         boldButton.addTarget(self, action: #selector(tapBoldButton), for: .touchUpInside)
+        draftButton.addTarget(self, action: #selector(tapDraftButton), for: .touchUpInside)
     }
     
     @objc
@@ -140,17 +142,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
       }
     
     @objc func tapRegisterButton(_ sender: UIButton) {
-        print("등록 등록")
-        let htmlService = HTMLEditorService()
-        
-        if let html = contentTextView.attributedText.toHTML(),
-        let body = htmlService.extractBodyContent(from: html) {
-            let style = htmlService.extractStyleContent(from: html)
-            let dic = htmlService.convertStyleToDic(form: style)
-            let result = htmlService.apply(style: dic, body: body)
-            viewModel.content = result ?? ""
-            viewModel.requestRegister()
-        }
+        postSave(.register)
+        backButtonAction()
       }
     
     @objc func tapCoverImageButton(_ sender: UIButton) {
@@ -169,13 +162,14 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                         Task {
                             let imageData = selectedImage.jpegData(compressionQuality: 1.0)
                             let imageURL = await self.viewModel.setImage(imageData!)
-                            self.viewModel.thumbnail = imageURL
+                            self.viewModel.thumbnail = imageURL.0
                         }
                     }
                 }
             },
             onCancel: nil
         )
+        singleImagePicker.setting.fetchOptions.isSynchronous = true
         self.show(singleImagePicker, sender: nil)
       }
     
@@ -194,18 +188,32 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                     imageManager.request(
                         size: .init(width: 335, height: 335)) { [weak self] image, _ in
                             guard let self = self else { return }
-                            if let image = image {
-                                self.addImageInTextView(image)
+                            if let image = image,
+                            let imagedata = image.jpegData(compressionQuality: 0.8) {
+                                Task {
+                                    await self.callImageAPI(data: imagedata, uiImage: image)
+                                }
                             }
                         }
                 }
             },
             onCancel: nil
         )
+        
         multiImagePicker.setting.fetchOptions.isSynchronous = true
         multiImagePicker.modalPresentationStyle = .fullScreen
+        
+        
         present(multiImagePicker, animated: true)
       }
+    
+    func callImageAPI(data: Data, uiImage: UIImage) async {
+        let (_, id) = await viewModel.setImage(data)
+        if let id = id {
+            addImageInTextView(uiImage, id: id)
+        }
+    }
+    
     @objc
     func tapLocationButton(_ sender: UIButton) {
         viewModel.isShowSearchLocationView = true
@@ -235,6 +243,11 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     @objc
     func tapLocationClearButton(_ sender: UIButton) {
         viewModel.location = nil
+    }
+    
+    @objc
+    func tapDraftButton(_ sender: UIButton) {
+        postSave(.temp)
     }
     
     private func makeHeaderView() {
@@ -572,15 +585,6 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         draftButton.setAttributedTitle(draftAttString, for: .normal)
         
         tempButton = UIButton()
-        let tempAtts: [NSAttributedString.Key : Any] = [
-            .font: customFont!,
-            .foregroundColor: UIColor(red: 0.62, green: 0.59, blue: 0.58, alpha: 1)
-        ]
-
-        let tempAttString = NSAttributedString(string: "임시", attributes: tempAtts)
-
-        tempButton.setAttributedTitle(tempAttString, for: .normal)
-        
         
         actionView.addSubview(keyboardButton)
         keyboardButton.snp.makeConstraints { make in
@@ -842,7 +846,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
            }
     }
     
-    func addImageInTextView(_ image: UIImage?) {
+    func addImageInTextView(_ image: UIImage?, id: Int) {
         if let image = image {
             let maxWidth: CGFloat = 335.0 // 이미지의 최대 가로 너비
             let scaleFactor = maxWidth / image.size.width // 가로 너비에 대한 비율 계산
@@ -866,8 +870,9 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             let imageAttachment = NSTextAttachment()
             imageAttachment.image = roundedImage
             imageAttachment.bounds = CGRect(x: 0, y: 0, width: newImageSize.width, height: newImageSize.height)
-            
-            let imageString = NSAttributedString(attachment: imageAttachment)
+            let imageString = NSMutableAttributedString(attachment: imageAttachment)
+            // image를 찾을 수 있도록 ID 를 추가
+            imageString.addAttribute(.init("ID"), value: id, range: NSRange(location: 0, length: imageString.length))
             
             // 기존 NSAttributedString 끝에 이미지를 추가
             let currentNSArr = contentTextView.attributedText ?? .init(string: "")
@@ -922,6 +927,25 @@ extension RegisterTravelReportVC: UITextViewDelegate {
 }
 
 extension RegisterTravelReportVC {
+    private func postSave(_ type: PostSaveType) {
+        let htmlService = HTMLEditorService()
+        
+        if let html = contentTextView.attributedText.toHTML(),
+        let body = htmlService.extractBodyContent(from: html) {
+            
+            let style = htmlService.extractStyleContent(from: html)
+            let dic = htmlService.convertStyleToDic(form: style)
+            let result = htmlService.apply(style: dic, body: body)
+
+            let imagsTag = contentTextView.attributedText.toImageTag(dic: viewModel.fileIds)
+            let modified = htmlService.replaceImageTags(from: result ?? "", to: imagsTag)
+            
+            viewModel.content = modified 
+            viewModel.save(type)
+            
+        }
+    }
+    
     private func bind() {
         viewModel.$location
             .sink { [weak self] locationInfo in
@@ -936,6 +960,55 @@ extension RegisterTravelReportVC {
                     self.contentLocationStackView.isHidden = true
                 }
                 self.view.layoutIfNeeded()
+            }.store(in: &anyCancellable)
+        
+        viewModel.$tempItems
+            .sink { [weak self] temps in
+                guard let self = self else { return }
+                if temps.isEmpty {
+                    self.tempButton.isHidden = true
+                } else {
+                    self.tempButton.isHidden = false
+                    let customFont = UIFont(name: "SUIT-Regular", size: 14)
+                    let tempAtts: [NSAttributedString.Key : Any] = [
+                        .font: customFont!,
+                        .foregroundColor: UIColor(red: 0.62, green: 0.59, blue: 0.58, alpha: 1)
+                    ]
+
+                    let tempAttString = NSAttributedString(string: "임시 \(temps.count)", attributes: tempAtts)
+
+                    self.tempButton.setAttributedTitle(tempAttString, for: .normal)
+                    self.tempButton.setTitle("sss", for: .normal)
+                }
+            }.store(in: &anyCancellable)
+        
+        viewModel.$tempItem
+            .filter { $0 != nil }
+            .sink { [weak self] temp in
+                guard let self = self else { return }
+                guard let temp = temp else { return }
+                self.coverImageView.kf.setImage(with: temp.thumbnailURL)
+                if temp.thumbnailURL != nil {
+                    self.photoImageView.isHidden = true
+                    self.photoLabel.isHidden = true
+                } else {
+                    self.photoImageView.isHidden = false
+                    self.photoLabel.isHidden = false
+                }
+                self.titleTextView.text = temp.title
+                if !temp.title.isEmpty {
+                    self.titlePlaceHolderLabel.isHidden = true
+                } else {
+                    self.titlePlaceHolderLabel.isHidden = false
+                }
+                self.contentTextView.attributedText = temp.content.toAttributedString()
+                if !temp.content.isEmpty {
+                    self.contentPlaceHolderLabel.isHidden = true
+                } else {
+                    self.contentPlaceHolderLabel.isHidden = false
+                }
+                self.viewModel.location = temp.location
+                
             }.store(in: &anyCancellable)
     }
 }

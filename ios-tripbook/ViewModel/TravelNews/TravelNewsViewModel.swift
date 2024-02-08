@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 /// 여행소식 화면 View Model
 class TravelNewsViewModel: ObservableObject {
@@ -22,16 +23,16 @@ class TravelNewsViewModel: ObservableObject {
 
     private let apiManager: APIManagerable
     private let tokenStorage: TokenStorage
-    private let searchKeywordStorage: Storageable
+    private let coreDataContainer: NSPersistentContainer
     
     init(
         apiManager: APIManagerable = TBAPIManager(),
         tokenStorage: TokenStorage = .shared,
-        searchKeywordStorage: Storageable = SearchKeywordStorage()
+        coreDataContainer: NSPersistentContainer = CoreDataController.shared.container
     ) {
         self.apiManager = apiManager
         self.tokenStorage = tokenStorage
-        self.searchKeywordStorage = searchKeywordStorage
+        self.coreDataContainer = coreDataContainer
     }
     
     /// 에디터/관리자 본인 여행소식 게시물 List
@@ -67,7 +68,8 @@ class TravelNewsViewModel: ObservableObject {
                 )
                 let response = try await apiManager.request(
                     api,
-                    type: SelectMyArticlesResponse.self
+                    type: SelectMyArticlesResponse.self,
+                    encodingType: .url
                 )
                 let items = response.toDomain
                 await MainActor.run {
@@ -99,7 +101,8 @@ class TravelNewsViewModel: ObservableObject {
                 )
                 let items = try await apiManager.request(
                     api,
-                    type: SearchResponse.self
+                    type: SearchResponse.self,
+                    encodingType: .url
                 ).toDomain
                 await MainActor.run {
                     mainPage.isLastPage = items.isEmpty
@@ -129,7 +132,8 @@ class TravelNewsViewModel: ObservableObject {
                 )
                 let items = try await apiManager.request(
                     api,
-                    type: SearchResponse.self
+                    type: SearchResponse.self,
+                    encodingType: .url
                 ).toDomain
                 await MainActor.run {
                     searchPage.isLastPage = items.isEmpty
@@ -149,7 +153,7 @@ class TravelNewsViewModel: ObservableObject {
             do {
                 let item = travelNewsList[index]
                 let api = TBTravelNewsAPI.like(id: "\(item.id)")
-                let result = try await apiManager.request(api, type: LikeResponse.self)
+                let result = try await apiManager.request(api, type: LikeResponse.self, encodingType: .url)
                 await MainActor.run {
                     travelNewsList[index].isLiked = result.heart
                     travelNewsList[index].likeCount = result.heartNum
@@ -160,30 +164,51 @@ class TravelNewsViewModel: ObservableObject {
         }
     }
     
-    func readSearchKeywords() {
-        keywordList = searchKeywordStorage.read().reversed()
+    private func getSearchKeywords() -> [SearchKeywordEntity] {
+        let request = NSFetchRequest<SearchKeywordEntity>(entityName: "SearchKeywordEntity")
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \SearchKeywordEntity.date, ascending: false)]
+        guard let result = try? coreDataContainer.viewContext.fetch(request) else { return [] }
+        return result
+    }
+    
+    private func saveData() {
+        do {
+            try coreDataContainer.viewContext.save()
+            setSearchKeywords()
+        } catch {
+            print("coreData Error: " + error.localizedDescription)
+        }
+    }
+    
+    func setSearchKeywords() {
+        keywordList = getSearchKeywords().compactMap { $0.keyword }
     }
     
     func addSearchKeyword() {
         guard !searchKeyword.isEmpty else { return }
-        if let index = self.searchKeywordStorage
-            .read()
-            .firstIndex(where: { $0 == searchKeyword })
+        if let index = getSearchKeywords()
+            .firstIndex(where: { $0.keyword == searchKeyword })
         {
-            try? self.searchKeywordStorage.delete(index: index)
+            let entity = getSearchKeywords()[index]
+            coreDataContainer.viewContext.delete(entity)
         }
-        try? self.searchKeywordStorage.save(searchKeyword)
-        keywordList = searchKeywordStorage.read().reversed()
+        let newKeyword = SearchKeywordEntity(context: coreDataContainer.viewContext)
+        newKeyword.keyword = searchKeyword
+        newKeyword.date = Date()
+        newKeyword.id = UUID()
+        saveData()
     }
     
-    func deleteSearchKeyword(index: Int) {
-        let count = keywordList.count
-        try? searchKeywordStorage.delete(index: count - index - 1)
-        keywordList = searchKeywordStorage.read().reversed()
+    func deleteSearchKeyword(_ index: Int) {
+        let entity = getSearchKeywords()[index]
+        coreDataContainer.viewContext.delete(entity)
+        saveData()
     }
     
     func deleteAllSearchKeyword() {
-        try? searchKeywordStorage.deleteAll()
-        keywordList = []
+        getSearchKeywords().forEach {
+            coreDataContainer.viewContext.delete($0)
+        }
+        saveData()
     }
 }

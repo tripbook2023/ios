@@ -37,7 +37,8 @@ class TravelNewsSearchLocationViewModel: ObservableObject {
             KakaoLocationSearchAPI.locationSearch(
                 query: keyword
             ),
-            type: LocationSearchResponse.self
+            type: LocationSearchResponse.self,
+            encodingType: .json
         ).toDomain
         
         locationInfos = result ?? []

@@ -28,7 +28,7 @@ class OnboardingViewModel: ObservableObject {
         Task {
             do {
                 let api = TBMemberAPI.refreshToken(refreshToken)
-                _ = try await apiManager.request(api)
+                _ = try await apiManager.request(api, encodingType: .url)
                 isPresentRoot = true
             } catch {
                 isPresentRoot = false

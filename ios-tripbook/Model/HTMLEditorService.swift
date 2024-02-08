@@ -46,7 +46,7 @@ class HTMLEditorService {
                 var slicedValueString = String(line[firstIndexValue..<lastIndexValue])
                 slicedValueString.removeFirst()
                 
-             dic[slicedKeyString] = slicedValueString
+                dic[slicedKeyString] = slicedValueString
             }
         }
         return dic
@@ -70,7 +70,12 @@ class HTMLEditorService {
         let regex = try! NSRegularExpression(pattern: regexPattern, options: [])
 
         var currentIndex = 0
-        while let match = regex.firstMatch(in: modifiedString, options: [], range: NSRange(modifiedString.startIndex..., in: modifiedString)), currentIndex < replacements.count {
+        while let match = regex.firstMatch(
+            in: modifiedString, options: [],
+            range: NSRange(
+                modifiedString.startIndex..., in: modifiedString
+            )
+        ), currentIndex < replacements.count {
             let replacementString = replacements[currentIndex]
             currentIndex += 1
 

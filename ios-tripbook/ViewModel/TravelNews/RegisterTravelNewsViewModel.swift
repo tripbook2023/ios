@@ -8,6 +8,11 @@
 import Foundation
 
 final class RegisterTravelNewsViewModel: ObservableObject {
+    enum ImageType {
+        case content
+        case thumbnail
+    }
+    
     private var apiManager: APIManagerable
     
     @Published var tempItems: [TravelNewsModel] = []
@@ -19,6 +24,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     var title: String = ""
     var content: String = ""
     var thumbnail: String?
+    var thumbnailId: Int?
     var fileIds = [Int: String]()
     
     init(apiManager: APIManagerable = TBAPIManager()) {
@@ -62,12 +68,14 @@ final class RegisterTravelNewsViewModel: ObservableObject {
         }
     }
     
-    func setImage(_ imageData: Data) async -> (String?, Int?) {
+    func setImage(_ imageData: Data, imageType: ImageType) async -> (String?, Int?) {
         do {
             let api = TBCommonAPI.upload(image: imageData)
             let result = try await apiManager.upload(api, type: ImageUploadResponse.self).toDomain
-            await MainActor.run {
-                fileIds[result.id] = result.url
+            if imageType == .content {
+                await MainActor.run {
+                    fileIds[result.id] = result.url
+                }
             }
             return (result.url, result.id)
         } catch {
@@ -88,6 +96,15 @@ final class RegisterTravelNewsViewModel: ObservableObject {
         }
     }
     
+    func deleteThumbnailImage() async {
+        do {
+            guard let id = thumbnailId else { return }
+            let api = TBCommonAPI.delete(imageIds: [id])
+            let _ = try await apiManager.request(api, encodingType: .json)
+        } catch {
+            
+        }
+    }
     func readHTML(htmlContent: String) -> NSAttributedString? {
         let regex = try? NSRegularExpression(pattern: "<img id=[^>]*>", options: [])
         

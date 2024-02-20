@@ -28,6 +28,7 @@ struct ContentResponse: Decodable {
     let title: String
     let content: String
     let author: AuthorResponse
+    let thumbnailId: Int?
     let thumbnailUrl: String?
     let tagList: [String]?
     let heartNum: Int
@@ -44,7 +45,8 @@ struct ContentResponse: Decodable {
             id: id,
             author: author.toDomain,
             content: content,
-            title: title,
+            title: title, 
+            thumbnailId: thumbnailId,
             thumbnailURL: thumbnailUrl,
             location: self.location?.first?.toDomain,
             likeCount: heartNum,

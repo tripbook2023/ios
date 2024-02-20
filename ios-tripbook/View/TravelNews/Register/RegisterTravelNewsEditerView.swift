@@ -160,9 +160,13 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                         self.photoImageView.isHidden = true
                         self.photoLabel.isHidden = true
                         Task {
+                            if self.viewModel.thumbnailId != nil {
+                                await self.viewModel.deleteThumbnailImage()
+                            }
                             let imageData = selectedImage.jpegData(compressionQuality: 1.0)
-                            let imageURL = await self.viewModel.setImage(imageData!)
-                            self.viewModel.thumbnail = imageURL.0
+                            let (imageURL, id) = await self.viewModel.setImage(imageData!, imageType: .thumbnail)
+                            self.viewModel.thumbnail = imageURL
+                            self.viewModel.thumbnailId = id
                         }
                     }
                 }
@@ -988,9 +992,13 @@ extension RegisterTravelReportVC {
                 guard let temp = temp else { return }
                 self.coverImageView.kf.setImage(with: temp.thumbnailURL)
                 if temp.thumbnailURL != nil {
+                    self.viewModel.thumbnailId = temp.thumbnailId
+                    self.viewModel.thumbnail = temp.thumbnailURL?.absoluteString
                     self.photoImageView.isHidden = true
                     self.photoLabel.isHidden = true
                 } else {
+                    self.viewModel.thumbnailId = nil
+                    self.viewModel.thumbnail = nil
                     self.photoImageView.isHidden = false
                     self.photoLabel.isHidden = false
                 }

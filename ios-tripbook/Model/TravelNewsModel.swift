@@ -18,6 +18,7 @@ struct TravelNewsModel: Identifiable {
     /// 제목
     let title: String
     /// 썸네일 이미지
+    let thumbnailId: Int?
     let thumbnailURL: URL?
     let location: LocationInfo?
     /// 좋아요 수
@@ -34,6 +35,7 @@ struct TravelNewsModel: Identifiable {
         author: Author,
         content: String,
         title: String,
+        thumbnailId: Int?,
         thumbnailURL: String?,
         location: LocationInfo?,
         likeCount: Int,
@@ -44,6 +46,7 @@ struct TravelNewsModel: Identifiable {
         self.author = author
         self.content = content
         self.title = title
+        self.thumbnailId = thumbnailId
         if let thumbnailURL = thumbnailURL {
             self.thumbnailURL = URL(string: thumbnailURL)
         } else {
@@ -65,7 +68,8 @@ struct TravelNewsModel: Identifiable {
                 role: ""
             ),
             content: "xxxx",
-            title: "뚜벅이가 여행하기 좋은 장소 Top 5",
+            title: "뚜벅이가 여행하기 좋은 장소 Top 5", 
+            thumbnailId: nil,
             thumbnailURL: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg",
             location: nil,
             likeCount: 3,

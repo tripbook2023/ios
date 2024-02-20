@@ -126,6 +126,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     @objc
     func tapBackButton(_ sender: UIButton) {
+        viewModel.deleteContentImages()
         backButtonAction()
     }
     
@@ -212,9 +213,11 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
       }
     
     func callImageAPI(data: Data, uiImage: UIImage) async {
-        let (_, id) = await viewModel.setImage(data)
-        if let id = id {
-            addImageInTextView(uiImage, id: id)
+        let (_, id) = await viewModel.setImage(data, imageType: .content)
+        await MainActor.run {
+            if let id = id {
+                addImageInTextView(uiImage, id: id)
+            }
         }
     }
     
@@ -262,7 +265,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         backButton.tintColor = .black
         
         let headerTitleLabel = UILabel()
-        headerTitleLabel.text = "여행기록 작서"
+        headerTitleLabel.text = "여행기록 작성"
         headerTitleLabel.font = .init(name: "SUIT-Medium", size: 16)
         
         headerView.addSubview(backButton)
@@ -941,12 +944,13 @@ extension RegisterTravelReportVC {
             let dic = htmlService.convertStyleToDic(form: style)
             let result = htmlService.apply(style: dic, body: body)
 
-            let imagsTag = contentTextView.attributedText.toImageTag(dic: viewModel.fileIds)
+            let (imagsTag, usedIds) = contentTextView.attributedText.toImageTag(dic: viewModel.fileIds)
             let modified = htmlService.replaceImageTags(from: result ?? "", to: imagsTag)
             
-            viewModel.content = modified 
+            viewModel.usedIds = usedIds
+            viewModel.deleteContentImages()
+            viewModel.content = modified
             viewModel.save(type)
-            
         }
     }
     

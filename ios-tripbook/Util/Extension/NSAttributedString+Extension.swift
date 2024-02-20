@@ -8,8 +8,9 @@
 import Foundation
 
 extension NSAttributedString {
-    func toImageTag(dic: [Int: String]) -> [String] {
+    func toImageTag(dic: [Int: String]) -> ([String], Set<Int>) {
         var arr: [String] = []
+        var usedIds: Set<Int> = []
         self.enumerateAttribute(
             .init("ID"),
             in: NSRange(location: 0, length: self.length), options: []
@@ -17,10 +18,11 @@ extension NSAttributedString {
             if let id = value as? Int {
                 if let urlString = dic[id] {
                     arr.append("<img id=\(id) style=\"border-radius:12.56px;\" src=\"\(urlString)\" width=\"335\">")
+                    usedIds.insert(id)
                 }
             }
         }
-        return arr
+        return (arr, usedIds)
     }
     
     func toHTML() -> String? {

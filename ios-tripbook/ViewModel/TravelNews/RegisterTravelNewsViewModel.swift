@@ -26,6 +26,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     var thumbnail: String?
     var thumbnailId: Int?
     var fileIds = [Int: String]()
+    var usedIds: Set<Int> = []
     
     init(apiManager: APIManagerable = TBAPIManager()) {
         self.apiManager = apiManager
@@ -54,7 +55,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                     id: nil,
                     title: title,
                     content: content,
-                    fileIds: fileIds.keys.map { $0 },
+                    fileIds: Array(usedIds),
                     thumbnail: thumbnail,
                     locationList: location
                 )
@@ -105,6 +106,23 @@ final class RegisterTravelNewsViewModel: ObservableObject {
             
         }
     }
+    
+    func deleteContentImages() {
+        Task {
+            do {
+                let ids = fileIds.keys.filter { !usedIds.contains($0) }
+                if ids.isEmpty { return }
+                let api = TBCommonAPI.delete(imageIds: ids)
+                let _ = try await apiManager.request(api, encodingType: .json)
+                ids.forEach { id in
+                    fileIds.removeValue(forKey: id)
+                }
+            } catch {
+                
+            }
+        }
+    }
+    
     func readHTML(htmlContent: String) -> NSAttributedString? {
         let regex = try? NSRegularExpression(pattern: "<img id=[^>]*>", options: [])
         
@@ -134,6 +152,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                 attributedString = NSAttributedString(attributedString: mutable)
                 
                 fileIds[Int(id)!] = String(imageUrl)
+                usedIds.insert(Int(id)!)
                 index += 1
             }
         }

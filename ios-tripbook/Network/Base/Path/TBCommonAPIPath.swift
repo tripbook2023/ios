@@ -9,4 +9,5 @@ import Foundation
 
 struct TBCommonAPIPath {
     let imageUpload = "/common/image/upload"
+    let imageDelete = "/common/image/delete"
 }

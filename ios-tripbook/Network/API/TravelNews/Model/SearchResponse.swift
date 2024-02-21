@@ -44,7 +44,7 @@ struct ContentResponse: Decodable {
             id: id,
             author: author.toDomain,
             content: content,
-            title: title,
+            title: title, 
             thumbnailURL: thumbnailUrl,
             location: self.location?.first?.toDomain,
             likeCount: heartNum,

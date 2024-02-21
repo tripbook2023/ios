@@ -25,5 +25,15 @@ struct TBCommonAPI: APIable {
             uploadImages: ["image": [image]]
         )
     }
+    
+    static func delete(imageIds: [Int]) -> Self {
+        return TBCommonAPI(
+            path: TBAPIPath.Common.imageDelete,
+            method: .post,
+            parameters: ["fileIds": imageIds],
+            headers: .init(),
+            uploadImages: [:]
+        )
+    }
 }
 

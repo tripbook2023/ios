@@ -8,6 +8,11 @@
 import Foundation
 
 final class RegisterTravelNewsViewModel: ObservableObject {
+    enum ImageType {
+        case content
+        case thumbnail
+    }
+    
     private var apiManager: APIManagerable
     
     @Published var tempItems: [TravelNewsModel] = []
@@ -19,7 +24,9 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     var title: String = ""
     var content: String = ""
     var thumbnail: String?
+    var thumbnailId: Int?
     var fileIds = [Int: String]()
+    var usedIds: Set<Int> = []
     
     init(apiManager: APIManagerable = TBAPIManager()) {
         self.apiManager = apiManager
@@ -48,7 +55,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                     id: nil,
                     title: title,
                     content: content,
-                    fileIds: fileIds.keys.map { $0 },
+                    fileIds: Array(usedIds),
                     thumbnail: thumbnail,
                     locationList: location
                 )
@@ -62,12 +69,14 @@ final class RegisterTravelNewsViewModel: ObservableObject {
         }
     }
     
-    func setImage(_ imageData: Data) async -> (String?, Int?) {
+    func setImage(_ imageData: Data, imageType: ImageType) async -> (String?, Int?) {
         do {
             let api = TBCommonAPI.upload(image: imageData)
             let result = try await apiManager.upload(api, type: ImageUploadResponse.self).toDomain
-            await MainActor.run {
-                fileIds[result.id] = result.url
+            if imageType == .content {
+                await MainActor.run {
+                    fileIds[result.id] = result.url
+                }
             }
             return (result.url, result.id)
         } catch {
@@ -82,6 +91,32 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                 let api = TBTravelNewsAPI.delete(id: id)
                 _ = try await apiManager.request(api, encodingType: .url)
                 fatchTempList()
+            } catch {
+                
+            }
+        }
+    }
+    
+    func deleteThumbnailImage() async {
+        do {
+            guard let id = thumbnailId else { return }
+            let api = TBCommonAPI.delete(imageIds: [id])
+            let _ = try await apiManager.request(api, encodingType: .json)
+        } catch {
+            
+        }
+    }
+    
+    func deleteContentImages() {
+        Task {
+            do {
+                let ids = fileIds.keys.filter { !usedIds.contains($0) }
+                if ids.isEmpty { return }
+                let api = TBCommonAPI.delete(imageIds: ids)
+                let _ = try await apiManager.request(api, encodingType: .json)
+                ids.forEach { id in
+                    fileIds.removeValue(forKey: id)
+                }
             } catch {
                 
             }
@@ -117,6 +152,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                 attributedString = NSAttributedString(attributedString: mutable)
                 
                 fileIds[Int(id)!] = String(imageUrl)
+                usedIds.insert(Int(id)!)
                 index += 1
             }
         }

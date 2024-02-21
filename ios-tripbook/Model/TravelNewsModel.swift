@@ -65,7 +65,7 @@ struct TravelNewsModel: Identifiable {
                 role: ""
             ),
             content: "xxxx",
-            title: "뚜벅이가 여행하기 좋은 장소 Top 5",
+            title: "뚜벅이가 여행하기 좋은 장소 Top 5", 
             thumbnailURL: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg",
             location: nil,
             likeCount: 3,

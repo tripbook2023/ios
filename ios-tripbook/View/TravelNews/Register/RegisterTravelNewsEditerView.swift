@@ -126,6 +126,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     
     @objc
     func tapBackButton(_ sender: UIButton) {
+        viewModel.deleteContentImages()
         backButtonAction()
     }
     
@@ -160,9 +161,11 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                         self.photoImageView.isHidden = true
                         self.photoLabel.isHidden = true
                         Task {
+                            await self.viewModel.deleteThumbnailImage()
                             let imageData = selectedImage.jpegData(compressionQuality: 1.0)
-                            let imageURL = await self.viewModel.setImage(imageData!)
-                            self.viewModel.thumbnail = imageURL.0
+                            let (imageURL, id) = await self.viewModel.setImage(imageData!, imageType: .thumbnail)
+                            self.viewModel.thumbnail = imageURL
+                            self.viewModel.thumbnailId = id
                         }
                     }
                 }
@@ -208,9 +211,11 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
       }
     
     func callImageAPI(data: Data, uiImage: UIImage) async {
-        let (_, id) = await viewModel.setImage(data)
-        if let id = id {
-            addImageInTextView(uiImage, id: id)
+        let (_, id) = await viewModel.setImage(data, imageType: .content)
+        await MainActor.run {
+            if let id = id {
+                addImageInTextView(uiImage, id: id)
+            }
         }
     }
     
@@ -248,6 +253,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
     @objc
     func tapDraftButton(_ sender: UIButton) {
         postSave(.temp)
+        viewModel.thumbnailId = nil
     }
     
     private func makeHeaderView() {
@@ -258,7 +264,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         backButton.tintColor = .black
         
         let headerTitleLabel = UILabel()
-        headerTitleLabel.text = "여행기록 작서"
+        headerTitleLabel.text = "여행기록 작성"
         headerTitleLabel.font = .init(name: "SUIT-Medium", size: 16)
         
         headerView.addSubview(backButton)
@@ -937,12 +943,13 @@ extension RegisterTravelReportVC {
             let dic = htmlService.convertStyleToDic(form: style)
             let result = htmlService.apply(style: dic, body: body)
 
-            let imagsTag = contentTextView.attributedText.toImageTag(dic: viewModel.fileIds)
+            let (imagsTag, usedIds) = contentTextView.attributedText.toImageTag(dic: viewModel.fileIds)
             let modified = htmlService.replaceImageTags(from: result ?? "", to: imagsTag)
             
-            viewModel.content = modified 
+            viewModel.usedIds = usedIds
+            viewModel.deleteContentImages()
+            viewModel.content = modified
             viewModel.save(type)
-            
         }
     }
     
@@ -988,9 +995,12 @@ extension RegisterTravelReportVC {
                 guard let temp = temp else { return }
                 self.coverImageView.kf.setImage(with: temp.thumbnailURL)
                 if temp.thumbnailURL != nil {
+                    self.viewModel.thumbnail = temp.thumbnailURL?.absoluteString
                     self.photoImageView.isHidden = true
                     self.photoLabel.isHidden = true
                 } else {
+                    self.viewModel.thumbnailId = nil
+                    self.viewModel.thumbnail = nil
                     self.photoImageView.isHidden = false
                     self.photoLabel.isHidden = false
                 }

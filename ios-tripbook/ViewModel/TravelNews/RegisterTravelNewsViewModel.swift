@@ -62,6 +62,8 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                 _ = try await apiManager.request(api, encodingType: .json)
                 if type == .temp {
                     fatchTempList()
+                } else {
+                    NotificationCenter.default.post(name: .register, object: nil)
                 }
             } catch {
                 

@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+extension NSNotification.Name {
+    static var register = Self("register")
+}

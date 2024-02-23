@@ -101,6 +101,13 @@ extension TravelNewsView {
                 viewModel.searchKeyword = ""
             }
             .store(in: &anyCancellable)
+        NotificationCenter.default
+            .publisher(for: .register)
+            .sink { _ in
+                viewModel.fetchTravelNewsList(type: .first)
+                viewModel.fetchMyTravelNewsList(count: 5, type: .first)
+            }
+            .store(in: &anyCancellable)
     }
 }
 

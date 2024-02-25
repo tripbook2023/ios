@@ -23,7 +23,7 @@ struct HTMLView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.loadHTMLString(htmlString, baseURL: nil)
+        uiView.loadHTMLString("<meta name=\"viewport\" content=\"initial-scale=1.0\" />" + htmlString, baseURL: nil)
     }
     
     func makeCoordinator() -> Coordinator {

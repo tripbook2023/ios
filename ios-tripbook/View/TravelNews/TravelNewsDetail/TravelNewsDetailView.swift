@@ -129,7 +129,7 @@ struct TravelNewsDetailView: View {
                             image
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: deviceWidth, height: deviceHeight-80)
+                                .frame(width: deviceWidth, height: deviceHeight)
                                 .clipped()
                         default:
                             Text("Failed to load the image")
@@ -154,7 +154,7 @@ struct TravelNewsDetailView: View {
             }
             .offset(.init(width: 20, height: 210))
         }
-        .frame(width: deviceWidth, height: deviceHeight-80)
+        .frame(width: deviceWidth, height: deviceHeight)
     }
     
     func htmlView(content: String) -> some View {

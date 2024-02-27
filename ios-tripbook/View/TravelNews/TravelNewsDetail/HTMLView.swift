@@ -16,9 +16,6 @@ struct HTMLView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
-        webView.snp.makeConstraints { make in
-            make.width.equalTo(UIScreen.main.bounds.width)
-        }
         return webView
     }
     

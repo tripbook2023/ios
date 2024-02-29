@@ -15,6 +15,8 @@ class TravelNewsDetailViewModel: ObservableObject {
     let id: String
     
     @Published var travelNews: TravelNewsModel?
+    @Published var isDownScroll: Bool = false
+    var offset: CGFloat = 0
     
     init(
         apiManager: APIManagerable = TBAPIManager(),
@@ -24,6 +26,15 @@ class TravelNewsDetailViewModel: ObservableObject {
         self.apiManager = apiManager
         self.tokenStorage = tokenStorage
         self.id = id
+    }
+    
+    func setOffset(_ offset: CGFloat) {
+        if self.offset < offset {
+            isDownScroll = false
+        } else {
+            isDownScroll = true
+        }
+        self.offset = offset
     }
     
     func loadData() async {

@@ -16,14 +16,11 @@ struct HTMLView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
-        webView.snp.makeConstraints { make in
-            make.width.equalTo(UIScreen.main.bounds.width)
-        }
         return webView
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.loadHTMLString(htmlString, baseURL: nil)
+        uiView.loadHTMLString("<meta name=\"viewport\" content=\"initial-scale=1.0\" />" + htmlString, baseURL: nil)
     }
     
     func makeCoordinator() -> Coordinator {

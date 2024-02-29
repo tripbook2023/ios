@@ -9,6 +9,13 @@ import Foundation
 import SwiftUI
 import Combine
 
+struct ScrollOffsetKey: PreferenceKey {
+    static var defaultValue: CGFloat = .zero
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value += nextValue()
+    }
+}
+
 struct TravelNewsDetailView: View {
     @ObservedObject var viewModel: TravelNewsDetailViewModel
     @State private var webViewHeight: CGFloat = .zero
@@ -37,7 +44,9 @@ struct TravelNewsDetailView: View {
                     if let content = viewModel.travelNews?.content {
                         htmlView(content: content)
                     }
+                    scrollObservableView
                 }
+                .padding(.bottom, 56)
                 .overlay {
                     VStack {
                         TBAppBar(
@@ -62,11 +71,15 @@ struct TravelNewsDetailView: View {
                 }
                 
             }
+            .onPreferenceChange(ScrollOffsetKey.self, perform: { value in
+                viewModel.setOffset(value)
+            })
             .ignoresSafeArea()
             .toolbarBackground(.hidden, for: .navigationBar)
             .onAppear {
                 guard !isAppear else { return }
                 isAppear = true
+                UIScrollView.appearance().bounces = false
                 Task {
                     await viewModel.loadData()
                 }
@@ -74,8 +87,13 @@ struct TravelNewsDetailView: View {
             .overlay {
                 VStack {
                     Spacer()
-                    bottomView()
+                    if viewModel.isDownScroll {
+                        bottomView()
+                            .transition(.move(edge: .bottom))
+                            .animation(.linear.speed(3.0))
+                    }
                 }
+                .ignoresSafeArea()
             }
         }
         .overlay(content: {
@@ -86,6 +104,18 @@ struct TravelNewsDetailView: View {
                 .opacity(isPopupReportView ? 1 : 0)
         })
         .navigationBarBackButtonHidden()
+    }
+    
+    private var scrollObservableView: some View {
+        GeometryReader { proxy in
+            let offsetY = proxy.frame(in: .global).origin.y
+            Color.clear
+                .preference(
+                    key: ScrollOffsetKey.self,
+                    value: offsetY
+                )
+        }
+        .frame(height: 0)
     }
     
     func profileView(url: URL) -> some View {
@@ -159,16 +189,16 @@ struct TravelNewsDetailView: View {
     
     func htmlView(content: String) -> some View {
         HTMLView(htmlString: content, contentHeight: $webViewHeight)
-            .frame(width: deviceWidth, height: webViewHeight)
+            .frame(height: webViewHeight)
     }
     
     func bottomView() -> some View {
         VStack(spacing: 0) {
             Rectangle()
-                .fill(TBColor.grayscale._50)
+                .fill(TBColor.grayscale._10)
                 .frame(width: deviceWidth, height: 1)
                 
-            HStack {
+            HStack(spacing: 1) {
                 Button {
                     viewModel.likeButtonDidTap()
                 } label: {

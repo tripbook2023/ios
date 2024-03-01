@@ -12,6 +12,7 @@ import CoreData
 struct TravelNewsView: View {
     @StateObject private var viewModel = TravelNewsViewModel()
     @State private var anyCancellable = Set<AnyCancellable>()
+    @State private var isAppear = false
     
     var body: some View {
         NavigationStack {
@@ -77,7 +78,10 @@ struct TravelNewsView: View {
                 }
             }
             .onAppear {
-                bind()
+                if !isAppear {
+                    bind()
+                    isAppear = true
+                }
             }
         }
     }

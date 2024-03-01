@@ -47,7 +47,12 @@ struct RootView: View {
                         Text("홈")
                     }
                     .tag(RootViewModel.TabType.home)
-                Spacer()
+                Text("")
+                    .tabItem {
+                        TBIcon.navigation.plus.normal
+                        Text("등록")
+                    }
+                    .tag(RootViewModel.TabType.register)
                 
                 MypageView(logoutAction: {
                     viewModel.isShowLogoutMessage = true
@@ -68,23 +73,14 @@ struct RootView: View {
             }
             .accentColor(TBColor.primary._50)
             .navigationBarHidden(true)
-            .overlay {
-                VStack {
-                    Spacer()
-                    Button(action: {
-                        viewModel.isPresentRegisterView = true
-                    }, label: {
-                        VStack {
-                            TBIcon.navigation.plus.normal
-                            Text("등록")
-                                .font(TBFont.caption_2)
-                                .foregroundStyle(TBColor.grayscale._40)
-                        }
-                    })
-                    
+            .onChange(of: self.viewModel.selectedTab, perform: { value in
+                if self.viewModel.selectedTab == .register {
+                    self.viewModel.isPresentRegisterView = true
+                } else {
+                    self.viewModel.oldSelectedTab = value
                 }
-                .ignoresSafeArea(.keyboard)
-            }
+            })
+            
 
             VStack(spacing: 6) {
                 Spacer()
@@ -109,6 +105,7 @@ struct RootView: View {
         }
         .fullScreenCover(
             isPresented: $viewModel.isPresentRegisterView,
+            onDismiss: { self.viewModel.selectedTab = self.viewModel.oldSelectedTab },
             content: {
                 RegisterTravelNewsView()
         })

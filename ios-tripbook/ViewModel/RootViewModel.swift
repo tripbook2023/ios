@@ -24,10 +24,11 @@ class RootViewModel: ObservableObject {
     enum TabType {
         /// 홈 화면
         case home
-        
+        case register
         /// 내 정보 화면
         case profile
     }
     /// 활성화된 Tab
     @Published var selectedTab: TabType = .home
+    @Published var oldSelectedTab: TabType = .home
 }

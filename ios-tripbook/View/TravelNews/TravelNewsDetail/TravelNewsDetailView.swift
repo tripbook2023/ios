@@ -104,6 +104,7 @@ struct TravelNewsDetailView: View {
                 .opacity(isPopupReportView ? 1 : 0)
         })
         .navigationBarBackButtonHidden()
+        .toolbar(.hidden, for: .tabBar)
     }
     
     private var scrollObservableView: some View {

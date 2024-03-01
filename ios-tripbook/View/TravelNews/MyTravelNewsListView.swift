@@ -47,18 +47,12 @@ struct TravelNewsEditorListDetailHeaderView: View {
             }
             
             Spacer()
-            
+        }
+        .overlay(content: {
             Text("여행 소식")
                 .font(TBFont.body_3)
                 .foregroundColor(TBColor.grayscale._80)
-            
-            Spacer()
-            
-            NavigationLink(destination: EmptyView()) {
-                TBIcon.search.iconSize(size: .medium)
-                    .foregroundColor(.black)
-            }
-        }
+        })
         .frame(height: 48)
         .padding(.horizontal, 20)
     }

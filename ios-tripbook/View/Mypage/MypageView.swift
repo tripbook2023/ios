@@ -31,15 +31,7 @@ struct MypageView: View {
             ZStack {
                 VStack(spacing: 0) {
                     TBAppBar(
-                        title: "마이페이지",
-                        rightItem:  {
-                            Button {
-                                
-                            } label: {
-                                TBIcon.bell.iconSize(size: .medium)
-                            }
-                            .foregroundColor(.black)
-                        }
+                        title: "마이페이지"
                     )
                     .padding(.horizontal, 20)
                     HStack {

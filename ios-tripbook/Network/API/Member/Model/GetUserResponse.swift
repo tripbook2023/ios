@@ -12,7 +12,7 @@ struct GetUserResponse: Decodable {
     let name: String
     let gender: String?
     let role: String
-    let birth: String
+    let birth: String?
     let profile: String?
     let termsOfService: Bool
     let termsOfPrivacy: Bool
@@ -29,8 +29,8 @@ extension GetUserResponse {
         
         return .init(
             role: Role(rawValue: self.role) ?? .usual,
-            gender: Gender(rawValue: self.gender ?? "MALE") ?? .Male,
-            birth: dateFormatter.date(from: self.birth) ?? .init(),
+            gender: gender == nil ? nil : Gender(rawValue: self.gender!),
+            birth: birth == nil ? nil : dateFormatter.date(from: self.birth!),
             profileImageURL: self.profile,
             terms: [
                 .Service: self.termsOfService,

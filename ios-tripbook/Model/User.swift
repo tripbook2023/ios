@@ -51,9 +51,9 @@ class MyProfile {
     /// 사용자 권한
     var role: Role
     
-    let gender: Gender
+    let gender: Gender?
     
-    let birth: Date
+    let birth: Date?
     
     var profileImageURL: URL?
     
@@ -65,7 +65,7 @@ class MyProfile {
     
     var info: User?
     
-    init(role: Role, gender: Gender, birth: Date, profileImageURL: String? = nil, terms: [Term:Bool], point: Int, status: String, info: User? = nil) {
+    init(role: Role, gender: Gender?, birth: Date?, profileImageURL: String? = nil, terms: [Term:Bool], point: Int, status: String, info: User? = nil) {
         self.role = role
         self.gender = gender
         self.birth = birth

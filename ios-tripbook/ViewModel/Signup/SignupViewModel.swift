@@ -44,15 +44,15 @@ class SignupViewModel: ObservableObject {
         self.userData.profileImage = image
     }
     
-    func registerUserGender(_ gender: Gender) {
+    func registerUserGender(_ gender: Gender?) {
         self.userData.gender = gender
     }
     
-    func registerUserBirth(_ birth: Date) {
+    func registerUserBirth(_ birth: Date?) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        self.userData.birth = dateFormatter.string(from: birth)
+        self.userData.birth = birth == nil ? nil : dateFormatter.string(from: birth!)
     }
     
     func registerUser() -> AnyPublisher<Void, Error> {
@@ -63,7 +63,7 @@ class SignupViewModel: ObservableObject {
             termsOfPrivacy: self.userData.terms[Term.PersonalInfo.rawValue]!,
             termsOfLocation: self.userData.terms[Term.Location.rawValue]!,
             marketingConsent: self.userData.terms[Term.Marketing.rawValue]!,
-            gender: self.userData.gender!.rawValue,
+            gender: self.userData.gender?.rawValue,
             birth: self.userData.birth
         )
         

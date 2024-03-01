@@ -47,8 +47,13 @@ class SignupProfileInfoViewModel: ObservableObject {
 }
 
 extension SignupProfileInfoViewModel: SignupProfileInfoViewDelegate {
-    func didTapGenderButton(_ gender: Gender) {
-        self.gender = gender
+    func didTapGenderButton(_ gender: Gender?) {
+        if self.gender == gender {
+            self.gender = nil
+        } else {
+            self.gender = gender
+        }
+        
     }
     
     func didTapBirthButton() {

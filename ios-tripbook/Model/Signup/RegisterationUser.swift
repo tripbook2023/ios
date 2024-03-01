@@ -19,5 +19,5 @@ struct RegisterationUser {
         Term.Marketing.rawValue     : false
     ]
     var gender: Gender? = nil
-    var birth: String = ""
+    var birth: String? = nil
 }

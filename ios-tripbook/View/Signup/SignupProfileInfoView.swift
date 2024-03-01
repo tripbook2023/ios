@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 protocol SignupProfileInfoViewDelegate {
-    func didTapGenderButton(_ gender: Gender)
+    func didTapGenderButton(_ gender: Gender?)
     func didTapBirthButton()
     func didTapDoneButton()
 }
@@ -37,7 +37,7 @@ struct SignupProfileInfoView: View {
                 .padding(.bottom, 56)
             
             VStack(alignment: .leading, spacing: 24) {
-                Text("성별을 선택해주세요")
+                Text("(선택) 성별을 선택해주세요")
                     .font(TBFont.body_2)
                     .foregroundColor(TBColor.grayscale._70)
                 
@@ -78,48 +78,50 @@ struct SignupProfileInfoView: View {
                 }
             }.padding(.bottom, 48)
             
-            if self.viewModel.gender != nil {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("(선택) 생일을 선택해주세요")
+                    .font(TBFont.body_2)
+                    .foregroundColor(TBColor.grayscale._70)
+                
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("생일을 선택해주세요")
-                        .font(TBFont.body_2)
-                        .foregroundColor(TBColor.grayscale._70)
-                    
-                    VStack(alignment: .leading, spacing: 0) {
-                        Button(action: {
-                            self.showDatePickerAlert()
-                        }) {
-                            HStack {
-                                Text(self.viewModel.birth == nil ? "YYYY - MM - DD" : self.viewModel.birthText)
-                                    .font(TBFont.body_4)
-                                    .foregroundColor(self.viewModel.birth == nil ? TBColor.grayscale._20 : TBColor.grayscale._90)
-                                
-                                Spacer()
-                                
-                                // TODO: - Calendar Icon
+                    Button(action: {
+                        self.showDatePickerAlert()
+                    }) {
+                        HStack {
+                            Text(self.viewModel.birth == nil ? "YYYY - MM - DD" : self.viewModel.birthText)
+                                .font(TBFont.body_4)
+                                .foregroundColor(self.viewModel.birth == nil ? TBColor.grayscale._20 : TBColor.grayscale._90)
+                            
+                            Spacer()
+                            if self.viewModel.birth != nil {
+                                Button {
+                                    viewModel.birth = nil
+                                } label: {
+                                    TBIcon.clear.iconSize(size: .small)
+                                }
                             }
                         }
-                        .padding(.top, 10)
-                        .padding(.vertical, 14)
-                        
-                        Divider()
-                            .frame(minHeight: 1)
-                            .overlay(
-                                self.viewModel.birth == nil ? TBColor.grayscale._10 : TBColor.grayscale._80
-                            )
                     }
+                    .padding(.top, 10)
+                    .padding(.vertical, 14)
+                    
+                    Divider()
+                        .frame(minHeight: 1)
+                        .overlay(
+                            self.viewModel.birth == nil ? TBColor.grayscale._10 : TBColor.grayscale._80
+                        )
                 }
             }
+            
             
             Spacer()
             
             TBPrimaryButton(
                 title: "입력 완료했어요!",
-                isEnabled: Binding(get: {
-                    return self.viewModel.gender != nil && self.viewModel.birth != nil
-                }, set: {_ in})
+                isEnabled: .constant(true)
             ) {
-                self.signupViewModel.registerUserGender(self.viewModel.gender!)
-                self.signupViewModel.registerUserBirth(self.viewModel.birth!)
+                self.signupViewModel.registerUserGender(self.viewModel.gender)
+                self.signupViewModel.registerUserBirth(self.viewModel.birth)
                 self.signupViewModel.registerUser()
                     .receive(on: DispatchQueue.main)
                     .sink { completion in
@@ -165,8 +167,6 @@ struct SignupProfileInfoView: View {
             self.viewModel.birth = datePicker.date
         }
         alertVC.addAction(okAction)
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-//        alertVC.addAction(cancelAction)
         
         if let viewController = UIApplication.shared.windows.first?.rootViewController {
             viewController.present(alertVC, animated: true, completion: nil)

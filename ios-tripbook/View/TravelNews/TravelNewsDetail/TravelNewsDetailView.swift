@@ -21,6 +21,7 @@ struct TravelNewsDetailView: View {
     @State private var webViewHeight: CGFloat = .zero
     @State private var isAppear = false
     @State private var isPopupReportView: Bool = false
+    @State private var isShowedMoreSheet = false
     @Environment(\.dismiss) private var dismiss
     
     init(item: TravelNewsModel) {
@@ -53,12 +54,27 @@ struct TravelNewsDetailView: View {
                                 dismiss()
                             },
                             rightItem: {
-                                Button(action: {
-                                    isPopupReportView = true
-                                }, label: {
-                                    TBIcon.report.iconSize(size: .medium)
-                                })
-                                .foregroundStyle(.white)
+                                HStack(spacing: 12) {
+                                    Button(action: {
+                                        isPopupReportView = true
+                                    }, label: {
+                                        TBIcon.report.iconSize(size: .medium)
+                                    })
+                                    .foregroundStyle(.white)
+                                    if viewModel.isOwner {
+                                        Button(action: {
+                                            isShowedMoreSheet = true
+                                        }, label: {
+                                            TBIcon.more.active.iconSize(size: .medium)
+                                        })
+                                        .foregroundStyle(.white)
+                                        .confirmationDialog("", isPresented: $isShowedMoreSheet) {
+                                            Button("수정") {}
+                                            Button("제거", role: .destructive) {}
+                                            Button("취소", role: .cancel) {}
+                                        }
+                                    }
+                                }
                             },
                             iconColor: .white
                         )

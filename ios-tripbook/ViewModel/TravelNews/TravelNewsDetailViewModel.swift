@@ -8,7 +8,7 @@
 import Foundation
 
 class TravelNewsDetailViewModel: ObservableObject {
-    private let dataStorage = DataStorage.shared
+    private let dataStorage: DataStorage
     private let apiManager: APIManagerable
     private let tokenStorage: TokenStorage
     
@@ -19,11 +19,17 @@ class TravelNewsDetailViewModel: ObservableObject {
     init(
         apiManager: APIManagerable = TBAPIManager(),
         tokenStorage: TokenStorage = .shared,
+        dataStorage: DataStorage = .shared,
         item: TravelNewsModel
     ) {
         self.apiManager = apiManager
         self.tokenStorage = tokenStorage
+        self.dataStorage = dataStorage
         self.travelNews = item
+    }
+    
+    var isOwner: Bool {
+        dataStorage.user?.info?.name == travelNews.author.name
     }
     
     func setOffset(_ offset: CGFloat) {

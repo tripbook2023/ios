@@ -8,5 +8,5 @@
 import Foundation
 
 extension NSNotification.Name {
-    static var register = Self("register")
+    static var refreshMain = Self("refreshMain")
 }

@@ -69,8 +69,18 @@ struct TravelNewsDetailView: View {
                                         })
                                         .foregroundStyle(.white)
                                         .confirmationDialog("", isPresented: $isShowedMoreSheet) {
-                                            Button("수정") {}
-                                            Button("제거", role: .destructive) {}
+                                            Button("수정") {
+                                                
+                                            }
+                                            Button("제거", role: .destructive) {
+                                                Task {
+                                                    await viewModel.deletePost()
+                                                    await MainActor.run {
+                                                        NotificationCenter.default.post(name: .refreshMain, object: nil)
+                                                        dismiss()
+                                                    }
+                                                }
+                                            }
                                             Button("취소", role: .cancel) {}
                                         }
                                     }

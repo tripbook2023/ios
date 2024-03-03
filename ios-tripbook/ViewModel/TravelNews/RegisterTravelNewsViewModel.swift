@@ -63,7 +63,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                 if type == .temp {
                     fatchTempList()
                 } else {
-                    NotificationCenter.default.post(name: .register, object: nil)
+                    NotificationCenter.default.post(name: .refreshMain, object: nil)
                 }
             } catch {
                 

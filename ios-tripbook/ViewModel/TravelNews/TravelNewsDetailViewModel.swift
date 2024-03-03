@@ -41,6 +41,15 @@ class TravelNewsDetailViewModel: ObservableObject {
         self.offset = offset
     }
     
+    func deletePost() async {
+        do {
+            let api = TBTravelNewsAPI.delete(id: travelNews.id)
+            _ = try await apiManager.request(api, encodingType: .url)
+        } catch {
+            
+        }
+    }
+    
     func likeButtonDidTap() {
         Task {
             do {

@@ -202,7 +202,7 @@ struct TravelNewsDetailView: View {
                         TBIcon.like.active.iconSize(size: .medium)
                             .foregroundColor(TBColor.primary._50)
                     } else {
-                        TBIcon.like.normal
+                        TBIcon.like.normal.iconSize(size: .medium)
                             .foregroundStyle(TBColor.grayscale._50)
                     }
                     

@@ -51,6 +51,7 @@ struct TravelNewsDetailView: View {
                         TBAppBar(
                             title: nil,
                             onClickedBackButton: {
+                                UIScrollView.appearance().bounces = true
                                 dismiss()
                             },
                             rightItem: {
@@ -77,6 +78,7 @@ struct TravelNewsDetailView: View {
                                                     await viewModel.deletePost()
                                                     await MainActor.run {
                                                         NotificationCenter.default.post(name: .refreshMain, object: nil)
+                                                        UIScrollView.appearance().bounces = true
                                                         dismiss()
                                                     }
                                                 }

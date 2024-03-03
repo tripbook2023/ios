@@ -51,7 +51,7 @@ struct TravelNewsMiniListItemView: View {
             self.isPresentedDetailView.toggle()
         }
         .navigationDestination(isPresented: $isPresentedDetailView) {
-            TravelNewsDetailView(id: "\(item.id)")
+            TravelNewsDetailView(item: item)
         }
     }
 }

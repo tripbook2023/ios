@@ -23,8 +23,8 @@ struct TravelNewsDetailView: View {
     @State private var isPopupReportView: Bool = false
     @Environment(\.dismiss) private var dismiss
     
-    init(id: String) {
-        self.viewModel = TravelNewsDetailViewModel(id: id)
+    init(item: TravelNewsModel) {
+        self.viewModel = TravelNewsDetailViewModel(item: item)
     }
     
     var deviceWidth: CGFloat {
@@ -41,9 +41,7 @@ struct TravelNewsDetailView: View {
                 VStack(alignment: .center, spacing: 0) {
                     coverView()
                     authorView()
-                    if let content = viewModel.travelNews?.content {
-                        htmlView(content: content)
-                    }
+                    htmlView(content: viewModel.travelNews.content)
                     scrollObservableView
                 }
                 .padding(.bottom, 56)
@@ -80,9 +78,6 @@ struct TravelNewsDetailView: View {
                 guard !isAppear else { return }
                 isAppear = true
                 UIScrollView.appearance().bounces = false
-                Task {
-                    await viewModel.loadData()
-                }
             }
             .overlay {
                 VStack {
@@ -100,7 +95,7 @@ struct TravelNewsDetailView: View {
             Color.black
                 .ignoresSafeArea()
                 .opacity(isPopupReportView ? 0.6 : 0)
-            ReportPopupView(postId: Int(viewModel.id)!, isPresented: $isPopupReportView)
+            ReportPopupView(postId: viewModel.travelNews.id, isPresented: $isPopupReportView)
                 .opacity(isPopupReportView ? 1 : 0)
         })
         .navigationBarBackButtonHidden()
@@ -134,11 +129,11 @@ struct TravelNewsDetailView: View {
         HStack(alignment: .center) {
             Spacer()
             
-            if let url = viewModel.travelNews?.author.profileUrl {
+            if let url = viewModel.travelNews.author.profileUrl {
                 profileView(url: url)
             }
             
-            Text(viewModel.travelNews?.author.name ?? "name")
+            Text(viewModel.travelNews.author.name)
                 .font(.suit(.bold, size: 12))
                 .padding(.trailing, 20)
         }
@@ -151,7 +146,7 @@ struct TravelNewsDetailView: View {
     
     func coverView() -> some View {
         ZStack(alignment: .topLeading) {
-            if let url = viewModel.travelNews?.thumbnailURL {
+            if let url = viewModel.travelNews.thumbnailURL {
                 AsyncImage(url: url) { phase in
                     switch phase {
                         case .empty:
@@ -170,16 +165,16 @@ struct TravelNewsDetailView: View {
             
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 6) {
-                    if let url = viewModel.travelNews?.author.profileUrl {
+                    if let url = viewModel.travelNews.author.profileUrl {
                         profileView(url: url)
                     }
                     
-                    Text(viewModel.travelNews?.author.name ?? "name")
+                    Text(viewModel.travelNews.author.name)
                         .foregroundColor(.white)
                         .font(.suit(.bold, size: 12))
                 }
                 
-                Text(viewModel.travelNews?.title ?? "aa")
+                Text(viewModel.travelNews.title)
                     .font(.suit(.bold, size: 24))
                     .foregroundColor(.white)
             }
@@ -203,19 +198,18 @@ struct TravelNewsDetailView: View {
                 Button {
                     viewModel.likeButtonDidTap()
                 } label: {
-                    if let travelNews = viewModel.travelNews {
-                        if travelNews.isLiked {
-                            TBIcon.like.active.iconSize(size: .medium)
-                                .foregroundColor(TBColor.primary._50)
-                        } else {
-                            TBIcon.like.normal
-                                .foregroundStyle(TBColor.grayscale._50)
-                        }
+                    if viewModel.travelNews.isLiked {
+                        TBIcon.like.active.iconSize(size: .medium)
+                            .foregroundColor(TBColor.primary._50)
+                    } else {
+                        TBIcon.like.normal
+                            .foregroundStyle(TBColor.grayscale._50)
                     }
+                    
                 }
                 .frame(width: 24, height: 24)
                 
-                Text("\(viewModel.travelNews?.likeCount ?? 0)")
+                Text("\(viewModel.travelNews.likeCount)")
                     .font(.suit(.medium, size: 10))
                     .foregroundColor(TBColor.grayscale._50)
                 
@@ -227,7 +221,8 @@ struct TravelNewsDetailView: View {
         .background(.white)
     }
 }
-
+#if DEBUG
 #Preview {
-    TravelNewsDetailView(id: "74")
+    TravelNewsDetailView(item: TravelNewsModel.dummy)
 }
+#endif

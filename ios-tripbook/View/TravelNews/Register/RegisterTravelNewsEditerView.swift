@@ -192,7 +192,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                         size: .init(width: 335, height: 335)) { [weak self] image, _ in
                             guard let self = self else { return }
                             if let image = image,
-                            let imagedata = image.jpegData(compressionQuality: 0.8) {
+                            let imagedata = image.jpegData(compressionQuality: 0.5) {
                                 Task {
                                     await self.callImageAPI(data: imagedata, uiImage: image)
                                 }
@@ -975,6 +975,10 @@ extension RegisterTravelReportVC {
                 if temps.isEmpty {
                     self.tempButton.isHidden = true
                 } else {
+                    if viewModel.isEditing {
+                        self.tempButton.isHidden = true
+                        return
+                    }
                     self.tempButton.isHidden = false
                     let customFont = UIFont(name: "SUIT-Regular", size: 14)
                     let tempAtts: [NSAttributedString.Key : Any] = [
@@ -1005,19 +1009,22 @@ extension RegisterTravelReportVC {
                     self.photoLabel.isHidden = false
                 }
                 self.titleTextView.text = temp.title
+                self.titleTextCountLabel.text = "\(titleTextView.text.count)"
                 if !temp.title.isEmpty {
                     self.titlePlaceHolderLabel.isHidden = true
                 } else {
                     self.titlePlaceHolderLabel.isHidden = false
                 }
                 self.contentTextView.attributedText = self.viewModel.readHTML(htmlContent: temp.content)
-                
+                self.contentCountLabel.text = "\(contentTextView.text.count)"
                 if !temp.content.isEmpty {
                     self.contentPlaceHolderLabel.isHidden = true
                 } else {
                     self.contentPlaceHolderLabel.isHidden = false
                 }
                 self.viewModel.location = temp.location
+                self.viewModel.title = temp.title
+                
                 
             }.store(in: &anyCancellable)
     }

@@ -29,7 +29,6 @@ class HTMLEditorService {
     
     func convertStyleToDic(form styleString: String?) -> [String: String] {
         guard let styleString else { return [:] }
-        print("convertStyleToDic")
         var dic: [String: String] = [:]
         
         let lines = styleString.components(separatedBy: "\n")

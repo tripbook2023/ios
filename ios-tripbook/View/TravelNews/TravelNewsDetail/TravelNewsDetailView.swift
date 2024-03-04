@@ -22,6 +22,7 @@ struct TravelNewsDetailView: View {
     @State private var isAppear = false
     @State private var isPopupReportView: Bool = false
     @State private var isShowedMoreSheet = false
+    @State private var isPresentedEditView = false
     @Environment(\.dismiss) private var dismiss
     
     init(item: TravelNewsModel) {
@@ -71,7 +72,7 @@ struct TravelNewsDetailView: View {
                                         .foregroundStyle(.white)
                                         .confirmationDialog("", isPresented: $isShowedMoreSheet) {
                                             Button("수정") {
-                                                
+                                                isPresentedEditView = true
                                             }
                                             Button("제거", role: .destructive) {
                                                 Task {
@@ -128,6 +129,9 @@ struct TravelNewsDetailView: View {
         })
         .navigationBarBackButtonHidden()
         .toolbar(.hidden, for: .tabBar)
+        .navigationDestination(isPresented: $isPresentedEditView) {
+            RegisterTravelNewsView(editItem: viewModel.travelNews)
+        }
     }
     
     private var scrollObservableView: some View {

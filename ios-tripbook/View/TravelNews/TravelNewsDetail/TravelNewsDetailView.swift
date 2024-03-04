@@ -154,7 +154,7 @@ struct TravelNewsDetailView: View {
         .frame(height: 0)
     }
     
-    func profileView(url: URL) -> some View {
+    func profileView(url: URL?) -> some View {
         KFImage(url)
             .placeholder {
                 Image("DefaultProfileImage")
@@ -174,11 +174,7 @@ struct TravelNewsDetailView: View {
     func authorView() -> some View {
         HStack(alignment: .center) {
             Spacer()
-            
-            if let url = viewModel.travelNews.author.profileUrl {
-                profileView(url: url)
-            }
-            
+            profileView(url: viewModel.travelNews.author.profileUrl)
             Text(viewModel.travelNews.author.name)
                 .font(.suit(.bold, size: 12))
                 .padding(.trailing, 20)
@@ -192,22 +188,16 @@ struct TravelNewsDetailView: View {
     
     func coverView() -> some View {
         ZStack(alignment: .topLeading) {
-            if let url = viewModel.travelNews.thumbnailURL {
-                KFImage.url(url)
-                    .placeholder({
-                        TBColor.grayscale._30
-                    })
-                    .setProcessor(self.thumbnailProcessor)
-                    .cacheMemoryOnly()
-                    .frame(width: deviceWidth, height: deviceHeight)
-            }
-            
+            KFImage.url(viewModel.travelNews.thumbnailURL)
+                .placeholder({
+                    TBColor.grayscale._30
+                })
+                .setProcessor(self.thumbnailProcessor)
+                .cacheMemoryOnly()
+                .frame(width: deviceWidth, height: deviceHeight)
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 6) {
-                    if let url = viewModel.travelNews.author.profileUrl {
-                        profileView(url: url)
-                    }
-                    
+                    profileView(url: viewModel.travelNews.author.profileUrl)
                     Text(viewModel.travelNews.author.name)
                         .foregroundColor(.white)
                         .font(.suit(.bold, size: 12))

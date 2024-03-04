@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import Kingfisher
 
 struct ScrollOffsetKey: PreferenceKey {
     static var defaultValue: CGFloat = .zero
@@ -35,6 +36,13 @@ struct TravelNewsDetailView: View {
     
     var deviceHeight: CGFloat {
         return UIScreen.main.bounds.height
+    }
+    
+    private var thumbnailProcessor: ResizingImageProcessor {
+        return ResizingImageProcessor(
+            referenceSize: .init(width: deviceWidth, height: deviceHeight),
+            mode: .aspectFill
+        )
     }
     
     var body: some View {
@@ -147,7 +155,13 @@ struct TravelNewsDetailView: View {
     }
     
     func profileView(url: URL) -> some View {
-            AsyncImage(url: url)
+        KFImage(url)
+            .placeholder {
+                Image("DefaultProfileImage")
+            }
+            .resizable()
+            .cacheMemoryOnly()
+            .scaledToFill()
             .frame(width: 14, height: 14)
             .clipShape(Circle())
             .overlay {
@@ -179,20 +193,13 @@ struct TravelNewsDetailView: View {
     func coverView() -> some View {
         ZStack(alignment: .topLeading) {
             if let url = viewModel.travelNews.thumbnailURL {
-                AsyncImage(url: url) { phase in
-                    switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: deviceWidth, height: deviceHeight)
-                                .clipped()
-                        default:
-                            Text("Failed to load the image")
-                    }
-                }
+                KFImage.url(url)
+                    .placeholder({
+                        TBColor.grayscale._30
+                    })
+                    .setProcessor(self.thumbnailProcessor)
+                    .cacheMemoryOnly()
+                    .frame(width: deviceWidth, height: deviceHeight)
             }
             
             VStack(alignment: .leading, spacing: 8) {

@@ -23,17 +23,14 @@ struct TravelNewsListItemView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            
             NavigationLink {
-                TravelNewsDetailView(id: "\(item.id)")
+                TravelNewsDetailView(item: item)
             } label: {
                 KFImage(item.thumbnailURL)
                     .resizable()
                     .frame(height: 335)
                     .overlay(TBColor.grayscale._90.opacity(0.4))
             }
-
-            
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 4) {
                     TBAvatar(type: .basic, profileImageURL: item.author.profileUrl)

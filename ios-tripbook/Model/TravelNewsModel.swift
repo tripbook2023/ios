@@ -64,8 +64,8 @@ struct TravelNewsModel: Identifiable {
                 profileUrl: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg",
                 role: ""
             ),
-            content: "xxxx",
-            title: "뚜벅이가 여행하기 좋은 장소 Top 5", 
+            content: "\n<p class=\"p1\" style=\"margin: 0.0px 0.0px 0.0px 0.0px; font: 20.0px '.AppleSystemUIFont'; color: #000000\"><span class=\"s1\" style=\"font-family: '.SFUI-Regular'; font-weight: normal; font-style: normal; font-size: 20.00px\">풀풀풀</span></p>\n<p class=\"p2\" style=\"margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px '.AppleSystemUIFont'; color: #000000\"><span class=\"s2\" style=\"font-family: '.SFUI-Regular'; font-weight: normal; font-style: normal; font-size: 16.00px\">풀풀풀</span></p>\n<p class=\"p3\" style=\"margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px '.AppleSystemUIFont'; color: #000000\"><span class=\"s3\" style=\"font-family: '.SFUI-Regular'; font-weight: normal; font-style: normal; font-size: 14.00px\">풀풀풀</span></p><img id=518 style=\"border-radius:12.56px;\" src=\"https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/article/image/7e79c357-4bdb-4a97-9e08-bfb19da16a1557875%20bytes.jpeg\" width=\"335\">\n",
+            title: "뚜벅이가 여행하기 좋은 장소 Top 5",
             thumbnailURL: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg",
             location: nil,
             likeCount: 3,

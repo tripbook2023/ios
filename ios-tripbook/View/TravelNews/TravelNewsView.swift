@@ -106,7 +106,7 @@ extension TravelNewsView {
             }
             .store(in: &anyCancellable)
         NotificationCenter.default
-            .publisher(for: .register)
+            .publisher(for: .refreshMain)
             .sink { _ in
                 viewModel.fetchTravelNewsList(type: .first)
                 viewModel.fetchMyTravelNewsList(count: 5, type: .first)

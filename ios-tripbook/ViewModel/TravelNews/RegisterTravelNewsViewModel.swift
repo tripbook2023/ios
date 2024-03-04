@@ -25,6 +25,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     var content: String = ""
     var thumbnail: String?
     var thumbnailId: Int?
+    var isEditing: Bool = false
     var fileIds = [Int: String]()
     var usedIds: Set<Int> = []
     
@@ -52,7 +53,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
             do {
                 let api = TBTravelNewsAPI.save(
                     saveType: type,
-                    id: nil,
+                    id: type == .register && isEditing ? tempItem?.id : nil,
                     title: title,
                     content: content,
                     fileIds: Array(usedIds),
@@ -63,7 +64,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                 if type == .temp {
                     fatchTempList()
                 } else {
-                    NotificationCenter.default.post(name: .register, object: nil)
+                    NotificationCenter.default.post(name: .refreshMain, object: nil)
                 }
             } catch {
                 

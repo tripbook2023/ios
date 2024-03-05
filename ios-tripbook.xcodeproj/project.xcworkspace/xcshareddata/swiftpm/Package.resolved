@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tripbook2023/iOS-TripBook-ImagePicker-Package",
       "state" : {
-        "revision" : "c199506cfb1cd7c3cd9dfa0a2169b1b1a9ea11c7",
-        "version" : "1.0.8"
+        "revision" : "e073ff96422be68baf1298ac60bbf2def7f39f27",
+        "version" : "1.0.9"
       }
     },
     {

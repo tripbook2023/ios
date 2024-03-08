@@ -122,6 +122,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         contentButton.addTarget(self, action: #selector(tapContentButton), for: .touchUpInside)
         boldButton.addTarget(self, action: #selector(tapBoldButton), for: .touchUpInside)
         draftButton.addTarget(self, action: #selector(tapDraftButton), for: .touchUpInside)
+        contentTextView.font = UIFont.systemFont(ofSize: 14)
     }
     
     @objc
@@ -887,6 +888,8 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             mutableAttributedString.append(imageString)
             
             contentTextView.attributedText = NSAttributedString(attributedString: mutableAttributedString)
+            
+            contentTextView.font = UIFont.systemFont(ofSize: 14)
         }
     }
     

@@ -38,7 +38,7 @@ class TravelNewsSearchLocationViewModel: ObservableObject {
                 query: keyword
             ),
             type: LocationSearchResponse.self,
-            encodingType: .json
+            encodingType: .url
         ).toDomain
         
         locationInfos = result ?? []

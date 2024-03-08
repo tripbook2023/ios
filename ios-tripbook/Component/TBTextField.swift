@@ -27,8 +27,16 @@ public struct TBTextField: View {
     /// TextField Submit Event
     var onSubmitEvent: () -> Void
     
-    public init(title: String, text: Binding<String>, isValid: Binding<Bool?> = .constant(nil), warningMessage: Binding<String?> = .constant(nil), onSubmitEvent: @escaping () -> Void) {
+    public init(
+        title: String,
+        text: Binding<String>,
+        isFocused: FocusState<Bool> = .init(),
+        isValid: Binding<Bool?> = .constant(nil),
+        warningMessage: Binding<String?> = .constant(nil),
+        onSubmitEvent: @escaping () -> Void
+    ) {
         self.title = title
+        self._isFocused = isFocused
         self._text = text
         self._isValid = isValid
         self._warningMessage = warningMessage
@@ -44,6 +52,7 @@ public struct TBTextField: View {
                     .font(TBFont.body_4)
                     .foregroundColor(!self.text.isEmpty || self.isFocused ? TBColor.grayscale._90 : TBColor.grayscale._20)
                     .autocorrectionDisabled(true)
+                    .focused($isFocused)
                     .onSubmit {
                         self.onSubmitEvent()
                     }

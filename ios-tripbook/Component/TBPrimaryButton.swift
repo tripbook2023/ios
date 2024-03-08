@@ -67,7 +67,8 @@ enum TBButtonType {
     var disabledBackgroundColor: Color {
         switch self {
         case .filled: return TBColor.grayscale._10
-        case .outline, .customOutline: return TBColor.grayscale._1
+        case .outline: return TBColor.grayscale._1
+        case .customOutline: return TBColor.grayscale._5
         }
     }
     
@@ -169,13 +170,12 @@ struct TBButtonStyle: PrimitiveButtonStyle {
         
         return configuration.label
             .foregroundColor(
-                self.titleTextColor != nil ?
-                self.titleTextColor! :
-                    (self.isEnabled ?
-                     (self.isPressed ?
-                      self.type.pressedFontColor :
-                        self.type.fontColor) :
-                        self.type.disabledFontColor)
+                self.isEnabled ?
+                (
+                    self.isPressed ? self.type.pressedFontColor : (
+                        self.titleTextColor != nil ? self.titleTextColor! : self.type.fontColor
+                    )
+                ) : self.type.disabledFontColor
             )
             .background(
                 RoundedRectangle(cornerRadius: self.size.cornerRadius)

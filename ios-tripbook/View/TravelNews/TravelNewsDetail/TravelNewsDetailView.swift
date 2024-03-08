@@ -51,7 +51,19 @@ struct TravelNewsDetailView: View {
                 VStack(alignment: .center, spacing: 0) {
                     coverView()
                     authorView()
+                    HStack(spacing: 4) {
+                        if viewModel.travelNews.location != nil {
+                            TBIcon.location[1].iconSize(size: .small)
+                            Text("\(viewModel.travelNews.location!.placeName)")
+                                .font(TBFont.caption_1)
+                                .foregroundStyle(TBColor.grayscale._40)
+                        }
+                        Spacer()
+                    }
+                    .padding(.top, 24)
+                    .padding(.horizontal, 16)
                     htmlView(content: viewModel.travelNews.content)
+                        .padding(.horizontal, 12)
                     scrollObservableView
                 }
                 .padding(.bottom, 56)

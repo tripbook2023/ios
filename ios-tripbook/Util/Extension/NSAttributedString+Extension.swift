@@ -17,7 +17,7 @@ extension NSAttributedString {
         ) { value, range, _ in
             if let id = value as? Int {
                 if let urlString = dic[id] {
-                    arr.append("<img id=\(id) style=\"border-radius:12.56px;\" src=\"\(urlString)\" width=\"335\">")
+                    arr.append("<img id=\(id) style=\"border-radius:12.56px; margin-top: 20px; margin-bottom: 20px\" src=\"\(urlString)\" width=\"335\">")
                     usedIds.insert(id)
                 }
             }

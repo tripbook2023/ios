@@ -46,11 +46,12 @@ extension SignupProfileNameViewModel: SignupProfileNameViewDelegate {
                         type: NicknameValidationResponse.self,
                         encodingType: .url
                     ).toDomain
-                    
-                    if !isValid {
-                        nicknameTextState = .duplicate
-                    } else {
-                        nicknameTextState = .none
+                    await MainActor.run {
+                        if !isValid {
+                            nicknameTextState = .duplicate
+                        } else {
+                            nicknameTextState = .none
+                        }
                     }
                 } catch {
                     

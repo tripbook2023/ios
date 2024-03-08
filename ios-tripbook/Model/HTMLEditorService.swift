@@ -55,9 +55,8 @@ class HTMLEditorService {
         var htmlBody = body
         
         for (key, value) in style {
-            let ranges = htmlBody.ranges(of: "\"\(key)\"")
-            if let lastRange = ranges.last?.upperBound {
-                htmlBody.insert(contentsOf: " style=\"\(value)\"", at: lastRange)
+            for range in htmlBody.ranges(of: "\"\(key)\"").reversed() {
+                htmlBody.insert(contentsOf: " style=\"\(value); line-height: 1.5\"", at: range.upperBound)
             }
         }
         return htmlBody

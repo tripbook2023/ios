@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-@MainActor
 final class MypageViewModel: ObservableObject {
     private var dataStorage: DataStorage
     private var tokenStorage: TokenStorage
@@ -19,6 +18,9 @@ final class MypageViewModel: ObservableObject {
     @Published var userInfo: MyProfile?
     @Published var isShowLogOutPopup: Bool = false
     @Published var isShowMemberDeletePopup: Bool = false
+    @Published var deleteName: String = ""
+    @Published var warningMessage: String?
+
     
     init(
         dataStorage: DataStorage = .shared,
@@ -45,10 +47,32 @@ final class MypageViewModel: ObservableObject {
             let api = TBMemberAPI.delete(email: email)
             _ = try await apiManager.request(api, encodingType: .url)
             deleteToken()
-            completion()
+            await MainActor.run {
+                completion()
+            }
         } catch {
             print("deleteMember error: " + error.localizedDescription)
         }
         
+    }
+    
+    func checkValidationNickname() {
+        let regex = "^[가-힣a-zA-Z0-9]*$"
+        
+        if self.deleteName.count > 10 {
+            self.warningMessage = NicknameTextState.invalid.getWarningMessage()
+        } else if self.deleteName.range(of: regex, options: .regularExpression) == nil {
+            self.warningMessage = NicknameTextState.useSpecialCharacters.getWarningMessage()
+        } else {
+            checkMyName()
+        }
+    }
+    
+    private func checkMyName() {
+        if deleteName == dataStorage.user?.info?.name {
+            self.warningMessage = nil
+        } else {
+            self.warningMessage = NicknameTextState.notSame.getWarningMessage()
+        }
     }
 }

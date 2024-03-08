@@ -57,6 +57,7 @@ final class EditProfileViewModel: ObservableObject {
             self.warningMessage = nil
             return
         }
+        guard warningMessage == nil else { return }
         Task {
             do {
                 let api = TBMemberAPI.nicknameValidate(name: newName)

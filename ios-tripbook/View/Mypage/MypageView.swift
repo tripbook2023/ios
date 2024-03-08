@@ -144,20 +144,10 @@ struct MypageView: View {
                         )
                         .opacity(viewModel.isShowLogOutPopup ? 1 : 0)
                         
-                        TBPopup(
-                            title: "회원탈퇴하시겠습니까?",
-                            confirmButtonText: "회원탈퇴",
-                            dismissButtonText: "취소",
-                            didTapConfirmButton: {
-                                Task {
-                                    await self.viewModel.deleteMember(completion: self.logoutAction ?? {})
-                                    
-                                }
-                                
-                            },
-                            didTapDismissButton: {
-                                viewModel.isShowMemberDeletePopup.toggle()
-                            }
+                        MemberDeletePopup(
+                            viewModel: viewModel,
+                            isPresented: $viewModel.isShowMemberDeletePopup,
+                            logoutAction: logoutAction
                         )
                         .opacity(viewModel.isShowMemberDeletePopup ? 1 : 0)
                     }

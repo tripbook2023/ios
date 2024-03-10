@@ -44,7 +44,6 @@ class HTMLEditorService {
                 
                 var slicedValueString = String(line[firstIndexValue..<lastIndexValue])
                 slicedValueString.removeFirst()
-                
                 dic[slicedKeyString] = slicedValueString
             }
         }

@@ -116,6 +116,28 @@ struct TravelNewsDetailView: View {
                         Spacer()
                     }
                 }
+                .overlay {
+                    VStack {
+                        TBAppBar(
+                            title: nil,
+                            onClickedBackButton: {
+                                dismiss()
+                            },
+                            rightItem: {
+                                Button(action: {
+                                    isPopupReportView = true
+                                }, label: {
+                                    TBIcon.report.iconSize(size: .medium)
+                                })
+                                .foregroundStyle(.white)
+                            },
+                            iconColor: .white
+                        )
+                        .padding(.top, 40)
+                        .padding(.horizontal, 20)
+                        Spacer()
+                    }
+                }
                 
             }
             .onPreferenceChange(ScrollOffsetKey.self, perform: { value in

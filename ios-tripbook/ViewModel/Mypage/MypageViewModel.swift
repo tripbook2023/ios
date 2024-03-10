@@ -20,7 +20,6 @@ final class MypageViewModel: ObservableObject {
     @Published var isShowMemberDeletePopup: Bool = false
     @Published var deleteName: String = ""
     @Published var warningMessage: String?
-
     
     init(
         dataStorage: DataStorage = .shared,

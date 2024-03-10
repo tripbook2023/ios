@@ -96,7 +96,6 @@ struct ReportPopupView: View {
                         await viewModel.requestReport(id: postId)
                         await MainActor.run { onReport() }
                     }
-                    
                 }
             }
             .frame(width: 260)

@@ -167,6 +167,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                             let (imageURL, id) = await self.viewModel.setImage(imageData!, imageType: .thumbnail)
                             self.viewModel.thumbnail = imageURL
                             self.viewModel.thumbnailId = id
+
                         }
                     }
                 }
@@ -1027,8 +1028,6 @@ extension RegisterTravelReportVC {
                 }
                 self.viewModel.location = temp.location
                 self.viewModel.title = temp.title
-                
-                
             }.store(in: &anyCancellable)
     }
 }

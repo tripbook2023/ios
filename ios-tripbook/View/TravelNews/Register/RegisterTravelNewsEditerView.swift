@@ -343,6 +343,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         
         coverImageView = UIImageView()
         coverImageView.contentMode = .scaleAspectFill
+        coverImageView.clipsToBounds = true
         
         coverContainerView.addSubview(coverImageView)
         coverImageView.snp.makeConstraints { make in

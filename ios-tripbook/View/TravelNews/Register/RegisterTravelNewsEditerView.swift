@@ -882,12 +882,17 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             // image를 찾을 수 있도록 ID 를 추가
             imageString.addAttribute(.init("ID"), value: id, range: NSRange(location: 0, length: imageString.length))
             
-            // 기존 NSAttributedString 끝에 이미지를 추가
             let currentNSArr = contentTextView.attributedText ?? .init(string: "")
             
             let mutableAttributedString = NSMutableAttributedString(attributedString: currentNSArr)
-            mutableAttributedString.append(imageString)
-            
+            if let selectedRange = contentTextView.selectedTextRange {
+                let start = contentTextView.offset(from: contentTextView.beginningOfDocument, to: selectedRange.start)
+                // 커서 위치에 이미지를 추가
+                mutableAttributedString.insert(imageString, at: start)
+            } else {
+                // 기존 NSAttributedString 끝에 이미지를 추가
+                mutableAttributedString.append(imageString)
+            }
             contentTextView.attributedText = NSAttributedString(attributedString: mutableAttributedString)
             
             contentTextView.font = UIFont.systemFont(ofSize: 14)

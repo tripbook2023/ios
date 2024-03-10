@@ -29,17 +29,19 @@ struct TravelNewsListView: View {
                     LazyVStack(spacing: 20) {
                         ForEach(0..<viewModel.travelNewsList.count, id: \.self) { i in
                             let item = viewModel.travelNewsList[i]
-                            TravelNewsListItemView(
-                                item: Binding(
-                                    get: { item },
-                                    set: {_ in }
-                                )
-                            ) {
-                                viewModel.likeButtonDidTap(index: i)
-                            }
-                            .onAppear {
-                                if i > viewModel.travelNewsList.count - 3 {
-                                    viewModel.fetchTravelNewsList(type: .next)
+                            if !item.isReport {
+                                TravelNewsListItemView(
+                                    item: Binding(
+                                        get: { item },
+                                        set: {_ in }
+                                    )
+                                ) {
+                                    viewModel.likeButtonDidTap(index: i)
+                                }
+                                .onAppear {
+                                    if i > viewModel.travelNewsList.count - 3 {
+                                        viewModel.fetchTravelNewsList(type: .next)
+                                    }
                                 }
                             }
                         }

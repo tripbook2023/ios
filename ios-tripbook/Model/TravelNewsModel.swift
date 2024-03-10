@@ -28,6 +28,7 @@ struct TravelNewsModel: Identifiable {
     
     /// 생성 날짜
     let createdAt: String
+    let isReport: Bool
     
     init(
         id: Int,
@@ -38,7 +39,8 @@ struct TravelNewsModel: Identifiable {
         location: LocationInfo?,
         likeCount: Int,
         isLiked: Bool,
-        createdAt: String
+        createdAt: String,
+        isReport: Bool
     ) {
         self.id = id
         self.author = author
@@ -53,6 +55,7 @@ struct TravelNewsModel: Identifiable {
         self.likeCount = likeCount
         self.isLiked = isLiked
         self.createdAt = createdAt.prefix(10).replacingOccurrences(of: "-", with: ".")
+        self.isReport = isReport
     }
     
     #if DEBUG
@@ -70,7 +73,8 @@ struct TravelNewsModel: Identifiable {
             location: nil,
             likeCount: 3,
             isLiked: false,
-            createdAt: "2023.06.30"
+            createdAt: "2023.06.30",
+            isReport: false
         )
     }
     #endif

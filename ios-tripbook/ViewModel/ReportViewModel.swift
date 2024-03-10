@@ -18,14 +18,15 @@ final class ReportViewModel: ObservableObject {
         self.apiManager = apiManager
     }
     
-    func requestReport(id: Int) {
-        Task {
-            do {
-                let api = TBTravelNewsAPI.report(id: id, content: content)
-                _ = try await apiManager.request(api, encodingType: .json)
-            } catch {
-                
+    func requestReport(id: Int) async {
+        do {
+            let api = TBTravelNewsAPI.report(id: id, content: content)
+            _ = try await apiManager.request(api, encodingType: .json)
+            await MainActor.run {
+                NotificationCenter.default.post(name: .refreshMain, object: nil)
             }
+        } catch {
+            
         }
     }
 }

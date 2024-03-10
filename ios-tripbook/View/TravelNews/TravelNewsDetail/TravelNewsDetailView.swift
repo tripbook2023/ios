@@ -140,13 +140,18 @@ struct TravelNewsDetailView: View {
                 .ignoresSafeArea()
             }
         }
-        .overlay(content: {
+        .overlay {
             Color.black
                 .ignoresSafeArea()
                 .opacity(isPopupReportView ? 0.6 : 0)
-            ReportPopupView(postId: viewModel.travelNews.id, isPresented: $isPopupReportView)
-                .opacity(isPopupReportView ? 1 : 0)
-        })
+            ReportPopupView(
+                postId: viewModel.travelNews.id,
+                isPresented: $isPopupReportView
+            ) {
+                self.dismiss()
+            }
+            .opacity(isPopupReportView ? 1 : 0)
+        }
         .navigationBarBackButtonHidden()
         .toolbar(.hidden, for: .tabBar)
         .navigationDestination(isPresented: $isPresentedEditView) {

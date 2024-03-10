@@ -43,7 +43,7 @@ struct MemberDeletePopup: View {
             .frame(width: 260)
             
             if !isDeleteSuccess {
-                VStack {
+                VStack(spacing: 8) {
                     Text("회원 탈퇴를 진행하시면\n기존에 작성된 게시글이 모두 삭제됩니다.")
                         .multilineTextAlignment(.center)
                         .foregroundStyle(TBColor.grayscale._90)

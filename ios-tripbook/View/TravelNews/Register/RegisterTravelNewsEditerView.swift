@@ -399,7 +399,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         titleTextView = UITextView()
         titleTextView.tag = 0
         titleTextView.delegate = self
-        titleTextView.font = UIFont(name: "SUIT-Bold", size: 24)
+        titleTextView.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         titleTextView.backgroundColor = .clear
         titleTextView.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         titleTextView.textContainer.maximumNumberOfLines = 2
@@ -449,7 +449,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         let locaionIcon = UIImageView(image: .init(named: "Location/02"))
         
         contentLocationLabel = UILabel()
-        contentLocationLabel.font = UIFont(name: "SUIT-Medium", size: 12)
+        contentLocationLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         contentLocationLabel.backgroundColor = .clear
         contentLocationLabel.textColor = UIColor(.init(rgb: .init(red: 127, green: 116, blue: 113)))
         contentLocationLabel.text = "위치명"
@@ -489,7 +489,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         }
         
         contentTextView = UITextView()
-        contentTextView.font = UIFont(name: "SUIT-Regular", size: 14)
+        contentTextView.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         contentTextView.tag = 1
         contentTextView.backgroundColor = .clear
         contentTextView.delegate = self

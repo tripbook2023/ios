@@ -122,7 +122,6 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         contentButton.addTarget(self, action: #selector(tapContentButton), for: .touchUpInside)
         boldButton.addTarget(self, action: #selector(tapBoldButton), for: .touchUpInside)
         draftButton.addTarget(self, action: #selector(tapDraftButton), for: .touchUpInside)
-        contentTextView.font = UIFont.systemFont(ofSize: 14)
     }
     
     @objc
@@ -893,12 +892,17 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                 // 기존 NSAttributedString 끝에 이미지를 추가
                 mutableAttributedString.append(imageString)
             }
+            mutableAttributedString.addAttribute(
+                .font,
+                value: UIFont.systemFont(
+                    ofSize: 14,
+                    weight: .regular
+                ),
+                range: NSRange(location: contentTextView.attributedText.length, length: 0)
+            )
             contentTextView.attributedText = NSAttributedString(attributedString: mutableAttributedString)
-            
-            contentTextView.font = UIFont.systemFont(ofSize: 14)
         }
     }
-    
 }
 
 extension RegisterTravelReportVC: UITextViewDelegate {

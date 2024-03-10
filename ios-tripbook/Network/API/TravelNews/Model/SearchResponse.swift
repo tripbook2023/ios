@@ -38,6 +38,7 @@ struct ContentResponse: Decodable {
     let updatedAt: String
     let heart: Bool
     let bookmark: Bool
+    let report: Bool
     
     var toDomain: TravelNewsModel {
         return TravelNewsModel(
@@ -49,7 +50,8 @@ struct ContentResponse: Decodable {
             location: self.location?.first?.toDomain,
             likeCount: heartNum,
             isLiked: heart,
-            createdAt: createdAt
+            createdAt: createdAt,
+            isReport: report
         )
     }
 }

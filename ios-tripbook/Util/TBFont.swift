@@ -40,19 +40,19 @@ struct TBFont {
     }
     
     /// TBFont Styles
-    static public let heading_1: Font = .suit(.bold, size: 24)
-    static public let heading_2: Font = .suit(.bold, size: 20)
-    static public let title_1: Font = .suit(.bold, size: 18)
-    static public let title_2: Font = .suit(.bold, size: 16)
-    static public let title_3: Font = .suit(.bold, size: 14)
-    static public let title_4: Font = .suit(.bold, size: 12)
-    static public let body_1: Font = .suit(.medium, size: 20)
-    static public let body_2: Font = .suit(.medium, size: 18)
-    static public let body_3: Font = .suit(.medium, size: 16)
-    static public let body_4: Font = .suit(.medium, size: 14)
-    static public let body_5: Font = .suit(.medium, size: 12)
-    static public let caption_1: Font = .suit(.medium, size: 12)
-    static public let caption_2: Font = .suit(.medium, size: 10)
+    static public let heading_1: Font = Font.system(size: 24, weight: .bold)
+    static public let heading_2: Font = Font.system(size: 20, weight: .bold)
+    static public let title_1: Font = Font.system(size: 18, weight: .bold)
+    static public let title_2: Font = Font.system(size: 16, weight: .bold)
+    static public let title_3: Font = Font.system(size: 14, weight: .bold)
+    static public let title_4: Font = Font.system(size: 12, weight: .bold)
+    static public let body_1: Font = Font.system(size: 20, weight: .medium)
+    static public let body_2: Font = Font.system(size: 18, weight: .medium)
+    static public let body_3: Font = Font.system(size: 16, weight: .medium)
+    static public let body_4: Font = Font.system(size: 14, weight: .medium)
+    static public let body_5: Font = Font.system(size: 12, weight: .medium)
+    static public let caption_1: Font = Font.system(size: 12, weight: .thin)
+    static public let caption_2: Font = Font.system(size: 10, weight: .thin)
 }
 
 extension Font {

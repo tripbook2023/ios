@@ -122,7 +122,6 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         contentButton.addTarget(self, action: #selector(tapContentButton), for: .touchUpInside)
         boldButton.addTarget(self, action: #selector(tapBoldButton), for: .touchUpInside)
         draftButton.addTarget(self, action: #selector(tapDraftButton), for: .touchUpInside)
-        contentTextView.font = UIFont.systemFont(ofSize: 14)
     }
     
     @objc
@@ -343,6 +342,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         
         coverImageView = UIImageView()
         coverImageView.contentMode = .scaleAspectFill
+        coverImageView.clipsToBounds = true
         
         coverContainerView.addSubview(coverImageView)
         coverImageView.snp.makeConstraints { make in
@@ -399,7 +399,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         titleTextView = UITextView()
         titleTextView.tag = 0
         titleTextView.delegate = self
-        titleTextView.font = UIFont(name: "SUIT-Bold", size: 24)
+        titleTextView.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         titleTextView.backgroundColor = .clear
         titleTextView.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         titleTextView.textContainer.maximumNumberOfLines = 2
@@ -449,7 +449,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         let locaionIcon = UIImageView(image: .init(named: "Location/02"))
         
         contentLocationLabel = UILabel()
-        contentLocationLabel.font = UIFont(name: "SUIT-Medium", size: 12)
+        contentLocationLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         contentLocationLabel.backgroundColor = .clear
         contentLocationLabel.textColor = UIColor(.init(rgb: .init(red: 127, green: 116, blue: 113)))
         contentLocationLabel.text = "위치명"
@@ -489,7 +489,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         }
         
         contentTextView = UITextView()
-        contentTextView.font = UIFont(name: "SUIT-Regular", size: 14)
+        contentTextView.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         contentTextView.tag = 1
         contentTextView.backgroundColor = .clear
         contentTextView.delegate = self
@@ -881,18 +881,28 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             // image를 찾을 수 있도록 ID 를 추가
             imageString.addAttribute(.init("ID"), value: id, range: NSRange(location: 0, length: imageString.length))
             
-            // 기존 NSAttributedString 끝에 이미지를 추가
             let currentNSArr = contentTextView.attributedText ?? .init(string: "")
             
             let mutableAttributedString = NSMutableAttributedString(attributedString: currentNSArr)
-            mutableAttributedString.append(imageString)
-            
+            if let selectedRange = contentTextView.selectedTextRange {
+                let start = contentTextView.offset(from: contentTextView.beginningOfDocument, to: selectedRange.start)
+                // 커서 위치에 이미지를 추가
+                mutableAttributedString.insert(imageString, at: start)
+            } else {
+                // 기존 NSAttributedString 끝에 이미지를 추가
+                mutableAttributedString.append(imageString)
+            }
+            mutableAttributedString.addAttribute(
+                .font,
+                value: UIFont.systemFont(
+                    ofSize: 14,
+                    weight: .regular
+                ),
+                range: NSRange(location: contentTextView.attributedText.length, length: 0)
+            )
             contentTextView.attributedText = NSAttributedString(attributedString: mutableAttributedString)
-            
-            contentTextView.font = UIFont.systemFont(ofSize: 14)
         }
     }
-    
 }
 
 extension RegisterTravelReportVC: UITextViewDelegate {

@@ -51,8 +51,8 @@ struct TBFont {
     static public let body_3: Font = Font.system(size: 16, weight: .medium)
     static public let body_4: Font = Font.system(size: 14, weight: .medium)
     static public let body_5: Font = Font.system(size: 12, weight: .medium)
-    static public let caption_1: Font = Font.system(size: 12, weight: .thin)
-    static public let caption_2: Font = Font.system(size: 10, weight: .thin)
+    static public let caption_1: Font = Font.system(size: 12, weight: .medium)
+    static public let caption_2: Font = Font.system(size: 10, weight: .medium)
 }
 
 extension Font {

@@ -193,7 +193,7 @@ struct TravelNewsDetailView: View {
             Spacer()
             profileView(url: viewModel.travelNews.author.profileUrl)
             Text(viewModel.travelNews.author.name)
-                .font(.suit(.bold, size: 12))
+                .font(TBFont.title_4)
                 .padding(.trailing, 20)
         }
         .frame(width: deviceWidth, height: 48)
@@ -217,11 +217,11 @@ struct TravelNewsDetailView: View {
                     profileView(url: viewModel.travelNews.author.profileUrl)
                     Text(viewModel.travelNews.author.name)
                         .foregroundColor(.white)
-                        .font(.suit(.bold, size: 12))
+                        .font(TBFont.title_4)
                 }
                 
                 Text(viewModel.travelNews.title)
-                    .font(.suit(.bold, size: 24))
+                    .font(TBFont.heading_1)
                     .foregroundColor(.white)
             }
             .offset(.init(width: 20, height: 210))
@@ -256,7 +256,7 @@ struct TravelNewsDetailView: View {
                 .frame(width: 24, height: 24)
                 
                 Text("\(viewModel.travelNews.likeCount)")
-                    .font(.suit(.medium, size: 10))
+                    .font(TBFont.caption_2)
                     .foregroundColor(TBColor.grayscale._50)
                 
                 Spacer()

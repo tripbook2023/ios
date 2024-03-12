@@ -72,7 +72,6 @@ struct TravelNewsDetailView: View {
                         TBAppBar(
                             title: nil,
                             onClickedBackButton: {
-                                UIScrollView.appearance().bounces = true
                                 dismiss()
                             },
                             rightItem: {
@@ -99,7 +98,6 @@ struct TravelNewsDetailView: View {
                                                     await viewModel.deletePost()
                                                     await MainActor.run {
                                                         NotificationCenter.default.post(name: .refreshMain, object: nil)
-                                                        UIScrollView.appearance().bounces = true
                                                         dismiss()
                                                     }
                                                 }
@@ -118,16 +116,12 @@ struct TravelNewsDetailView: View {
                 }
                 
             }
+            .scrollBounceBehavior(.basedOnSize)
             .onPreferenceChange(ScrollOffsetKey.self, perform: { value in
                 viewModel.setOffset(value)
             })
             .ignoresSafeArea()
             .toolbarBackground(.hidden, for: .navigationBar)
-            .onAppear {
-                guard !isAppear else { return }
-                isAppear = true
-                UIScrollView.appearance().bounces = false
-            }
             .overlay {
                 VStack {
                     Spacer()

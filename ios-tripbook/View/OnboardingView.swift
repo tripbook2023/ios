@@ -15,7 +15,8 @@ struct OnboardingView: View {
     var body: some View {
         ZStack {
             if viewModel.isPresentRoot {
-                RootView(isPresented: $viewModel.isPresentRoot)
+                RootView()
+                    .environment(\.rootPresentationMode, $viewModel.isPresentRoot)
             } else {
                 SignupSocialView()
             }

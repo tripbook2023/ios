@@ -92,7 +92,7 @@ struct SignupSocialView: View {
                 }.padding(.horizontal, 20)
             }
             .navigationDestination(isPresented: $viewModel.goToRootNavigationTrigger) {
-                RootView(isPresented: $viewModel.goToRootNavigationTrigger)
+                RootView()
             }
             .navigationDestination(isPresented: $viewModel.continueNavigationTrigger) {
                 SignupTermsView(self.signupViewModel)

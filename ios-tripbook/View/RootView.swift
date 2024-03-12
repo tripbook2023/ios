@@ -21,16 +21,11 @@ import Combine
  */
 struct RootView: View {
     @StateObject var viewModel = RootViewModel()
-    @Binding private var isPresented: Bool
     @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
     @State private var anyCancellable = Set<AnyCancellable>()
     
     private var deviceWidth: CGFloat {
         return UIScreen.main.bounds.width
-    }
-    
-    init( isPresented: Binding<Bool> = .constant(true)) {
-        self._isPresented = isPresented
     }
     
     var body: some View {
@@ -69,7 +64,7 @@ struct RootView: View {
                 .tag(RootViewModel.TabType.profile)
             }
             .onAppear() {
-                UITabBar.appearance().barTintColor = .white
+                UITabBar.appearance().backgroundColor = .white
             }
             .accentColor(TBColor.primary._50)
             .navigationBarHidden(true)
@@ -120,7 +115,7 @@ extension RootView {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     withAnimation(Animation.spring().speed(1)) {
                         self.rootPresentationMode.wrappedValue.dismiss()
-                        self.isPresented = false
+                        viewModel.isShowLogoutMessage = false
                     }
                 }
             }
@@ -130,6 +125,6 @@ extension RootView {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView(isPresented: .constant(true))
+        RootView()
     }
 }

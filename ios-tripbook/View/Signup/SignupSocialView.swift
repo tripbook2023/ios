@@ -93,9 +93,11 @@ struct SignupSocialView: View {
             }
             .navigationDestination(isPresented: $viewModel.goToRootNavigationTrigger) {
                 RootView()
+                    .environment(\.rootPresentationMode, $viewModel.goToRootNavigationTrigger)
             }
             .navigationDestination(isPresented: $viewModel.continueNavigationTrigger) {
                 SignupTermsView(self.signupViewModel)
+                    .environment(\.rootPresentationMode, $viewModel.continueNavigationTrigger)
             }
             
         }

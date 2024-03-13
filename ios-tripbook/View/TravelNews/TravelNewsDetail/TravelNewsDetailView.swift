@@ -217,6 +217,7 @@ struct TravelNewsDetailView: View {
                 Text(viewModel.travelNews.title)
                     .font(TBFont.heading_1)
                     .foregroundColor(.white)
+                    .padding(.trailing, 20)
             }
             .offset(.init(width: 20, height: 210))
         }

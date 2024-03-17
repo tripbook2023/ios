@@ -1206,7 +1206,7 @@
 				INFOPLIST_FILE = "ios-tripbook/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "트립북";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
-				INFOPLIST_KEY_NSCameraUsageDescription = "사용자님의 프로필 사진을";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사용자님의 프로필 사진과 여행 기록에 사용하기 위해 권한을 요청드립니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사용자님의 프로필 사진과 여행 기록에 사용하기 위해 권한을 요청드립니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1250,7 +1250,7 @@
 				INFOPLIST_FILE = "ios-tripbook/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "트립북";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
-				INFOPLIST_KEY_NSCameraUsageDescription = "사용자님의 프로필 사진을";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사용자님의 프로필 사진과 여행 기록에 사용하기 위해 권한을 요청드립니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사용자님의 프로필 사진과 여행 기록에 사용하기 위해 권한을 요청드립니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

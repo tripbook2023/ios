@@ -103,7 +103,7 @@ struct SignupTermsView: View {
             
             
             SignupTermDetailModal(
-                self.viewModel.selectedModalType ?? SignupTermsViewModel.TermType.Service,
+                $viewModel.selectedModalType,
                 delegate: self.viewModel
             )
             .opacity(self.viewModel.isVisibleModal ? 1 : 0)

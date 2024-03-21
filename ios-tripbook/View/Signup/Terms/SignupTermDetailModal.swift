@@ -14,11 +14,15 @@ protocol SignupTermDetailModalDelegate {
 struct SignupTermDetailModal: View {
     var delegate: SignupTermDetailModalDelegate?
     
-    var term: SignupTermsViewModel.TermType
+    @Binding var term: SignupTermsViewModel.TermType?
     
-    init(_ term: SignupTermsViewModel.TermType, delegate: SignupTermDetailModalDelegate? = nil) {
+    var deviceHeight: CGFloat {
+        return UIScreen.main.bounds.height
+    }
+    
+    init(_ term: Binding<SignupTermsViewModel.TermType?>, delegate: SignupTermDetailModalDelegate? = nil) {
         self.delegate = delegate
-        self.term = term
+        self._term = term
     }
     
     var body: some View {
@@ -29,25 +33,26 @@ struct SignupTermDetailModal: View {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(TBColor.grayscale._5)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 398)
+                    .frame(height: deviceHeight * 0.6)
                     .overlay(
                         VStack(spacing: 12) {
-                            Text(self.term.getTitle())
+                            Text(self.term?.getTitle() ?? "")
                                 .font(TBFont.title_3)
                                 .foregroundColor(TBColor.grayscale._80)
                                 .padding(.top, 24)
-                            ScrollView {
-                                Text(self.term.getDescription())
-                                .font(TBFont.caption_1)
-                                .foregroundColor(TBColor.grayscale._60)
-                                .lineSpacing(18 / 12)
-                                .padding(.horizontal, 16)
-                                .padding(.bottom, 24)
+                            GeometryReader { g in
+                                ScrollView {
+                                    if let url = term?.getDescription() {
+                                        TermDetailView(url: url)
+                                            .frame(height: g.size.height - 8)
+                                    }
+                                    
+                                }
                             }
                         }
-                )
-                
+                    )
                 Button(action: {
+                    term = nil
                     self.delegate?.didTapHideModalButton()
                 }) {
                     ZStack {
@@ -74,6 +79,6 @@ struct SignupTermDetailModal: View {
 
 struct SignupTermDetailModal_Preview: PreviewProvider {
     static var previews: some View {
-        SignupTermDetailModal(.Service)
+        SignupTermDetailModal(.constant(.Service))
     }
 }

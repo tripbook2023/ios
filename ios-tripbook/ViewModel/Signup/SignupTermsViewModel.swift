@@ -15,6 +15,10 @@ class SignupTermsViewModel: ObservableObject {
         case Location       = "termsOfLocation"
         case Marketing      = "marketingConsent"
         
+        static func list() -> [Self] {
+            return [.Service, .PersonalInfo, .Location, .Marketing]
+        }
+        
         func isRequired() -> Bool {
             switch self {
             case .Service:      return true
@@ -33,17 +37,16 @@ class SignupTermsViewModel: ObservableObject {
             }
         }
         
-        func getDescription() -> String {
+        func getDescription() -> URL? {
             switch self {
-            default:
-                return """
-                트립북 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 네이버 서비스의 이용과 관련하여 트립북 서비스를 제공하는 트립북과 이를 이용하는 트립북 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 트립북 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
-                
-                트립북 서비스를 이용하시거나 트립북 서비스 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 확인하거나 동의하게 되므로, 잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
-                
-                다양한 트립북 서비스를 즐겨보세요.
-                트립북은 www.tripbook.co.kr을 비롯한 트립북 도메인의 웹사이트 및 응용프로그램(어플리케이션, 앱)을 통해 정보 검색, 다른 이용자와의 커뮤니케이션, 콘텐츠 제공, 상품 쇼핑 등 여러분의 네이버 회원가입 방법 등에서 확인해 주세요.
-                """
+            case .Service: 
+                return URL(string: "https://midnight-chips-141.notion.site/30cc27708b4f41f5abc3fb3b7014bcbf?pvs=4")
+            case .PersonalInfo:
+                return URL(string: "https://midnight-chips-141.notion.site/61234ba1e05d4dbd9705b2a6d4f615db?pvs=4")
+            case .Location:
+                return URL(string: "https://midnight-chips-141.notion.site/bc6070dd00a742e29f38eaa725967855?pvs=4")
+            case .Marketing:
+                return URL(string: "https://midnight-chips-141.notion.site/5ad532b146c04e5b8cac5cca5599b940?pvs=4")
             }
         }
     }

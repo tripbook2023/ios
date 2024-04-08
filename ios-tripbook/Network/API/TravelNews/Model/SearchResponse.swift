@@ -64,6 +64,7 @@ struct AuthorResponse: Decodable {
     
     var toDomain: Author {
         return Author(
+            id: id,
             name: name,
             profileUrl: profileUrl,
             role: role)

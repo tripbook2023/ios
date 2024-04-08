@@ -63,6 +63,7 @@ struct TravelNewsModel: Identifiable {
         return TravelNewsModel (
             id: UUID().hashValue,
             author: .init(
+                id: 0,
                 name: "서지혜",
                 profileUrl: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg",
                 role: ""

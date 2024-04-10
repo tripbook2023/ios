@@ -112,7 +112,9 @@ class TravelNewsViewModel: ObservableObject {
                     api,
                     type: SearchResponse.self,
                     encodingType: .url
-                ).toDomain
+                )
+                .toDomain
+                .filter { !$0.isReport }
                 await MainActor.run {
                     mainPage.isLastPage = items.isEmpty
                     travelNewsList = type == .first ? items : travelNewsList + items
@@ -143,7 +145,9 @@ class TravelNewsViewModel: ObservableObject {
                     api,
                     type: SearchResponse.self,
                     encodingType: .url
-                ).toDomain
+                )
+                .toDomain
+                .filter { !$0.isReport }
                 await MainActor.run {
                     searchPage.isLastPage = items.isEmpty
                     isSearchResultEmpty = items.isEmpty && searchResult.isEmpty

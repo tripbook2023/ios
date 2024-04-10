@@ -9,12 +9,12 @@ import Foundation
 
 final class UserBlockViewModel: ObservableObject {
     private let apiManager: APIManagerable
-    let user: Author
+    let user: Author?
     private var onBlock: () -> Void
     
     init(
         apiManager: APIManagerable = TBAPIManager(),
-        user: Author,
+        user: Author?,
         onBlock: @escaping () -> Void
     ) {
         self.apiManager = apiManager
@@ -23,6 +23,7 @@ final class UserBlockViewModel: ObservableObject {
     }
     
     func requestBlock() async throws {
+        guard let user = user else { return }
         let api = TBUserBlockAPI.addBlocks(id: user.id)
         _ = try await apiManager.request(api, encodingType: .url)
     }

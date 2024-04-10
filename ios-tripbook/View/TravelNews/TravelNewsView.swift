@@ -13,6 +13,8 @@ struct TravelNewsView: View {
     @StateObject private var viewModel = TravelNewsViewModel()
     @State private var anyCancellable = Set<AnyCancellable>()
     @State private var isAppear = false
+    @State private var isPopupReportView = false
+    @State private var isPopupUserBlockView = false
     
     var body: some View {
         NavigationStack {
@@ -77,10 +79,38 @@ struct TravelNewsView: View {
                     }
                 }
             }
+            .overlay(content: {
+                Color.black
+                    .ignoresSafeArea()
+                    .opacity(isPopupReportView || isPopupUserBlockView ? 0.6 : 0)
+                ReportPopupView(
+                    postId: viewModel.selectedItem?.id,
+                    isPresented: $isPopupReportView
+                )
+                .opacity(isPopupReportView ? 1 : 0)
+                UserBlockPopupView(
+                    user: viewModel.selectedItem?.author,
+                    isPresented: $isPopupUserBlockView
+                )
+                .opacity(isPopupUserBlockView ? 1 : 0)
+            })
             .onAppear {
                 if !isAppear {
                     bind()
                     isAppear = true
+                }
+            }
+            .confirmationDialog("", isPresented: $viewModel.isPresentedMoreSheet) {
+                Button("사용자 차단", role: .destructive) {
+                    isPopupUserBlockView = true
+                }
+                
+                Button("게시글 신고", role: .destructive) {
+                    isPopupReportView = true
+                }
+                
+                Button("취소", role: .cancel) {
+                    viewModel.selectedItem = nil
                 }
             }
         }
@@ -110,6 +140,13 @@ extension TravelNewsView {
             .sink { _ in
                 viewModel.fetchTravelNewsList(type: .first)
                 viewModel.fetchMyTravelNewsList(count: 5, type: .first)
+            }
+            .store(in: &anyCancellable)
+        
+        NotificationCenter.default
+            .publisher(for: .selectedListItem)
+            .sink {
+                viewModel.selectedItem = $0.object as? TravelNewsModel
             }
             .store(in: &anyCancellable)
     }

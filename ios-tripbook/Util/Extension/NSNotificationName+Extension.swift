@@ -9,4 +9,5 @@ import Foundation
 
 extension NSNotification.Name {
     static var refreshMain = Self("refreshMain")
+    static var selectedListItem = Self("selectedListItem")
 }

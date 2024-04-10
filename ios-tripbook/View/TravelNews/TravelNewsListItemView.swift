@@ -11,13 +11,19 @@ import Kingfisher
 
 struct TravelNewsListItemView: View {
     @Binding private var item: TravelNewsModel
+    @Binding private var isPresentedMoreSheet: Bool
     private var likeButtonAction: () -> Void
+    private let isOwner: Bool
     
     init(
-        item: Binding<TravelNewsModel>,
+        _ item: Binding<TravelNewsModel>,
+        isPresentedMoreSheet: Binding<Bool>,
+        isOwner: Bool,
         likeButtonAction: @escaping () -> Void = {}
     ) {
         self._item = item
+        self._isPresentedMoreSheet = isPresentedMoreSheet
+        self.isOwner = isOwner
         self.likeButtonAction = likeButtonAction
     }
     
@@ -32,6 +38,24 @@ struct TravelNewsListItemView: View {
                     .overlay(TBColor.grayscale._90.opacity(0.4))
             }
             VStack(alignment: .leading, spacing: 0) {
+                if !isOwner {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            NotificationCenter.default.post(
+                                name: .selectedListItem,
+                                object: item
+                            )
+                            isPresentedMoreSheet = true
+                        }, label: {
+                            TBIcon.more.active
+                        })
+                        .foregroundColor(TBColor.grayscale._1)
+                    }
+                    
+                    Spacer()
+                }
+                
                 HStack(spacing: 4) {
                     TBAvatar(type: .basic, profileImageURL: item.author.profileUrl)
                     Text(item.author.name)
@@ -65,8 +89,7 @@ struct TravelNewsListItemView: View {
                     Spacer()
                 }.padding(.top, 16)
             }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 24)
+            .padding(24)
         }
         .frame(width: 335, height: 335)
         .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -75,7 +98,11 @@ struct TravelNewsListItemView: View {
 #if DEBUG
 struct TravelNewsListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TravelNewsListItemView(item: .constant(TravelNewsModel.dummy))
+        TravelNewsListItemView(
+            .constant(TravelNewsModel.dummy),
+            isPresentedMoreSheet: .constant(false),
+            isOwner: false
+        )
     }
 }
 #endif

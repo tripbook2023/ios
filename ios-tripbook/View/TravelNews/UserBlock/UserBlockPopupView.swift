@@ -19,7 +19,7 @@ struct UserBlockPopupView: View {
     }
     
     init(
-        user: Author,
+        user: Author?,
         isPresented: Binding<Bool>,
         onBlock: @escaping () -> Void = {}
     ) {
@@ -46,10 +46,10 @@ struct UserBlockPopupView: View {
             TBAvatar(
                 type: .basic,
                 size: 34,
-                profileImageURL: .init(string: "https://tripbook-bucket.s3.ap-northeast-2.amazonaws.com/member/profile/51fa4c27-0a0a-4c69-ba79-7ff1b8eaef358964%20bytes.jpeg")
+                profileImageURL: viewModel.user?.profileUrl
             )
             
-            Text(viewModel.user.name)
+            Text(viewModel.user?.name ?? "")
                 .multilineTextAlignment(.center)
                 .foregroundStyle(TBColor.grayscale._90)
                 .font(TBFont.title_4)

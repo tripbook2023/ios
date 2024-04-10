@@ -45,8 +45,8 @@ fileprivate class WebViewViewController: UIViewController {
         super.viewDidLoad()
         
         self.progressView = UIProgressView()
-        self.progressView.trackTintColor = .lightGray
-        self.progressView.progressTintColor = .systemBlue
+        self.progressView.trackTintColor = .clear
+        self.progressView.progressTintColor = UIColor(red: 255/255, green: 78/255, blue: 22/255, alpha: 1.0)
         self.progressView.progress = 0.0
         
         self.webView = WKWebView()

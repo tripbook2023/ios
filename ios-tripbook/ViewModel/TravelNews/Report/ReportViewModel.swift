@@ -9,24 +9,29 @@ import Foundation
 
 final class ReportViewModel: ObservableObject {
     private let apiManager: APIManagerable
+    private var postId: Int?
+    private var onBlock: () -> Void
     
     @Published var content: String = ""
     
     init(
-        apiManager: APIManagerable = TBAPIManager()
+        apiManager: APIManagerable = TBAPIManager(),
+        postId: Int?,
+        onBlock: @escaping () -> Void
     ) {
         self.apiManager = apiManager
+        self.postId = postId
+        self.onBlock = onBlock
     }
     
-    func requestReport(id: Int) async {
-        do {
-            let api = TBTravelNewsAPI.report(id: id, content: content)
-            _ = try await apiManager.request(api, encodingType: .json)
-            await MainActor.run {
-                NotificationCenter.default.post(name: .refreshMain, object: nil)
-            }
-        } catch {
-            
-        }
+    func requestReport() async throws {
+        guard let id = postId else { return }
+        let api = TBTravelNewsAPI.report(id: id, content: content)
+        _ = try await apiManager.request(api, encodingType: .json)
+    }
+    
+    func finishReporting() {
+        NotificationCenter.default.post(name: .refreshMain, object: nil)
+        onBlock()
     }
 }

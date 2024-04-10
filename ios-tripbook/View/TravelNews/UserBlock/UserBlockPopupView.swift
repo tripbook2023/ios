@@ -14,6 +14,7 @@ struct UserBlockPopupView: View {
         didSet {
             if isSuccessedBlock {
                 viewModel.finishBlocking()
+                isSuccessedBlock = false
             }
         }
     }

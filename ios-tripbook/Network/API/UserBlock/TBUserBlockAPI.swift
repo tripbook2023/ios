@@ -27,7 +27,7 @@ struct TBUserBlockAPI: APIable {
         return TBUserBlockAPI(
             method: .post,
             parameters: [
-                "targetIdList" : id
+                "targetIdList" : [id]
             ]
         )
     }
@@ -36,7 +36,7 @@ struct TBUserBlockAPI: APIable {
         return TBUserBlockAPI(
             method: .delete,
             parameters: [
-                "targetIdList" : id
+                "targetIdList" : [id]
             ]
         )
     }

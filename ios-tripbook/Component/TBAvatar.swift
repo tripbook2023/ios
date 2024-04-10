@@ -50,16 +50,18 @@ struct TBAvatar: View {
     
     let type: ViewType
     let profileImageURL: URL?
+    private let size: CGFloat
     
-    init(type: ViewType, profileImageURL: URL? = nil) {
+    init(type: ViewType, size: CGFloat = 18, profileImageURL: URL? = nil) {
         self.type = type
+        self.size = size
         self.profileImageURL = profileImageURL
     }
     
     var body: some View {
         ZStack {
             Circle()
-                .frame(width: 18, height: 18)
+                .frame(width: size, height: size)
                 .foregroundColor(TBColor.grayscale._5)
             
             KFImage(profileImageURL)
@@ -71,13 +73,13 @@ struct TBAvatar: View {
                 })
                 .resizable()
                 .scaledToFill()
-                .frame(width: 18, height: 18)
+                .frame(width: size, height: size)
                 .clipShape(Circle())
             
             Circle()
                 .inset(by: 0.5)
                 .stroke(type.getGradient(), lineWidth: 1)
-                .frame(width: 18, height: 18)
+                .frame(width: size, height: size)
                 .shadow(TBShadow._1)
         }
     }

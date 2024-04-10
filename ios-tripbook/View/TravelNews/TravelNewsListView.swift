@@ -31,10 +31,12 @@ struct TravelNewsListView: View {
                             let item = viewModel.travelNewsList[i]
                             if !item.isReport {
                                 TravelNewsListItemView(
-                                    item: Binding(
+                                    Binding(
                                         get: { item },
                                         set: {_ in }
-                                    )
+                                    ),
+                                    isPresentedMoreSheet: $viewModel.isPresentedMoreSheet,
+                                    isOwner: viewModel.isOwner(index: i)
                                 ) {
                                     viewModel.likeButtonDidTap(index: i)
                                 }
@@ -45,8 +47,6 @@ struct TravelNewsListView: View {
                                 }
                             }
                         }
-                        
-                        
                     }.padding(.top, 24)
                     
                     HStack {

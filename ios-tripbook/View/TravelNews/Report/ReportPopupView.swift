@@ -11,11 +11,11 @@ struct ReportPopupView: View {
     @StateObject private var viewModel = ReportViewModel()
     @Binding private var isPresented: Bool
     @FocusState private var isFocus: Bool
-    private var postId: Int
+    private var postId: Int?
     private var onReport: () -> Void
     
     init(
-        postId: Int,
+        postId: Int?,
         isPresented: Binding<Bool>,
         onReport: @escaping () -> Void = {}
     ) {
@@ -93,7 +93,8 @@ struct ReportPopupView: View {
                     )
                 ) {
                     Task {
-                        await viewModel.requestReport(id: postId)
+                        guard let id = postId else { return }
+                        await viewModel.requestReport(id: id)
                         await MainActor.run { onReport() }
                     }
                     

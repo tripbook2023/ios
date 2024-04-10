@@ -22,15 +22,18 @@ class TravelNewsViewModel: ObservableObject {
     }
 
     private let apiManager: APIManagerable
+    private let dataStorage: DataStorage
     private let tokenStorage: TokenStorage
     private let coreDataContainer: NSPersistentContainer
     
     init(
         apiManager: APIManagerable = TBAPIManager(),
+        dataStorage: DataStorage = .shared,
         tokenStorage: TokenStorage = .shared,
         coreDataContainer: NSPersistentContainer = CoreDataController.shared.container
     ) {
         self.apiManager = apiManager
+        self.dataStorage = dataStorage
         self.tokenStorage = tokenStorage
         self.coreDataContainer = coreDataContainer
     }
@@ -48,12 +51,18 @@ class TravelNewsViewModel: ObservableObject {
     @Published var keywordList: [String] = []
     @Published var searchResult: [TravelNewsModel] = []
     @Published var isSearchResultEmpty = false
+    @Published var isPresentedMoreSheet = false
     
     @Published var myTravelNewsCount = 0
     
     private var mainPage: PageValue = .init()
     private var searchPage: PageValue = .init()
     private var myPage: PageValue = .init()
+    var selectedItem: TravelNewsModel?
+    
+    func isOwner(index: Int) -> Bool {
+        dataStorage.user?.info?.name == travelNewsList[index].author.name
+    }
 
     func fetchMyTravelNewsList(count: Int, type: FetchType) {
         if myPage.isLastPage && type == .next { return }

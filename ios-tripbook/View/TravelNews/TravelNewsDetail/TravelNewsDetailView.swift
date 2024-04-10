@@ -57,7 +57,8 @@ struct TravelNewsDetailView: View {
     @ObservedObject var viewModel: TravelNewsDetailViewModel
     @State private var webViewHeight: CGFloat = .zero
     @State private var isAppear = false
-    @State private var isPopupReportView: Bool = false
+    @State private var isPopupReportView = false
+    @State private var isPopupUserBlockView = false
     @State private var isShowedMoreSheet = false
     @State private var isPresentedEditView = false
     @Environment(\.dismiss) private var dismiss
@@ -118,14 +119,15 @@ struct TravelNewsDetailView: View {
                                         TBIcon.report.iconSize(size: .medium)
                                     })
                                     .foregroundStyle(.white)
-                                    if viewModel.isOwner {
-                                        Button(action: {
-                                            isShowedMoreSheet = true
-                                        }, label: {
-                                            TBIcon.more.active.iconSize(size: .medium)
-                                        })
-                                        .foregroundStyle(.white)
-                                        .confirmationDialog("", isPresented: $isShowedMoreSheet) {
+                                    
+                                    Button(action: {
+                                        isShowedMoreSheet = true
+                                    }, label: {
+                                        TBIcon.more.active.iconSize(size: .medium)
+                                    })
+                                    .foregroundStyle(.white)
+                                    .confirmationDialog("", isPresented: $isShowedMoreSheet) {
+                                        if viewModel.isOwner {
                                             Button("수정") {
                                                 isPresentedEditView = true
                                             }
@@ -138,9 +140,15 @@ struct TravelNewsDetailView: View {
                                                     }
                                                 }
                                             }
-                                            Button("취소", role: .cancel) {}
+                                        } else {
+                                            Button("사용자 차단", role: .destructive) {
+                                                isPopupUserBlockView = true
+                                            }
                                         }
+                                        
+                                        Button("취소", role: .cancel) {}
                                     }
+                                    
                                 }
                             },
                             iconColor: .white
@@ -181,14 +189,22 @@ struct TravelNewsDetailView: View {
         .overlay {
             Color.black
                 .ignoresSafeArea()
-                .opacity(isPopupReportView ? 0.6 : 0)
+                .opacity(isPopupReportView || isPopupUserBlockView ? 0.6 : 0)
             ReportPopupView(
                 postId: viewModel.travelNews.id,
                 isPresented: $isPopupReportView
             ) {
-                self.dismiss()
+                dismiss()
             }
             .opacity(isPopupReportView ? 1 : 0)
+            UserBlockPopupView(
+                user: viewModel.travelNews.author,
+                isPresented: $isPopupUserBlockView
+            ) {
+                dismiss()
+            }
+            .opacity(isPopupUserBlockView ? 1 : 0)
+            
         }
         .navigationBarBackButtonHidden()
         .toolbar(.hidden, for: .tabBar)
@@ -209,24 +225,15 @@ struct TravelNewsDetailView: View {
         .frame(height: 0)
     }
     
-    func profileView(url: URL?) -> some View {
-        KFImage(url)
-            .placeholder {
-                Image("DefaultProfileImage")
-            }
-            .resizable()
-            .cacheMemoryOnly()
-            .scaledToFill()
-            .frame(width: 14, height: 14)
-            .clipShape(Circle())
-            .overlay {
-                RoundedRectangle(cornerRadius: 9)
-                    .stroke(Color.secondary, lineWidth: 2)
-                    .frame(width: 18, height: 18)
-            }
+    private func profileView(url: URL?) -> some View {
+        TBAvatar(
+            type: .basic,
+            size: 18,
+            profileImageURL: url
+        )
     }
     
-    func authorView() -> some View {
+    private func authorView() -> some View {
         HStack(alignment: .center) {
             Spacer()
             profileView(url: viewModel.travelNews.author.profileUrl)
@@ -241,7 +248,7 @@ struct TravelNewsDetailView: View {
         }
     }
     
-    func coverView() -> some View {
+    private func coverView() -> some View {
         ZStack(alignment: .topLeading) {
             KFImage.url(viewModel.travelNews.thumbnailURL)
                 .placeholder({
@@ -268,12 +275,12 @@ struct TravelNewsDetailView: View {
         .frame(width: deviceWidth, height: deviceHeight)
     }
     
-    func htmlView(content: String) -> some View {
+    private func htmlView(content: String) -> some View {
         HTMLView(htmlString: content, contentHeight: $webViewHeight)
             .frame(height: webViewHeight)
     }
     
-    func bottomView() -> some View {
+    private func bottomView() -> some View {
         VStack(spacing: 0) {
             Rectangle()
                 .fill(TBColor.grayscale._10)

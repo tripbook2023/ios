@@ -18,19 +18,13 @@ struct TravelNewsTemporaryStorageListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        dismiss()
-                    }) {
-                        TBIcon.cancel.iconSize(size: .medium)
-                    }.foregroundColor(TBColor.grayscale._90)
-                }
-                
-                Text("임시저장 목록")
-                    .font(TBFont.body_3)
-            }
+            TBAppBar(title: "임시저장 목록", rightItem: {
+                Button(action: {
+                    dismiss()
+                }) {
+                    TBIcon.cancel.iconSize(size: .medium)
+                }.foregroundColor(TBColor.grayscale._90)
+            })
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
             
@@ -74,9 +68,6 @@ struct TravelNewsTemporaryStorageListView: View {
 
                         }
                     }
-                    
-
-                    
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 32)

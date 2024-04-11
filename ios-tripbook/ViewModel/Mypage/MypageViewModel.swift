@@ -21,7 +21,6 @@ final class MypageViewModel: ObservableObject {
     @Published var deleteName: String = ""
     @Published var warningMessage: String?
 
-    
     init(
         dataStorage: DataStorage = .shared,
         tokenStorage: TokenStorage = .shared,

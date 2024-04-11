@@ -74,6 +74,23 @@ struct MypageView: View {
                         HStack {
                             Text("1:1 문의")
                                 .foregroundColor(TBColor.grayscale._90)
+                                .font(TBFont.body_4)
+                            Spacer()
+                            TBIcon.next.iconSize(size: .medium)
+                                .foregroundColor(TBColor.grayscale._50)
+                        }
+                        .padding(.vertical, 16)
+                        .frame(width: deviceWidth - 40)
+                    }
+                    Divider()
+                        .background(TBColor.grayscale._5)
+                    NavigationLink {
+                        BlockListView()
+                    } label: {
+                        HStack {
+                            Text("사용자 차단 목록")
+                                .foregroundColor(TBColor.grayscale._90)
+                                .font(TBFont.body_4)
                             Spacer()
                             TBIcon.next.iconSize(size: .medium)
                                 .foregroundColor(TBColor.grayscale._50)
@@ -96,8 +113,6 @@ struct MypageView: View {
                                         .font(TBFont.body_4)
                                         .foregroundColor(TBColor.grayscale._50)
                                 )
-                            
-                            
                         }
                         .frame(width: 335, height: 32)
                         .padding(.top, 24)

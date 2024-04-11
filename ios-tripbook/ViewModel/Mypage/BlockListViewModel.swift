@@ -23,7 +23,7 @@ final class BlockListViewModel: ObservableObject {
                 let result = try await apiManager.request(
                     api,
                     type: [AuthorResponse].self,
-                    encodingType: .json
+                    encodingType: .url
                 ).map { $0.toDomain }
                 await MainActor.run { blockUsers = result }
             } catch {

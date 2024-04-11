@@ -85,6 +85,7 @@
 		85F03BE82A3EE4C900A0B931 /* SignupTermDetailModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F03BE72A3EE4C900A0B931 /* SignupTermDetailModal.swift */; };
 		85F03BEB2A3EF5A000A0B931 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 85F03BEA2A3EF5A000A0B931 /* Alamofire */; };
 		85F31B5B2A543A3500493B5F /* GetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F31B5A2A543A3500493B5F /* GetUserResponse.swift */; };
+		9B00D0BA2BC7B2F7004F28D2 /* BlockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B00D0B92BC7B2F7004F28D2 /* BlockListViewModel.swift */; };
 		9B026BF22AB59FDC00F6C81C /* APIable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B026BF12AB59FDC00F6C81C /* APIable.swift */; };
 		9B026BF42AB85A9000F6C81C /* APIManagerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B026BF32AB85A9000F6C81C /* APIManagerable.swift */; };
 		9B0696122AC7E63B00006A84 /* TBTravelNewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696112AC7E63B00006A84 /* TBTravelNewsAPI.swift */; };
@@ -95,12 +96,11 @@
 		9B0696262AD81D1500006A84 /* LocationSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696252AD81D1500006A84 /* LocationSearchResponse.swift */; };
 		9B0696282ADBA6D000006A84 /* LocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696272ADBA6D000006A84 /* LocationInfo.swift */; };
 		9B06962A2ADBAA4000006A84 /* TravelNewsSearchLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0696292ADBAA4000006A84 /* TravelNewsSearchLocationViewModel.swift */; };
+		9B1A2A5F2B4C294A007569DB /* KakaoAPIInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B1A2A5E2B4C294A007569DB /* KakaoAPIInfo.plist */; };
 		9B1A2A612B4FE16F007569DB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B1A2A602B4FE16F007569DB /* Settings.bundle */; };
 		9B247E172BC3843A00071DCB /* TBUserBlockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B247E162BC3843A00071DCB /* TBUserBlockAPI.swift */; };
 		9B247E1D2BC39D7700071DCB /* UserBlockPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B247E1C2BC39D7700071DCB /* UserBlockPopupView.swift */; };
 		9B33CABB2BC62663006409EC /* UserBlockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B33CABA2BC62663006409EC /* UserBlockViewModel.swift */; };
-		9B1A2A5D2B4C2819007569DB /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1A2A5C2B4C2819007569DB /* RootView.swift */; };
-		9B1A2A5F2B4C294A007569DB /* KakaoAPIInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B1A2A5E2B4C294A007569DB /* KakaoAPIInfo.plist */; };
 		9B3C13F92B3EE08D0097AE7F /* RegisterTravelNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13F82B3EE08D0097AE7F /* RegisterTravelNewsViewModel.swift */; };
 		9B3C13FF2B4595940097AE7F /* RegisterTravelNewsEditerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13FE2B4595940097AE7F /* RegisterTravelNewsEditerView.swift */; };
 		9B4E23662B611FD400878885 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E23652B611FD400878885 /* String+Extension.swift */; };
@@ -134,6 +134,7 @@
 		9BC432EF2B1F02F700D03E6D /* TravelNewsSearchKeywordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC432EE2B1F02F700D03E6D /* TravelNewsSearchKeywordListView.swift */; };
 		9BC432F42B1F34BB00D03E6D /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC432F32B1F34BB00D03E6D /* TokenStorage.swift */; };
 		9BC432F62B204E9400D03E6D /* TravelNewsMiniListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC432F52B204E9400D03E6D /* TravelNewsMiniListView.swift */; };
+		9BD7339F2BC7949E0029B4A7 /* BlockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD7339E2BC7949E0029B4A7 /* BlockListView.swift */; };
 		9BE1FFFC2B0F43CE00DD69F9 /* NicknameTextState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE1FFFB2B0F43CE00DD69F9 /* NicknameTextState.swift */; };
 		9BEAC9142B149A3E00B2B4B6 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEAC9132B149A3E00B2B4B6 /* Sort.swift */; };
 		9BEAC9182B18650C00B2B4B6 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEAC9172B18650C00B2B4B6 /* Author.swift */; };
@@ -240,6 +241,7 @@
 		85F02B5329F6913F008DABCE /* MypageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageView.swift; sourceTree = "<group>"; };
 		85F03BE72A3EE4C900A0B931 /* SignupTermDetailModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTermDetailModal.swift; sourceTree = "<group>"; };
 		85F31B5A2A543A3500493B5F /* GetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserResponse.swift; sourceTree = "<group>"; };
+		9B00D0B92BC7B2F7004F28D2 /* BlockListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListViewModel.swift; sourceTree = "<group>"; };
 		9B026BF12AB59FDC00F6C81C /* APIable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIable.swift; sourceTree = "<group>"; };
 		9B026BF32AB85A9000F6C81C /* APIManagerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerable.swift; sourceTree = "<group>"; };
 		9B0696112AC7E63B00006A84 /* TBTravelNewsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBTravelNewsAPI.swift; sourceTree = "<group>"; };
@@ -250,12 +252,11 @@
 		9B0696252AD81D1500006A84 /* LocationSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResponse.swift; sourceTree = "<group>"; };
 		9B0696272ADBA6D000006A84 /* LocationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
 		9B0696292ADBAA4000006A84 /* TravelNewsSearchLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsSearchLocationViewModel.swift; sourceTree = "<group>"; };
+		9B1A2A5E2B4C294A007569DB /* KakaoAPIInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KakaoAPIInfo.plist; sourceTree = "<group>"; };
 		9B1A2A602B4FE16F007569DB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9B247E162BC3843A00071DCB /* TBUserBlockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBUserBlockAPI.swift; sourceTree = "<group>"; };
 		9B247E1C2BC39D7700071DCB /* UserBlockPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBlockPopupView.swift; sourceTree = "<group>"; };
 		9B33CABA2BC62663006409EC /* UserBlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBlockViewModel.swift; sourceTree = "<group>"; };
-		9B1A2A5C2B4C2819007569DB /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		9B1A2A5E2B4C294A007569DB /* KakaoAPIInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KakaoAPIInfo.plist; sourceTree = "<group>"; };
 		9B3C13F82B3EE08D0097AE7F /* RegisterTravelNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTravelNewsViewModel.swift; sourceTree = "<group>"; };
 		9B3C13FE2B4595940097AE7F /* RegisterTravelNewsEditerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTravelNewsEditerView.swift; sourceTree = "<group>"; };
 		9B4E23652B611FD400878885 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -288,6 +289,7 @@
 		9BC432EE2B1F02F700D03E6D /* TravelNewsSearchKeywordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsSearchKeywordListView.swift; sourceTree = "<group>"; };
 		9BC432F32B1F34BB00D03E6D /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
 		9BC432F52B204E9400D03E6D /* TravelNewsMiniListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsMiniListView.swift; sourceTree = "<group>"; };
+		9BD7339E2BC7949E0029B4A7 /* BlockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListView.swift; sourceTree = "<group>"; };
 		9BE1FFFB2B0F43CE00DD69F9 /* NicknameTextState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameTextState.swift; sourceTree = "<group>"; };
 		9BEAC9132B149A3E00B2B4B6 /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		9BEAC9152B149CF500B2B4B6 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
@@ -673,6 +675,7 @@
 				9BA39AEA2AF50AE600C5AEBC /* EditProfileView.swift */,
 				9B5FD9AA2B0B898700E4354B /* InquiryView.swift */,
 				9BF8965E2B9A9E5D002996F4 /* MemberDeletePopup.swift */,
+				9BD7339E2BC7949E0029B4A7 /* BlockListView.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 			children = (
 				9BB592DD2B045D8F00A6B80E /* MypageViewModel.swift */,
 				9B5FD9AC2B0D987700E4354B /* EditProfileViewModel.swift */,
+				9B00D0B92BC7B2F7004F28D2 /* BlockListViewModel.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1139,6 +1143,7 @@
 				9BC432F42B1F34BB00D03E6D /* TokenStorage.swift in Sources */,
 				85E8CA9B2A39A6A800EBDE7F /* SignupViewModel.swift in Sources */,
 				85E8CA982A39A68900EBDE7F /* SignupProfileInfoView.swift in Sources */,
+				9B00D0BA2BC7B2F7004F28D2 /* BlockListViewModel.swift in Sources */,
 				9B0696152AC7EBC000006A84 /* TBArticlesAPIPath.swift in Sources */,
 				9B9C74D12AE7A9AE005B69AE /* OnboardingViewModel.swift in Sources */,
 				9B84C2562B85DC7F006D487B /* NSNotificationName+Extension.swift in Sources */,
@@ -1148,6 +1153,7 @@
 				9B95E9082B32D5FD00CFC82C /* LikeResponse.swift in Sources */,
 				9B9C74BA2AE68AF0005B69AE /* OnboardingView.swift in Sources */,
 				85E8CA962A39A65400EBDE7F /* SignupProfileImageView.swift in Sources */,
+				9BD7339F2BC7949E0029B4A7 /* BlockListView.swift in Sources */,
 				9B95E9102B3C45AA00CFC82C /* RegisterTravelNewsView.swift in Sources */,
 				8552BC2C29DDCD8D00DC8D7E /* AppView.swift in Sources */,
 				9B5BA3272B56A038003EE736 /* CoreDataController.swift in Sources */,

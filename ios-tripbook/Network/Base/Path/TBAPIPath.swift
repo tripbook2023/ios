@@ -9,7 +9,7 @@ import Foundation
 
 struct TBAPIPath {
 #if DEBUG
-    static let base = "http://13.124.98.251:9000"
+    static let base = "https://dev.tripbook.link"
 #else
     static let base = "https://tripbook.link"
 #endif

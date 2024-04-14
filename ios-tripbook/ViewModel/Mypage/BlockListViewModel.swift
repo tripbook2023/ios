@@ -39,9 +39,12 @@ final class BlockListViewModel: ObservableObject {
                 let api = TBUserBlockAPI.deleteBlocks(id: id)
                 let _ = try await apiManager.request(
                     api,
-                    encodingType: .json
+                    encodingType: .url
                 )
                 requestBlockList()
+                await MainActor.run {
+                    NotificationCenter.default.post(name: .refreshMain, object: nil)
+                }
             } catch {
                 
             }

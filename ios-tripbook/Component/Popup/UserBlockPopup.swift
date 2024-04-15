@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UserBlockPopupView: View {
+struct UserBlockPopup: View {
     @ObservedObject private var viewModel: UserBlockViewModel
     @State private var isSuccessedBlock = false
     @Binding private var isPresented: Bool {
@@ -22,7 +22,7 @@ struct UserBlockPopupView: View {
     init(
         user: Author?,
         isPresented: Binding<Bool>,
-        onBlock: @escaping () -> Void = {}
+        onBlock: @escaping () -> Void
     ) {
         self._isPresented = isPresented
         self.viewModel = UserBlockViewModel(
@@ -163,10 +163,10 @@ struct UserBlockPopupView: View {
 #if DEBUG
 #Preview {
     ZStack {
-        Color.black
-        UserBlockPopupView(
+        UserBlockPopup(
             user: TravelNewsModel.dummy.author,
-            isPresented: .constant(true)
+            isPresented: .constant(true),
+            onBlock: {}
         )
     }
 }

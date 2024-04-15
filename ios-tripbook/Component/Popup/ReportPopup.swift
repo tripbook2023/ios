@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ReportPopupView: View {
+struct ReportPopup: View {
     @ObservedObject private var viewModel: ReportViewModel
     @FocusState private var isFocus: Bool
     @State private var isSuccessedReport = false
@@ -23,7 +23,7 @@ struct ReportPopupView: View {
     init(
         postId: Int?,
         isPresented: Binding<Bool>,
-        onReport: @escaping () -> Void = {}
+        onReport: @escaping () -> Void
     ) {
         self._isPresented = isPresented
         self.viewModel = ReportViewModel(
@@ -155,6 +155,6 @@ struct ReportPopupView: View {
 #Preview {
     ZStack {
         Color.black
-        ReportPopupView(postId: 0, isPresented: .constant(true))
+        ReportPopup(postId: 0, isPresented: .constant(true), onReport: {})
     }
 }

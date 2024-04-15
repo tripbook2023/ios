@@ -141,10 +141,7 @@ struct ReportPopup: View {
                     isPresented = false
                 }                
                 .frame(width: 130)
-            }
-            
-            
-            
+            } 
         }
         .padding(20)
         .background(.white)

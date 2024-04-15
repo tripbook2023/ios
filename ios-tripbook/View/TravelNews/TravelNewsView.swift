@@ -13,8 +13,7 @@ struct TravelNewsView: View {
     @StateObject private var viewModel = TravelNewsViewModel()
     @State private var anyCancellable = Set<AnyCancellable>()
     @State private var isAppear = false
-    @State private var isPopupReportView = false
-    @State private var isPopupUserBlockView = false
+    @Environment(\.popupView) private var popupView
     
     var body: some View {
         NavigationStack {
@@ -79,21 +78,6 @@ struct TravelNewsView: View {
                     }
                 }
             }
-            .overlay(content: {
-                Color.black
-                    .ignoresSafeArea()
-                    .opacity(isPopupReportView || isPopupUserBlockView ? 0.6 : 0)
-                ReportPopupView(
-                    postId: viewModel.selectedItem?.id,
-                    isPresented: $isPopupReportView
-                )
-                .opacity(isPopupReportView ? 1 : 0)
-                UserBlockPopupView(
-                    user: viewModel.selectedItem?.author,
-                    isPresented: $isPopupUserBlockView
-                )
-                .opacity(isPopupUserBlockView ? 1 : 0)
-            })
             .onAppear {
                 if !isAppear {
                     bind()
@@ -102,11 +86,17 @@ struct TravelNewsView: View {
             }
             .confirmationDialog("", isPresented: $viewModel.isPresentedMoreSheet) {
                 Button("사용자 차단", role: .destructive) {
-                    isPopupUserBlockView = true
+                    popupView.wrappedValue = .userBlock(
+                        user: viewModel.selectedItem?.author,
+                        onBlock: {}
+                    )
                 }
                 
                 Button("게시글 신고", role: .destructive) {
-                    isPopupReportView = true
+                    popupView.wrappedValue = .report(
+                        postId: viewModel.selectedItem?.id,
+                        onReport: {}
+                    )
                 }
                 
                 Button("취소", role: .cancel) {

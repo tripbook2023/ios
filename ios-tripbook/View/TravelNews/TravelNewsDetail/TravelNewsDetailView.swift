@@ -57,11 +57,10 @@ struct TravelNewsDetailView: View {
     @ObservedObject var viewModel: TravelNewsDetailViewModel
     @State private var webViewHeight: CGFloat = .zero
     @State private var isAppear = false
-    @State private var isPopupReportView = false
-    @State private var isPopupUserBlockView = false
     @State private var isShowedMoreSheet = false
     @State private var isPresentedEditView = false
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.popupView) private var popupView
     
     init(item: TravelNewsModel) {
         self.viewModel = TravelNewsDetailViewModel(item: item)
@@ -114,7 +113,12 @@ struct TravelNewsDetailView: View {
                             rightItem: {
                                 HStack(spacing: 12) {
                                     Button(action: {
-                                        isPopupReportView = true
+                                        popupView.wrappedValue = .report(
+                                            postId: viewModel.travelNews.id,
+                                            onReport: {
+                                                dismiss()
+                                            }
+                                        )
                                     }, label: {
                                         TBIcon.report.iconSize(size: .medium)
                                     })
@@ -142,7 +146,12 @@ struct TravelNewsDetailView: View {
                                             }
                                         } else {
                                             Button("사용자 차단", role: .destructive) {
-                                                isPopupUserBlockView = true
+                                                popupView.wrappedValue = .userBlock(
+                                                    user: viewModel.travelNews.author,
+                                                    onBlock: {
+                                                        dismiss()
+                                                    }
+                                                )
                                             }
                                         }
                                         
@@ -185,26 +194,6 @@ struct TravelNewsDetailView: View {
                 }
                 .ignoresSafeArea()
             }
-        }
-        .overlay {
-            Color.black
-                .ignoresSafeArea()
-                .opacity(isPopupReportView || isPopupUserBlockView ? 0.6 : 0)
-            ReportPopupView(
-                postId: viewModel.travelNews.id,
-                isPresented: $isPopupReportView
-            ) {
-                dismiss()
-            }
-            .opacity(isPopupReportView ? 1 : 0)
-            UserBlockPopupView(
-                user: viewModel.travelNews.author,
-                isPresented: $isPopupUserBlockView
-            ) {
-                dismiss()
-            }
-            .opacity(isPopupUserBlockView ? 1 : 0)
-            
         }
         .navigationBarBackButtonHidden()
         .toolbar(.hidden, for: .tabBar)

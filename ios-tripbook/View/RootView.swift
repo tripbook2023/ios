@@ -23,6 +23,7 @@ struct RootView: View {
     @StateObject var viewModel = RootViewModel()
     @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
     @State private var anyCancellable = Set<AnyCancellable>()
+    @State private var popView: TBPopup.ViewType? = nil
     
     private var deviceWidth: CGFloat {
         return UIScreen.main.bounds.width
@@ -32,6 +33,7 @@ struct RootView: View {
         ZStack(alignment: .bottom) {
             TabView(selection: self.$viewModel.selectedTab) {
                 TravelNewsView()
+                    .environment(\.popupView, $popView)
                     .tabItem {
                         if viewModel.selectedTab == .home {
                             TBIcon.navigation.home.active
@@ -52,6 +54,7 @@ struct RootView: View {
                 MypageView(logoutAction: {
                     viewModel.isShowLogoutMessage = true
                 })
+                .environment(\.popupView, $popView)
                 .tabItem {
                     if viewModel.selectedTab == .profile {
                         TBIcon.navigation.mypage.active
@@ -75,8 +78,6 @@ struct RootView: View {
                     self.viewModel.oldSelectedTab = value
                 }
             })
-            
-
             VStack(spacing: 6) {
                 Spacer()
                 Image("Logout")
@@ -104,6 +105,7 @@ struct RootView: View {
             content: {
                 RegisterTravelNewsView()
         })
+        .showAlert(content: $popView)
     }
 }
 

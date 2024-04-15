@@ -20,6 +20,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     @Published var isShowTemporaryStorageListView = false
     @Published var isShowSearchLocationView = false
     @Published var location: LocationInfo?
+    @Published var message: (String, String)? = nil
     
     var title: String = ""
     var content: String = ""
@@ -29,7 +30,10 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     var fileIds = [Int: String]()
     var usedIds: Set<Int> = []
     
-    init(apiManager: APIManagerable = TBAPIManager()) {
+    
+    init(
+        apiManager: APIManagerable = TBAPIManager()
+    ) {
         self.apiManager = apiManager
     }
     
@@ -63,6 +67,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                 _ = try await apiManager.request(api, encodingType: .json)
                 if type == .temp {
                     fatchTempList()
+                    message = ("임시저장 되었습니다!", "다른 기기에서도 이어서\n작성이 가능합니다.")
                 } else {
                     NotificationCenter.default.post(name: .refreshMain, object: nil)
                 }

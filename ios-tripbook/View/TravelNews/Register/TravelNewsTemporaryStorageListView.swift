@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TravelNewsTemporaryStorageListView: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var popView: TBPopup.ViewType? = nil
     @ObservedObject private var viewModel: RegisterTravelNewsViewModel
     @State private var selectedIndex: Int? = nil
     
@@ -48,7 +49,14 @@ struct TravelNewsTemporaryStorageListView: View {
                                 Spacer()
                                 
                                 Button(action: {
-                                    viewModel.deleteTemp(index: index)
+                                    popView = .ruide(
+                                        title: "삭제하시겠습니까",
+                                        confirmButtonText: "삭제하기",
+                                        dismissButtonText: "닫기",
+                                        didTapConfirmButton: {
+                                            viewModel.deleteTemp(index: index)
+                                        }
+                                    )
                                 }) {
                                     TBIcon.cancel.iconSize(size: .small)
                                 }.foregroundColor(TBColor.grayscale._70)
@@ -84,6 +92,7 @@ struct TravelNewsTemporaryStorageListView: View {
             .padding(.vertical, 12)
             .padding(.horizontal, 20)
         }
+        .showAlert(content: $popView)
     }
 }
 

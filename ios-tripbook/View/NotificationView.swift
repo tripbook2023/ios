@@ -42,13 +42,13 @@ struct NotificationView: View {
             ZStack {
                 Color.black.opacity(0.6)
                 
-                TBPopup(
-                    title: "삭제하시겠습니까?",
-                    confirmButtonText: "삭제하기",
-                    dismissButtonText: "닫기",
-                    didTapConfirmButton: self.viewModel.didTapConfirmButton,
-                    didTapDismissButton: self.viewModel.didTapDismissButton
-                )
+//                TBPopup(
+//                    title: "삭제하시겠습니까?",
+//                    confirmButtonText: "삭제하기",
+//                    dismissButtonText: "닫기",
+//                    didTapConfirmButton: self.viewModel.didTapConfirmButton,
+//                    didTapDismissButton: self.viewModel.didTapDismissButton
+//                )
             }
             .ignoresSafeArea()
             .opacity(self.viewModel.isShowEditModal ? 1 : 0)

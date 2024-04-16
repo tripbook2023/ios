@@ -20,6 +20,7 @@ struct MypageView: View {
         return UIScreen.main.bounds.width
     }
     @StateObject private var viewModel = MypageViewModel()
+    @Environment(\.popupView) private var popupView
     private let logoutAction: (() -> Void)?
     
     init(logoutAction: (() -> Void)? = nil) {
@@ -103,7 +104,20 @@ struct MypageView: View {
                     VStack {
                         Button {
                             //로그아웃 로직
-                            viewModel.isShowLogOutPopup.toggle()
+                            popupView.wrappedValue = .ruide(
+                                title: "로그아웃하시겠습니까",
+                                confirmButtonText: "로그아웃",
+                                dismissButtonText: "취소",
+                                didTapConfirmButton: {
+                                    Task {
+                                        await Auth0Service.webAuthLogout {
+                                            self.viewModel.deleteToken()
+                                            (self.logoutAction ?? {})()
+                                        }
+                                    }
+                                },
+                                didTapDismissButton: {}
+                            )
                         } label: {
                             RoundedRectangle(cornerRadius: 6)
                                 .strokeBorder(TBColor.grayscale._50, lineWidth: 1)
@@ -124,7 +138,10 @@ struct MypageView: View {
                                 .foregroundColor(TBColor.grayscale._40)
                                 .underline()
                                 .onTapGesture {
-                                    viewModel.isShowMemberDeletePopup = true
+                                    popupView.wrappedValue = .memberDelete(
+                                        viewModel: viewModel,
+                                        logoutAction: logoutAction
+                                    )
                                 }
                             Spacer()
                             Text("버전정보 v1.0.0")
@@ -138,39 +155,6 @@ struct MypageView: View {
                     .frame(width: deviceWidth)
                     .background(TBColor.grayscale._1)
                 }
-                VStack {
-                    Spacer()
-                    ZStack {
-                        TBPopup(
-                            title: "로그아웃하시겠습니까?",
-                            confirmButtonText: "로그아웃",
-                            dismissButtonText: "취소",
-                            didTapConfirmButton: {
-                                Task {
-                                    await Auth0Service.webAuthLogout {
-                                        self.viewModel.deleteToken()
-                                        (self.logoutAction ?? {})()
-                                    }
-                                }
-                            },
-                            didTapDismissButton: {
-                                viewModel.isShowLogOutPopup.toggle()
-                            }
-                        )
-                        .opacity(viewModel.isShowLogOutPopup ? 1 : 0)
-                        
-                        MemberDeletePopup(
-                            viewModel: viewModel,
-                            isPresented: $viewModel.isShowMemberDeletePopup,
-                            logoutAction: logoutAction
-                        )
-                        .opacity(viewModel.isShowMemberDeletePopup ? 1 : 0)
-                    }
-                    Spacer()
-                }
-                .frame(width: deviceWidth)
-                .background(.black.opacity(0.6))
-                .opacity(viewModel.isShowLogOutPopup || viewModel.isShowMemberDeletePopup ? 1 : 0)
             }
             .fullScreenCover(isPresented: $viewModel.isPresentInquiryView, content: {
                 InquiryView()

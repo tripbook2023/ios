@@ -24,6 +24,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
     
     var title: String = ""
     var content: String = ""
+    var nonTagContent: String = ""
     var thumbnail: String?
     var thumbnailId: Int?
     var isEditing: Bool = false
@@ -60,6 +61,7 @@ final class RegisterTravelNewsViewModel: ObservableObject {
                     id: type == .register && isEditing ? tempItem?.id : nil,
                     title: title,
                     content: content,
+                    nonTagContent: nonTagContent,
                     fileIds: Array(usedIds),
                     thumbnail: thumbnail,
                     locationList: location

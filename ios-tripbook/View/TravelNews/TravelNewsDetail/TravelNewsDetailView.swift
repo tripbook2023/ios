@@ -17,46 +17,9 @@ struct ScrollOffsetKey: PreferenceKey {
     }
 }
 
-private struct WillDisappearHandler: UIViewControllerRepresentable {
-
-    let onWillDisappear: () -> Void
-
-    func makeUIViewController(context: Context) -> UIViewController {
-        ViewWillDisappearViewController(onWillDisappear: onWillDisappear)
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
-
-    private class ViewWillDisappearViewController: UIViewController {
-        let onWillDisappear: () -> Void
-
-        init(onWillDisappear: @escaping () -> Void) {
-            self.onWillDisappear = onWillDisappear
-            super.init(nibName: nil, bundle: nil)
-        }
-
-        @available(*, unavailable)
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
-        override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            onWillDisappear()
-        }
-    }
-}
-
-extension View {
-    func onWillDisappear(_ perform: @escaping () -> Void) -> some View {
-        background(WillDisappearHandler(onWillDisappear: perform))
-    }
-}
-
 struct TravelNewsDetailView: View {
     @ObservedObject var viewModel: TravelNewsDetailViewModel
     @State private var webViewHeight: CGFloat = .zero
-    @State private var isAppear = false
     @State private var isShowedMoreSheet = false
     @State private var isPresentedEditView = false
     @Environment(\.dismiss) private var dismiss
@@ -169,11 +132,9 @@ struct TravelNewsDetailView: View {
                 }
                 
             }
-            .onAppear {
-                if !isAppear {
-                    UIScrollView.appearance().bounces = false
-                    isAppear = true
-                }
+            .onWillAppear {
+                UIScrollView.appearance().bounces = false
+                
             }
             .onWillDisappear {
                 UIScrollView.appearance().bounces = true

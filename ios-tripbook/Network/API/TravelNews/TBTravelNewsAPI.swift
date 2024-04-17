@@ -81,6 +81,7 @@ struct TBTravelNewsAPI: APIable {
         id: Int?,
         title: String,
         content: String,
+        nonTagContent: String,
         fileIds: [Int],
         thumbnail: String?,
         locationList: LocationInfo?
@@ -88,6 +89,7 @@ struct TBTravelNewsAPI: APIable {
         var parameters: [String: Any] = [
             "title": title,
             "content": content,
+            "contentOrigin": nonTagContent,
             "fileIds": fileIds
         ]
         if let id = id {

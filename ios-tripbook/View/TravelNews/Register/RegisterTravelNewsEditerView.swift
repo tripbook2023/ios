@@ -941,6 +941,7 @@ extension RegisterTravelReportVC: UITextViewDelegate {
                 let truncatedString = String(text[..<endIndex])
                 contentTextView.text = truncatedString
             }
+            viewModel.nonTagContent = contentTextView.text
         }
     }
 }
@@ -1022,23 +1023,11 @@ extension RegisterTravelReportVC {
                     self.photoLabel.isHidden = false
                 }
                 self.titleTextView.text = temp.title
-                self.titleTextCountLabel.text = "\(titleTextView.text.count)"
-                if !temp.title.isEmpty {
-                    self.titlePlaceHolderLabel.isHidden = true
-                } else {
-                    self.titlePlaceHolderLabel.isHidden = false
-                }
+                textViewDidChange(titleTextView)
                 self.contentTextView.attributedText = self.viewModel.readHTML(htmlContent: temp.content)
-                self.contentCountLabel.text = "\(contentTextView.text.count)"
-                if !temp.content.isEmpty {
-                    self.contentPlaceHolderLabel.isHidden = true
-                } else {
-                    self.contentPlaceHolderLabel.isHidden = false
-                }
                 self.viewModel.location = temp.location
                 self.viewModel.title = temp.title
-                
-                
+                textViewDidChange(contentTextView)
             }.store(in: &anyCancellable)
     }
 }

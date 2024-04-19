@@ -19,6 +19,7 @@ struct OnboardingView: View {
                     .environment(\.rootPresentationMode, $viewModel.isPresentRoot)
             } else {
                 SignupSocialView()
+                    .environment(\.isloginSucceed, $viewModel.isPresentRoot)
             }
             
             Color.white
@@ -47,7 +48,7 @@ extension OnboardingView {
             .combineLatest(viewModel.$isAnimationFinish)
             .filter { $1 && !self.viewModel.isHidden }
             .sink { _ in
-                withAnimation(Animation.spring().speed(1)) {
+                withAnimation(Animation.linear.speed(1)) {
                     viewModel.isHidden = true
                 }
             }.store(in: &anyCancellable)

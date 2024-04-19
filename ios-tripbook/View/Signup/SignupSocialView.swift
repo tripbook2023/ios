@@ -16,6 +16,7 @@ protocol SignupSocialViewDelegate {
 struct SignupSocialView: View {
     @StateObject var signupViewModel = SignupViewModel()
     @StateObject var viewModel =  SignupSocialViewModel()
+    @Environment(\.isloginSucceed) private var isloginSucceed
     
     var body: some View {
         NavigationStack {
@@ -91,9 +92,12 @@ struct SignupSocialView: View {
                     .frame(height: 52)
                 }.padding(.horizontal, 20)
             }
-            .navigationDestination(isPresented: $viewModel.goToRootNavigationTrigger) {
-                RootView()
-                    .environment(\.rootPresentationMode, $viewModel.goToRootNavigationTrigger)
+            .onChange(of: viewModel.goToRootNavigationTrigger) { newValue in
+                if newValue {
+                    withAnimation(.linear(duration: 0.5)) {
+                        isloginSucceed.wrappedValue = true
+                    }
+                }
             }
             .navigationDestination(isPresented: $viewModel.continueNavigationTrigger) {
                 SignupTermsView(self.signupViewModel)

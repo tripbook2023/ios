@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignupCompletionView: View {
     @State var navigationTrigger: Bool = false
+    @Environment(\.isloginSucceed) private var isloginSucceed
     
     var body: some View {
         VStack(spacing: 0) {
@@ -23,9 +24,13 @@ struct SignupCompletionView: View {
                 .font(TBFont.body_4)
                 .foregroundColor(TBColor.grayscale._60)
         }
-        .navigationDestination(isPresented: $navigationTrigger, destination: {
-            RootView()
-        })
+        .onChange(of: navigationTrigger) { newValue in
+            if newValue {
+                withAnimation(.linear(duration: 0.5)) {
+                    isloginSucceed.wrappedValue = true
+                }
+            }
+        }
         .navigationBarHidden(true)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {

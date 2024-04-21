@@ -880,7 +880,6 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             let imageString = NSMutableAttributedString(attachment: imageAttachment)
             // image를 찾을 수 있도록 ID 를 추가
             imageString.addAttribute(.init("ID"), value: id, range: NSRange(location: 0, length: imageString.length))
-            
             let currentNSArr = contentTextView.attributedText ?? .init(string: "")
             
             let mutableAttributedString = NSMutableAttributedString(attributedString: currentNSArr)
@@ -892,15 +891,18 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
                 // 기존 NSAttributedString 끝에 이미지를 추가
                 mutableAttributedString.append(imageString)
             }
+            mutableAttributedString.append(.init(string: "\n"))
             mutableAttributedString.addAttribute(
                 .font,
                 value: UIFont.systemFont(
                     ofSize: 14,
                     weight: .regular
                 ),
-                range: NSRange(location: contentTextView.attributedText.length, length: 0)
+                range: NSRange(location: mutableAttributedString.length - 1, length: 1)
             )
+            
             contentTextView.attributedText = NSAttributedString(attributedString: mutableAttributedString)
+            contentTextView.becomeFirstResponder()
         }
     }
 }

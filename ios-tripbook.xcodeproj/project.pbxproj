@@ -136,6 +136,7 @@
 		9BC432F62B204E9400D03E6D /* TravelNewsMiniListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC432F52B204E9400D03E6D /* TravelNewsMiniListView.swift */; };
 		9BD7339F2BC7949E0029B4A7 /* BlockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD7339E2BC7949E0029B4A7 /* BlockListView.swift */; };
 		9BE1FFFC2B0F43CE00DD69F9 /* NicknameTextState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE1FFFB2B0F43CE00DD69F9 /* NicknameTextState.swift */; };
+		9BE59B8E2BD50D2800F3A4FA /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 9BE59B8D2BD50D2800F3A4FA /* PrivacyInfo.xcprivacy */; };
 		9BE848F42BCD04D400E3F26D /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE848F32BCD04D400E3F26D /* View+.swift */; };
 		9BE848F62BCD304400E3F26D /* TBPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE848F52BCD304400E3F26D /* TBPopup.swift */; };
 		9BEAC9142B149A3E00B2B4B6 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEAC9132B149A3E00B2B4B6 /* Sort.swift */; };
@@ -293,6 +294,7 @@
 		9BC432F52B204E9400D03E6D /* TravelNewsMiniListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNewsMiniListView.swift; sourceTree = "<group>"; };
 		9BD7339E2BC7949E0029B4A7 /* BlockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListView.swift; sourceTree = "<group>"; };
 		9BE1FFFB2B0F43CE00DD69F9 /* NicknameTextState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameTextState.swift; sourceTree = "<group>"; };
+		9BE59B8D2BD50D2800F3A4FA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		9BE848F32BCD04D400E3F26D /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		9BE848F52BCD304400E3F26D /* TBPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBPopup.swift; sourceTree = "<group>"; };
 		9BEAC9132B149A3E00B2B4B6 /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 				9BA39AE72AEA327200C5AEBC /* tripbookOnboardingLottie.json */,
 				8552BC2F29DDCD8E00DC8D7E /* Assets.xcassets */,
 				85A6B11E2A5836360050FF68 /* Font */,
+				9BE59B8D2BD50D2800F3A4FA /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1017,6 +1020,7 @@
 				85A6B12A2A58364D0050FF68 /* SUIT-Heavy.otf in Resources */,
 				9B1A2A5F2B4C294A007569DB /* KakaoAPIInfo.plist in Resources */,
 				85A6B1282A58364D0050FF68 /* SUIT-Bold.otf in Resources */,
+				9BE59B8E2BD50D2800F3A4FA /* PrivacyInfo.xcprivacy in Resources */,
 				85A6B12C2A58364D0050FF68 /* SUIT-Thin.otf in Resources */,
 				85A6B1302A58364D0050FF68 /* SUIT-SemiBold.otf in Resources */,
 				853EA9202A46F3D3001890DE /* Auth0.plist in Resources */,

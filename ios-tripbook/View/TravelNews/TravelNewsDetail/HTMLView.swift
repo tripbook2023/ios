@@ -10,7 +10,7 @@ import WebKit
 import SnapKit
 
 struct HTMLView: UIViewRepresentable {
-    let htmlString: String
+    @Binding var htmlString: String
     @Binding var contentHeight: CGFloat
     
     func makeUIView(context: Context) -> WKWebView {

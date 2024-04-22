@@ -61,8 +61,15 @@ struct TravelNewsDetailView: View {
                     }
                     .padding(.top, 24)
                     .padding(.horizontal, 16)
-                    htmlView(content: viewModel.travelNews.content)
-                        .padding(.horizontal, 12)
+                    HTMLView(
+                        htmlString: Binding(
+                            get: { viewModel.travelNews.content },
+                            set: { _ in }
+                        ),
+                        contentHeight: $webViewHeight
+                    )
+                    .frame(height: webViewHeight)
+                    .padding(.horizontal, 12)
                     scrollObservableView
                 }
                 .padding(.bottom, 56)
@@ -134,7 +141,6 @@ struct TravelNewsDetailView: View {
             }
             .onWillAppear {
                 UIScrollView.appearance().bounces = false
-                
             }
             .onWillDisappear {
                 UIScrollView.appearance().bounces = true
@@ -225,11 +231,6 @@ struct TravelNewsDetailView: View {
         .frame(width: deviceWidth, height: deviceHeight)
     }
     
-    private func htmlView(content: String) -> some View {
-        HTMLView(htmlString: content, contentHeight: $webViewHeight)
-            .frame(height: webViewHeight)
-    }
-    
     private func bottomView() -> some View {
         VStack(spacing: 0) {
             Rectangle()
@@ -263,6 +264,7 @@ struct TravelNewsDetailView: View {
         .background(.white)
     }
 }
+
 #if DEBUG
 #Preview {
     TravelNewsDetailView(item: TravelNewsModel.dummy)

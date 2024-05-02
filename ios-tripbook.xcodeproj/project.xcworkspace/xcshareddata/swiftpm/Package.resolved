@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/auth0/Auth0.swift",
       "state" : {
-        "revision" : "a4da5b3f8c962357b67620dae8d5e2a4f9ca02fd",
-        "version" : "2.6.0"
+        "revision" : "ecd6fbd0c00d2144d9275a6dbceb213afc7f2a2d",
+        "version" : "2.7.0"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tripbook2023/iOS-TripBook-ImagePicker-Package",
       "state" : {
-        "revision" : "e073ff96422be68baf1298ac60bbf2def7f39f27",
-        "version" : "1.0.9"
+        "revision" : "46aa419b0647b2e12217bec7401cf43dd4104857",
+        "version" : "1.1.0"
       }
     },
     {
@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/airbnb/lottie-ios",
       "state" : {
-        "revision" : "ab15129d567eda5da0631fcba23de60144a612f4",
-        "version" : "4.4.2"
+        "revision" : "769b88d83a42ca8d5572b020c96f47e3690b3796",
+        "version" : "4.4.3"
       }
     },
     {

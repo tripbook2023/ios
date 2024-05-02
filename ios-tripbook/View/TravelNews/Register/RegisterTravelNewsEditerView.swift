@@ -11,6 +11,7 @@ import SnapKit
 import TBImagePicker
 import Combine
 import Kingfisher
+import Photos
 
 struct RegisterTravelNewsEditerView : UIViewControllerRepresentable {
     @ObservedObject private var viewModel: RegisterTravelNewsViewModel
@@ -153,7 +154,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             onSelection: nil,
             onDeSelction: nil,
             onFinish: { imageManagers in
-                imageManagers.first!.request(size: .init(width: 375, height: 320)) { [weak self] image, _ in
+                imageManagers.first!.request(size: .zero) { [weak self] image, _ in
                     guard let self = self else { return }
                     if let selectedImage = image {
                         self.selectedCoverImage = selectedImage
@@ -173,6 +174,7 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
             onCancel: nil
         )
         singleImagePicker.setting.fetchOptions.isSynchronous = true
+        singleImagePicker.setting.fetchOptions.resizeMode = .none
         self.show(singleImagePicker, sender: nil)
       }
     
@@ -205,8 +207,6 @@ class RegisterTravelReportVC: UIViewController, UINavigationControllerDelegate {
         
         multiImagePicker.setting.fetchOptions.isSynchronous = true
         multiImagePicker.modalPresentationStyle = .fullScreen
-        
-        
         present(multiImagePicker, animated: true)
       }
     

@@ -34,7 +34,9 @@ struct TravelNewsListItemView: View {
             } label: {
                 KFImage(item.thumbnailURL)
                     .resizable()
-                    .frame(height: 335)
+                    .cacheMemoryOnly()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 335)
                     .overlay(TBColor.grayscale._90.opacity(0.4))
             }
             VStack(alignment: .leading, spacing: 0) {

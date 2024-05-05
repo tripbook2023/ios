@@ -14,6 +14,10 @@ struct TravelNewsListItemView: View {
     @Binding private var isPresentedMoreSheet: Bool
     private var likeButtonAction: () -> Void
     private let isOwner: Bool
+  
+    var cellWidth: CGFloat {
+        return UIScreen.main.bounds.width - 40
+    }
     
     init(
         _ item: Binding<TravelNewsModel>,
@@ -36,7 +40,7 @@ struct TravelNewsListItemView: View {
                     .resizable()
                     .cacheMemoryOnly()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 335)
+                    .frame(width: cellWidth, height: cellWidth)
                     .overlay(TBColor.grayscale._90.opacity(0.4))
             }
             VStack(alignment: .leading, spacing: 0) {
@@ -93,7 +97,7 @@ struct TravelNewsListItemView: View {
             }
             .padding(24)
         }
-        .frame(width: 335, height: 335)
+        .frame(width: cellWidth, height: cellWidth)
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }

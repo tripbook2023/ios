@@ -26,7 +26,7 @@ struct TravelNewsListView: View {
                     }
                 }
                 ZStack(alignment: .top) {
-                    LazyVStack(spacing: 20) {
+                    LazyVStack(spacing: 16) {
                         ForEach(0..<viewModel.travelNewsList.count, id: \.self) { i in
                             let item = viewModel.travelNewsList[i]
                             TravelNewsListItemView(
